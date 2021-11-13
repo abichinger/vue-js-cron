@@ -1,5 +1,5 @@
 import util from '../util'
-
+let { RangeColumn, CombinedColumn, ValueColumn } = util
 // x-y
 
 let re = /^\d+-\d+$/
@@ -20,7 +20,8 @@ function strToArray(str, {min, max}){
     return util.range(start, end)
 }
 
-function arrayToStr(arr, {min, max}){
+function arrayToStr(arr, field){
+    let {min, max} = field
     
     if(arr.length <= 1){
         return null
@@ -41,16 +42,16 @@ function arrayToStr(arr, {min, max}){
     for(let i = 0; i < arr.length; i++){
         if(arr[i+1] === undefined || arr[i+1] - arr[i] > 1){
             if(i == start){
-                ranges.push(arr[start])
+                ranges.push(new ValueColumn(field, arr[start]))
             }
             else{
-                ranges.push(arr[start]+'-'+arr[i])
+                ranges.push(new RangeColumn(field, arr[start], arr[i]))
             }
             start = i+1
         }
     }
 
-    return ranges.join(',')
+    return new CombinedColumn(field, ranges)
 }
 
 export default {

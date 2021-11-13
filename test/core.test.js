@@ -23,13 +23,13 @@ test('test VueCron', () => {
         }
     })
 
-    expect(props.minuteAttrs.value).toEqual([0,15,30,45])
-    expect(props.hourAttrs.value).toEqual([12])
-    expect(props.dayAttrs.value).toEqual([])
-    expect(props.monthAttrs.value).toEqual([])
-    expect(props.dayOfWeekAttrs.value).toEqual([])
+    expect(props.fields[0].attrs.value).toEqual([0,15,30,45])
+    expect(props.fields[1].attrs.value).toEqual([12])
+    expect(props.fields[2].attrs.value).toEqual([])
+    expect(props.fields[3].attrs.value).toEqual([])
+    expect(props.fields[4].attrs.value).toEqual([])
     
-    props.minuteEvents.input([1,2,3,4,5])
+    props.fields[0].events.input([1,2,3,4,5])
 
     wrapper.vm.$nextTick(() => {
         expect(onInput).toHaveBeenCalled()

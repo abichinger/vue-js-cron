@@ -1,10 +1,10 @@
 import multiple from '../src/fields/multiple'
 import util from '../src/util'
 const {strToArray, arrayToStr} = multiple
-const {Field,Range} = util
+const {Field,Range,genItems} = util
 
 const r = (min, max) => {
-    return new Field('', new Range(min, max))
+    return new Field('', genItems(min, max))
 }
 
 test('test strToArray', () => {
@@ -25,13 +25,13 @@ test('test strToArray', () => {
 });
 
 test('test arrayToStr', () => {
-    expect(arrayToStr([1,10], r(1, 10))).toEqual('1,10');
-    expect(arrayToStr([1,2,3], r(1, 10))).toEqual('1-3');
-    expect(arrayToStr([2,4,6], r(1, 10))).toEqual('2,4,6');
-    expect(arrayToStr([], r(1, 3))).toEqual('*');
-    expect(arrayToStr([1,2,3], r(1, 3))).toEqual('*');
-    expect(arrayToStr([0,5,10], r(0, 10))).toEqual('*/5');
-    expect(arrayToStr([7,14,21,28], r(5, 30))).toEqual('*/7');
-    expect(arrayToStr([0,5,10], r(0, 20))).toEqual('0,5,10');
-    expect(arrayToStr([1,2,5,8,9,10], r(1, 10))).toEqual('1-2,5,8-10');
+    expect(arrayToStr([1,10], r(1, 10)).value).toEqual('1,10');
+    expect(arrayToStr([1,2,3], r(1, 10)).value).toEqual('1-3');
+    expect(arrayToStr([2,4,6], r(1, 10)).value).toEqual('2,4,6');
+    expect(arrayToStr([], r(1, 3)).value).toEqual('*');
+    expect(arrayToStr([1,2,3], r(1, 3)).value).toEqual('*');
+    expect(arrayToStr([0,5,10], r(0, 10)).value).toEqual('*/5');
+    expect(arrayToStr([7,14,21,28], r(5, 30)).value).toEqual('*/7');
+    expect(arrayToStr([0,5,10], r(0, 20)).value).toEqual('0,5,10');
+    expect(arrayToStr([1,2,5,8,9,10], r(1, 10)).value).toEqual('1-2,5,8-10');
 });

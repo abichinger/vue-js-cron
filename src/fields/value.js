@@ -1,11 +1,15 @@
 // x
+import util from '../util'
+const { ValueColumn, CombinedColumn } = util
 
 function strToArray(str, {min, max}){
     let number = parseInt(str)
     return (String(number) == str && number >= min && number <= max) ? [number] : null
 }
 
-function arrayToStr(arr, {min, max}){
+function arrayToStr(arr, field){
+    let {min, max} = field
+
     if(Math.min(arr) < min){
         return null
     }
@@ -13,7 +17,8 @@ function arrayToStr(arr, {min, max}){
         return null
     }
 
-    return arr.join(',')
+    let values = arr.map((x) => {return new ValueColumn(field, x)})
+    return new CombinedColumn(field, values)
 }
 
 export default {

@@ -12,7 +12,7 @@
                     </span>
 
                     
-                    <template v-for="f in p.fields">
+                    <template v-for="f in orderByRank(p.fields)">
                         <span :key="f.name" v-if="p.rankAttrs.value >= f.rank">
                             {{f.name}}:
                             <select @input="f.events.input(getSelected($event.target))" multiple>
@@ -68,6 +68,10 @@ export default {
         getSelected(select){
             let options = select && select.options;
             return Array.from(options).filter((opt) => opt.selected).map((opt) => opt.value)
+        },
+
+        orderByRank(fields){
+            return fields.slice().sort((a, b) => b.rank - a.rank)
         }
     }
 }

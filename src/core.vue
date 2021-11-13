@@ -1,8 +1,9 @@
 <script>
 import multiple from './fields/multiple'
 import util from './util'
-import en from './locale/en'
+import locale from './locale'
 
+const {getLocale} = locale
 const {Field} = util
 
 export default {
@@ -12,15 +13,22 @@ export default {
             type: String,
             required: true
         },
+        locale: {
+            type: String,
+            default: 'en'
+        },
         fields: {
             type: Array,
-            default: () => {
+            default: function() {
+
+                let locale = getLocale(this.locale)
+
                 return [
-                    {name: 'minute', items: en.minuteItems, rank: 0},
-                    {name: 'hour', items: en.hourItems, rank: 1},
-                    {name: 'day', items: en.dayItems, rank: 2},
-                    {name: 'month', items: en.monthItems, rank: 4},
-                    {name: 'dayOfWeek', items: en.dayOfWeekItems, rank: 3},
+                    {name: 'minute', items: locale.minuteItems, rank: 0},
+                    {name: 'hour', items: locale.hourItems, rank: 1},
+                    {name: 'day', items: locale.dayItems, rank: 2},
+                    {name: 'month', items: locale.monthItems, rank: 4},
+                    {name: 'dayOfWeek', items: locale.dayOfWeekItems, rank: 3},
                 ]
             }
         },
@@ -48,7 +56,7 @@ export default {
         return {
             selected: selected,
             error: '',
-            selectedRank: this.ranks[this.ranks.length-1].value 
+            selectedRank: this.ranks[this.ranks.length-1].value
         }
     },
 
@@ -111,7 +119,7 @@ export default {
             fieldProps.push({
                 ...field,
                 cron: this.splitValue[i],
-                selectedStr: multiple.arrayToStr(values, field),
+                selectedStr: multiple.arrayToStr(values, field).text,
                 events,
                 attrs
             })
@@ -180,7 +188,7 @@ export default {
                     this.error = 'invalid selection'
                     return
                 }
-                strings.push(str)
+                strings.push(str.value)
             }
             this.error = ''
             this.$emit('input', strings.join(' '))

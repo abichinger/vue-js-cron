@@ -1,5 +1,7 @@
 
 // *
+import util from '../util'
+const { AnyColumn } = util
 
 function strToArray(str){
     if(str != '*'){
@@ -8,9 +10,11 @@ function strToArray(str){
     return []
 }
 
-function arrayToStr(arr, {items}){
+function arrayToStr(arr, field){
+    let {items} = field
+
     if(arr.length == 0){
-        return '*'
+        return new AnyColumn(field)
     }
     if(arr.length != items.length){
         return null
@@ -21,7 +25,7 @@ function arrayToStr(arr, {items}){
             return null
         }
     }
-    return '*'
+    return new AnyColumn(field)
 }
 
 export default {

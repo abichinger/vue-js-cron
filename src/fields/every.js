@@ -1,4 +1,6 @@
 // */x
+import util from '../util'
+const { EveryColumn } = util
 
 let re = /^\*\/\d+$/
 
@@ -20,7 +22,9 @@ function strToArray(str, {min, max}){
     return res.length > 0 ? res : null
 }
 
-function arrayToStr(arr, {min, max}){
+function arrayToStr(arr, field){
+    let {min, max} = field
+
     if(arr.length < 3){
         return null
     }
@@ -41,7 +45,7 @@ function arrayToStr(arr, {min, max}){
         }
     }
 
-    return '*/'+step
+    return new EveryColumn(field, step)
 }
 
 export default {

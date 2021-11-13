@@ -32,9 +32,9 @@ function strToArray(str, field){
 
 function arrayToStr(arr, field){
     for(let fieldType of fieldTypes){
-        let strValue = fieldType.arrayToStr(arr, field)
-        if(strValue){
-            return strValue
+        let value = fieldType.arrayToStr(arr, field)
+        if(value){
+            return value
         }
     }
     return null

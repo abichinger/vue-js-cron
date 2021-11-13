@@ -61,7 +61,7 @@ class CronColumn{
     }
 }
 
-class AnyColunn extends CronColumn {
+class AnyColumn extends CronColumn {
     get value(){
         return '*'
     }
@@ -107,11 +107,37 @@ class EveryColumn extends CronColumn {
 class ValueColumn extends CronColumn {
 
     constructor(field, value){
+        super(field)
         this.v = value
     }
 
     get value(){
         return ''+this.v
+    }
+
+    get text(){
+        return this.field.getText(this.v)
+    }
+
+}
+
+class CombinedColumn extends CronColumn {
+
+    constructor(field, columns=[]){
+        super(field)
+        this.columns = columns
+    }
+
+    addColumn(cronColumn){
+        this.columns.push(cronColumn)
+    }
+
+    get value(){
+        return this.columns.map((c) => c.value).join(',')
+    }
+
+    get text(){
+        return this.columns.map((c) => c.text).join(',')
     }
 
 }
@@ -176,11 +202,32 @@ function format(str, params){
     return str    
 }
 
+function genItems(min, max, textFormat=(value) => {return value+''}){
+    let res = []
+    for(let i of new Range(min, max)){
+        let item = {}
+        item.text = textFormat(i)
+        item.value = i
+        res.push(item)
+    }
+    return res
+}
 
+function pad(n, width){
+    n = n+''
+    return (n.length < width) ? new Array(width - n.length).fill('0').join('') + n : n;
+}
 
 export default {
     range,
     Range,
     format,
-    Field
+    Field,
+    AnyColumn,
+    RangeColumn,
+    ValueColumn,
+    EveryColumn,
+    CombinedColumn,
+    genItems,
+    pad
 }

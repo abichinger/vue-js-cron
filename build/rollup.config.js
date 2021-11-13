@@ -13,11 +13,11 @@ export default {
             css: true, // Dynamically inject css as a <style> tag
             compileTemplate: true, // Explicitly convert template to render function
         }),
-        buble({
-            objectAssign: 'Object.assign',
-            transforms: {
-                forOf: false
-            }
-        }), // Transpile to ES5
+        // buble({
+        //     objectAssign: 'Object.assign',
+        //     transforms: {
+        //         forOf: false
+        //     }
+        // }), // Transpile to ES5
     ],
 };
