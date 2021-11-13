@@ -1,7 +1,9 @@
 import multiple from '../src/fields/multiple'
 import util from '../src/util'
+import types from '../src/types'
 const {strToArray, arrayToStr} = multiple
-const {Field,Range,genItems} = util
+const {Range,genItems} = util
+const {Field} = types
 
 const r = (min, max) => {
     return new Field('', genItems(min, max))

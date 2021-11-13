@@ -1,7 +1,7 @@
 
 // *
-import util from '../util'
-const { AnyColumn } = util
+import types from '../types'
+const { AnyColumn } = types
 
 function strToArray(str){
     if(str != '*'){

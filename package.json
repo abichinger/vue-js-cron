@@ -41,5 +41,8 @@
     "vue": "^2.6.12",
     "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "mustache": "^4.2.0"
   }
 }

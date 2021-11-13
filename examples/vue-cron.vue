@@ -7,17 +7,18 @@
                     <span>
                         Every:
                         <select @input="p.periodEvents.input(JSON.parse($event.target.value))">
-                            <option v-for="item in p.periodData.items" :key="item.text" :value="JSON.stringify(item.value)">{{item.text}}</option>
+                            <option v-for="item in p.periodData.items" :key="item.text" :value="JSON.stringify(item)">{{item.text}}</option>
                         </select>
                     </span>
 
                     
                     <template v-for="f in p.fields">
                         <span :key="f.id">
-                            {{f.id}}:
+                            {{f.prefix}}
                             <select @input="f.events.input(getSelected($event.target))" multiple>
                                 <option v-for="item in f.items" :key="item.value" :value="item.value">{{item.text}}</option>
                             </select>
+                            {{f.suffix}}
                         </span>
                     </template>
 

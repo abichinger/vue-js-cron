@@ -1,5 +1,6 @@
+import types from '../types'
 import util from '../util'
-let { RangeColumn, CombinedColumn, ValueColumn } = util
+let { RangeColumn, CombinedColumn, ValueColumn } = types
 // x-y
 
 let re = /^\d+-\d+$/

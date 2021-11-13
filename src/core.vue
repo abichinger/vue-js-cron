@@ -1,10 +1,10 @@
 <script>
 import multiple from './fields/multiple'
-import util from './util'
+import types from './types'
 import locale from './locale'
 
-const {getLocale} = locale
-const {Field} = util
+const {getLocale, defaultItems, getSuffix, getPrefix} = locale
+const {Field} = types
 
 export default {
     name: "VueCronCore",
@@ -21,14 +21,14 @@ export default {
             type: Array,
             default: function() {
 
-                let locale = getLocale(this.locale)
+                let items = defaultItems(this.locale)
 
                 return [
-                    {id: 'minute', items: locale.minuteItems},
-                    {id: 'hour', items: locale.hourItems},
-                    {id: 'day', items: locale.dayItems},
-                    {id: 'month', items: locale.monthItems},
-                    {id: 'dayOfWeek', items: locale.dayOfWeekItems},
+                    {id: 'minute', items: items.minuteItems},
+                    {id: 'hour', items: items.hourItems},
+                    {id: 'day', items: items.dayItems},
+                    {id: 'month', items: items.monthItems},
+                    {id: 'dayOfWeek', items: items.dayOfWeekItems},
                 ]
             }
         },
@@ -36,13 +36,21 @@ export default {
             type: Array,
             default: () => {
                 return [
-                    { text: 'Minute', value: [] },
-                    { text: 'Hour', value: ['minute'] },
-                    { text: 'Day', value: ['hour', 'minute'] },
-                    { text: 'Week', value: ['day', 'hour', 'minute'] },
-                    { text: 'Month', value: ['dayOfWeek', 'day', 'hour', 'minute'] },
-                    { text: 'Year', value: ['month', 'dayOfWeek', 'day', 'hour', 'minute'] },
+                    { id: 'minute', text: 'Minute', value: [] },
+                    { id: 'hour', text: 'Hour', value: ['minute'] },
+                    { id: 'day', text: 'Day', value: ['hour', 'minute'] },
+                    { id: 'week', text: 'Week', value: ['dayOfWeek', 'hour', 'minute'] },
+                    { id: 'month', text: 'Month', value: ['day', 'dayOfWeek', 'hour', 'minute'] },
+                    { id: 'year', text: 'Year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute'] },
                 ]
+            }
+        },
+        customLocale: {
+            type: Object,
+            default: function() {
+
+                return getLocale(this.locale)
+
             }
         }
     },
@@ -56,7 +64,7 @@ export default {
         return {
             selected: selected,
             error: '',
-            selectedPeriod: this.periods[this.periods.length-1].value
+            selectedPeriod: this.periods[this.periods.length-1]
         }
     },
 
@@ -74,11 +82,11 @@ export default {
             return this.fields.map((f) => new Field(f.id, f.items))
         },
         filteredFields(){
-            return this.selectedPeriod.map((fieldId) => {
+            return this.selectedPeriod.value.map((fieldId) => {
                 let i = this.fieldIndex[fieldId]
                 return this.computedFields[i]
             })
-        }
+        },
     },
     
     watch: {
@@ -117,7 +125,6 @@ export default {
             }
             let events = {
                 input: ((fieldId) => (evt) => {
-                    console.log('input', fieldId, evt)
                     this.selected[fieldId] = evt
                 })(field.id)
             }
@@ -125,9 +132,11 @@ export default {
             fieldProps.push({
                 ...field,
                 cron: this.splitValue[i],
-                selectedStr: multiple.arrayToStr(values, field).text,
+                selectedStr: multiple.arrayToStr(values, field).getText(this.customLocale, this.selectedPeriod.id),
                 events,
-                attrs
+                attrs,
+                prefix: getPrefix(this.customLocale, this.selectedPeriod.id, field.id),
+                suffix: getSuffix(this.customLocale, this.selectedPeriod.id, field.id)
             })
         }
 
@@ -136,7 +145,7 @@ export default {
             fields: fieldProps,
 
             periodAttrs: {
-                value: this.selectedPeriod
+                value: this.selectedPeriod.value
             },
             periodEvents: {
                 input: (evt) => {
@@ -166,7 +175,7 @@ export default {
             
             for(var i = 0; i < this.splitValue.length; i++){
                 let field = this.computedFields[i]
-                if(!this.selectedPeriod.includes(field.id)){
+                if(!this.selectedPeriod.value.includes(field.id)){
                     continue
                 }
 
@@ -184,7 +193,7 @@ export default {
 
             let strings = []
             for(let field of this.computedFields){
-                if(!this.selectedPeriod.includes(field.id)){
+                if(!this.selectedPeriod.value.includes(field.id)){
                     strings.push('*')
                     continue
                 }

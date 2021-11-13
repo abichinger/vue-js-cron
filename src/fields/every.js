@@ -1,6 +1,6 @@
 // */x
-import util from '../util'
-const { EveryColumn } = util
+import types from '../types'
+const { EveryColumn } = types
 
 let re = /^\*\/\d+$/
 

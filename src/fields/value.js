@@ -1,6 +1,6 @@
 // x
-import util from '../util'
-const { ValueColumn, CombinedColumn } = util
+import types from '../types'
+const { ValueColumn, CombinedColumn } = types
 
 function strToArray(str, {min, max}){
     let number = parseInt(str)

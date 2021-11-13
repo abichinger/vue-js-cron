@@ -1,16 +1,47 @@
-import util from '../util'
-
-export default () => {
-    return {
-        minuteItems: util.genItems(0, 59, (value) => util.pad(value, 2)),
-        hourItems: util.genItems(0, 59, (value) => util.pad(value, 2)),
-        dayItems: util.genItems(1, 31),
-        monthItems: util.genItems(1, 12, (value) => {
-            return new Date(2021, value-1, 1).toLocaleDateString('en-US', {month: 'long'})
-        }),
-        dayOfWeekItems: util.genItems(0, 6, (value) => {
-            let date = new Date(2021, 0, 3+value) //first sunday in 2021
-            return date.toLocaleDateString('en-US', {weekday: 'long'})
-        })
+export default {
+    eachPeriod: {   
+        eachField: {
+            empty: 'every {{field.id}}',
+            value: '{{value.text}}',
+            range: '{{start.text}}-{{end.text}}',
+            everyX: 'every {{every.value}}'
+        },
+        monthField: {
+            prefix: 'in',
+            value: '{{value.alt}}',
+            range: '{{start.alt}}-{{end.alt}}',
+        },
+        dayField: {
+            prefix: 'on'
+        },
+        dayOfWeekField: {
+            prefix: 'on',
+            empty: 'every day of the week',
+            value: '{{value.alt}}',
+            range: '{{start.alt}}-{{end.alt}}',
+        },
+        hourField: {
+            prefix: 'at'
+        },
+        minuteField: {
+            prefix: ':'
+        }
+    },
+    hourPeriod: {
+        minuteField: {
+            prefix: 'at',
+            suffix: 'minute(s)',
+            empty: 'every'
+        }
+    },
+    monthPeriod: {
+        dayOfWeekField: {
+            prefix: 'and'
+        }
+    },
+    yearPeriod: {
+        dayOfWeekField: {
+            prefix: 'and'
+        }
     }
 }
