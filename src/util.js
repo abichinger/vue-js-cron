@@ -17,8 +17,8 @@ class Field {
      * @param {Array} items 
      * @param {Number} rank 
      */
-    constructor(name, items, rank){
-        this.name = name
+    constructor(id, items, rank){
+        this.id = id
         this.items = items
         this.rank = rank
 
@@ -67,7 +67,7 @@ class AnyColumn extends CronColumn {
     }
 
     get text(){
-        return `every ${this.field.name}`
+        return `every ${this.field.id}`
     }
 }
 

@@ -13,8 +13,8 @@
 
                     
                     <template v-for="f in orderByRank(p.fields)">
-                        <span :key="f.name" v-if="p.rankAttrs.value >= f.rank">
-                            {{f.name}}:
+                        <span :key="f.id" v-if="p.rankAttrs.value >= f.rank">
+                            {{f.id}}:
                             <select @input="f.events.input(getSelected($event.target))" multiple>
                                 <option v-for="item in f.items" :key="item.value" :value="item.value">{{item.text}}</option>
                             </select>
@@ -25,7 +25,7 @@
                     
                     <div>error:{{p.error}}</div>
                     <div>rank:{{p.rankAttrs.value}}</div>
-                    <div v-for="f in p.fields" :key="'div'+f.name">{{f.name}}: {{f.attrs.value}}, {{f.cron}}, {{f.selectedStr}}</div>
+                    <div v-for="f in p.fields" :key="'div'+f.id">{{f.id}}: {{f.attrs.value}}, {{f.cron}}, {{f.selectedStr}}</div>
                 </div>
             </template>
         </VueCronCore>

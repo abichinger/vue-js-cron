@@ -24,11 +24,11 @@ export default {
                 let locale = getLocale(this.locale)
 
                 return [
-                    {name: 'minute', items: locale.minuteItems, rank: 0},
-                    {name: 'hour', items: locale.hourItems, rank: 1},
-                    {name: 'day', items: locale.dayItems, rank: 2},
-                    {name: 'month', items: locale.monthItems, rank: 4},
-                    {name: 'dayOfWeek', items: locale.dayOfWeekItems, rank: 3},
+                    {id: 'minute', items: locale.minuteItems, rank: 0},
+                    {id: 'hour', items: locale.hourItems, rank: 1},
+                    {id: 'day', items: locale.dayItems, rank: 2},
+                    {id: 'month', items: locale.monthItems, rank: 4},
+                    {id: 'dayOfWeek', items: locale.dayOfWeekItems, rank: 3},
                 ]
             }
         },
@@ -50,7 +50,7 @@ export default {
 
         let selected = {}
         for(let field of this.fields){
-            selected[field.name] = []
+            selected[field.id] = []
         }
 
         return {
@@ -66,12 +66,12 @@ export default {
         },
         fieldIndex(){
             return this.fields.reduce((acc, f, i) => {
-                acc[f.name] = i
+                acc[f.id] = i
                 return acc
             }, {})
         },
         computedFields(){
-            return this.fields.map((f) => new Field(f.name, f.items, f.rank))
+            return this.fields.map((f) => new Field(f.id, f.items, f.rank))
         }
     },
     
@@ -103,17 +103,17 @@ export default {
 
         let fieldProps = []
         for(let field of this.computedFields){
-            let i = this.fieldIndex[field.name]
-            let values = this.selected[field.name]
+            let i = this.fieldIndex[field.id]
+            let values = this.selected[field.id]
 
             let attrs = {
                 value: values,
             }
             let events = {
-                input: ((fieldName) => (evt) => {
-                    console.log('input', fieldName, evt)
-                    this.selected[fieldName] = evt
-                })(field.name)
+                input: ((fieldId) => (evt) => {
+                    console.log('input', fieldId, evt)
+                    this.selected[fieldId] = evt
+                })(field.id)
             }
 
             fieldProps.push({
@@ -169,7 +169,7 @@ export default {
                     this.error = 'invalid pattern'
                     return
                 }
-                this.selected[field.name] = array
+                this.selected[field.id] = array
             }
 
             this.error = ''
@@ -182,7 +182,7 @@ export default {
                     strings.push('*')
                     continue
                 }
-                let array = selected[field.name]
+                let array = selected[field.id]
                 let str = multiple.arrayToStr(array, field)
                 if(str === null){
                     this.error = 'invalid selection'
