@@ -15,12 +15,10 @@ class Field {
      * 
      * @param {String} name 
      * @param {Array} items 
-     * @param {Number} rank 
      */
-    constructor(id, items, rank){
+    constructor(id, items){
         this.id = id
         this.items = items
-        this.rank = rank
 
         this.itemMap = this.items.reduce((acc, item) => {
             acc[item.value] = item

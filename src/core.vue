@@ -24,24 +24,24 @@ export default {
                 let locale = getLocale(this.locale)
 
                 return [
-                    {id: 'minute', items: locale.minuteItems, rank: 0},
-                    {id: 'hour', items: locale.hourItems, rank: 1},
-                    {id: 'day', items: locale.dayItems, rank: 2},
-                    {id: 'month', items: locale.monthItems, rank: 4},
-                    {id: 'dayOfWeek', items: locale.dayOfWeekItems, rank: 3},
+                    {id: 'minute', items: locale.minuteItems},
+                    {id: 'hour', items: locale.hourItems},
+                    {id: 'day', items: locale.dayItems},
+                    {id: 'month', items: locale.monthItems},
+                    {id: 'dayOfWeek', items: locale.dayOfWeekItems},
                 ]
             }
         },
-        ranks: {
+        periods: {
             type: Array,
             default: () => {
                 return [
-                    { text: 'Minute', value: -1 },
-                    { text: 'Hour', value: 0 },
-                    { text: 'Day', value: 1 },
-                    { text: 'Week', value: 2 },
-                    { text: 'Month', value: 3 },
-                    { text: 'Year', value: 4 },
+                    { text: 'Minute', value: [] },
+                    { text: 'Hour', value: ['minute'] },
+                    { text: 'Day', value: ['hour', 'minute'] },
+                    { text: 'Week', value: ['day', 'hour', 'minute'] },
+                    { text: 'Month', value: ['dayOfWeek', 'day', 'hour', 'minute'] },
+                    { text: 'Year', value: ['month', 'dayOfWeek', 'day', 'hour', 'minute'] },
                 ]
             }
         }
@@ -56,7 +56,7 @@ export default {
         return {
             selected: selected,
             error: '',
-            selectedRank: this.ranks[this.ranks.length-1].value
+            selectedPeriod: this.periods[this.periods.length-1].value
         }
     },
 
@@ -71,7 +71,13 @@ export default {
             }, {})
         },
         computedFields(){
-            return this.fields.map((f) => new Field(f.id, f.items, f.rank))
+            return this.fields.map((f) => new Field(f.id, f.items))
+        },
+        filteredFields(){
+            return this.selectedPeriod.map((fieldId) => {
+                let i = this.fieldIndex[fieldId]
+                return this.computedFields[i]
+            })
         }
     },
     
@@ -88,7 +94,7 @@ export default {
             },
             deep:true
         },
-        selectedRank: {
+        selectedPeriod: {
             handler: function(){
                 this.selectedToCron(this.selected)
             },
@@ -102,7 +108,7 @@ export default {
         }
 
         let fieldProps = []
-        for(let field of this.computedFields){
+        for(let field of this.filteredFields){
             let i = this.fieldIndex[field.id]
             let values = this.selected[field.id]
 
@@ -129,16 +135,16 @@ export default {
             error: this.error,
             fields: fieldProps,
 
-            rankAttrs: {
-                value: this.selectedRank
+            periodAttrs: {
+                value: this.selectedPeriod
             },
-            rankEvents: {
+            periodEvents: {
                 input: (evt) => {
-                    this.selectedRank = evt
+                    this.selectedPeriod = evt
                 }
             },
-            rankData: {
-                items: this.ranks
+            periodData: {
+                items: this.periods
             },
         })
     },
@@ -160,7 +166,7 @@ export default {
             
             for(var i = 0; i < this.splitValue.length; i++){
                 let field = this.computedFields[i]
-                if(field.rank > this.selectedRank){
+                if(!this.selectedPeriod.includes(field.id)){
                     continue
                 }
 
@@ -178,7 +184,7 @@ export default {
 
             let strings = []
             for(let field of this.computedFields){
-                if(field.rank > this.selectedRank){
+                if(!this.selectedPeriod.includes(field.id)){
                     strings.push('*')
                     continue
                 }

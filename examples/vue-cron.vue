@@ -6,14 +6,14 @@
                 <div>
                     <span>
                         Every:
-                        <select @input="p.rankEvents.input(parseInt($event.target.value))">
-                            <option v-for="item in p.rankData.items" :key="item.value" :value="item.value">{{item.text}}</option>
+                        <select @input="p.periodEvents.input(JSON.parse($event.target.value))">
+                            <option v-for="item in p.periodData.items" :key="item.text" :value="JSON.stringify(item.value)">{{item.text}}</option>
                         </select>
                     </span>
 
                     
-                    <template v-for="f in orderByRank(p.fields)">
-                        <span :key="f.id" v-if="p.rankAttrs.value >= f.rank">
+                    <template v-for="f in p.fields">
+                        <span :key="f.id">
                             {{f.id}}:
                             <select @input="f.events.input(getSelected($event.target))" multiple>
                                 <option v-for="item in f.items" :key="item.value" :value="item.value">{{item.text}}</option>
@@ -24,7 +24,7 @@
                     <div>-</div>
                     
                     <div>error:{{p.error}}</div>
-                    <div>rank:{{p.rankAttrs.value}}</div>
+                    <div>period:{{p.periodAttrs.value}}</div>
                     <div v-for="f in p.fields" :key="'div'+f.id">{{f.id}}: {{f.attrs.value}}, {{f.cron}}, {{f.selectedStr}}</div>
                 </div>
             </template>
@@ -69,10 +69,6 @@ export default {
             let options = select && select.options;
             return Array.from(options).filter((opt) => opt.selected).map((opt) => opt.value)
         },
-
-        orderByRank(fields){
-            return fields.slice().sort((a, b) => b.rank - a.rank)
-        }
     }
 }
 </script>
