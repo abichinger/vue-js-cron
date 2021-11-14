@@ -153,7 +153,9 @@ export default {
                 }
             },
             periodData: {
-                items: this.periods
+                items: this.periods,
+                prefix: this.customLocale.periodPrefix,
+                suffix: this.customLocale.periodSuffix
             },
         })
     },

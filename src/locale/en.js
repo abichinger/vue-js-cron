@@ -43,5 +43,7 @@ export default {
         dayOfWeekField: {
             prefix: 'and'
         }
-    }
+    },
+    periodPrefix: 'Every',
+    periodSuffix: ''
 }
