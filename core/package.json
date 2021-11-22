@@ -1,0 +1,31 @@
+{
+  "name": "@vue-js-cron/core",
+  "version": "1.0.0",
+  "description": "A renderless Vue.js cron editor.",
+  "main": "dist/core.umd.js",
+  "module": "dist/core.esm.js",
+  "unpkg": "dist/core.min.js",
+  "browser": {
+    "./sfc": "src/core.vue"
+  },
+  "scripts": {
+    "test": "jest",
+    "serve": "vue serve examples/vue-cron.vue",
+    "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
+    "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/core.umd.js",
+    "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/core.esm.js",
+    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/core.min.js"
+  },
+  "keywords": [
+    "cron",
+    "editor",
+    "renderless",
+    "vue.js",
+    "vue"
+  ],
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "dependencies": {
+    "mustache": "^4.2.0"
+  }
+}

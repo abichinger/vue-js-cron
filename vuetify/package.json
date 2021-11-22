@@ -1,0 +1,26 @@
+{
+  "name": "@vue-js-cron/vuetify",
+  "version": "1.0.0",
+  "description": "Cron editor for vuetify",
+  "main": "dist/vuetify.umd.js",
+  "module": "dist/vuetify.esm.js",
+  "unpkg": "dist/vuetify.min.js",
+  "browser": {
+    "./sfc": "src/CronEditor.vue"
+  },
+  "repository": "example.com",
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "serve": "vue serve dev/editor.js",
+    "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
+    "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/vuetify.umd.js",
+    "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/vuetify.esm.js",
+    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/vuetify.min.js"
+  },
+  "dependencies": {
+    "@vue-js-cron/core": "^1.0.0",
+    "vuetify": "^2.4.6"
+  }
+}

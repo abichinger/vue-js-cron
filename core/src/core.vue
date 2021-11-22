@@ -200,7 +200,7 @@ export default {
                     continue
                 }
                 let array = selected[field.id]
-                let str = multiple.arrayToStr(array, field)
+                let str = multiple.arrayToStr(this.sort(array), field)
                 if(str === null){
                     this.error = 'invalid selection'
                     return
@@ -209,6 +209,12 @@ export default {
             }
             this.error = ''
             this.$emit('input', strings.join(' '))
+        },
+
+        sort(array){
+            let a = array.slice()
+            a.sort((a,b) => a-b)
+            return a
         }
     }
 }
