@@ -1,8 +1,8 @@
 
 <template>
-    <VueCronCore :value="value" @input="$emit('input', $event)">
+    <CronCore :value="value" @input="$emit('input', $event)">
         <template #default="{fields, periodEvents, periodAttrs, periodData}">
-            <v-row align="baseline">
+            <v-row align="baseline" dense>
                 <v-col v-if="periodData.prefix" class="flex-grow-0">{{periodData.prefix}}</v-col>
                 <v-col cols="auto">
                     <v-select class="fit" v-bind="periodAttrs" :items="periodData.items" @input="periodEvents.input" return-object dense></v-select>
@@ -13,7 +13,7 @@
                 <template v-for="f in fields">
                     <v-col v-if="f.prefix" class="flex-grow-0" :key="f.id+'-prefix'">{{f.prefix}}</v-col>
                     <v-col cols="auto" :key="f.id">
-                        <v-select class="fit" v-bind="f.attrs" v-on="f.events" :items="f.items" multiple eager dense :menu-props="{ auto: false, offsetY: 'offset' }">
+                        <v-select class="fit" v-bind="f.attrs" v-on="f.events" :items="f.items" multiple eager dense :menu-props="{ auto: false, offsetY: true }">
                             <template #prepend-inner>
                                 <div>{{f.selectedStr}}</div>
                             </template>
@@ -30,16 +30,16 @@
             </v-row>
             
         </template>
-    </VueCronCore>
+    </CronCore>
 </template>
 
 <script>
-import VueCronCore from '@vue-js-cron/core'
+import CronCore from '@vue-js-cron/core'
 
 export default {
     name: "VueCronEditor",
     components:{
-        VueCronCore,
+        'CronCore': CronCore.component,
     },
     props: {
         value: {
@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css">
 
 .v-select.fit {
   width: min-content;

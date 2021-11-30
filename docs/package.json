@@ -1,17 +1,24 @@
 {
   "name": "@vue-js-cron/docs",
-  "version": "1.0.0",
-  "description": "Documentation for renderless Vue.js cron editor.",
-  "scripts": {
-    "start": "yarn run serve ."
+  "version": "0.0.1",
+  "description": "vue-js-cron documentation",
+  "main": "index.js",
+  "authors": {
+    "name": "Andreas Bichinger",
+    "email": "andreas.bichinger@gmail.com"
   },
-  "author": "Andreas Bichinger",
+  "repository": "https://github.com/abichinger/vue-js-cron/@vue-js-cron/docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
   "license": "MIT",
   "devDependencies": {
-    "serve": "^13.0.2"
+    "vuepress": "^1.8.2"
   },
   "dependencies": {
-    "@vue-js-cron/core": "^1.0.0",
-    "@vue-js-cron/vuetify": "^1.0.0"
+    "@vue-js-cron/core": "1.0.0",
+    "@vue-js-cron/vuetify": "1.0.0",
+    "buefy": "^0.9.13"
   }
 }

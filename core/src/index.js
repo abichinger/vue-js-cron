@@ -1,16 +1,19 @@
 // Import vue component
+import util from './util'
 import component from './core.vue';
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
 	if (install.installed) return;
 	install.installed = true;
-	Vue.component('VueCron', component);
+	Vue.component('CronCore', component);
 }
 
 // Create module definition for Vue.use()
 const plugin = {
 	install,
+	component,
+	util
 };
 
 // Auto-install when vue is found (eg. in browser via <script> tag)
@@ -25,4 +28,4 @@ if (GlobalVue) {
 }*/
 
 // To allow use as module (npm/webpack/etc.) export component
-export default component;
+export default plugin;
