@@ -1,28 +1,28 @@
 
 <template>
-    <CronCore :value="value" @input="$emit('input', $event)">
-        <template #default="{fields, periodEvents, periodAttrs, periodData}">
+    <CronCore :value="value" @input="$emit('input', $event)" @error="$emit('error', $event)">
+        <template #default="{fields, period}">
             <v-row align="baseline" dense>
-                <v-col v-if="periodData.prefix" class="flex-grow-0">{{periodData.prefix}}</v-col>
+                <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
                 <v-col cols="auto">
-                    <v-select class="fit" v-bind="periodAttrs" :items="periodData.items" @input="periodEvents.input" return-object dense></v-select>
+                    <v-select class="fit" v-bind="period.attrs" :items="period.items" @input="period.events.input" return-object dense></v-select>
                 </v-col>
-                <v-col v-if="periodData.suffix" class="flex-grow-0">{{periodData.suffix}}</v-col>
+                <v-col v-if="period.suffix" class="flex-grow-0">{{period.suffix}}</v-col>
                 
                 
                 <template v-for="f in fields">
                     <v-col v-if="f.prefix" class="flex-grow-0" :key="f.id+'-prefix'">{{f.prefix}}</v-col>
                     <v-col cols="auto" :key="f.id">
-                        <v-select class="fit" v-bind="f.attrs" v-on="f.events" :items="f.items" multiple eager dense :menu-props="{ auto: false, offsetY: true }">
+                        <v-select class="fit" v-bind="f.attrs" v-on="f.events" :items="f.items" multiple dense :menu-props="{ auto: false, offsetY: true }">
                             <template #prepend-inner>
                                 <div>{{f.selectedStr}}</div>
                             </template>
                             <template #selection>
                                 
                             </template>
-                            <!--<template #item="{item, attrs, on}">
+                            <template #item="{item, attrs, on}">
                                 <div v-bind="attrs" v-on="on">{{item.text}}</div>
-                            </template>-->
+                            </template>
                         </v-select>
                     </v-col>
                     <v-col v-if="f.suffix" class="flex-grow-0" :key="f.id+'-suffix'">{{f.suffix}}</v-col>

@@ -1,5 +1,3 @@
-import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
 import CronCore from '@vue-js-cron/core'
 import CronVuetify from '@vue-js-cron/vuetify'
 import Vuetify from "vuetify";
@@ -14,7 +12,6 @@ export default ({
 }) => {
   Vue.use(Vuetify);
   options.vuetify = new Vuetify({})
-  Vue.use(Buefy)
   Vue.use(CronCore);
   Vue.use(CronVuetify);
 }

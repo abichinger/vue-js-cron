@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "serve": "vue serve dev/editor.js",
+    "serve": "vue-cli-service serve dev/serve.js",
     "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
     "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/vuetify.umd.js",
     "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/vuetify.esm.js",
@@ -24,6 +24,7 @@
     "vuetify": "^2.4.6"
   },
   "devDependencies": {
+    "@vue/cli-service": "^4.5.15",
     "rollup-plugin-css-only": "^3.1.0"
   }
 }

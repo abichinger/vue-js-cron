@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "jest",
-    "serve": "vue serve examples/vue-cron.vue",
+    "serve": "vue-cli-service serve dev/serve.js",
     "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
     "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/core.umd.js",
     "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/core.esm.js",
@@ -27,5 +27,8 @@
   "license": "MIT",
   "dependencies": {
     "mustache": "^4.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.5.15"
   }
 }

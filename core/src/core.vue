@@ -106,6 +106,11 @@ export default {
             handler: function(){
                 this.selectedToCron(this.selected)
             },
+        },
+        error: {
+            handler: function(error){
+                this.$emit('error', error)
+            }
         }
     },
 
@@ -144,19 +149,19 @@ export default {
             error: this.error,
             fields: fieldProps,
 
-            periodAttrs: {
-                value: this.selectedPeriod.value
-            },
-            periodEvents: {
-                input: (evt) => {
-                    this.selectedPeriod = evt
-                }
-            },
-            periodData: {
+            period:{
+                attrs:{
+                    value: this.selectedPeriod.value
+                },
+                events:{
+                    input: (evt) => {
+                        this.selectedPeriod = evt
+                    }
+                },
                 items: this.periods,
                 prefix: this.customLocale.periodPrefix,
                 suffix: this.customLocale.periodSuffix
-            },
+            }
         })
     },
 
