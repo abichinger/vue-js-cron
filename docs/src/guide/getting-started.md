@@ -24,6 +24,7 @@ Then you need to register `vue-js-cron/vuetify` with `Vue.use()`
 
 ```js
 import cronVuetify from '@vue-js-cron/vuetify'
+import '@vue-js-cron/vuetify/dist/vuetify.css'
 Vue.use(cronVuetify)
 ```
 
