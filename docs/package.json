@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@vue-js-cron/core": "1.0.0",
-    "@vue-js-cron/vuetify": "1.0.0",
-    "buefy": "^0.9.13"
+    "@vue-js-cron/vuetify": "1.0.1"
   }
 }

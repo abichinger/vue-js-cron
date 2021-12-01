@@ -2,7 +2,7 @@ import CronCore from '@vue-js-cron/core'
 import CronVuetify from '@vue-js-cron/vuetify'
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
-import "@vue-js-cron/vuetify/dist/dist/vuetify.min.css"
+import '@vue-js-cron/vuetify/dist/vuetify.css'
 
 export default ({
   Vue, // the version of Vue being used in the VuePress app

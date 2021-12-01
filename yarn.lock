@@ -2026,6 +2026,14 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@vue-js-cron/vuetify@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@vue-js-cron/vuetify/-/vuetify-1.0.1.tgz#cdca9e457f8776f4bb03124fe0bba7d9f5153685"
+  integrity sha512-gbR5FYmUR2u5FS91hC57THvEp8/OE26QWquV/0KVvaCIjvNLI7BKXf0ncMNbbT85yewG1mBLTOMBCwJW0e1QwA==
+  dependencies:
+    "@vue-js-cron/core" "1.0.0"
+    vuetify "^2.4.6"
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.2.1.tgz#31624a7a505fb14da1d58023725a4c5f270e6a81"
@@ -3575,13 +3583,6 @@ buble@^0.20.0:
     minimist "^1.2.5"
     regexpu-core "4.5.4"
 
-buefy@^0.9.13:
-  version "0.9.13"
-  resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.9.13.tgz#fa530257fc47a8cb00d1e36faa93bbeba4aefce0"
-  integrity sha512-W8QhvAz+YlKhxDQe/oag4Fl/zYTvXOPoNVr4pseYDR7r52Ta6s51iedBdvw4It68Sq+g7mcxIzwK7mv3PR6O4g==
-  dependencies:
-    bulma "0.9.3"
-
 buffer-from@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
@@ -3620,11 +3621,6 @@ builtins@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/builtins/-/builtins-1.0.3.tgz#cb94faeb61c8696451db36534e1422f94f0aee88"
   integrity sha1-y5T662HIaWRR2zZTThQi+U8K7og=
-
-bulma@0.9.3:
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.9.3.tgz#ddccb7436ebe3e21bf47afe01d3c43a296b70243"
-  integrity sha512-0d7GNW1PY4ud8TWxdNcP6Cc8Bu7MxcntD/RRLGWuiw/s0a9P+XlH/6QoOIrmbj6o8WWJzJYhytiu9nFjTszk1g==
 
 bytes@3.0.0:
   version "3.0.0"
