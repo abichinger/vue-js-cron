@@ -1,6 +1,17 @@
 {
     "private": true,
     "workspaces": ["core", "docs", "vuetify"],
+    "scripts": {
+      "build": "yarn build-core && yarn build-vuetify && yarn build-docs",
+      "build-docs": "cd docs && yarn build",
+      "build-core": "cd core && yarn build",
+      "build-vuetify": "cd vuetify && yarn build",
+      "dev-docs": "cd docs && yarn dev",
+      "dev-core": "cd core && yarn serve",
+      "dev-vuetify": "cd vuetify && yarn serve",
+      "test": "yarn test-core",
+      "test-core": "cd core && yarn test"
+    },
     "devDependencies": {
       "@babel/core": "^7.12.13",
       "@babel/preset-env": "^7.12.13",
