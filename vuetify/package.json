@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/vuetify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cron editor for vuetify",
   "main": "dist/vuetify.umd.js",
   "module": "dist/vuetify.esm.js",
