@@ -2,6 +2,10 @@
   "name": "@vue-js-cron/core",
   "version": "1.0.0",
   "description": "A renderless Vue.js cron editor.",
+  "repository": "https://github.com/abichinger/vue-js-cron",
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "private": false,
   "main": "dist/core.umd.js",
   "module": "dist/core.esm.js",
   "unpkg": "dist/core.min.js",
@@ -23,12 +27,14 @@
     "vue.js",
     "vue"
   ],
-  "author": "Andreas Bichinger",
-  "license": "MIT",
   "dependencies": {
     "mustache": "^4.2.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^4.5.15"
-  }
+  },
+  "files": [
+    "package.json",
+    "dist"
+  ]
 }

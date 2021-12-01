@@ -6,7 +6,7 @@ This component is inspired by [react-js-cron](https://github.com/xrutayisire/rea
 
 # Getting Started
 
-Read the [docs](https://abichinger.github.com/vue-js-cron/)
+Read the [docs](https://abichinger.github.io/vue-js-cron/)
 
 # Packages
 

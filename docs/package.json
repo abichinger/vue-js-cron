@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "vue-js-cron documentation",
   "main": "index.js",
+  "private": true,
   "authors": {
     "name": "Andreas Bichinger",
     "email": "andreas.bichinger@gmail.com"
