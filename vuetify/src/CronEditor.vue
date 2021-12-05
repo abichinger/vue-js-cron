@@ -1,6 +1,6 @@
 
 <template>
-    <CronCore :value="value" @input="$emit('input', $event)" @error="$emit('error', $event)">
+    <CronCore v-bind="$attrs" @input="$emit('input', $event)" @error="$emit('error', $event)">
         <template #default="{fields, period}">
             <v-row align="baseline" dense>
                 <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
@@ -41,12 +41,6 @@ export default {
     components:{
         'CronCore': CronCore.component,
     },
-    props: {
-        value: {
-            type: String,
-            default: '* * * * *'
-        }
-    }
 }
 </script>
 
