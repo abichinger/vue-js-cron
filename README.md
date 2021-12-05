@@ -2,6 +2,8 @@
 
 generate cron expressions using Vue.js
 
+![Vue.js Cron Hero](./vue-js-cron-hero.png)
+
 This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
 
 # Getting Started

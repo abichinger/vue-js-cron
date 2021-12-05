@@ -27,7 +27,7 @@ export default {
                 {name:'Description', value: 'desc'},
             ],
             items: [
-                {name: 'value', type:"`string`", default: 'required', desc: 'the current cron expression'},
+                {name: 'value', type:"`string`", default: '`"* * * * *"`', desc: 'the current cron expression'},
                 {name: 'fields', type:"`Field[]`", default: '...', desc: 'each field defines on position of the cron expression'},
                 {name: 'periods', type:"`Period[]`", default: '...', desc: 'the `value` porperty of a period determines which fields are visible'},
                 {name: 'locale', type:"`string`", default: '`"en"`', desc: ''},
