@@ -20,8 +20,8 @@
                             <template #selection>
                                 
                             </template>
-                            <template #item="{item, attrs, on}">
-                                <div v-bind="attrs" v-on="on">{{item.text}}</div>
+                            <template #item="{item, attrs}">
+                                <v-list-item-title v-bind="attrs">{{item.text}}</v-list-item-title>
                             </template>
                         </v-select>
                     </v-col>
