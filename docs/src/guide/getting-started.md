@@ -38,6 +38,10 @@ Now you can use the component `CronVuetify`.
 
 <getting-started-vuetify />
 
+#### API
+
+- [CronVuetify](/api/vuetify)
+
 ## Quick Start - Renderless
 
 This guide will explain how to use the renderless component of vue-js-cron.
@@ -78,3 +82,7 @@ Now you can use the component `CronCore`. The default [scoped slot](https://vuej
 #### Result
 
 <getting-started-renderless />
+
+#### API
+
+- [CronCore](/api/vuetify)
