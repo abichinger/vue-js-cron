@@ -40,7 +40,11 @@ module.exports = {
     nav: [
       {
         text: 'Guide',
-        link: '/guide/',
+        link: '/guide/getting-started',
+      },
+      {
+        text: 'API',
+        link: '/api/core',
       },
       {
         text: 'Github',
@@ -54,9 +58,26 @@ module.exports = {
           collapsable: false,
           children: [
             'getting-started',
+            'custom-periods'
           ]
         }
       ],
+      '/api/': [
+        {
+          title: 'Core',
+          collapsable: false,
+          children: [
+            'core',
+          ]
+        },
+        {
+          title: 'Vuetify',
+          collapsable: false,
+          children: [
+            'vuetify',
+          ]
+        }
+      ]
     }
   },
 

@@ -20,13 +20,6 @@
     "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/core.esm.js",
     "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/core.min.js"
   },
-  "keywords": [
-    "cron",
-    "editor",
-    "renderless",
-    "vue.js",
-    "vue"
-  ],
   "dependencies": {
     "mustache": "^4.2.0"
   },
@@ -35,6 +28,16 @@
   },
   "files": [
     "package.json",
-    "dist"
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue.js",
+    "vue component",
+    "cron",
+    "cron expression",
+    "cron editor",
+    "renderless"
   ]
 }

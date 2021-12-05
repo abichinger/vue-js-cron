@@ -30,6 +30,16 @@
   },
   "files": [
     "package.json",
-    "dist"
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue.js",
+    "vue component",
+    "cron",
+    "cron expression",
+    "cron editor",
+    "vuetify"
   ]
 }

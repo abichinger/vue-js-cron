@@ -11,7 +11,7 @@ export default {
     props: {
         value: {
             type: String,
-            required: true
+            default: '* * * * *'
         },
         locale: {
             type: String,
