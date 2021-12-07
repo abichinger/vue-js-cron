@@ -21,7 +21,7 @@
     "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/light.min.js"
   },
   "dependencies": {
-    "@vue-js-cron/core": "1.0.1"
+    "@vue-js-cron/core": "2.0.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^4.5.15",
