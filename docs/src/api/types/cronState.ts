@@ -15,10 +15,10 @@ type CronState = {
     }>,
     period: {
         attrs: { 
-            value: Array<string> //array of period ids
+            value: string //selected period id
         },
         events: {
-            input: (arg1: Period) => void
+            input: (periodId: string) => void
         },
         items: Array<Period>,
         prefix: string,

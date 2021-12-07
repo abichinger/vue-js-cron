@@ -78,6 +78,12 @@ export default {
                 return acc
             }, {})
         },
+        periodIndex(){
+            return this.periods.reduce((acc, p, i) => {
+                acc[p.id] = i
+                return acc
+            })
+        },
         computedFields(){
             return this.fields.map((f) => new Field(f.id, f.items))
         },
@@ -151,11 +157,12 @@ export default {
 
             period:{
                 attrs:{
-                    value: this.selectedPeriod.value
+                    value: this.selectedPeriod.id
                 },
                 events:{
-                    input: (evt) => {
-                        this.selectedPeriod = evt
+                    input: (periodId) => {
+                        let i = this.periodIndex[periodId] || 0
+                        this.selectedPeriod = this.periods[i]
                     }
                 },
                 items: this.periods,
