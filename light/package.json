@@ -1,0 +1,44 @@
+{
+  "name": "@vue-js-cron/light",
+  "version": "1.0.0",
+  "description": "lightweight vue.js cron editor",
+  "main": "dist/light.umd.js",
+  "module": "dist/light.esm.js",
+  "unpkg": "dist/light.min.js",
+  "browser": {
+    "./sfc": "src/CronEditor.vue"
+  },
+  "repository": "https://github.com/abichinger/vue-js-cron",
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "jest",
+    "serve": "vue-cli-service serve dev/serve.js",
+    "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
+    "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/light.umd.js",
+    "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/light.esm.js",
+    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/light.min.js"
+  },
+  "dependencies": {
+    "@vue-js-cron/core": "1.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.5.15",
+    "rollup-plugin-css-only": "^3.1.0"
+  },
+  "files": [
+    "package.json",
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue.js",
+    "vue component",
+    "cron",
+    "cron expression",
+    "cron editor",
+    "light"
+  ]
+}
