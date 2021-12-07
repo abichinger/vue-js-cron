@@ -40,7 +40,7 @@ Now you can use the component `CronVuetify`.
 
 #### API
 
-- [CronVuetify](/api/vuetify)
+- [CronVuetify](../api/vuetify)
 
 ## Quick Start - Renderless
 
@@ -85,4 +85,4 @@ Now you can use the component `CronCore`. The default [scoped slot](https://vuej
 
 #### API
 
-- [CronCore](/api/vuetify)
+- [CronCore](../api/core)
