@@ -71,6 +71,13 @@ module.exports = {
           ]
         },
         {
+          title: 'Light',
+          collapsable: false,
+          children: [
+            'light',
+          ]
+        },
+        {
           title: 'Vuetify',
           collapsable: false,
           children: [

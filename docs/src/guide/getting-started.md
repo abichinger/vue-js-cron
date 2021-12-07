@@ -1,10 +1,51 @@
 # Getting Started
 
-The fastest way to get a component, which can generate cron expression, is to install one of the prebuilt components.
-For now Vue-js-cron provides a prebuilt component for [Vuetify.js](/guide/getting-started.html#quick-start-vuetify).
-If you would like to use a different UI framework, follow the quick start guide on how to use the renderless component.
+The fastest way to get started, is to install one of the prebuilt components.
+For now `vue-js-cron` provides the following prebuilt components:
+- [CronLight](#quick-start-cronlight) - a lightweight cron editor without external dependencies
+- [CronVuetify](#quick-start-cronvuetify) - a cron editor for [Vuetify.js](/guide/getting-started.html#quick-start-vuetify).
 
-## Quick Start - Vuetify
+If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#quick-start-renderless).
+
+## Quick Start - CronLight
+
+#### Installation
+
+Open up a terminal and run the following command:
+
+```bash 
+yarn add @vue-js-cron/light
+```
+or
+
+```bash 
+npm install @vue-js-cron/light
+```
+#### Usage
+
+Then you need to register `vue-js-cron/light` with `Vue.use()`
+
+```js
+import cronLight from '@vue-js-cron/light'
+import '@vue-js-cron/light/dist/light.css'
+Vue.use(cronLight)
+```
+
+Now you can use the component `CronLight`.
+
+#### Code
+
+<<< @/src/.vuepress/components/getting-started-light.vue
+
+#### Result 
+
+<getting-started-light />
+
+#### API
+
+- [CronLight](../api/light)
+
+## Quick Start - CronVuetify
 
 #### Installation
 
