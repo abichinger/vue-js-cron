@@ -148,10 +148,15 @@ export default {
 .vcron-select-input {
   display: inline-block;
   border-radius: 3px;
-  border: 1px solid #eee;
-  background-color: #ddd;
+  border: 1px solid #ddd;
+  background-color: #eee;
   user-select: none;
   padding: 0 0.5em;
+}
+
+.vcron-select-input:hover {
+  border: 1px solid #ccc;
+  background-color: #ddd;
 }
 
 .vcron-select-list {
