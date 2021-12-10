@@ -33,13 +33,16 @@ Vue.use(cronLight)
 
 Now you can use the component `CronLight`.
 
-#### Code
+<br />
+
+<code-example title="CronLight example">
+<template v-slot:source>
 
 <<< @/src/.vuepress/components/getting-started-light.vue
 
-#### Result 
-
+</template>
 <getting-started-light />
+</code-example>
 
 #### API
 
@@ -71,13 +74,16 @@ Vue.use(cronVuetify)
 
 Now you can use the component `CronVuetify`.
 
-#### Code
+<br />
+
+<code-example title="CronVuetify example">
+<template v-slot:source>
 
 <<< @/src/.vuepress/components/getting-started-vuetify.vue
 
-#### Result 
-
+</template>
 <getting-started-vuetify />
+</code-example>
 
 #### API
 
@@ -116,13 +122,16 @@ Now you can use the component `CronCore`. The default [scoped slot](https://vuej
 - `period` - defines which fields are visible
 - `error` - error message
 
-#### Code
+<br />
+
+<code-example title="CronCore example">
+<template v-slot:source>
 
 <<< @/src/.vuepress/components/getting-started-renderless.vue
 
-#### Result
-
+</template>
 <getting-started-renderless />
+</code-example>
 
 #### API
 

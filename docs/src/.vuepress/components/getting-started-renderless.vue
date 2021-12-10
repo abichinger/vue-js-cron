@@ -18,7 +18,7 @@
             <!-- period selection -->
             <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
             <v-col cols="auto">
-              <v-select class="fit" v-bind="period.attrs" :items="period.items" @input="period.events.input" return-object dense :menu-props="{'offset-y': true}"></v-select>
+              <v-select class="fit" v-bind="period.attrs" :items="period.items" @input="period.events.input" item-value="id" dense :menu-props="{'offset-y': true}"></v-select>
             </v-col>
             <v-col v-if="period.suffix" class="flex-grow-0">{{period.suffix}}</v-col>
 

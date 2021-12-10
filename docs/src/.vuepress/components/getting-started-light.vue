@@ -1,6 +1,6 @@
 <template>
   <div class="getting-started-light">
-    <div>{{value}}</div>
+    <div class="mb-2">{{value}}</div>
     <CronLight v-model="value" @error="error=$event"></CronLight>
   </div>
 </template>
@@ -18,12 +18,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-.getting-started-light > div {
-  margin-top: 10px;
-  margin-bottom: 6px;
-}
-
-</style>
