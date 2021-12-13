@@ -1,5 +1,6 @@
 // Import vue component
 import util from './util'
+import locale from './locale'
 import component from './core.vue';
 
 // Declare install function executed by Vue.use()
@@ -13,7 +14,8 @@ export function install(Vue) {
 const plugin = {
 	install,
 	component,
-	util
+	util,
+	locale
 };
 
 // Auto-install when vue is found (eg. in browser via <script> tag)

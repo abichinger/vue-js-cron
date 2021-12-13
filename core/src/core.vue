@@ -2,6 +2,7 @@
 import multiple from './fields/multiple'
 import types from './types'
 import locale from './locale'
+import util from './util'
 
 const {getLocale, defaultItems, getSuffix, getPrefix} = locale
 const {Field} = types
@@ -48,10 +49,12 @@ export default {
         customLocale: {
             type: Object,
             default: function() {
-
                 return getLocale(this.locale)
-
             }
+        },
+        mergeLocale: {
+            type: Boolean,
+            default: true
         }
     },
     data(){
@@ -93,6 +96,15 @@ export default {
                 return this.computedFields[i]
             })
         },
+        computedLocale(){
+            if(this.mergeLocale){
+                let defaultLocale = getLocale(this.locale)
+                return util.deepMerge(defaultLocale, this.customLocale)
+            }
+            else{
+                return this.customLocale
+            }
+        }
     },
     
     watch: {
@@ -143,11 +155,11 @@ export default {
             fieldProps.push({
                 ...field,
                 cron: this.splitValue[i],
-                selectedStr: multiple.arrayToStr(values, field).getText(this.customLocale, this.selectedPeriod.id),
+                selectedStr: multiple.arrayToStr(values, field).getText(this.computedLocale, this.selectedPeriod.id),
                 events,
                 attrs,
-                prefix: getPrefix(this.customLocale, this.selectedPeriod.id, field.id),
-                suffix: getSuffix(this.customLocale, this.selectedPeriod.id, field.id)
+                prefix: getPrefix(this.computedLocale, this.selectedPeriod.id, field.id),
+                suffix: getSuffix(this.computedLocale, this.selectedPeriod.id, field.id)
             })
         }
 
@@ -166,8 +178,8 @@ export default {
                     }
                 },
                 items: this.periods,
-                prefix: this.customLocale.periodPrefix,
-                suffix: this.customLocale.periodSuffix
+                prefix: this.computedLocale.periodPrefix,
+                suffix: this.computedLocale.periodSuffix
             }
         })
     },

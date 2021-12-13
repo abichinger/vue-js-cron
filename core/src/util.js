@@ -76,10 +76,39 @@ function pad(n, width){
     return (n.length < width) ? new Array(width - n.length).fill('0').join('') + n : n;
 }
 
+function isObject(obj){
+    return (obj && typeof obj == 'object' && !Array.isArray(obj))
+}
+
+function deepMerge(target, ...sources){
+    if(!isObject(target) || sources.length == 0) return
+    let source = sources.shift()
+
+    if(isObject(source)){
+        for(let [key, value] of Object.entries(source)){
+            if(isObject(value)){
+                if(!isObject(target[key])){
+                    target[key] = {}
+                }
+                deepMerge(target[key], source[key])
+            }
+            
+            else {
+                target[key] = source[key]
+            }
+        }
+    }
+
+    if(sources.length > 0) deepMerge(target, sources)
+    return target
+}
+
 export default {
     range,
     Range,
     format,
     genItems,
-    pad
+    pad,
+    deepMerge,
+    isObject
 }

@@ -14,3 +14,9 @@ test('test Range', () => {
     expect(r[5]).toBe(10)
     expect(Array.from(r)).toEqual([0,2,4,6,8,10])
 });
+
+test('test deepMerge', () => {
+    expect(util.deepMerge({ a: { a: 1 } }, { a: { b: 1 }, b: 1 })).toEqual({ a: { a: 1, b: 1 }, b: 1 })
+    expect(util.deepMerge({}, { a: { b: 1 }})).toEqual({ a: { b: 1 }})
+    expect(util.deepMerge({ a: { b: 1 }}, { a: { b: 2 }})).toEqual({ a: { b: 2 }})
+})
