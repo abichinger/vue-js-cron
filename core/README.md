@@ -1,9 +1,13 @@
 # Vue.js Cron Core
 
-A renderless Vue.js cron editor.
+**Renderless Vue.js cron editor**
 
-This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
+![Vue.js Cron Core Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/cron-light-hero.png)
 
 ## Usage
 
 **Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#quick-start-renderless](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#quick-start-renderless)
+
+## Attribution
+
+This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)

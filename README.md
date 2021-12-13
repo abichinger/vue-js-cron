@@ -1,10 +1,8 @@
 # Vue.js Cron
 
-generate cron expressions using Vue.js
+**generate cron expressions using Vue.js**
 
-![Vue.js Cron Hero](./vue-js-cron-hero.png)
-
-This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
+![Vue.js Cron Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/cron-light-hero.png)
 
 # Getting Started
 
@@ -42,3 +40,7 @@ yarn test
 ```
 yarn build
 ```
+
+## Attribution
+
+This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
