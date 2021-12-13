@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/light",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "lightweight vue.js cron editor",
   "main": "dist/light.umd.js",
   "module": "dist/light.esm.js",
@@ -21,7 +21,7 @@
     "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/light.min.js"
   },
   "dependencies": {
-    "@vue-js-cron/core": "2.0.0"
+    "@vue-js-cron/core": "2.1.0"
   },
   "devDependencies": {
     "@vue/cli-service": "^4.5.15",
