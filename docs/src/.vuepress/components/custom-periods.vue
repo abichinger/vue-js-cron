@@ -1,7 +1,8 @@
 <template>
   <v-app>
 
-    <CronVuetify v-model="value" :periods="periods" @error="error=$event"></CronVuetify>
+    <div class="mb-2">{{value}}</div>
+    <CronLight v-model="value" :periods="periods" @error="error=$event"></CronLight>
 
   </v-app>
 </template>

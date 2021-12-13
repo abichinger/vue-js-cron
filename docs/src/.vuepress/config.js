@@ -58,7 +58,8 @@ module.exports = {
           collapsable: false,
           children: [
             'getting-started',
-            'custom-periods'
+            'custom-periods',
+            'custom-fields'
           ]
         }
       ],
