@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Custom Cron Expression | Vue-js-cron Docs</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css">
+    <meta name="description" content="vue-js-cron documentation">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/vue-js-cron/assets/css/0.styles.fef9d681.css" as="style"><link rel="preload" href="/vue-js-cron/assets/js/app.b1c1e738.js" as="script"><link rel="preload" href="/vue-js-cron/assets/js/2.ca08df44.js" as="script"><link rel="preload" href="/vue-js-cron/assets/js/22.09124159.js" as="script"><link rel="preload" href="/vue-js-cron/assets/js/3.4141a402.js" as="script"><link rel="preload" href="/vue-js-cron/assets/js/11.82f7536d.js" as="script"><link rel="prefetch" href="/vue-js-cron/assets/js/10.03843af3.js"><link rel="prefetch" href="/vue-js-cron/assets/js/12.2f7d3653.js"><link rel="prefetch" href="/vue-js-cron/assets/js/13.449e46a5.js"><link rel="prefetch" href="/vue-js-cron/assets/js/14.15b14035.js"><link rel="prefetch" href="/vue-js-cron/assets/js/15.0dbbc349.js"><link rel="prefetch" href="/vue-js-cron/assets/js/16.9f4fdf19.js"><link rel="prefetch" href="/vue-js-cron/assets/js/17.c0ec4a86.js"><link rel="prefetch" href="/vue-js-cron/assets/js/18.a38d654a.js"><link rel="prefetch" href="/vue-js-cron/assets/js/19.2b991cbb.js"><link rel="prefetch" href="/vue-js-cron/assets/js/20.b35e63b4.js"><link rel="prefetch" href="/vue-js-cron/assets/js/21.ee509803.js"><link rel="prefetch" href="/vue-js-cron/assets/js/23.62ffc527.js"><link rel="prefetch" href="/vue-js-cron/assets/js/24.9880f36f.js"><link rel="prefetch" href="/vue-js-cron/assets/js/25.6884ab25.js"><link rel="prefetch" href="/vue-js-cron/assets/js/26.9461314b.js"><link rel="prefetch" href="/vue-js-cron/assets/js/4.48b06532.js"><link rel="prefetch" href="/vue-js-cron/assets/js/5.b79de2c4.js"><link rel="prefetch" href="/vue-js-cron/assets/js/6.d8bbabd0.js"><link rel="prefetch" href="/vue-js-cron/assets/js/7.774079b9.js"><link rel="prefetch" href="/vue-js-cron/assets/js/8.2fb949d0.js"><link rel="prefetch" href="/vue-js-cron/assets/js/9.cacc35bd.js">
+    <link rel="stylesheet" href="/vue-js-cron/assets/css/0.styles.fef9d681.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue-js-cron/" class="home-link router-link-active"><!----> <span class="site-name">Vue-js-cron Docs</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vue-js-cron/guide/getting-started.html" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/vue-js-cron/api/core.html" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="https://github.com/abichinger/vue-js-cron" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vue-js-cron/guide/getting-started.html" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="/vue-js-cron/api/core.html" class="nav-link">
+  API
+</a></div><div class="nav-item"><a href="https://github.com/abichinger/vue-js-cron" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Guide</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue-js-cron/guide/getting-started.html" class="sidebar-link">Getting Started</a></li><li><a href="/vue-js-cron/guide/custom-periods.html" class="sidebar-link">Custom Periods</a></li><li><a href="/vue-js-cron/guide/custom-fields.html" aria-current="page" class="active sidebar-link">Custom Cron Expression</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="custom-cron-expression"><a href="#custom-cron-expression" class="header-anchor">#</a> Custom Cron Expression</h1> <div data-app="true" id="app" class="v-application v-application--is-ltr theme--light"><div class="v-application--wrap"><div class="code-example v-card v-sheet theme--light"><header class="elevation-1 v-sheet theme--light v-toolbar v-toolbar--dense" style="height:48px;"><div class="v-toolbar__content" style="height:48px;"><div class="v-toolbar__title">cron expression with seconds</div> <div class="spacer"></div> <span class="v-tooltip v-tooltip--bottom"><!----><button type="button" aria-haspopup="true" aria-expanded="false" class="v-btn v-btn--icon v-btn--round theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate mdi mdi-code-tags theme--light"></i></span></button></span></div></header> <div class="source" style="display:none;"><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>v-app</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>mb-2<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{value}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CronLight</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>value<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:periods</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>periods<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:fields</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>fields<span class="token punctuation">&quot;</span></span> <span class="token attr-name">@error</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>error=$event<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:custom-locale</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>customLocale<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>CronLight</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>v-app</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+
+<span class="token keyword">import</span> core <span class="token keyword">from</span> <span class="token string">'@vue-js-cron/core'</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> locale<span class="token punctuation">,</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> core
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">let</span> defaultItems <span class="token operator">=</span> locale<span class="token punctuation">.</span><span class="token function">defaultItems</span><span class="token punctuation">(</span><span class="token string">'en'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token string">'* * * * *'</span><span class="token punctuation">,</span>
+      error<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+      periods<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'year'</span><span class="token punctuation">,</span> text<span class="token operator">:</span> <span class="token string">'year'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'month'</span><span class="token punctuation">,</span> <span class="token string">'day'</span><span class="token punctuation">,</span> <span class="token string">'hour'</span><span class="token punctuation">,</span> <span class="token string">'minute'</span><span class="token punctuation">,</span> <span class="token string">'second'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'hour'</span><span class="token punctuation">,</span> text<span class="token operator">:</span> <span class="token string">'hour'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'minute'</span><span class="token punctuation">,</span> <span class="token string">'second'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'minute'</span><span class="token punctuation">,</span> text<span class="token operator">:</span> <span class="token string">'minute'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'second'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'second'</span><span class="token punctuation">,</span> text<span class="token operator">:</span> <span class="token string">'second'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      fields<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'second'</span><span class="token punctuation">,</span> items<span class="token operator">:</span> util<span class="token punctuation">.</span><span class="token function">genItems</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">59</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'minute'</span><span class="token punctuation">,</span> items<span class="token operator">:</span> defaultItems<span class="token punctuation">.</span>minuteItems<span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'hour'</span><span class="token punctuation">,</span> items<span class="token operator">:</span> defaultItems<span class="token punctuation">.</span>hourItems<span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'day'</span><span class="token punctuation">,</span> items<span class="token operator">:</span> defaultItems<span class="token punctuation">.</span>dayItems<span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'month'</span><span class="token punctuation">,</span> items<span class="token operator">:</span> defaultItems<span class="token punctuation">.</span>monthItems<span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      customLocale<span class="token operator">:</span> <span class="token punctuation">{</span>
+        eachPeriod<span class="token operator">:</span> <span class="token punctuation">{</span>
+          secondField<span class="token operator">:</span> <span class="token punctuation">{</span>
+            prefix<span class="token operator">:</span> <span class="token string">':'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        hourPeriod<span class="token operator">:</span> <span class="token punctuation">{</span>
+          minuteField<span class="token operator">:</span> <span class="token punctuation">{</span>
+            prefix<span class="token operator">:</span> <span class="token string">'at'</span><span class="token punctuation">,</span>
+            suffix<span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            empty<span class="token operator">:</span> <span class="token string">'every minute'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        minutePeriod<span class="token operator">:</span> <span class="token punctuation">{</span>
+          secondField<span class="token operator">:</span> <span class="token punctuation">{</span>
+            prefix<span class="token operator">:</span> <span class="token string">'at'</span><span class="token punctuation">,</span>
+            suffix<span class="token operator">:</span> <span class="token string">'second(s)'</span><span class="token punctuation">,</span>
+            empty<span class="token operator">:</span> <span class="token string">'every'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <div class="v-card__text"> <div data-app="true" id="app" class="v-application v-application--is-ltr theme--light"><div class="v-application--wrap"><div class="mb-2">* * * * *</div> <span periods="[object Object],[object Object],[object Object],[object Object]" fields="[object Object],[object Object],[object Object],[object Object],[object Object]" custom-locale="[object Object]" value="* * * * *" class="vcron-editor"><span>Every</span> <div class="vcron-select-container"><span class="vcron-select-input">second</span> <span class="vcron-select-list" style="display:none;min-width:5em;width:unset;"><span class="vcron-select-list-item" style="width:100%;">
+      
+      year
+    </span><span class="vcron-select-list-item" style="width:100%;">
+      
+      hour
+    </span><span class="vcron-select-list-item" style="width:100%;">
+      
+      minute
+    </span><span class="vcron-select-list-item vcron-select-list-item-selected" style="width:100%;">
+      
+      second
+    </span></span></div> <span></span> </span></div></div></div></div> <div class="v-card__text"></div> </div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue-js-cron/guide/custom-periods.html" class="prev">
+        Custom Periods
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vue-js-cron/assets/js/app.b1c1e738.js" defer></script><script src="/vue-js-cron/assets/js/2.ca08df44.js" defer></script><script src="/vue-js-cron/assets/js/22.09124159.js" defer></script><script src="/vue-js-cron/assets/js/3.4141a402.js" defer></script><script src="/vue-js-cron/assets/js/11.82f7536d.js" defer></script>
+  </body>
+</html>
