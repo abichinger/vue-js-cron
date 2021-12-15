@@ -69,6 +69,8 @@ module.exports = {
           collapsable: false,
           children: [
             'core',
+            'util',
+            'locale'
           ]
         },
         {
