@@ -59,6 +59,22 @@ function format(str, params){
     return str    
 }
 
+/**
+ * type definition
+ * @name toText
+ * @function
+ * @param {number} value
+ * @returns {string}
+*/
+
+/**
+ * generate items for fields
+ * @param {number} min first value
+ * @param {number} max last value
+ * @param {toText} genText returns a string representation of value
+ * @param {toText} genAltText returns an alternative string representation of value
+ * @returns {Array<{value:number, text:string, alt:string}>} array of items
+ */
 function genItems(min, max, genText=(value) => {return value+''}, genAltText=(value) => {return value+''}){
     let res = []
     for(let i of new Range(min, max)){
@@ -71,15 +87,35 @@ function genItems(min, max, genText=(value) => {return value+''}, genAltText=(va
     return res
 }
 
+/**
+ * pads numbers
+ * @param {number} n number to pad 
+ * @param {number} width
+ * @example
+ * //returns "001"
+ * util.pad(1,3) 
+ * @returns {string} the padded number
+ */
 function pad(n, width){
     n = n+''
     return (n.length < width) ? new Array(width - n.length).fill('0').join('') + n : n;
 }
 
-function isObject(obj){
-    return (obj && typeof obj == 'object' && !Array.isArray(obj))
+/**
+ * determines whether the passed value is an object
+ * @param {any} value 
+ * @returns {Boolean} true if value is an object, otherwise false
+ */
+function isObject(value){
+    return (value && typeof value == 'object' && !Array.isArray(value))
 }
 
+/**
+ * copies (deep copy) all properties from each source to target 
+ * @param {object} target 
+ * @param  {...object} sources 
+ * @returns {object} target
+ */
 function deepMerge(target, ...sources){
     if(!isObject(target) || sources.length == 0) return
     let source = sources.shift()
@@ -103,6 +139,22 @@ function deepMerge(target, ...sources){
     return target
 }
 
+
+function traverse(obj, ...keys){
+    if(keys.length == 0)
+        return obj
+        
+    for(let key of keys[0]){
+        if(obj.hasOwnProperty(key)){
+            let res = traverse(obj[key], ...keys.slice(1))
+            if(res !== undefined){
+                return res
+            }
+        }
+    }
+    return
+}
+
 export default {
     range,
     Range,
@@ -110,5 +162,6 @@ export default {
     genItems,
     pad,
     deepMerge,
-    isObject
+    isObject,
+    traverse
 }
