@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/vuetify",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Cron editor for vuetify",
   "main": "dist/vuetify.umd.js",
   "module": "dist/vuetify.esm.js",
@@ -21,7 +21,7 @@
     "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/vuetify.min.js"
   },
   "dependencies": {
-    "@vue-js-cron/core": "2.1.0",
+    "@vue-js-cron/core": "2.1.1",
     "vuetify": "^2.4.6"
   },
   "devDependencies": {
