@@ -1,17 +1,8 @@
 <template>
   <v-app>
-    
-
     <CronCore v-model="value">
       <template #default="{fields, period, error}">
         <div> 
-        
-          <!-- editable cron expression -->
-          <v-row>
-            <v-col>
-              <v-text-field :value="value" @change="value = $event" label="cron expression" :error-messages="error" />
-            </v-col>
-          </v-row>
           
           <v-row align="baseline" dense>
             
@@ -53,6 +44,14 @@
             </template>
           
           </v-row>
+
+          <!-- editable cron expression -->
+          <v-row class="mt-0">
+            <v-col class="pt-0">
+              <v-text-field :value="value" @change="value = $event" label="cron expression" :error-messages="error" />
+            </v-col>
+          </v-row>
+
         </div>
       </template>
     </CronCore>

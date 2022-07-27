@@ -2,12 +2,12 @@
 
 The fastest way to get started, is to install one of the prebuilt components.
 For now `vue-js-cron` provides the following prebuilt components:
-- [CronLight](#quick-start-cronlight) - a lightweight cron editor without external dependencies
-- [CronVuetify](#quick-start-cronvuetify) - a cron editor for [Vuetify.js](/guide/getting-started.html#quick-start-vuetify).
+- [CronLight](#cronlight) - a lightweight cron editor without external dependencies
+- [CronVuetify](#cronvuetify) - a cron editor for [Vuetify.js](/guide/getting-started.html#vuetify).
 
-If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#quick-start-renderless).
+If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#renderless).
 
-## Quick Start - CronLight
+## CronLight
 
 #### Installation
 
@@ -48,7 +48,7 @@ Now you can use the component `CronLight`.
 
 - [CronLight](../api/light)
 
-## Quick Start - CronVuetify
+## CronVuetify
 
 #### Installation
 
@@ -89,7 +89,7 @@ Now you can use the component `CronVuetify`.
 
 - [CronVuetify](../api/vuetify)
 
-## Quick Start - Renderless
+## Renderless
 
 This guide will explain how to use the renderless component of vue-js-cron.
 In this example [Vuetify](https://vuetifyjs.com/en/) will be used to render the component, but you should be able to follow along using any UI framework.

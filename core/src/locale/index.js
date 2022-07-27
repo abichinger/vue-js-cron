@@ -9,7 +9,7 @@ const locales = {
 /**
  * 
  * @param {string} locale=en 
- * @returns {object} object with all strings in the request language  
+ * @returns {object} object with all strings in the requested language  
  */
 function getLocale(locale){
     if(locales.hasOwnProperty(locale)){

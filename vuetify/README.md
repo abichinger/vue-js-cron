@@ -6,7 +6,7 @@
 
 ## Usage
 
-**Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#quick-start-cronvuetify](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#quick-start-vuetify)
+**Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#cronvuetify](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#cronvuetify)
 
 ## Attribution
 

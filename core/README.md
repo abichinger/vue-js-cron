@@ -6,7 +6,7 @@
 
 ## Usage
 
-**Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#quick-start-renderless](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#quick-start-renderless)
+**Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#renderless](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#renderless)
 
 ## Attribution
 
