@@ -1,25 +1,19 @@
 
 <template>
-    <CronCore v-bind="$attrs" @input="$emit('input', $event)" @error="$emit('error', $event)">
-        <template #default="{fields, period}">
-            
-            <span class="vcron-editor">
-                <span>{{period.prefix}}</span>
-                <custom-select v-bind="period.attrs" v-on="period.events" :items="period.items" item-value="id" :cols="cols('period')" :width="width('period')" />
-                <span>{{period.suffix}}</span>
-            
-            
-                <template v-for="f in fields">
-                    <span :key="f.id+'prefix'">{{f.prefix}}</span>
-                    <custom-select v-bind="f.attrs" v-on="f.events" :items="f.items" :key="f.id" :cols="cols(f.id)" :width="width(f.id)" multiple>{{f.selectedStr}}</custom-select>
-                    <span :key="f.id+'suffix'">{{f.suffix}}</span>
-                </template>
-
-            </span>
-            
-        </template>
+    <CronCore v-bind="$attrs" @update:value="$emit('update:value', $event)" @error="$emit('error', $event)" v-slot="{fields, period}">
+        <span class="vcron-editor">
+            <span>{{period.prefix}}</span>
+            <custom-select v-bind="period.attrs" v-on="period.events" :items="period.items" item-value="id" :cols="cols('period')" :width="width('period')" />
+            <span>{{period.suffix}}</span>
+        
+        
+            <template v-for="f in fields" :key="f.id">
+                <span>{{f.prefix}}</span>
+                <custom-select v-bind="f.attrs" v-on="f.events" :items="f.items" :cols="cols(f.id)" :width="width(f.id)" multiple>{{f.selectedStr}}</custom-select>
+                <span>{{f.suffix}}</span>
+            </template>
+        </span>
     </CronCore>
-    
 </template>
 
 <script>
@@ -53,6 +47,7 @@ export default {
                 else return 'unset'
             }
         }
-    }   
+    },
+    emits:['update:value', 'error']
 }
 </script>

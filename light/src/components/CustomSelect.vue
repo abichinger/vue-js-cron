@@ -30,9 +30,9 @@ export default {
       default: false
     },
     value: {
-      type: String | Array | Object,
-      default(){
-        return this.multiple ? [] : null
+      type: [String, Array, Object],
+      default(props){
+        return props.multiple ? [] : null
       },
     },
     items: {
