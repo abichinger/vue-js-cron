@@ -20,9 +20,9 @@ export default {
         },
         fields: {
             type: Array,
-            default: function() {
+            default: function(props) {
 
-                let items = defaultItems(this.locale)
+                let items = defaultItems(props.locale)
 
                 return [
                     {id: 'minute', items: items.minuteItems},
@@ -48,15 +48,16 @@ export default {
         },
         customLocale: {
             type: Object,
-            default: function() {
-                return getLocale(this.locale)
+            default: function(props) {
+                return getLocale(props.locale)
             }
         },
         mergeLocale: {
             type: Boolean,
             default: true
-        }
+        },
     },
+    emits: ["update:value", "error"],
     data(){
 
         let selected = {}
@@ -134,7 +135,7 @@ export default {
 
     render(){
 
-        if(!this.$scopedSlots.default){
+        if(!this.$slots || !this.$slots.default){
             return
         }
 
@@ -163,7 +164,7 @@ export default {
             })
         }
 
-        return this.$scopedSlots.default({
+        return this.$slots.default({
             error: this.error,
             fields: fieldProps,
 
@@ -190,7 +191,7 @@ export default {
         },
         cronToSelected(value){
             if(!value){
-                this.$emit('input', this.defaultValue())
+                this.$emit('update:value', this.defaultValue())
                 return
             }
 
@@ -232,7 +233,7 @@ export default {
                 strings.push(str.value)
             }
             this.error = ''
-            this.$emit('input', strings.join(' '))
+            this.$emit('update:value', strings.join(' '))
         },
 
         sort(array){

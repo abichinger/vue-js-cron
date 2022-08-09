@@ -1,41 +1,37 @@
-import { shallowMount } from '@vue/test-utils'
-import VueCron from '../src/core.vue'
+import { config, mount } from '@vue/test-utils'
 import 'regenerator-runtime/runtime'
+import VueCron from '../src/core.vue'
+
+config.renderStubDefaultSlot = true
 
 test('test VueCron', async () => {
     // render the component
-    let onInput = jest.fn()
-    let props = null
+    let onUpdateValue = jest.fn()
+    let slotProps = null
     
-    let wrapper = shallowMount(VueCron, {
-        propsData: {
+    let wrapper = mount(VueCron, {
+        props: {
             value: '*/15 12 * * *'
         },
-        scopedSlots: {
+        slots: {
             default: function(p){
-                props = p                
-            }
-        },
-        listeners:{
-            input: function(value){
-                onInput()
-                expect(value).toEqual('1-5 12 * * *')
+                slotProps = p                
             }
         }
     })
 
     await wrapper.vm.$nextTick()
 
-    expect(props.fields[4].attrs.value).toEqual([0,15,30,45])
-    expect(props.fields[3].attrs.value).toEqual([12])
-    expect(props.fields[2].attrs.value).toEqual([])
-    expect(props.fields[1].attrs.value).toEqual([])
-    expect(props.fields[0].attrs.value).toEqual([])
+    expect(slotProps.fields[4].attrs.value).toEqual([0,15,30,45])
+    expect(slotProps.fields[3].attrs.value).toEqual([12])
+    expect(slotProps.fields[2].attrs.value).toEqual([])
+    expect(slotProps.fields[1].attrs.value).toEqual([])
+    expect(slotProps.fields[0].attrs.value).toEqual([])
     
-    props.fields[4].events.input([1,2,3,4,5])
+    slotProps.fields[4].events.input([1,2,3,4,5])
 
     await wrapper.vm.$nextTick()
 
-    expect(onInput).toHaveBeenCalled()
-
+    expect(wrapper.emitted()).toHaveProperty('update:value')
+    expect(wrapper.emitted('update:value')[0]).toEqual(['1-5 12 * * *'])
 })

@@ -23,9 +23,7 @@
   "dependencies": {
     "mustache": "^4.2.0"
   },
-  "devDependencies": {
-    "@vue/cli-service": "^4.5.15"
-  },
+  "devDependencies": {},
   "files": [
     "package.json",
     "dist",
