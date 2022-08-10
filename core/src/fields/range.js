@@ -22,8 +22,9 @@ function strToArray(str, {min, max}){
 }
 
 function arrayToStr(arr, field){
+    arr = arr.sort((a, b) => a-b);
     let {min, max} = field
-    
+
     if(arr.length <= 1){
         return null
     }

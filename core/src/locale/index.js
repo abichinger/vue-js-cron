@@ -7,9 +7,9 @@ const locales = {
 }
 
 /**
- * 
- * @param {string} locale=en 
- * @returns {object} object with all strings in the requested language  
+ *
+ * @param {string} locale=en
+ * @returns {object} object with all strings in the requested language
  */
 function getLocale(locale){
     if(locales.hasOwnProperty(locale)){
@@ -21,14 +21,14 @@ function getLocale(locale){
 }
 
 /**
- * 
- * @param {string} locale 
+ *
+ * @param {string} locale
  * @returns {object} items for minute, hour, day, month and day of week
  */
 function defaultItems(locale){
     return {
         minuteItems: genItems(0, 59, (value) => pad(value, 2)),
-        hourItems: genItems(0, 59, (value) => pad(value, 2)),
+        hourItems: genItems(0, 23, (value) => pad(value, 2)),
         dayItems: genItems(1, 31),
         monthItems: genItems(1, 12, (value) => {
             return new Date(2021, value-1, 1).toLocaleDateString(locale, {month: 'long'})
@@ -57,7 +57,7 @@ export default {
     getSuffix: (locale, periodId, fieldId) => {
         return traverse(locale, [periodId+'Period', 'eachPeriod'], [fieldId+'Field', 'eachField'], ['suffix']) || ''
     },
-    
+
     defaultItems,
     getLocale
 }
