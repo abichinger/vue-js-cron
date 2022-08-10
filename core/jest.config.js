@@ -5,22 +5,21 @@
 
 module.exports = {
 
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
-
-  "moduleFileExtensions": [
-    "js",
-    "ts",
-    "json",
+  moduleFileExtensions: [
+    'js',
+    'ts',
+    'json',
     // tell Jest to handle `*.vue` files
-    "vue"
+    'vue'
   ],
-  "transform": {
+  transform: {
     '^.+\\.vue$': 'vue-jest',
     '^.+\\.(js|jsx)?$': 'babel-jest'
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
-  },
-  //transformIgnorePatterns: ['<rootDir>/node_modules/']
-};
+  }
+  // transformIgnorePatterns: ['<rootDir>/node_modules/']
+}

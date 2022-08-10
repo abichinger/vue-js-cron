@@ -9,15 +9,15 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       value: '* * * * *',
       error: '',
       periods: [
-          { id: 'month', text: 'Month', value: ['day', /*'dayOfWeek',*/ 'hour', 'minute'] },
-          { id: 'day', text: 'Day', value: ['hour', 'minute'] },
+        { id: 'month', text: 'Month', value: ['day', /* 'dayOfWeek', */ 'hour', 'minute'] },
+        { id: 'day', text: 'Day', value: ['hour', 'minute'] }
       ]
     }
-  },
+  }
 }
 </script>

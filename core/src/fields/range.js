@@ -1,62 +1,60 @@
 import types from '../types'
 import util from '../util'
-let { RangeColumn, CombinedColumn, ValueColumn } = types
+const { RangeColumn, CombinedColumn, ValueColumn } = types
 // x-y
 
-let re = /^\d+-\d+$/
+const re = /^\d+-\d+$/
 
-function strToArray(str, {min, max}){
-    if(!re.test(str)){
-        return null
-    }
+function strToArray (str, { min, max }) {
+  if (!re.test(str)) {
+    return null
+  }
 
-    let range = str.split('-')
-    let start = parseInt(range[0])
-    let end = parseInt(range[1])
+  const range = str.split('-')
+  const start = parseInt(range[0])
+  const end = parseInt(range[1])
 
-    if(start > end || start < min || end > max){
-        return null
-    }
+  if (start > end || start < min || end > max) {
+    return null
+  }
 
-    return util.range(start, end)
+  return util.range(start, end)
 }
 
-function arrayToStr(arr, field){
-    let {min, max} = field
-    
-    if(arr.length <= 1){
-        return null
-    }
+function arrayToStr (arr, field) {
+  const { min, max } = field
 
-    let minValue = arr[0]
-    let maxValue = arr[arr.length-1]
+  if (arr.length <= 1) {
+    return null
+  }
 
-    if(minValue < min){
-        return null
-    }
-    if(maxValue > max){
-        return null
-    }
+  const minValue = arr[0]
+  const maxValue = arr[arr.length - 1]
 
-    let ranges = []
-    let start = 0
-    for(let i = 0; i < arr.length; i++){
-        if(arr[i+1] === undefined || arr[i+1] - arr[i] > 1){
-            if(i == start){
-                ranges.push(new ValueColumn(field, arr[start]))
-            }
-            else{
-                ranges.push(new RangeColumn(field, arr[start], arr[i]))
-            }
-            start = i+1
-        }
-    }
+  if (minValue < min) {
+    return null
+  }
+  if (maxValue > max) {
+    return null
+  }
 
-    return new CombinedColumn(field, ranges)
+  const ranges = []
+  let start = 0
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i + 1] === undefined || arr[i + 1] - arr[i] > 1) {
+      if (i === start) {
+        ranges.push(new ValueColumn(field, arr[start]))
+      } else {
+        ranges.push(new RangeColumn(field, arr[start], arr[i]))
+      }
+      start = i + 1
+    }
+  }
+
+  return new CombinedColumn(field, ranges)
 }
 
 export default {
-    strToArray,
-    arrayToStr
+  strToArray,
+  arrayToStr
 }
-

@@ -11,7 +11,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
-  description: description,
+  description,
 
   /**
    * Extra tags to be injected to the page HTML `<head>`
@@ -23,7 +23,7 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' }],
-    ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css' }],
+    ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css' }]
   ],
 
   /**
@@ -40,15 +40,15 @@ module.exports = {
     nav: [
       {
         text: 'Demo',
-        link: '/demo',
+        link: '/demo'
       },
       {
         text: 'Guide',
-        link: '/guide/getting-started',
+        link: '/guide/getting-started'
       },
       {
         text: 'API',
-        link: '/api/core',
+        link: '/api/core'
       },
       {
         text: 'Github',
@@ -81,14 +81,14 @@ module.exports = {
           title: 'Light',
           collapsable: false,
           children: [
-            'light',
+            'light'
           ]
         },
         {
           title: 'Vuetify',
           collapsable: false,
           children: [
-            'vuetify',
+            'vuetify'
           ]
         }
       ]
@@ -100,6 +100,6 @@ module.exports = {
    */
   plugins: [
     '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom',
+    '@vuepress/plugin-medium-zoom'
   ]
 }

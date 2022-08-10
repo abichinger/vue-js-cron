@@ -21,7 +21,7 @@
                 </template>
 
                 <div>-</div>
-                
+
                 <div>error:{{error}}</div>
                 <div>period:{{period.attrs.value}}</div>
                 <div v-for="f in fields" :key="'div'+f.id">{{f.id}}: {{f.attrs.value}}, {{f.cron}}, {{f.selectedStr}}</div>
@@ -42,31 +42,31 @@ select[multiple] {
 import VueCronCore from '../src/core'
 
 export default {
-    components: {
-        VueCronCore
-    },
-    props: {
+  components: {
+    VueCronCore
+  },
+  props: {
 
-    },
-    data(){
-        return {
-            value: '* * * * *'
-        }
-    },
-
-    computed: {
-        
-    },
-    
-    watch: {
-        
-    },
-
-    methods: {
-        getSelected(select){
-            let options = select && select.options;
-            return Array.from(options).filter((opt) => opt.selected).map((opt) => opt.value)
-        },
+  },
+  data () {
+    return {
+      value: '* * * * *'
     }
+  },
+
+  computed: {
+
+  },
+
+  watch: {
+
+  },
+
+  methods: {
+    getSelected (select) {
+      const options = select && select.options
+      return Array.from(options).filter((opt) => opt.selected).map((opt) => opt.value)
+    }
+  }
 }
 </script>

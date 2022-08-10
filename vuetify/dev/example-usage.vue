@@ -17,12 +17,11 @@
 import VueCronEditor from '../src/CronEditor'
 
 export default {
-  name: 'Editor',
-  components:{
+  components: {
     VueCronEditor
   },
 
-  data:() => {
+  data: () => {
     return {
       value: '* * * * *'
     }

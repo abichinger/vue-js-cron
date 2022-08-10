@@ -15,14 +15,14 @@ export default {
     }
   },
 
-  data() {
+  data () {
     return {
       value: this.init,
       error: ''
     }
   },
-  methods:{
-    
+  methods: {
+
   }
 }
 </script>

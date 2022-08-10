@@ -40,16 +40,16 @@
 <script>
 export default {
   props: {
-      title: {
-          type: String,
-          default: ''
-      }
+    title: {
+      type: String,
+      default: ''
+    }
   },
-  data() {
+  data () {
     return {
       viewSource: false
     }
-  },
+  }
 }
 </script>
 

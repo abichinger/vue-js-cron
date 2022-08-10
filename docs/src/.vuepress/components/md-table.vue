@@ -11,16 +11,16 @@
           </slot>
         </td>
       </template>
-      
+
     </tr>
   </table>
 </template>
 
 <script>
-import markdownIt from 'markdown-it/dist/markdown-it';
+import markdownIt from 'markdown-it/dist/markdown-it'
 
 export default {
-  props:{
+  props: {
     headers: {
       type: Array,
       required: true
@@ -30,10 +30,10 @@ export default {
       required: true
     }
   },
-  methods:{
-    renderMd(mdStr){
-      let md = new markdownIt({ 
-        html: true,
+  methods: {
+    renderMd (mdStr) {
+      const md = new markdownIt({
+        html: true
       })
       return md.render(mdStr)
     }

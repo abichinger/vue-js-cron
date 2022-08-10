@@ -4,36 +4,35 @@
       <slot>{{selectedStr}}</slot>
     </span>
     <span class="vcron-select-list" :style="listStyle">
-      <span v-for="item in items" 
-        :key="item[itemValue]+''" 
-        class="vcron-select-list-item" 
-        :class="{'vcron-select-list-item-selected': selectedItems.includes(item)}" 
+      <span v-for="item in items"
+        :key="item[itemValue]+''"
+        class="vcron-select-list-item"
+        :class="{'vcron-select-list-item-selected': selectedItems.includes(item)}"
         :style="listItemStyle"
         @click="select(item)"
         @click.stop="multiple ? () => {} : toggleMenu()">
-        
+
         {{item[itemText]}}
-      </span> 
+      </span>
     </span>
   </div>
 </template>
 
 <script>
-import multiple from '@vue-js-cron/core/src/fields/multiple'
 
 export default {
   inheritAttrs: false,
   name: 'CustomSelect',
-  props:{
+  props: {
     multiple: {
       type: Boolean,
       default: false
     },
     modelValue: {
       type: [String, Array, Object],
-      default(props){
+      default (props) {
         return props.multiple ? [] : null
-      },
+      }
     },
     items: {
       type: Array,
@@ -61,76 +60,71 @@ export default {
     }
   },
   emits: ['update:model-value'],
-  data(){
+  data () {
     return {
       menu: false
     }
   },
   computed: {
-    listStyle() {
+    listStyle () {
       return {
         display: (this.menu) ? 'inline-block' : 'none',
         minWidth: '5em',
         width: this.width
       }
     },
-    listItemStyle() {
+    listItemStyle () {
       return {
-        width: 100/this.cols + '%'
+        width: 100 / this.cols + '%'
       }
     },
-    _value(){
+    _value () {
       return (this.multiple) ? this.modelValue : [this.modelValue]
     },
-    selectedItems(){
+    selectedItems () {
       return this.items.filter((item) => {
-        for(let value of this._value){
-          if(this.returnObject){
-            if (value == item) return true
-          }
-          else{
-            if (value == item[this.itemValue]) return true
+        for (const value of this._value) {
+          if (this.returnObject) {
+            if (value === item) return true
+          } else {
+            if (value === item[this.itemValue]) return true
           }
         }
         return false
       })
     },
-    selectedStr(){
+    selectedStr () {
       return this.selectedItems.map((item) => item[this.itemText]).join(',')
     }
   },
   methods: {
-    menuEvtListener(evt){
+    menuEvtListener (evt) {
       this.menu = false
       document.removeEventListener('click', this.menuEvtListener)
     },
-    toggleMenu(){
+    toggleMenu () {
       this.menu = !this.menu
 
-      if(this.menu){
+      if (this.menu) {
         setTimeout(() => {
           document.addEventListener('click', this.menuEvtListener)
         }, 1)
-      }
-      else {
+      } else {
         document.removeEventListener('click', this.menuEvtListener)
       }
     },
-    select(item){
-      if(this.multiple){
-        let value = this.selectedItems.slice()
-        let i = this.selectedItems.indexOf(item)
-        //deselect
-        if(i >= 0){
-          value.splice(i,1)
-        }
-        //select
-        else{
+    select (item) {
+      if (this.multiple) {
+        const value = this.selectedItems.slice()
+        const i = this.selectedItems.indexOf(item)
+        // deselect
+        if (i >= 0) {
+          value.splice(i, 1)
+        } else { // select
           value.push(item)
         }
         this.$emit('update:model-value', (this.returnObject) ? value : value.map((item) => item[this.itemValue]))
-      }
-      else {
+      } else {
         this.$emit('update:model-value', (this.returnObject) ? item : item[this.itemValue])
       }
     }

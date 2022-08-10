@@ -8,7 +8,7 @@
 
     {{selection ? selection : selectedStr}}
 
-    <v-menu activator="parent" :close-on-content-click="closeOnContentClick">    
+    <v-menu activator="parent" :close-on-content-click="closeOnContentClick">
       <v-list class="pa-0 ma-0">
           <v-row v-for="(itemRow, index) in itemRows" :key="index" no-gutters>
             <v-col v-for="(item, index) in itemRow" :key="index">
@@ -21,21 +21,20 @@
 </template>
 
 <script>
-import multiple from '@vue-js-cron/core/src/fields/multiple'
 
 export default {
   inheritAttrs: false,
   name: 'CustomSelect',
-  props:{
+  props: {
     multiple: {
       type: Boolean,
       default: false
     },
     modelValue: {
       type: [String, Array, Object],
-      default(props){
+      default (props) {
         return props.multiple ? [] : null
-      },
+      }
     },
     items: {
       type: Array,
@@ -75,7 +74,7 @@ export default {
     },
     closeOnContentClick: {
       type: Boolean,
-      default: true,
+      default: true
     },
     clearable: {
       type: Boolean,
@@ -83,90 +82,85 @@ export default {
     }
   },
   emits: ['update:model-value'],
-  data(){
+  data () {
     return {
       menu: false
     }
   },
   computed: {
-    listStyle() {
+    listStyle () {
       return {
         display: (this.menu) ? 'inline-block' : 'none',
         minWidth: '5em',
         width: this.width
       }
     },
-    listItemStyle() {
+    listItemStyle () {
       return {
-        width: 100/this.cols + '%'
+        width: 100 / this.cols + '%'
       }
     },
-    _value(){
+    _value () {
       return (this.multiple) ? this.modelValue : [this.modelValue]
     },
-    selectedItems(){
+    selectedItems () {
       return this.items.filter((item) => {
-        for(let value of this._value){
-          if(this.returnObject){
-            if (value == item) return true
-          }
-          else{
-            if (value == item[this.itemValue]) return true
+        for (const value of this._value) {
+          if (this.returnObject) {
+            if (value === item) return true
+          } else {
+            if (value === item[this.itemValue]) return true
           }
         }
         return false
       })
     },
-    selectedStr(){
+    selectedStr () {
       return this.selectedItems.map((item) => item[this.itemText]).join(',')
     },
-    rows(){
+    rows () {
       return Array.isArray(this.items) ? Math.ceil(this.items.length / this.cols) : 0
     },
-    itemRows() {
+    itemRows () {
       return Array.from(Array(this.rows), (_, i) => {
         return Array.from(Array(this.cols), (_, j) => {
-          return this.items[this.cols*i + j]
+          return this.items[this.cols * i + j]
         })
       })
     }
   },
   methods: {
-    menuEvtListener(evt){
+    menuEvtListener (evt) {
       this.menu = false
       document.removeEventListener('click', this.menuEvtListener)
     },
-    toggleMenu(){
+    toggleMenu () {
       this.menu = !this.menu
 
-      if(this.menu){
+      if (this.menu) {
         setTimeout(() => {
           document.addEventListener('click', this.menuEvtListener)
         }, 1)
-      }
-      else {
+      } else {
         document.removeEventListener('click', this.menuEvtListener)
       }
     },
-    select(item){
-      if(this.multiple){
-        let value = this.selectedItems.slice()
-        let i = this.selectedItems.indexOf(item)
-        //deselect
-        if(i >= 0){
-          value.splice(i,1)
-        }
-        //select
-        else{
+    select (item) {
+      if (this.multiple) {
+        const value = this.selectedItems.slice()
+        const i = this.selectedItems.indexOf(item)
+        // deselect
+        if (i >= 0) {
+          value.splice(i, 1)
+        } else { // select
           value.push(item)
         }
         this.$emit('update:model-value', (this.returnObject) ? value : value.map((item) => item[this.itemValue]))
-      }
-      else {
+      } else {
         this.$emit('update:model-value', (this.returnObject) ? item : item[this.itemValue])
       }
     },
-    clear() {
+    clear () {
       this.$emit('update:model-value', this.multiple ? [] : null)
     }
   }

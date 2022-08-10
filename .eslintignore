@@ -1,0 +1,4 @@
+!.vuepress
+.cache
+.temp
+dist

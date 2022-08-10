@@ -7,7 +7,7 @@ import example from './example-usage.vue'
 
 const app = createApp(example)
 const vuetify = createVuetify({
-  components: components
+  components
 })
 app.use(vuetify)
 
