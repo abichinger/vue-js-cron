@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - next
 
 jobs:
   build-and-deploy:
@@ -21,7 +22,16 @@ jobs:
       - run: yarn build
 
       - name: Deploy
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
+
+      - name: Deploy next
+        if: github.ref == 'refs/heads/next'
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: docs/src/.vuepress/dist
+          target-folder: ./next
