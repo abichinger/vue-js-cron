@@ -148,7 +148,8 @@ export default {
             }
             let events = {
                 input: ((fieldId) => (evt) => {
-                    this.selected[fieldId] = evt
+                    const selected = Array.from(evt).sort((a, b) => { return a > b ? 1 : -1 })
+                    this.selected[fieldId] = selected
                 })(field.id)
             }
 
@@ -224,7 +225,7 @@ export default {
                     continue
                 }
                 let array = selected[field.id]
-                let str = multiple.arrayToStr(this.sort(array), field)
+                let str = multiple.arrayToStr(array, field)
                 if(str === null){
                     this.error = 'invalid selection'
                     return
@@ -233,12 +234,6 @@ export default {
             }
             this.error = ''
             this.$emit('input', strings.join(' '))
-        },
-
-        sort(array){
-            let a = array.slice()
-            a.sort((a,b) => a-b)
-            return a
         }
     }
 }
