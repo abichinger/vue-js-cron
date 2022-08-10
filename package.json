@@ -1,4 +1,5 @@
 {
+  "version": "0.0.1",
   "name": "vue-js-cron",
   "repository": "https://github.com/abichinger/vue-js-cron",
   "author": "Andreas Bichinger",
