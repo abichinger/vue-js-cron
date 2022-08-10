@@ -1,8 +1,6 @@
-import { config, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import 'regenerator-runtime/runtime'
 import VueCron from '../src/core.vue'
-
-config.renderStubDefaultSlot = true
 
 test('test VueCron', async () => {
     // render the component

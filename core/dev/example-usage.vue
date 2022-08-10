@@ -1,11 +1,11 @@
 <template>
     <div id="app">
         Cron: <input :value="value" @change="value = $event.target.value" type="text" />
-        <VueCronCore :value="value" @update:value="value = $event" v-slot="{period, error, fields}">
+        <VueCronCore v-model="value" v-slot="{period, error, fields}">
             <div>
                 <span>
                     {{period.prefix}}:
-                    <select @input="period.events.input(JSON.parse($event.target.value))">
+                    <select @input="period.events['update:model-value'](JSON.parse($event.target.value).id)">
                         <option v-for="item in period.items" :key="item.text" :value="JSON.stringify(item)">{{item.text}}</option>
                     </select>
                 </span>
@@ -13,7 +13,7 @@
                 <template v-for="f in fields" :key="f.id">
                     <span>
                         {{f.prefix}}
-                        <select @input="f.events.input(getSelected($event.target))" multiple>
+                        <select @input="f.events['update:model-value'](getSelected($event.target))" multiple>
                             <option v-for="item in f.items" :key="item.value" :value="item.value">{{item.text}}</option>
                         </select>
                         {{f.suffix}}

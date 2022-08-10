@@ -3,7 +3,7 @@
     <v-container>
         <v-card>
             <v-card-text>
-                <v-text-field label="" :value="value" @change="value=$event"></v-text-field>
+                <v-text-field label="" :value="value" @change="value=$event" density="compact"></v-text-field>
                 <VueCronEditor v-model="value">
 
                 </VueCronEditor>

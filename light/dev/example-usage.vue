@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VueCronEditor :value="value" @update:value="value = $event">
+    <VueCronEditor v-model="value">
     </VueCronEditor>
     <div><br />cron expression: {{value}}</div>
   </div>

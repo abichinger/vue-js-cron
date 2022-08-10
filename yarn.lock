@@ -1392,6 +1392,11 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
+"@mdi/font@^7.0.96":
+  version "7.0.96"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-7.0.96.tgz#9853c222623072f5575b4039c8c195ea929b61fc"
+  integrity sha512-rzlxTfR64hqY8yiBzDjmANfcd8rv+T5C0Yedv/TWk2QyAQYdc66e0kaN1ipmnYU3RukHRTRcBARHzzm+tIhL7w==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -14211,6 +14216,11 @@ vuetify@^2.4.6:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.6.0.tgz#7fcb8ec7b122760750b5c028a15188e3ab45158c"
   integrity sha512-a3gClGGY8FYIHvHtqDDmVnmTg8D5pPPcs3HYqdrmJ7b3RrF+bWlpqpAhUPVvD9ByYYWVKba4viAlhOc74meGsg==
+
+vuetify@^3.0.0-beta.6:
+  version "3.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.0.0-beta.6.tgz#c429837b2facd8cdb2eb7229dd979496e99f57c9"
+  integrity sha512-eL8l4YdpB8ePWex1NkB35nqgWIJCsElTk4XzZEXeN7ECh5Qd1JqPwxEE+JVVC5e1+Ut2EQw+08ouLkeEk2uMow==
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"

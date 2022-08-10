@@ -10,7 +10,7 @@ const {Field} = types
 export default {
     name: "VueCronCore",
     props: {
-        value: {
+        modelValue: {
             type: String,
             default: '* * * * *'
         },
@@ -57,7 +57,7 @@ export default {
             default: true
         },
     },
-    emits: ["update:value", "error"],
+    emits: ["update:model-value", "error"],
     data(){
 
         let selected = {}
@@ -74,7 +74,7 @@ export default {
 
     computed: {
         splitValue(){
-            return this.value.split(' ')
+            return this.modelValue.split(' ')
         },
         fieldIndex(){
             return this.fields.reduce((acc, f, i) => {
@@ -145,10 +145,10 @@ export default {
             let values = this.selected[field.id]
 
             let attrs = {
-                value: values,
+                modelValue: values,
             }
             let events = {
-                input: ((fieldId) => (evt) => {
+                'update:model-value': ((fieldId) => (evt) => {
                     this.selected[fieldId] = evt
                 })(field.id)
             }
@@ -170,10 +170,10 @@ export default {
 
             period:{
                 attrs:{
-                    value: this.selectedPeriod.id
+                    modelValue: this.selectedPeriod.id
                 },
                 events:{
-                    input: (periodId) => {
+                    'update:model-value': (periodId) => {
                         let i = this.periodIndex[periodId] || 0
                         this.selectedPeriod = this.periods[i]
                     }
@@ -191,7 +191,7 @@ export default {
         },
         cronToSelected(value){
             if(!value){
-                this.$emit('update:value', this.defaultValue())
+                this.$emit('update:model-value', this.defaultValue())
                 return
             }
 
@@ -233,7 +233,7 @@ export default {
                 strings.push(str.value)
             }
             this.error = ''
-            this.$emit('update:value', strings.join(' '))
+            this.$emit('update:model-value', strings.join(' '))
         },
 
         sort(array){

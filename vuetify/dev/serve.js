@@ -1,15 +1,14 @@
-import Vue from 'vue'
+import '@mdi/font/css/materialdesignicons.css'
+import { createApp } from 'vue'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import 'vuetify/styles'
 import example from './example-usage.vue'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(Vuetify)
-const opts = {}
-const vuetify = new Vuetify(opts)
+const app = createApp(example)
+const vuetify = createVuetify({
+  components: components
+})
+app.use(vuetify)
 
-Vue.config.productionTip = false
-
-new Vue({
-  render: h => h(example),
-  vuetify
-}).$mount('#app')
+app.mount('#app')

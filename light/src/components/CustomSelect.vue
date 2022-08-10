@@ -29,7 +29,7 @@ export default {
       type: Boolean,
       default: false
     },
-    value: {
+    modelValue: {
       type: [String, Array, Object],
       default(props){
         return props.multiple ? [] : null
@@ -60,6 +60,7 @@ export default {
       default: 'unset'
     }
   },
+  emits: ['update:model-value'],
   data(){
     return {
       menu: false
@@ -79,7 +80,7 @@ export default {
       }
     },
     _value(){
-      return (this.multiple) ? this.value : [this.value]
+      return (this.multiple) ? this.modelValue : [this.modelValue]
     },
     selectedItems(){
       return this.items.filter((item) => {
@@ -127,10 +128,10 @@ export default {
         else{
           value.push(item)
         }
-        this.$emit('input', (this.returnObject) ? value : value.map((item) => item[this.itemValue]))
+        this.$emit('update:model-value', (this.returnObject) ? value : value.map((item) => item[this.itemValue]))
       }
       else {
-        this.$emit('input', (this.returnObject) ? item : item[this.itemValue])
+        this.$emit('update:model-value', (this.returnObject) ? item : item[this.itemValue])
       }
     }
   }

@@ -1,11 +1,10 @@
 
 <template>
-    <CronCore v-bind="$attrs" @update:value="$emit('update:value', $event)" @error="$emit('error', $event)" v-slot="{fields, period}">
+    <CronCore v-bind="$attrs" @update:model-value="$emit('update:model-value', $event)" @error="$emit('error', $event)" v-slot="{fields, period}">
         <span class="vcron-editor">
             <span>{{period.prefix}}</span>
             <custom-select v-bind="period.attrs" v-on="period.events" :items="period.items" item-value="id" :cols="cols('period')" :width="width('period')" />
             <span>{{period.suffix}}</span>
-        
         
             <template v-for="f in fields" :key="f.id">
                 <span>{{f.prefix}}</span>
@@ -48,6 +47,6 @@ export default {
             }
         }
     },
-    emits:['update:value', 'error']
+    emits:['update:model-value', 'error']
 }
 </script>
