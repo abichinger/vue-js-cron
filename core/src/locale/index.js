@@ -28,7 +28,7 @@ function getLocale(locale){
 function defaultItems(locale){
     return {
         minuteItems: genItems(0, 59, (value) => pad(value, 2)),
-        hourItems: genItems(0, 59, (value) => pad(value, 2)),
+        hourItems: genItems(0, 23, (value) => pad(value, 2)),
         dayItems: genItems(1, 31),
         monthItems: genItems(1, 12, (value) => {
             return new Date(2021, value-1, 1).toLocaleDateString(locale, {month: 'long'})
