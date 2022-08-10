@@ -1,4 +1,7 @@
 !.vuepress
+
 .cache
 .temp
+node_modules
 dist
+docs/src/api/default/*.js

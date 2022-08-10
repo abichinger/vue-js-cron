@@ -23,8 +23,8 @@
     "test": "yarn test-core",
     "test-core": "cd core && yarn test",
     "dry-run": "multi-semantic-release --dry-run",
-    "lint": "eslint **/src/**/*.js **/dev/**/*.js **/src/**/*.vue **/dev/**/*.vue **/.vuepress/**/*.js **/.vuepress/**/*.vue",
-    "lint-fix": "eslint --fix **/src/**/*.js **/dev/**/*.js **/src/**/*.vue **/dev/**/*.vue **/.vuepress/**/*.js **/.vuepress/**/*.vue"
+    "lint": "eslint '**/*.js' '**/*.vue'",
+    "lint-fix": "eslint --fix '**/*.js' '**/*.vue'"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
@@ -42,6 +42,7 @@
     "eslint": "^8.0.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^26.8.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-vue": "^9.3.0",

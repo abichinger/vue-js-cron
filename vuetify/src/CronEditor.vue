@@ -8,8 +8,7 @@
                 <custom-select v-bind="period.attrs" :items="period.items" v-on="period.events" item-value="id" :density="density" :variant="variant"></custom-select>
             </v-col>
             <v-col v-if="period.suffix" class="flex-grow-0">{{period.suffix}}</v-col>
-            
-            
+
             <template v-for="f in fields" :key="f.id">
                 <v-col v-if="f.prefix" class="flex-grow-0">{{f.prefix}}</v-col>
                 <v-col cols="auto">
@@ -28,33 +27,31 @@ import CronCore from '@vue-js-cron/core'
 import CustomSelect from './components/CustomSelect.vue'
 
 export default {
-    name: "VueCronEditor",
-    components:{
-        'CronCore': CronCore.component,
-        CustomSelect
+  name: 'VueCronEditor',
+  components: {
+    CronCore: CronCore.component,
+    CustomSelect
+  },
+  props: {
+    variant: {
+      type: String,
+      default: 'elevated'
     },
-    props: {
-        variant: {
-            type: String,
-            default: 'elevated'
-        },
-            density: {
-            type: String,
-            default: 'default'
-        },
-        cols: {
-            type: Function,
-            default: (fieldId) => {
-
-                if(fieldId == 'minute') return 5
-                else if (fieldId == 'hour') return 4
-                else if (fieldId == 'day') return 4
-                else return 1
-                
-            }
-        },
+    density: {
+      type: String,
+      default: 'default'
     },
-    emits: ['update:model-value', 'error']
+    cols: {
+      type: Function,
+      default: (fieldId) => {
+        if (fieldId === 'minute') return 5
+        else if (fieldId === 'hour') return 4
+        else if (fieldId === 'day') return 4
+        else return 1
+      }
+    }
+  },
+  emits: ['update:model-value', 'error']
 }
 </script>
 

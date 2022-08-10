@@ -141,7 +141,7 @@ function traverse (obj, ...keys) {
   if (keys.length === 0) { return obj }
 
   for (const key of keys[0]) {
-    if (obj.hasOwnProperty(key)) {
+    if (key in obj) {
       const res = traverse(obj[key], ...keys.slice(1))
       if (res !== undefined) {
         return res

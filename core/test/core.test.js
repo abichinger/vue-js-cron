@@ -4,7 +4,6 @@ import VueCron from '../src/core.vue'
 
 test('test VueCron', async () => {
   // render the component
-  const onUpdateValue = jest.fn()
   let slotProps = null
 
   const wrapper = mount(VueCron, {
