@@ -106,7 +106,7 @@ export default {
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler: function (value) {
         this.cronToSelected(value)
       },
