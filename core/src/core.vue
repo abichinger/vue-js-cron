@@ -145,7 +145,8 @@ export default {
       }
       const events = {
         'update:model-value': ((fieldId) => (evt) => {
-          this.selected[fieldId] = evt
+          const selected = Array.from(evt).sort((a, b) => { return a > b ? 1 : -1 })
+          this.selected[fieldId] = selected
         })(field.id)
       }
 
@@ -220,7 +221,7 @@ export default {
           continue
         }
         const array = selected[field.id]
-        const str = multiple.arrayToStr(this.sort(array), field)
+        const str = multiple.arrayToStr(array, field)
         if (str === null) {
           this.error = 'invalid selection'
           return
@@ -229,12 +230,6 @@ export default {
       }
       this.error = ''
       this.$emit('update:model-value', strings.join(' '))
-    },
-
-    sort (array) {
-      const a = array.slice()
-      a.sort((a, b) => a - b)
-      return a
     }
   }
 }
