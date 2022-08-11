@@ -68,7 +68,6 @@ Then you need to register `vue-js-cron/vuetify` with `app.use()`
 
 ```js
 import cronVuetify from '@vue-js-cron/vuetify'
-import '@vue-js-cron/vuetify/dist/vuetify.css'
 
 app.use(cronVuetify)
 ```

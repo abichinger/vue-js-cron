@@ -18,7 +18,8 @@
     "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
     "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/vuetify.umd.js",
     "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/vuetify.esm.js",
-    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/vuetify.min.js"
+    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/vuetify.min.js",
+    "clean": "git clean -xf dist"
   },
   "dependencies": {
     "@vue-js-cron/core": "3.0.0",

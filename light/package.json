@@ -18,7 +18,8 @@
     "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
     "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/light.umd.js",
     "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/light.esm.js",
-    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/light.min.js"
+    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/light.min.js",
+    "clean": "git clean -xf dist"
   },
   "dependencies": {
     "@vue-js-cron/core": "3.0.0"

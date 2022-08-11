@@ -2,7 +2,6 @@ import CronCore from '@vue-js-cron/core'
 import CronLight from '@vue-js-cron/light'
 import '@vue-js-cron/light/dist/light.css'
 import CronVuetify from '@vue-js-cron/vuetify'
-import '@vue-js-cron/vuetify/dist/vuetify.css'
 
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'

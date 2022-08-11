@@ -18,7 +18,8 @@
     "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
     "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/core.umd.js",
     "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/core.esm.js",
-    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/core.min.js"
+    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/core.min.js",
+    "clean": "git clean -xf dist"
   },
   "dependencies": {
     "mustache": "^4.2.0"
