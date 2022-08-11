@@ -20,6 +20,7 @@ jobs:
 
       - run: yarn install
       - run: yarn build
+      - run: yarn build-docs
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
