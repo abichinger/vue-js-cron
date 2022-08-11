@@ -18,8 +18,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Lint
+        run: yarn lint
+
       - name: Run tests
-        run: yarn test      
+        run: yarn test
 
   release:
     name: Release
