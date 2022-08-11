@@ -2,11 +2,9 @@
 
 **Renderless Vue.js cron editor**
 
-![Vue.js Cron Core Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/cron-light-hero.png)
+![Vue.js Cron Core Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/next/assets/cron-light-hero.png)
 
-## Usage
-
-**Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#renderless](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#renderless)
+[Get Started](https://abichinger.github.io/vue-js-cron/next/guide/getting-started.html#renderless)
 
 ## Attribution
 

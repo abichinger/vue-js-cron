@@ -2,11 +2,9 @@
 
 **Cron editor for vuetify**
 
-![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/cron-vuetify-hero.png)
+![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/next/assets/cron-vuetify-hero.png)
 
-## Usage
-
-**Demo** and **getting started guide** at [https://abichinger.github.io/vue-js-cron/guide/getting-started.html#cronvuetify](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#cronvuetify)
+[Get Started](https://abichinger.github.io/vue-js-cron/next/guide/getting-started.html#cronvuetify)
 
 ## Attribution
 
