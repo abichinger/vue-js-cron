@@ -5,7 +5,13 @@
             <v-row align="baseline" dense>
                 <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
                 <v-col cols="auto">
-                    <v-select class="fit" v-bind="period.attrs" :items="period.items" @input="period.events.input" item-value="id" dense></v-select>
+                    <custom-select 
+                        v-bind="period.attrs" 
+                        :items="period.items" 
+                        v-on="period.events" 
+                        item-value="id"
+                        :menu-props="menuProps || { offsetY: true }"
+                        :chipProps="chipProps" />
                 </v-col>
                 <v-col v-if="period.suffix" class="flex-grow-0">{{period.suffix}}</v-col>
                 
@@ -13,17 +19,16 @@
                 <template v-for="f in fields">
                     <v-col v-if="f.prefix" class="flex-grow-0" :key="f.id+'-prefix'">{{f.prefix}}</v-col>
                     <v-col cols="auto" :key="f.id">
-                        <v-select class="fit" v-bind="f.attrs" v-on="f.events" :items="f.items" multiple dense :menu-props="{ auto: false, offsetY: true }">
-                            <template #prepend-inner>
-                                <div>{{f.selectedStr}}</div>
-                            </template>
-                            <template #selection>
-                                
-                            </template>
-                            <template #item="{item, attrs}">
-                                <v-list-item-title v-bind="attrs">{{item.text}}</v-list-item-title>
-                            </template>
-                        </v-select>
+                        <custom-select 
+                            v-bind="f.attrs" 
+                            v-on="f.events" 
+                            :cols="cols(f.id)"
+                            :items="f.items" 
+                            :selection="f.selectedStr" 
+                            multiple 
+                            :menu-props="menuProps || { offsetY: true, closeOnContentClick: false }"
+                            :chipProps="chipProps"
+                            :clearable="true" />
                     </v-col>
                     <v-col v-if="f.suffix" class="flex-grow-0" :key="f.id+'-suffix'">{{f.suffix}}</v-col>
                 </template>
@@ -35,12 +40,37 @@
 
 <script>
 import CronCore from '@vue-js-cron/core'
+import CustomSelect from './components/CustomSelect.vue'
 
 export default {
     name: "VueCronEditor",
     components:{
         'CronCore': CronCore.component,
+        CustomSelect
     },
+    props: {
+        chipProps: {
+            type: Object,
+            default() {
+                return {}
+            }
+        },
+        menuProps: {
+            type: Object,
+            default() {
+                return null
+            }
+        },
+        cols: {
+            type: Function,
+            default(fieldId) {
+                if (fieldId === 'minute') return 5
+                else if (fieldId === 'hour') return 4
+                else if (fieldId === 'day') return 4
+                else return 1
+            }
+        }
+    }
 }
 </script>
 

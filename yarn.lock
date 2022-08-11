@@ -1203,6 +1203,11 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
+"@mdi/font@^7.0.96":
+  version "7.0.96"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-7.0.96.tgz#9853c222623072f5575b4039c8c195ea929b61fc"
+  integrity sha512-rzlxTfR64hqY8yiBzDjmANfcd8rv+T5C0Yedv/TWk2QyAQYdc66e0kaN1ipmnYU3RukHRTRcBARHzzm+tIhL7w==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2025,6 +2030,21 @@
   integrity sha512-yEJzHoxf6SyQGhBhIYGXQDSCkJjB6HohDShto7m8vaKg9Yp0Yn8+71J9eakh2bnPg6BfsH9PRMhiRTZnd4eXGQ==
   dependencies:
     "@types/yargs-parser" "*"
+
+"@vue-js-cron/core@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@vue-js-cron/core/-/core-2.0.0.tgz#4bc59d8a8a9c9efa27732ff686eb6789e38356e5"
+  integrity sha512-Ce5tmQAbyQ05TSNmRZsDDwsTQDKqef2nAKIsmmSsyRul8uL9Eer33ErdOrHvRGyUfcCJZSiFPYct/cWy/I4i+w==
+  dependencies:
+    mustache "^4.2.0"
+
+"@vue-js-cron/vuetify@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@vue-js-cron/vuetify/-/vuetify-2.0.0.tgz#3360d696ce21f8f69de86154f5a65c5282798ca7"
+  integrity sha512-406qplg1nF/wuf+7C25yIx12m2XOx6FoC6WDi61UQ1oYsuMMgYwzYOWe1PxYKxDQlZrIO+gb5e9zKLuEL0QnAA==
+  dependencies:
+    "@vue-js-cron/core" "2.0.0"
+    vuetify "^2.4.6"
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"

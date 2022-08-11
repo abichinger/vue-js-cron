@@ -1,10 +1,15 @@
+import '@mdi/font/css/materialdesignicons.css'
 import Vue from 'vue'
-import example from './example-usage.vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import example from './example-usage.vue'
 
 Vue.use(Vuetify)
-const opts = {}
+const opts = {
+  icons: {
+    iconfont: 'mdi',
+  },
+}
 const vuetify = new Vuetify(opts)
 
 Vue.config.productionTip = false

@@ -21,6 +21,7 @@
     "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/vuetify.min.js"
   },
   "dependencies": {
+    "@mdi/font": "^7.0.96",
     "@vue-js-cron/core": "2.1.2",
     "vuetify": "^2.4.6"
   },

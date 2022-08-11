@@ -27,6 +27,8 @@ jobs:
         with:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
+          clean-exclude: |
+            next
 
       - name: Deploy next
         if: github.ref == 'refs/heads/next'
