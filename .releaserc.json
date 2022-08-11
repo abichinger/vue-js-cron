@@ -1,7 +1,7 @@
 {
     "branches": [
         { "name": "main" },
-        { "name": "next", "channel": "channel-next" }
+        { "name": "next", "channel": "next" }
     ],
     "plugins": [
         "@semantic-release/commit-analyzer",
