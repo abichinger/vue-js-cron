@@ -22,7 +22,7 @@
     "dev-vuetify": "cd vuetify && yarn serve",
     "test": "yarn test-core",
     "test-core": "cd core && yarn test",
-    "dry-run": "multi-semantic-release --dry-run",
+    "dry-run": "multi-semantic-release --dry-run --ignore-private-packages",
     "lint": "eslint '**/*.js' '**/*.vue'",
     "lint-fix": "eslint --fix '**/*.js' '**/*.vue'"
   },
