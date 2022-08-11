@@ -1,68 +1,66 @@
 <template>
-  <v-app>
-    <CronCore v-model="value">
-      <template #default="{fields, period, error}">
-        <div>
+  <div>
+    <CronCore v-model="value" v-slot="{fields, period, error}">
+      <div>
 
-          <v-row align="baseline" dense>
+        <!-- period selection -->
+        {{period.prefix}}
+        <v-chip>
+          {{period.attrs.modelValue}}
+          <v-menu activator="parent">
+            <v-list>
+              <v-list-item v-for="item in period.items" :key="item.id" @click="period.events['update:model-value'](item.id)">
+                {{item.text}}
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-chip>
+        {{period.suffix}}
 
-            <!-- period selection -->
-            <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
-            <v-col cols="auto">
-              <v-select class="fit" v-bind="period.attrs" :items="period.items" @input="period.events.input" item-value="id" dense :menu-props="{'offset-y': true}"></v-select>
-            </v-col>
-            <v-col v-if="period.suffix" class="flex-grow-0">{{period.suffix}}</v-col>
 
-            <!-- cron expression fields -->
-            <template v-for="f in fields">
-              <v-col v-if="f.prefix" class="flex-grow-0" :key="f.id+'-prefix'">{{f.prefix}}</v-col>
-
-              <!-- custom select -->
-              <v-menu offset-y :key="f.id" :close-on-content-click="false" max-height="300">
-
-                <!-- menu activator -->
-                <template v-slot:activator="{ on, attrs }">
-                  <v-col  v-on="on" v-bind="attrs">
-                    <v-text-field :value="f.selectedStr" dense readonly></v-text-field>
-                  </v-col>
-                </template>
+        <!-- cron expression fields -->
+        <template v-for="f in fields" :key="f.id">
+          {{f.prefix}}
+          
+            <v-chip>
+              {{f.selectedStr}}
+              <v-menu activator="parent" :close-on-content-click="false">
 
                 <!-- list of field items -->
-                <v-list dense>
-                  <v-list-item-group v-bind="f.attrs" @change="f.events.input" multiple>
-                    <v-list-item v-for="item in f.items" :value="item.value" :key="item.value">
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item.text"></v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list-item-group>
+                <v-list :selected="f.attrs.modelValue" @update:selected="f.events['update:model-value']" select-strategy="multiple">
+                  <v-list-item v-for="item in f.items" :value="item.value" :key="item.value">
+                    {{item.text}}
+                  </v-list-item>
                 </v-list>
 
               </v-menu>
+            </v-chip>
+          {{f.suffix}}
+        </template>
 
-              <v-col v-if="f.suffix" class="flex-grow-0" :key="f.id+'-suffix'">{{f.suffix}}</v-col>
-            </template>
+        <!-- editable cron expression -->
+        <v-text-field 
+          class="mt-4" 
+          :modelValue="value" 
+          @update:model-value="nextValue = $event"
+          @blur="value = nextValue"  
+          label="cron expression" 
+          :error-messages="error" />
 
-          </v-row>
-
-          <!-- editable cron expression -->
-          <v-row class="mt-0">
-            <v-col class="pt-0">
-              <v-text-field :value="value" @change="value = $event" label="cron expression" :error-messages="error" />
-            </v-col>
-          </v-row>
-
-        </div>
-      </template>
+      </div>
     </CronCore>
-  </v-app>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
+
+    const value = '* * * * *'
+
     return {
-      value: '* * * * *'
+      value,
+      nextValue: value
     }
   },
   methods: {

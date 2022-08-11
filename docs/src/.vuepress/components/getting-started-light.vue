@@ -1,7 +1,9 @@
 <template>
-  <div class="getting-started-light">
+  <div class="pt-2">
+
     <CronLight v-model="value" @error="error=$event"></CronLight>
-    <div class="mt-2 grey--text text--darken-1">cron expression: {{value}}</div>
+    <div class="text-lightest pt-2">cron expression: {{value}}</div>
+
   </div>
 </template>
 

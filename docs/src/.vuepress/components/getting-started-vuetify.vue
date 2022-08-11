@@ -1,16 +1,18 @@
 <template>
-  <v-app>
+  <div>
 
     <CronVuetify v-model="value" @error="error=$event"></CronVuetify>
-
+    
     <!-- editable cron expression -->
-    <v-row class="mt-0">
-      <v-col class="pt-0">
-        <v-text-field :value="value" @change="value = $event" label="cron expression" :error-messages="error" />
-      </v-col>
-    </v-row>
+    <v-text-field 
+      class="pt-3"
+      :modelValue="value" 
+      @update:model-value="nextValue = $event"
+      @blur="value = nextValue" 
+      label="cron expression" 
+      :error-messages="error" />
 
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -26,6 +28,7 @@ export default {
   data () {
     return {
       value: this.init,
+      nextValue: this.init,
       error: ''
     }
   },

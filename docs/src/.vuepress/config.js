@@ -1,23 +1,21 @@
 const { description } = require('../../package')
+const { defaultTheme } = require('@vuepress/theme-default')
+const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
+const { path } = require('@vuepress/utils')
+const { viteBundler } = require('@vuepress/bundler-vite')
 
 module.exports = {
 
-  base: '/vue-js-cron/',
+  /**
+   * Ref: https://v2.vuepress.vuejs.org/guide/configuration.html#config-file
+   */
 
-  /**
-   * Ref：https://v1.vuepress.vuejs.org/config/#title
-   */
+  base: '/vue-js-cron/next/',
+
   title: 'Vue-js-cron Docs',
-  /**
-   * Ref：https://v1.vuepress.vuejs.org/config/#description
-   */
+
   description,
 
-  /**
-   * Extra tags to be injected to the page HTML `<head>`
-   *
-   * ref：https://v1.vuepress.vuejs.org/config/#head
-   */
   head: [
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -26,18 +24,13 @@ module.exports = {
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css' }]
   ],
 
-  /**
-   * Theme configuration, here is the default theme configuration for VuePress.
-   *
-   * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
-   */
-  themeConfig: {
+  theme: defaultTheme({
     repo: '',
     editLinks: false,
     docsDir: '',
     editLinkText: '',
     lastUpdated: false,
-    nav: [
+    navbar: [
       {
         text: 'Demo',
         link: '/demo'
@@ -93,13 +86,30 @@ module.exports = {
         }
       ]
     }
+  }),
+
+  bundler: viteBundler({
+    viteOptions: {
+      //https://github.com/vuepress/vuepress-next/issues/585#issuecomment-1046188074
+      ssr: {
+        noExternal: ['vuetify'],
+      },
+    },
+    vuePluginOptions: {},
+  }),
+
+  markdown: {
+    importCode: {
+      handleImportPath: (str) =>
+        str.replace(/^@\/src/, path.resolve(__dirname, '../../src')),
+    },
   },
 
-  /**
-   * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
-   */
   plugins: [
-    '@vuepress/plugin-back-to-top',
-    '@vuepress/plugin-medium-zoom'
+    registerComponentsPlugin({
+      componentsDir: path.resolve(__dirname, './components'),
+    })
+    // '@vuepress/plugin-back-to-top',
+    // '@vuepress/plugin-medium-zoom'
   ]
 }

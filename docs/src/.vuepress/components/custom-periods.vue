@@ -1,10 +1,8 @@
 <template>
-  <v-app>
-
+  <div>
     <div class="mb-2">{{value}}</div>
     <CronLight v-model="value" :periods="periods" @error="error=$event"></CronLight>
-
-  </v-app>
+  </div>
 </template>
 
 <script>

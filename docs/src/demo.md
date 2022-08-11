@@ -2,9 +2,7 @@
 
 ### CronLight
 
-<v-app>
 <getting-started-light init="* * * * *" class="mt-4" />
-</v-app>
 
 <br/>
 
@@ -12,9 +10,7 @@
 
 ### Vuetify
 
-<v-app>
 <getting-started-vuetify init="* * * * *" class="mt-4" />
-</v-app>
 
 <br/>
 

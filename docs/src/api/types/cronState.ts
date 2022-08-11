@@ -1,10 +1,10 @@
 type CronState = {
     fields: Array<{
         attrs: { 
-            value: Array<number> //array item values
+            modelValue: Array<number> //array item values
         },
         events: {
-            input: (arg1: Array<number>) => void
+            'update:model-value': (arg1: Array<number>) => void
         },
         id: string,
         items: Array<Object> //see type Field
@@ -15,10 +15,10 @@ type CronState = {
     }>,
     period: {
         attrs: { 
-            value: string //selected period id
+            modelValue: string //selected period id
         },
         events: {
-            input: (periodId: string) => void
+            'update:model-value': (periodId: string) => void
         },
         items: Array<Period>,
         prefix: string,

@@ -3,46 +3,46 @@
 The fastest way to get started, is to install one of the prebuilt components.
 For now `vue-js-cron` provides the following prebuilt components:
 - [CronLight](#cronlight) - a lightweight cron editor without external dependencies
-- [CronVuetify](#cronvuetify) - a cron editor for [Vuetify.js](/guide/getting-started.html#vuetify).
+- [CronVuetify](#cronvuetify) - a cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/).
 
 If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#renderless).
 
 ## CronLight
 
-#### Installation
+### Installation
 
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/light
+yarn add @vue-js-cron/light@next
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/light
+npm install @vue-js-cron/light@next
 ```
-#### Usage
 
-Then you need to register `vue-js-cron/light` with `Vue.use()`
+### Usage
+
+Then you need to register `vue-js-cron/light` with `app.use()`
 
 ```js
 import cronLight from '@vue-js-cron/light'
 import '@vue-js-cron/light/dist/light.css'
-Vue.use(cronLight)
+
+app.use(cronLight)
 ```
 
-Now you can use the component `CronLight`.
+Now you can use the `CronLight` component.
 
 <br />
 
-<code-example title="CronLight example">
-<template v-slot:source>
+### Example
 
-<<< @/src/.vuepress/components/getting-started-light.vue
+@[code](../.vuepress/components/getting-started-light.vue)
 
-</template>
+**Result:**
 <getting-started-light />
-</code-example>
 
 #### API
 
@@ -50,40 +50,40 @@ Now you can use the component `CronLight`.
 
 ## CronVuetify
 
-#### Installation
+### Installation
 
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/vuetify
+yarn add @vue-js-cron/vuetify@next
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/vuetify
+npm install @vue-js-cron/vuetify@next
 ```
-#### Usage
+### Usage
 
-Then you need to register `vue-js-cron/vuetify` with `Vue.use()`
+Then you need to register `vue-js-cron/vuetify` with `app.use()`
 
 ```js
 import cronVuetify from '@vue-js-cron/vuetify'
 import '@vue-js-cron/vuetify/dist/vuetify.css'
-Vue.use(cronVuetify)
+
+app.use(cronVuetify)
 ```
 
-Now you can use the component `CronVuetify`.
+Now you can use the `CronVuetify` component.
 
 <br />
 
-<code-example title="CronVuetify example">
-<template v-slot:source>
+### Example
 
-<<< @/src/.vuepress/components/getting-started-vuetify.vue
+@[code](../.vuepress/components/getting-started-vuetify.vue)
 
-</template>
+**Result:**
 <getting-started-vuetify />
-</code-example>
+
 
 #### API
 
@@ -94,29 +94,29 @@ Now you can use the component `CronVuetify`.
 This guide will explain how to use the renderless component of vue-js-cron.
 In this example [Vuetify](https://vuetifyjs.com/en/) will be used to render the component, but you should be able to follow along using any UI framework.
 
-#### Installation
+### Installation
 
 First open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/core
+yarn add @vue-js-cron/core@next
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/core
+npm install @vue-js-cron/core@next
 ```
 
-#### Usage
+### Usage
 
-Then you need to register `vue-js-cron/core` with `Vue.use()`
+Then you need to register `vue-js-cron/core` with `Vue.app()`
 
 ```js
 import cronCore from '@vue-js-cron/core'
 Vue.use(cronCore)
 ```
 
-Now you can use the component `CronCore`. The default [scoped slot](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) of `CronCore` provides the following **props**:
+Now you can use the `CronCore` component. The default [scoped slot](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) of `CronCore` provides the following **props**:
 
 - `fields` - each field corresponds to one position in the cron expression. Default fields: month, day, day of week, hour and minute.
 - `period` - defines which fields are visible
@@ -124,14 +124,12 @@ Now you can use the component `CronCore`. The default [scoped slot](https://vuej
 
 <br />
 
-<code-example title="CronCore example">
-<template v-slot:source>
+### Example
 
-<<< @/src/.vuepress/components/getting-started-renderless.vue
+@[code](../.vuepress/components/getting-started-renderless.vue)
 
-</template>
+**Result:**
 <getting-started-renderless />
-</code-example>
 
 #### API
 

@@ -1,0 +1,19 @@
+/**
+ * Custom Styles here.
+ *
+ * ref：https://v1.vuepress.vuejs.org/config/#index-styl
+ */
+
+// .home .hero img
+//   max-width 450px!important
+
+// .v-application--wrap
+//   min-height: 0px!important
+
+:root {
+  --content-width: 1024px;
+}
+
+.text-lightest {
+  color: var(--c-text-lightest)
+}

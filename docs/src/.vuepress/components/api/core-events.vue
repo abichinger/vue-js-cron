@@ -18,7 +18,7 @@ export default {
         { name: 'Description', value: 'desc' }
       ],
       items: [
-        { name: 'input', desc: 'emitted when the cron expression changed' },
+        { name: 'update:model-value', desc: 'emitted when the cron expression changed' },
         { name: 'error', desc: 'emitted when the cron expression is invalid' },
         ...this.appendItems
       ]

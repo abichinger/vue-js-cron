@@ -1,10 +1,5 @@
 # Custom Periods
 
-<code-example>
-<template v-slot:source>
+@[code](@/src/.vuepress/components/custom-periods.vue)
 
-<<< @/src/.vuepress/components/custom-periods.vue
-
-</template>
 <custom-periods />
-</code-example>
