@@ -147,6 +147,7 @@ export default {
   background-color: #eee;
   user-select: none;
   padding: 0 0.5em;
+  color: black;
 }
 
 .vcron-select-input:hover {
@@ -174,6 +175,7 @@ export default {
   width: 100%;
   padding: 0.2em 0.5em;
   text-align: center;
+  color: black;
 }
 
 .vcron-select-list-item:hover {
