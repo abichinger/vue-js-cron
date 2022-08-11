@@ -17,11 +17,10 @@
         </v-chip>
         {{period.suffix}}
 
-
         <!-- cron expression fields -->
         <template v-for="f in fields" :key="f.id">
           {{f.prefix}}
-          
+
             <v-chip>
               {{f.selectedStr}}
               <v-menu activator="parent" :close-on-content-click="false">
@@ -39,12 +38,12 @@
         </template>
 
         <!-- editable cron expression -->
-        <v-text-field 
-          class="mt-4" 
-          :modelValue="value" 
+        <v-text-field
+          class="mt-4"
+          :modelValue="value"
           @update:model-value="nextValue = $event"
-          @blur="value = nextValue"  
-          label="cron expression" 
+          @blur="value = nextValue"
+          label="cron expression"
           :error-messages="error" />
 
       </div>
@@ -55,7 +54,6 @@
 <script>
 export default {
   data () {
-
     const value = '* * * * *'
 
     return {

@@ -13,8 +13,8 @@ export default {
       default: false
     },
     value: {
-      default: function () {
-        return (this.multiple) ? [] : undefined
+      default: function (props) {
+        return (props.multiple) ? [] : undefined
       }
     },
     items: {

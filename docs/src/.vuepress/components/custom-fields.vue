@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="mb-2">{{value}}</div>
-    <CronLight 
-      v-model="value" 
-      :periods="periods" 
-      :fields="fields" 
-      @error="error=$event" 
+    <CronLight
+      v-model="value"
+      :periods="periods"
+      :fields="fields"
+      @error="error=$event"
       :custom-locale="customLocale" />
   </div>
 </template>

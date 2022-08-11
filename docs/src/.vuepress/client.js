@@ -17,7 +17,7 @@ const vuetify = createVuetify({
 })
 
 export default defineClientConfig({
-  enhance({ app, router, siteData }){
+  enhance ({ app, router, siteData }) {
     app.use(vuetify)
     app.use(CronCore)
     app.use(CronVuetify)
@@ -25,14 +25,14 @@ export default defineClientConfig({
 
     app.mixin({
       computed: {
-        $vars() {
+        $vars () {
           return variables
         }
       }
     })
   },
-  setup(){},
-  rootComponents: [],
+  setup () {},
+  rootComponents: []
 })
 
 // export default ({

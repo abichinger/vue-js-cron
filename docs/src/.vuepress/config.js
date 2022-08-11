@@ -90,24 +90,24 @@ module.exports = {
 
   bundler: viteBundler({
     viteOptions: {
-      //https://github.com/vuepress/vuepress-next/issues/585#issuecomment-1046188074
+      // https://github.com/vuepress/vuepress-next/issues/585#issuecomment-1046188074
       ssr: {
-        noExternal: ['vuetify'],
-      },
+        noExternal: ['vuetify']
+      }
     },
-    vuePluginOptions: {},
+    vuePluginOptions: {}
   }),
 
   markdown: {
     importCode: {
       handleImportPath: (str) =>
-        str.replace(/^@\/src/, path.resolve(__dirname, '../../src')),
-    },
+        str.replace(/^@\/src/, path.resolve(__dirname, '../../src'))
+    }
   },
 
   plugins: [
     registerComponentsPlugin({
-      componentsDir: path.resolve(__dirname, './components'),
+      componentsDir: path.resolve(__dirname, './components')
     })
     // '@vuepress/plugin-back-to-top',
     // '@vuepress/plugin-medium-zoom'

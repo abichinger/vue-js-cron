@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     renderMd (mdStr) {
+      // eslint-disable-next-line
       const md = new markdownIt({
         html: true
       })
