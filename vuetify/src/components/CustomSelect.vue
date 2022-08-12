@@ -1,5 +1,5 @@
 <template>
-  <v-chip v-if="true" :density="density" :variant="variant">
+  <v-chip v-if="true" v-bind="chipProps">
 
     <template #append v-if="clearable">
       <v-icon v-if="selectedItems.length > 0" size="small" icon="mdi-close" @click.stop="clear()">
@@ -8,7 +8,7 @@
 
     {{selection ? selection : selectedStr}}
 
-    <v-menu activator="parent" :close-on-content-click="closeOnContentClick">
+    <v-menu activator="parent" v-bind="menuProps">
       <v-list class="pa-0 ma-0">
           <v-row v-for="(itemRow, index) in itemRows" :key="index" no-gutters>
             <v-col v-for="(item, index) in itemRow" :key="index">
@@ -60,21 +60,17 @@ export default {
       type: String,
       default: 'unset'
     },
-    variant: {
-      type: String,
-      default: 'elevated'
+    menuProps: {
+      type: Object,
+      default: () => {}
     },
-    density: {
-      type: String,
-      default: 'default'
+    chipProps: {
+      type: Object,
+      default: () => {}
     },
     selection: {
       type: String,
       default: ''
-    },
-    closeOnContentClick: {
-      type: Boolean,
-      default: true
     },
     clearable: {
       type: Boolean,

@@ -4,7 +4,7 @@
         <v-card>
             <v-card-text>
                 <v-text-field label="" :model-value="value" @update:model-value="nextValue = $event" @blur="value=nextValue"></v-text-field>
-                <VueCronEditor v-model="value" />
+                <VueCronEditor v-model="value" :chipProps="{ color: 'primary' }" />
             </v-card-text>
         </v-card>
     </v-container>
