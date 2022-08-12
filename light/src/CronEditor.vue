@@ -3,12 +3,12 @@
     <CronCore v-bind="$attrs" @update:model-value="$emit('update:model-value', $event)" @error="$emit('error', $event)" v-slot="{fields, period}">
         <span class="vcron-editor">
             <span>{{period.prefix}}</span>
-            <custom-select v-bind="period.attrs" v-on="period.events" :items="period.items" item-value="id" :cols="cols('period')" :width="width('period')" />
+            <custom-select v-bind="period.attrs" v-on="period.events" :items="period.items" item-value="id" :cols="cols['period'] || 1" />
             <span>{{period.suffix}}</span>
 
             <template v-for="f in fields" :key="f.id">
                 <span>{{f.prefix}}</span>
-                <custom-select v-bind="f.attrs" v-on="f.events" :items="f.items" :cols="cols(f.id)" :width="width(f.id)" multiple>{{f.selectedStr}}</custom-select>
+                <custom-select v-bind="f.attrs" v-on="f.events" :items="f.items" :cols="cols[f.id] || 1" :selection="f.selectedStr" multiple></custom-select>
                 <span>{{f.suffix}}</span>
             </template>
         </span>
@@ -27,21 +27,13 @@ export default {
   },
   props: {
     cols: {
-      type: Function,
-      default: (fieldId) => {
-        if (fieldId === 'minute') return 5
-        else if (fieldId === 'hour') return 4
-        else if (fieldId === 'day') return 4
-        else return 1
-      }
-    },
-    width: {
-      type: Function,
-      default: (fieldId) => {
-        if (fieldId === 'minute') return '10em'
-        else if (fieldId === 'hour') return '8em'
-        else if (fieldId === 'day') return '8em'
-        else return 'unset'
+      type: Object,
+      default: () => {
+        return {
+          minute: 5,
+          hour: 4,
+          day: 4
+        }
       }
     }
   },

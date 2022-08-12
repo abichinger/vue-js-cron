@@ -1,100 +1,45 @@
 <template>
-  <div class="vcron-select-container">
-    <span class="vcron-select-input" @click="toggleMenu">
-      <slot>{{selectedStr}}</slot>
-    </span>
-    <span class="vcron-select-list" :style="listStyle">
-      <span v-for="item in items"
-        :key="item[itemValue]+''"
-        class="vcron-select-list-item"
-        :class="{'vcron-select-list-item-selected': selectedItems.includes(item)}"
-        :style="listItemStyle"
-        @click="select(item)"
-        @click.stop="multiple ? () => {} : toggleMenu()">
+  <renderless-select
+    v-bind="$attrs"
+    @update:model-value="$emit('update:model-value', $event)"
+    #default="{ selectedStr, itemRows, select, isSelected, multiple }">
 
-        {{item[itemText]}}
+    <div class="vcron-select-container">
+      <span class="vcron-select-input" @click="toggleMenu">
+        {{selectedStr}}
       </span>
-    </span>
-  </div>
+
+      <div class="vcron-select-list" v-if="menu">
+        <div class="vcron-select-row" v-for="(row, i) in itemRows" :key="i">
+          <div v-for="(item, j) in row"
+            :key="i+'-'+j"
+            class="vcron-select-col"
+            :class="{'vcron-select-selected': isSelected(item)}"
+            @click="select(item)"
+            @click.stop="multiple ? () => {} : toggleMenu()">
+
+            <div v-if="item">{{item.text}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </renderless-select>
 </template>
 
 <script>
+import { RenderlessSelect } from '@vue-js-cron/core'
 
 export default {
   inheritAttrs: false,
-  name: 'CustomSelect',
-  props: {
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    modelValue: {
-      type: [String, Array, Object],
-      default (props) {
-        return props.multiple ? [] : null
-      }
-    },
-    items: {
-      type: Array,
-      default: () => []
-    },
-    returnObject: {
-      type: Boolean,
-      default: false
-    },
-    itemText: {
-      type: String,
-      default: 'text'
-    },
-    itemValue: {
-      type: String,
-      default: 'value'
-    },
-    cols: {
-      type: Number,
-      default: 1
-    },
-    width: {
-      type: String,
-      default: 'unset'
-    }
+  components: {
+    RenderlessSelect
   },
+  name: 'CustomSelect',
+  props: {},
   emits: ['update:model-value'],
   data () {
     return {
       menu: false
-    }
-  },
-  computed: {
-    listStyle () {
-      return {
-        display: (this.menu) ? 'inline-block' : 'none',
-        minWidth: '5em',
-        width: this.width
-      }
-    },
-    listItemStyle () {
-      return {
-        width: 100 / this.cols + '%'
-      }
-    },
-    _value () {
-      return (this.multiple) ? this.modelValue : [this.modelValue]
-    },
-    selectedItems () {
-      return this.items.filter((item) => {
-        for (const value of this._value) {
-          if (this.returnObject) {
-            if (value === item) return true
-          } else {
-            if (value === item[this.itemValue]) return true
-          }
-        }
-        return false
-      })
-    },
-    selectedStr () {
-      return this.selectedItems.map((item) => item[this.itemText]).join(',')
     }
   },
   methods: {
@@ -111,21 +56,6 @@ export default {
         }, 1)
       } else {
         document.removeEventListener('click', this.menuEvtListener)
-      }
-    },
-    select (item) {
-      if (this.multiple) {
-        const value = this.selectedItems.slice()
-        const i = this.selectedItems.indexOf(item)
-        // deselect
-        if (i >= 0) {
-          value.splice(i, 1)
-        } else { // select
-          value.push(item)
-        }
-        this.$emit('update:model-value', (this.returnObject) ? value : value.map((item) => item[this.itemValue]))
-      } else {
-        this.$emit('update:model-value', (this.returnObject) ? item : item[this.itemValue])
       }
     }
   }
@@ -168,22 +98,32 @@ export default {
   z-index: 100;
 }
 
-.vcron-select-list-item {
+.vcron-select-row {
+  display: flex;
+}
+
+.vcron-select-col {
+  flex-grow: 1;
+  flex-basis: 0%;
   display: inline-block;
   box-sizing: border-box;
   user-select: none;
-  width: 100%;
   padding: 0.2em 0.5em;
   text-align: center;
   color: black;
 }
 
-.vcron-select-list-item:hover {
+.vcron-select-col:hover {
   background-color: rgb(52, 147, 190);
   color: white;
 }
 
-.vcron-select-list-item-selected {
+.vcron-select-selected {
+  background-color: rgb(43, 108, 138);
+  color: white;
+}
+
+.vcron-select-selected:hover {
   background-color: rgb(43, 108, 138);
   color: white;
 }

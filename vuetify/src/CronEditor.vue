@@ -21,7 +21,7 @@
                       v-bind="f.attrs"
                       v-on="f.events"
                       :selection="f.selectedStr"
-                      :cols="cols(f.id)"
+                      :cols="cols[f.id]"
                       :items="f.items"
                       multiple
                       :chip-props="chipProps"
@@ -53,12 +53,13 @@ export default {
       }
     },
     cols: {
-      type: Function,
-      default: (fieldId) => {
-        if (fieldId === 'minute') return 5
-        else if (fieldId === 'hour') return 4
-        else if (fieldId === 'day') return 4
-        else return 1
+      type: Object,
+      default: () => {
+        return {
+          minute: 5,
+          hour: 4,
+          day: 4
+        }
       }
     }
   },

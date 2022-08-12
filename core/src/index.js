@@ -1,4 +1,5 @@
 // Import vue component
+import RenderlessSelect from './components/renderless-select.vue'
 import component from './core.vue'
 import * as locale from './locale'
 import util from './util'
@@ -20,3 +21,7 @@ const plugin = {
 
 // To allow use as module (npm/webpack/etc.) export component
 export default plugin
+
+export {
+  RenderlessSelect
+}
