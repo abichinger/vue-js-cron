@@ -150,6 +150,14 @@ function traverse (obj, ...keys) {
   }
 }
 
+function populate (obj, map) {
+  const res = {}
+  for (const [key, value] of Object.entries(obj)) {
+    res[key] = map[value]
+  }
+  return res
+}
+
 export default {
   range,
   Range,
@@ -158,5 +166,6 @@ export default {
   pad,
   deepMerge,
   isObject,
-  traverse
+  traverse,
+  populate
 }

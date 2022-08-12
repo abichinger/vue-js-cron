@@ -12,8 +12,8 @@ export default {
       value: '* * * * *',
       error: '',
       periods: [
-        { id: 'month', text: 'Month', value: ['day', /* 'dayOfWeek', */ 'hour', 'minute'] },
-        { id: 'day', text: 'Day', value: ['hour', 'minute'] }
+        { id: 'month', value: ['day', /* 'dayOfWeek', */ 'hour', 'minute'] },
+        { id: 'day', value: ['hour', 'minute'] }
       ]
     }
   }

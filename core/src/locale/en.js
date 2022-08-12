@@ -1,49 +1,64 @@
 export default {
-  eachPeriod: {
-    eachField: {
-      empty: 'every {{field.id}}',
-      value: '{{value.text}}',
-      range: '{{start.text}}-{{end.text}}',
-      everyX: 'every {{every.value}}'
+  '*': {
+    prefix: 'Every',
+    suffix: '',
+    text: 'Unknown',
+    '*': {
+      empty: { text: 'every {{field.id}}' },
+      value: { text: '{{val.text}}' },
+      range: { text: '{{start.text}}-{{end.text}}' },
+      everyX: { text: 'every {{every.value}}' }
     },
-    monthField: {
-      prefix: 'in',
-      value: '{{value.alt}}',
-      range: '{{start.alt}}-{{end.alt}}'
+    month: {
+      '*': { prefix: 'in' },
+      value: { text: '{{val.alt}}' },
+      range: { text: '{{start.alt}}-{{end.alt}}' }
     },
-    dayField: {
-      prefix: 'on'
+    day: {
+      '*': { prefix: 'on' }
     },
-    dayOfWeekField: {
-      prefix: 'on',
-      empty: 'every day of the week',
-      value: '{{value.alt}}',
-      range: '{{start.alt}}-{{end.alt}}'
+    dayOfWeek: {
+      '*': { prefix: 'on' },
+      empty: { text: 'every day of the week' },
+      value: { text: '{{val.alt}}' },
+      range: { text: '{{start.alt}}-{{end.alt}}' }
     },
-    hourField: {
-      prefix: 'at'
+    hour: {
+      '*': { prefix: 'at' }
     },
-    minuteField: {
-      prefix: ':'
+    minute: {
+      '*': { prefix: ':' }
     }
   },
-  hourPeriod: {
-    minuteField: {
-      prefix: 'at',
-      suffix: 'minute(s)',
-      empty: 'every'
+  minute: {
+    text: 'Minute'
+  },
+  hour: {
+    text: 'Hour',
+    minute: {
+      '*': {
+        prefix: 'at',
+        suffix: 'minute(s)'
+      },
+      empty: { text: 'every' }
     }
   },
-  monthPeriod: {
-    dayOfWeekField: {
-      prefix: 'and'
+  day: {
+    text: 'Day'
+  },
+  week: {
+    text: 'Week'
+  },
+  month: {
+    text: 'Month',
+    dayOfWeek: {
+      '*': { prefix: 'and' }
     }
   },
-  yearPeriod: {
-    dayOfWeekField: {
-      prefix: 'and'
+  year: {
+    text: 'Year',
+    dayOfWeek: {
+      '*': { prefix: 'and' }
     }
-  },
-  periodPrefix: 'Every',
-  periodSuffix: ''
+  }
 }

@@ -1,10 +1,37 @@
-import l from '../src/locale'
-const { getLocale, getLocaleStr } = l
+import { getLocale } from '../src/locale'
 
 test('test getLocaleStr', () => {
-  const en = getLocale('en')
+  const l = getLocale('en', {
+    custom: {
+      '*': 'bar',
+      message: 'baz'
+    }
+  })
 
-  expect(getLocaleStr(en, 'year', 'minute', 'empty')).toBe('every {{field.id}}')
-  expect(getLocaleStr(en, 'year', 'dayOfWeek', 'prefix')).toBe('and')
-  expect(getLocaleStr(en, 'each', 'minute', 'prefix')).toBe(':')
+  expect(l.getLocaleStr('year', 'minute', 'empty', 'text')).toBe('every {{field.id}}')
+  expect(l.getLocaleStr('year', 'dayOfWeek', 'value', 'prefix')).toBe('and')
+  expect(l.getLocaleStr('year', 'minute', 'range', 'prefix')).toBe(':')
+  expect(l.getLocaleStr('custom', 'foo')).toBe('bar')
+  expect(l.getLocaleStr('custom', 'message')).toBe('baz')
+})
+
+test('test render', () => {
+  const l = getLocale('en', {
+    '*': {
+      '*': {
+        '*': {
+          '*': '{{start.text}}-{{end.text}}'
+        }
+      }
+    }
+  })
+
+  expect(l.render('period', 'field', 'type', 'pos', {
+    start: {
+      text: '1'
+    },
+    end: {
+      text: '2'
+    }
+  })).toBe('1-2')
 })

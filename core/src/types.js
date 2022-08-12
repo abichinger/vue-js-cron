@@ -1,6 +1,16 @@
-import Mustache from 'mustache'
-import locale from './locale'
-const { getLocaleStr } = locale
+const CronType = {
+  Empty: 'empty',
+  Value: 'value',
+  Range: 'range',
+  EveryX: 'everyX',
+  Combined: 'combined'
+}
+
+const Position = {
+  Prefix: 'prefix',
+  Suffix: 'suffix',
+  Text: 'text'
+}
 
 class Field {
   /**
@@ -31,49 +41,9 @@ class Field {
   }
 }
 
-class CronColumn {
-  /**
-     *
-     * @param {Field} field
-     */
-  constructor (field) {
-    this.field = field
-  }
-
-  get localeKey () {
-    return 'value'
-  }
-
-  get localeParams () {
-    return {}
-  }
-
-  get value () {
-    return '*'
-  }
-
-  getText (locale, periodId) {
-    const str = getLocaleStr(locale, periodId, this.field.id, this.localeKey)
-    const params = this.populate(this.localeParams)
-    return Mustache.render(str, params)
-  }
-
-  getItem (value) {
-    return this.field.getItem(value)
-  }
-
-  populate (obj) {
-    for (const [key, itemValue] of Object.entries(obj)) {
-      obj[key] = this.getItem(itemValue)
-    }
-    obj.field = this.field
-    return obj
-  }
-}
-
-class AnyColumn extends CronColumn {
-  get localeKey () {
-    return 'empty'
+class CronSegment {
+  get type () {
+    return CronType.Value
   }
 
   get value () {
@@ -81,22 +51,25 @@ class AnyColumn extends CronColumn {
   }
 }
 
-class RangeColumn extends CronColumn {
-  constructor (field, start, end) {
-    super(field)
+class AnySegment extends CronSegment {
+  get type () {
+    return CronType.Empty
+  }
+
+  get value () {
+    return '*'
+  }
+}
+
+class RangeSegment extends CronSegment {
+  constructor (start, end) {
+    super()
     this.start = start
     this.end = end
   }
 
-  get localeKey () {
-    return 'range'
-  }
-
-  get localeParams () {
-    return {
-      start: this.start,
-      end: this.end
-    }
+  get type () {
+    return CronType.Range
   }
 
   get value () {
@@ -104,20 +77,14 @@ class RangeColumn extends CronColumn {
   }
 }
 
-class EveryColumn extends CronColumn {
-  constructor (field, every) {
-    super(field)
+class EverySegment extends CronSegment {
+  constructor (every) {
+    super()
     this.every = every
   }
 
-  get localeKey () {
-    return 'everyX'
-  }
-
-  get localeParams () {
-    return {
-      every: this.every
-    }
+  get type () {
+    return CronType.EveryX
   }
 
   get value () {
@@ -125,51 +92,47 @@ class EveryColumn extends CronColumn {
   }
 }
 
-class ValueColumn extends CronColumn {
-  constructor (field, value) {
-    super(field)
-    this.v = value
+class ValueSegment extends CronSegment {
+  constructor (value) {
+    super()
+    this.val = value
   }
 
-  get localeKey () {
-    return 'value'
-  }
-
-  get localeParams () {
-    return {
-      value: this.v
-    }
+  get type () {
+    return CronType.Value
   }
 
   get value () {
-    return '' + this.v
+    return '' + this.val
   }
 }
 
-class CombinedColumn extends CronColumn {
-  constructor (field, columns = []) {
-    super(field)
-    this.columns = columns
+class CombinedSegment extends CronSegment {
+  constructor (segments = []) {
+    super()
+    this.segments = segments
   }
 
-  addColumn (cronColumn) {
-    this.columns.push(cronColumn)
+  get type () {
+    return CronType.Combined
+  }
+
+  addSegment (cronSegment) {
+    this.segments.push(cronSegment)
   }
 
   get value () {
-    return this.columns.map((c) => c.value).join(',')
-  }
-
-  getText (locale, periodId) {
-    return this.columns.map((c) => c.getText(locale, periodId)).join(',')
+    return this.segments.map((c) => c.value).join(',')
   }
 }
 
-export default {
+export {
   Field,
-  AnyColumn,
-  RangeColumn,
-  ValueColumn,
-  EveryColumn,
-  CombinedColumn
+  AnySegment,
+  RangeSegment,
+  ValueSegment,
+  EverySegment,
+  CombinedSegment,
+  CronType,
+  Position
 }

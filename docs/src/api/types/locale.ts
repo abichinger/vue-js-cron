@@ -1,40 +1,16 @@
+// strings are nested by periodId -> fieldId -> cronType -> position
+// '*' can be used as a wildcard
+
+// cronType = empty | value | range | everyX | *
+// position = prefix | text | suffix | *
+
 type Locale = {
-    periodPrefix: string,
-    periodSuffix: string
-    eachPeriod: {
-        eachField: {
-            empty: string,
-            value: string,
-            range: string,
-            everyX: string,
-            prefix: string,
-            suffix: string,
-        },
-        '{{fieldId}}Field': {
-            empty: string,
-            value: string,
-            range: string,
-            everyX: string,
-            prefix: string,
-            suffix: string,
-        }
-    }
-    '{{periodId}}Period': {
-        eachField: {
-            empty: string,
-            value: string,
-            range: string,
-            everyX: string,
-            prefix: string,
-            suffix: string,
-        },
-        '{{fieldId}}Field': {
-            empty: string,
-            value: string,
-            range: string,
-            everyX: string,
-            prefix: string,
-            suffix: string,
+    '{periodId}'?: {
+        '{position}'?: string // prefix/text/suffix of period selection 
+        '{fieldId}'?: {
+            '{cronType}'?: {
+                '{positon}'?: string // prefix/text/suffix of field
+            }
         }
     }
 }

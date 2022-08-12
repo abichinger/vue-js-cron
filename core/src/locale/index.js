@@ -1,22 +1,40 @@
+import Mustache from 'mustache'
 import util from '../util'
+import de from './de'
 import en from './en'
 const { genItems, pad, traverse } = util
 
 const locales = {
-  en
+  en,
+  de
+}
+
+class Locale {
+  constructor (dict) {
+    this.dict = dict
+  }
+
+  getLocaleStr (...keys) {
+    const k = keys.map(key => [key, '*'])
+    return traverse(this.dict, ...k) || ''
+  }
+
+  render (periodId, fieldId, cronType, position, params) {
+    const template = this.getLocaleStr(periodId, fieldId, cronType, position)
+    return Mustache.render(template, params || {})
+  }
 }
 
 /**
  *
  * @param {string} locale=en
- * @returns {object} object with all strings in the requested language
+ * @param {object} mixin
+ * @returns {Locale} Dictionary with all strings in the requested language
  */
-function getLocale (locale) {
-  if (locale in locales) {
-    return locales[locale]
-  } else {
-    return locales.en
-  }
+function getLocale (locale, mixin) {
+  const l = locales[locale] || locales.en
+  const dict = util.deepMerge(l, mixin || {})
+  return new Locale(dict)
 }
 
 /**
@@ -44,19 +62,8 @@ function defaultItems (locale) {
   }
 }
 
-export default {
-  getLocaleStr: (locale, periodId, fieldId, localeKey) => {
-    return traverse(locale, [periodId + 'Period', 'eachPeriod'], [fieldId + 'Field', 'eachField'], [localeKey]) || ''
-  },
-
-  getPrefix: (locale, periodId, fieldId) => {
-    return traverse(locale, [periodId + 'Period', 'eachPeriod'], [fieldId + 'Field', 'eachField'], ['prefix']) || ''
-  },
-
-  getSuffix: (locale, periodId, fieldId) => {
-    return traverse(locale, [periodId + 'Period', 'eachPeriod'], [fieldId + 'Field', 'eachField'], ['suffix']) || ''
-  },
-
+export {
   defaultItems,
-  getLocale
+  getLocale,
+  Locale
 }

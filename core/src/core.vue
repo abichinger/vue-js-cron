@@ -1,11 +1,8 @@
 <script>
 import multiple from './fields/multiple'
-import types from './types'
-import locale from './locale'
+import { Field, Position } from './types'
+import { getLocale, defaultItems, Locale } from './locale'
 import util from './util'
-
-const { getLocale, defaultItems, getSuffix, getPrefix } = locale
-const { Field } = types
 
 export default {
   name: 'VueCronCore',
@@ -36,19 +33,19 @@ export default {
       type: Array,
       default: () => {
         return [
-          { id: 'minute', text: 'Minute', value: [] },
-          { id: 'hour', text: 'Hour', value: ['minute'] },
-          { id: 'day', text: 'Day', value: ['hour', 'minute'] },
-          { id: 'week', text: 'Week', value: ['dayOfWeek', 'hour', 'minute'] },
-          { id: 'month', text: 'Month', value: ['day', 'dayOfWeek', 'hour', 'minute'] },
-          { id: 'year', text: 'Year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute'] }
+          { id: 'minute', value: [] },
+          { id: 'hour', value: ['minute'] },
+          { id: 'day', value: ['hour', 'minute'] },
+          { id: 'week', value: ['dayOfWeek', 'hour', 'minute'] },
+          { id: 'month', value: ['day', 'dayOfWeek', 'hour', 'minute'] },
+          { id: 'year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute'] }
         ]
       }
     },
     customLocale: {
       type: Object,
       default: function (props) {
-        return getLocale(props.locale)
+        return null
       }
     },
     mergeLocale: {
@@ -95,13 +92,22 @@ export default {
         return this.computedFields[i]
       })
     },
-    computedLocale () {
+    _loc () {
       if (this.mergeLocale) {
-        const defaultLocale = getLocale(this.locale)
-        return util.deepMerge(defaultLocale, this.customLocale)
+        return getLocale(this.locale, this.customLocale)
       } else {
-        return this.customLocale
+        return this.customLocale ? new Locale(this.customLocale) : getLocale(this.locale)
       }
+    },
+    _periods () {
+      if (!this.periods) {
+        return []
+      }
+      return this.periods.map(p => {
+        return Object.assign({
+          text: this._loc.getLocaleStr(p.id, Position.Text)
+        }, p)
+      })
     }
   },
 
@@ -150,14 +156,25 @@ export default {
         })(field.id)
       }
 
+      const cronSegment = multiple.arrayToStr(values, field)
+      const segments = Array.isArray(cronSegment.segments) ? cronSegment.segments : [cronSegment]
+
+      const selectedStr = segments.map((seg) => {
+        const params = util.populate(seg, field.itemMap)
+        params.field = field
+        return this._loc.render(this.selectedPeriod.id, field.id, seg.type, Position.Text, params)
+      }).join(',')
+      const prefix = this._loc.getLocaleStr(this.selectedPeriod.id, field.id, cronSegment.type, Position.Prefix)
+      const suffix = this._loc.getLocaleStr(this.selectedPeriod.id, field.id, cronSegment.type, Position.Suffix)
+
       fieldProps.push({
         ...field,
         cron: this.splitValue[i],
-        selectedStr: multiple.arrayToStr(values, field).getText(this.computedLocale, this.selectedPeriod.id),
+        selectedStr,
         events,
         attrs,
-        prefix: getPrefix(this.computedLocale, this.selectedPeriod.id, field.id),
-        suffix: getSuffix(this.computedLocale, this.selectedPeriod.id, field.id)
+        prefix,
+        suffix
       })
     }
 
@@ -175,9 +192,9 @@ export default {
             this.selectedPeriod = this.periods[i]
           }
         },
-        items: this.periods,
-        prefix: this.computedLocale.periodPrefix,
-        suffix: this.computedLocale.periodSuffix
+        items: this._periods,
+        prefix: this._loc.getLocaleStr(this.selectedPeriod.id, Position.Prefix),
+        suffix: this._loc.getLocaleStr(this.selectedPeriod.id, Position.Suffix)
       }
     })
   },

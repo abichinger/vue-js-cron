@@ -1,6 +1,6 @@
 // Import vue component
 import component from './core.vue'
-import locale from './locale'
+import * as locale from './locale'
 import util from './util'
 
 // Declare install function executed by Vue.use()

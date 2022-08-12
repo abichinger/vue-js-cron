@@ -1,6 +1,5 @@
 // */x
-import types from '../types'
-const { EveryColumn } = types
+import { EverySegment } from '../types'
 
 const re = /^\*\/\d+$/
 
@@ -45,7 +44,7 @@ function arrayToStr (arr, field) {
     }
   }
 
-  return new EveryColumn(field, step)
+  return new EverySegment(step)
 }
 
 export default {

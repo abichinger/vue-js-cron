@@ -1,7 +1,6 @@
 
 // *
-import types from '../types'
-const { AnyColumn } = types
+import { AnySegment } from '../types'
 
 function strToArray (str) {
   if (str !== '*') {
@@ -14,7 +13,7 @@ function arrayToStr (arr, field) {
   const { items } = field
 
   if (arr.length === 0) {
-    return new AnyColumn(field)
+    return new AnySegment()
   }
   if (arr.length !== items.length) {
     return null
@@ -25,7 +24,7 @@ function arrayToStr (arr, field) {
       return null
     }
   }
-  return new AnyColumn(field)
+  return new AnySegment()
 }
 
 export default {

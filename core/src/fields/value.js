@@ -1,6 +1,5 @@
 // x
-import types from '../types'
-const { ValueColumn, CombinedColumn } = types
+import { CombinedSegment, ValueSegment } from '../types'
 
 function strToArray (str, { min, max }) {
   const number = parseInt(str)
@@ -17,8 +16,8 @@ function arrayToStr (arr, field) {
     return null
   }
 
-  const values = arr.map((x) => { return new ValueColumn(field, x) })
-  return new CombinedColumn(field, values)
+  const values = arr.map((x) => { return new ValueSegment(x) })
+  return new CombinedSegment(values)
 }
 
 export default {

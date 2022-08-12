@@ -6,7 +6,8 @@
       :periods="periods"
       :fields="fields"
       @error="error=$event"
-      :custom-locale="customLocale" />
+      :custom-locale="customLocale"
+      :cols="cols" />
   </div>
 </template>
 
@@ -23,37 +24,57 @@ export default {
       value: '* * * * *',
       error: '',
       periods: [
-        { id: 'year', text: 'year', value: ['month', 'day', 'hour', 'minute', 'second'] },
-        { id: 'hour', text: 'hour', value: ['minute', 'second'] },
-        { id: 'minute', text: 'minute', value: ['second'] },
-        { id: 'second', text: 'second', value: [] }
+        { id: 'year', value: ['month', 'day', 'hour', 'minute', 'second'] },
+        { id: 'hour', value: ['minute', 'second'] },
+        { id: 'minute', value: ['second'] },
+        { id: 'second', value: [] }
       ],
       fields: [
-        { id: 'second', items: util.genItems(0, 59) },
+        { id: 'second', items: util.genItems(0, 59, (value) => util.pad(value, 2)) },
         { id: 'minute', items: defaultItems.minuteItems },
         { id: 'hour', items: defaultItems.hourItems },
         { id: 'day', items: defaultItems.dayItems },
         { id: 'month', items: defaultItems.monthItems }
       ],
+      cols (fieldId) {
+        if (fieldId === 'minute') return 5
+        else if (fieldId === 'hour') return 4
+        else if (fieldId === 'day') return 4
+        else if (fieldId === 'second') return 3
+        else return 1
+      },
       customLocale: {
-        eachPeriod: {
-          secondField: {
-            prefix: ':'
+        '*': {
+          second: {
+            '*': {
+              prefix: ':'
+            }
           }
         },
-        hourPeriod: {
-          minuteField: {
-            prefix: 'at',
-            suffix: '',
-            empty: 'every minute'
+        hour: {
+          minute: {
+            '*': {
+              prefix: 'at',
+              suffix: ''
+            },
+            empty: {
+              text: 'every minute'
+            }
           }
         },
-        minutePeriod: {
-          secondField: {
-            prefix: 'at',
-            suffix: 'second(s)',
-            empty: 'every'
+        minute: {
+          second: {
+            '*': {
+              prefix: 'at',
+              suffix: 'second(s)'
+            },
+            empty: {
+              text: 'every'
+            }
           }
+        },
+        second: {
+          text: 'Second'
         }
       }
     }

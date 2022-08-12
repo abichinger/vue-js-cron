@@ -1,6 +1,5 @@
-import types from '../types'
+import { CombinedSegment, RangeSegment, ValueSegment } from '../types'
 import util from '../util'
-const { RangeColumn, CombinedColumn, ValueColumn } = types
 // x-y
 
 const re = /^\d+-\d+$/
@@ -43,15 +42,15 @@ function arrayToStr (arr, field) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i + 1] === undefined || arr[i + 1] - arr[i] > 1) {
       if (i === start) {
-        ranges.push(new ValueColumn(field, arr[start]))
+        ranges.push(new ValueSegment(arr[start]))
       } else {
-        ranges.push(new RangeColumn(field, arr[start], arr[i]))
+        ranges.push(new RangeSegment(arr[start], arr[i]))
       }
       start = i + 1
     }
   }
 
-  return new CombinedColumn(field, ranges)
+  return new CombinedSegment(ranges)
 }
 
 export default {

@@ -3,10 +3,8 @@
     <v-container>
         <v-card>
             <v-card-text>
-                <v-text-field label="" :value="value" @change="value=$event" density="compact"></v-text-field>
-                <VueCronEditor v-model="value">
-
-                </VueCronEditor>
+                <v-text-field label="" :model-value="value" @update:model-value="nextValue = $event" @blur="value=nextValue"></v-text-field>
+                <VueCronEditor v-model="value" />
             </v-card-text>
         </v-card>
     </v-container>
@@ -22,8 +20,11 @@ export default {
   },
 
   data: () => {
+    const value = '1-3,5,10-12 */4 * * *'
+
     return {
-      value: '* * * * *'
+      value,
+      nextValue: value
     }
   }
 }
