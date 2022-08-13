@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
-    "@vue-js-cron/core": "3.0.1",
+    "@vue-js-cron/core": "3.1.0",
     "element-plus": "^2.2.13"
   },
   "files": [
