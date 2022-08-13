@@ -1,7 +1,7 @@
 <template>
   <div class="pt-2">
 
-    <CronLight v-model="value" @error="error=$event"></CronLight>
+    <cron-light v-model="value" @error="error=$event"></cron-light>
     <div class="text-lightest pt-2">cron expression: {{value}}</div>
 
   </div>
@@ -9,22 +9,11 @@
 
 <script>
 export default {
-
-  props: {
-    init: {
-      type: String,
-      default: '30 12,19 24 12 *'
-    }
-  },
-
   data () {
     return {
-      value: this.init,
+      value: '* * * * *',
       error: ''
     }
-  },
-  methods: {
-
   }
 }
 </script>

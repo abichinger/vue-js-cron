@@ -1,4 +1,6 @@
 import CronCore from '@vue-js-cron/core'
+import CronElement from '@vue-js-cron/element-plus'
+import '@vue-js-cron/element-plus/dist/element-plus.css'
 import CronLight from '@vue-js-cron/light'
 import '@vue-js-cron/light/dist/light.css'
 import CronVuetify from '@vue-js-cron/vuetify'
@@ -6,6 +8,9 @@ import CronVuetify from '@vue-js-cron/vuetify'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import 'vuetify/styles'
+
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 import { defineClientConfig } from '@vuepress/client'
 
@@ -18,9 +23,11 @@ const vuetify = createVuetify({
 export default defineClientConfig({
   enhance ({ app, router, siteData }) {
     app.use(vuetify)
+    app.use(ElementPlus)
     app.use(CronCore)
     app.use(CronVuetify)
     app.use(CronLight)
+    app.use(CronElement)
 
     app.mixin({
       computed: {

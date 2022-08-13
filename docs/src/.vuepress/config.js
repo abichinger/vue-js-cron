@@ -83,6 +83,13 @@ module.exports = {
           children: [
             'vuetify'
           ]
+        },
+        {
+          title: 'Element Plus',
+          collapsable: false,
+          children: [
+            'element-plus'
+          ]
         }
       ]
     }

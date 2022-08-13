@@ -23,6 +23,7 @@
     "@vue-js-cron/core": "^3.0.0",
     "@vue-js-cron/light": "^2.0.0",
     "@vue-js-cron/vuetify": "^3.0.0",
+    "@vue-js-cron/element-plus": "^1.0.0",
     "vuetify": "^3.0.0-beta.7"
   }
 }

@@ -2,12 +2,12 @@
   <renderless-select
     v-bind="$attrs"
     @update:model-value="$emit('update:model-value', $event)"
-    #default="{ modelValue, selectedStr, itemRows, select, isSelected, clearable, clear }">
+    #default="{ selectedStr, itemRows, select, isSelected, clearable, clear }">
 
-    <v-chip v-if="true" v-bind="chipProps">
+    <v-chip v-bind="chipProps">
 
       <template #append v-if="clearable">
-        <v-icon v-if="modelValue.length > 0" size="small" icon="mdi-close" @click.stop="clear()">
+        <v-icon size="small" icon="mdi-close" @click.stop="clear()">
         </v-icon>
       </template>
 

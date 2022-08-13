@@ -1,8 +1,8 @@
-# cron-light
+# cron-element-plus
 
 ## Props
 
-<api-core-props>
+<api-core-props :appendItems="$vars.elementProps">
 <template v-slot:r1c2>
 
 @[code](@/src/api/default/fields.js)

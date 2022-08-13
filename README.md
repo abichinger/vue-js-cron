@@ -17,7 +17,8 @@ This monorepo includes the following packages:
 - core - a renderless Vue.js component to generate cron expressions.
 - light - a lightweight cron editor without external dependencies
 - vuetify - Vuetify component to edit cron expressions.
-- docs - Vue.js Cron documentation with [VuePress](https://vuepress.vuejs.org/)
+- element-plus - Element Plus component
+- docs - Vue.js Cron documentation powered by [VuePress](https://vuepress.vuejs.org/)
 
 # Development
 

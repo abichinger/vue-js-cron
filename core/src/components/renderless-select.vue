@@ -118,7 +118,7 @@ export default {
       items: this.items,
       select: this.select,
       isSelected: this.isSelected,
-      clearable: this.clearable,
+      clearable: this.clearable && this.selectedItems.length > 0,
       clear: this.clear,
       cols: this.cols,
       rows: this.rows,

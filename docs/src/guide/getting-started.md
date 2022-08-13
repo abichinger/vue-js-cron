@@ -7,7 +7,7 @@ For now `vue-js-cron` provides the following prebuilt components:
 
 If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#renderless).
 
-## CronLight
+## Light
 
 ### Installation
 
@@ -33,22 +33,26 @@ import '@vue-js-cron/light/dist/light.css'
 app.use(cronLight)
 ```
 
-Now you can use the `CronLight` component.
+Now you can use the `cron-light` component.
 
 <br />
 
 ### Example
 
-@[code](../.vuepress/components/getting-started-light.vue)
+@[code](../.vuepress/components/get-started-light.vue)
 
 **Result:**
-<getting-started-light />
+<get-started-light />
 
 #### API
 
-- [CronLight](../api/light)
+- [cron-light](../api/light)
 
-## CronVuetify
+## Vuetify
+
+### Requirements
+
+- [Vuetify](https://next.vuetifyjs.com/en/)
 
 ### Installation
 
@@ -72,21 +76,62 @@ import cronVuetify from '@vue-js-cron/vuetify'
 app.use(cronVuetify)
 ```
 
-Now you can use the `CronVuetify` component.
+Now you can use the `cron-vuetify` component.
 
 <br />
 
 ### Example
 
-@[code](../.vuepress/components/getting-started-vuetify.vue)
+@[code](../.vuepress/components/get-started-vuetify.vue)
 
 **Result:**
-<getting-started-vuetify />
+<get-started-vuetify />
 
 
 #### API
 
-- [CronVuetify](../api/vuetify)
+- [cron-vuetify](../api/vuetify)
+
+## Element Plus
+
+### Requirements
+
+- [Element Plus](https://element-plus.org/en-US/)
+
+### Installation
+
+Open up a terminal and run the following command:
+
+```bash 
+yarn add @vue-js-cron/element-plus@next
+```
+or
+
+```bash 
+npm install @vue-js-cron/element-plus@next
+```
+### Usage
+
+Then you need to register `@vue-js-cron/element-plus` with `app.use()`
+
+```js
+import cronElementPlus from '@vue-js-cron/element-plus'
+import '@vue-js-cron/element-plus/dist/element-plus.css'
+
+app.use(cronElementPlus)
+```
+
+Now you can use the `cron-element-plus` component.
+
+<br />
+
+### Example
+
+@[code](../.vuepress/components/get-started-element.vue)
+
+**Result:**
+<get-started-element />
+
 
 ## Renderless
 
@@ -115,7 +160,7 @@ import cronCore from '@vue-js-cron/core'
 Vue.use(cronCore)
 ```
 
-Now you can use the `CronCore` component. The default [scoped slot](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) of `CronCore` provides the following **props**:
+Now you can use the `cron-core` component. The default [slot](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots) of `cron-core` provides the following **props**:
 
 - `fields` - each field corresponds to one position in the cron expression. Default fields: month, day, day of week, hour and minute.
 - `period` - defines which fields are visible
@@ -125,11 +170,11 @@ Now you can use the `CronCore` component. The default [scoped slot](https://vuej
 
 ### Example
 
-@[code](../.vuepress/components/getting-started-renderless.vue)
+@[code](../.vuepress/components/get-started-renderless.vue)
 
 **Result:**
-<getting-started-renderless />
+<get-started-renderless />
 
 #### API
 
-- [CronCore](../api/core)
+- [cron-core](../api/core)

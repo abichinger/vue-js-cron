@@ -1,7 +1,10 @@
 <template>
   <div>
 
-    <CronVuetify v-model="value" @error="error=$event"></CronVuetify>
+    <cron-vuetify
+      v-model="value"
+      :chip-props="{ color: 'success', textColor: 'white' }"
+      @error="error=$event" />
 
     <!-- editable cron expression -->
     <v-text-field
@@ -31,9 +34,6 @@ export default {
       nextValue: this.init,
       error: ''
     }
-  },
-  methods: {
-
   }
 }
 </script>

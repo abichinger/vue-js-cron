@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CronCore v-model="value" v-slot="{fields, period, error}">
+    <cron-core v-model="value" v-slot="{fields, period, error}">
       <div>
 
         <!-- period selection -->
@@ -47,7 +47,7 @@
           :error-messages="error" />
 
       </div>
-    </CronCore>
+    </cron-core>
   </div>
 </template>
 

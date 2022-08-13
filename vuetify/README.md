@@ -4,7 +4,7 @@
 
 ![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/next/assets/cron-vuetify-hero.png)
 
-[Get Started](https://abichinger.github.io/vue-js-cron/next/guide/getting-started.html#cronvuetify)
+[Get Started](https://abichinger.github.io/vue-js-cron/next/guide/getting-started.html#vuetify)
 
 ## Attribution
 

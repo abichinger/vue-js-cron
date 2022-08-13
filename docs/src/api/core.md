@@ -1,4 +1,4 @@
-# CronCore - Component
+# cron-core
 
 ## Props
 
@@ -15,7 +15,7 @@
 </template>
 <template v-slot:r4c2>
 
-[en.js](https://github.com/abichinger/vue-js-cron/blob/main/core/src/locale/en.js)
+[en.js](https://github.com/abichinger/vue-js-cron/blob/next/core/src/locale/en.js)
 
 </template>
 </api-core-props>
