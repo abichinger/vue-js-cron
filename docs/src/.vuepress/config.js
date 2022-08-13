@@ -3,6 +3,7 @@ const { defaultTheme } = require('@vuepress/theme-default')
 const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 const { path } = require('@vuepress/utils')
 const { viteBundler } = require('@vuepress/bundler-vite')
+const { googleAnalyticsPlugin } = require('@vuepress/plugin-google-analytics')
 
 module.exports = {
 
@@ -116,8 +117,9 @@ module.exports = {
   plugins: [
     registerComponentsPlugin({
       componentsDir: path.resolve(__dirname, './components')
+    }),
+    googleAnalyticsPlugin({
+      id: 'G-8E2WXHH0QS'
     })
-    // '@vuepress/plugin-back-to-top',
-    // '@vuepress/plugin-medium-zoom'
   ]
 }
