@@ -3,4 +3,4 @@
 <cron-demo>
 </cron-demo>
 
-[Get Started](/guide/getting-started.html)
+[Get Started](/vue-js-cron/next/guide/getting-started.html)

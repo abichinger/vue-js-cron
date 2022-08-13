@@ -2,8 +2,9 @@
 
 The fastest way to get started, is to install one of the prebuilt components.
 For now `vue-js-cron` provides the following prebuilt components:
-- [CronLight](#cronlight) - a lightweight cron editor without external dependencies
-- [CronVuetify](#cronvuetify) - a cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/).
+- [cron-light](#light) - a lightweight cron editor without external dependencies
+- [cron-vuetify](#vuetify) - a cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/).
+- [cron-element-plus](#element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
 
 If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#renderless).
 
@@ -21,8 +22,6 @@ or
 ```bash 
 npm install @vue-js-cron/light@next
 ```
-
-### Usage
 
 Then you need to register `vue-js-cron/light` with `app.use()`
 
@@ -44,7 +43,7 @@ Now you can use the `cron-light` component.
 **Result:**
 <get-started-light />
 
-#### API
+### API
 
 - [cron-light](../api/light)
 
@@ -66,7 +65,6 @@ or
 ```bash 
 npm install @vue-js-cron/vuetify@next
 ```
-### Usage
 
 Then you need to register `vue-js-cron/vuetify` with `app.use()`
 
@@ -88,7 +86,7 @@ Now you can use the `cron-vuetify` component.
 <get-started-vuetify />
 
 
-#### API
+### API
 
 - [cron-vuetify](../api/vuetify)
 
@@ -110,7 +108,6 @@ or
 ```bash 
 npm install @vue-js-cron/element-plus@next
 ```
-### Usage
 
 Then you need to register `@vue-js-cron/element-plus` with `app.use()`
 
@@ -132,6 +129,9 @@ Now you can use the `cron-element-plus` component.
 **Result:**
 <get-started-element />
 
+### API
+
+- [cron-element-plus](../api/element-plus)
 
 ## Renderless
 
@@ -150,8 +150,6 @@ or
 ```bash 
 npm install @vue-js-cron/core@next
 ```
-
-### Usage
 
 Then you need to register `vue-js-cron/core` with `Vue.app()`
 
