@@ -17,7 +17,9 @@
         <v-list class="pa-0 ma-0">
             <v-row v-for="(itemRow, index) in itemRows" :key="index" no-gutters>
               <v-col v-for="(item, index) in itemRow" :key="index">
-                <v-list-item v-if="item" @click="select(item)" :active="isSelected(item)">{{item.text}}</v-list-item>
+                <v-list-item v-if="item" class="vcron-v-item" @click="select(item)" :active="isSelected(item)">
+                  <v-list-item-text>{{item.text}}</v-list-item-text>
+                </v-list-item>
               </v-col>
             </v-row>
         </v-list>
@@ -50,4 +52,9 @@ export default {
 </script>
 
 <style>
+
+.vcron-v-item div {
+  overflow: visible;
+}
+
 </style>

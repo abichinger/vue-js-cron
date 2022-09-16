@@ -1,6 +1,7 @@
 
 // *
 import { AnySegment } from '../types'
+import util from '../util'
 
 function strToArray (str) {
   if (str !== '*') {
@@ -23,6 +24,9 @@ function arrayToStr (arr, field) {
     if (!arr.includes(item.value)) {
       return null
     }
+  }
+  if (!util.isSquence(items.map(item => item.value))) {
+    return null
   }
   return new AnySegment()
 }

@@ -158,6 +158,15 @@ function populate (obj, map) {
   return res
 }
 
+function isSquence (numbers) {
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i - 1] + 1 !== numbers[i]) {
+      return false
+    }
+  }
+  return true
+}
+
 export default {
   range,
   Range,
@@ -167,5 +176,6 @@ export default {
   deepMerge,
   isObject,
   traverse,
-  populate
+  populate,
+  isSquence
 }
