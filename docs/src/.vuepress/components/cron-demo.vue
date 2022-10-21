@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cron-demo">
     <p>Flavor</p>
     <v-btn-toggle
         v-model="text"
@@ -7,7 +7,7 @@
         color="secondary"
         group
         density="compact"
-        class="mb-2">
+        class="mb-2 elevation-5">
 
         <v-btn v-for="item in flavors" :value="item.name" :key="item.name" @click="flavor = item">
           {{item.name}}
@@ -22,7 +22,7 @@
         color="secondary"
         group
         density="compact"
-        class="mb-10">
+        class="mb-10 elevation-5">
 
         <v-btn v-for="item in locales" :value="item" :key="item">
           {{item}}
@@ -59,6 +59,10 @@ export default {
       {
         name: 'Element Plus',
         component: 'cron-element-plus'
+      },
+      {
+        name: 'Ant',
+        component: 'cron-ant'
       }
     ]
 

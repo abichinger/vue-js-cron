@@ -123,7 +123,9 @@ export default {
       cols: this.cols,
       rows: this.rows,
       itemRows: this.itemRows,
-      multiple: this.multiple
+      multiple: this.multiple,
+      itemText: this.itemText,
+      itemValue: this.itemValue
     })
   }
 }

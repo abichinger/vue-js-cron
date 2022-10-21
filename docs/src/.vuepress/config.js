@@ -91,6 +91,13 @@ module.exports = {
           children: [
             'element-plus'
           ]
+        },
+        {
+          title: 'Ant',
+          collapsable: false,
+          children: [
+            'ant'
+          ]
         }
       ]
     }
@@ -101,7 +108,7 @@ module.exports = {
       // https://github.com/vuepress/vuepress-next/issues/585#issuecomment-1046188074
       // https://v2.vuepress.vuejs.org/reference/bundler/vite.html#ssr-externals-issue
       ssr: {
-        noExternal: ['vuetify']
+        noExternal: ['vuetify', 'ant-design-vue']
       }
     },
     vuePluginOptions: {}

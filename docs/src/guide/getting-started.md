@@ -134,6 +134,49 @@ Now you can use the `cron-element-plus` component.
 
 - [cron-element-plus](../api/element-plus)
 
+## Ant
+
+### Requirements
+
+- [Ant Design Vue](https://www.antdv.com/components/overview/)
+
+### Installation
+
+Open up a terminal and run the following command:
+
+```bash 
+yarn add @vue-js-cron/ant@next
+```
+or
+
+```bash 
+npm install @vue-js-cron/ant@next
+```
+
+Then you need to register `@vue-js-cron/ant` with `app.use()`
+
+```js
+import cronAnt from '@vue-js-cron/ant'
+import '@vue-js-cron/ant/dist/ant.css'
+
+app.use(cronAnt)
+```
+
+Now you can use the `cron-ant` component.
+
+<br />
+
+### Example
+
+@[code](../.vuepress/components/get-started-ant.vue)
+
+**Result:**
+<get-started-ant />
+
+### API
+
+- [cron-ant](../api/ant)
+
 ## Renderless
 
 This guide will explain how to use the renderless component of vue-js-cron.

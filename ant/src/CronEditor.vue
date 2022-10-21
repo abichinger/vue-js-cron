@@ -8,19 +8,21 @@
       <div>
         {{period.prefix}}
 
-        <custom-select
-          v-bind="period.attrs"
-          :items="period.items"
-          v-on="period.events"
-          item-value="id"
-          :button-props="buttonProps" />
+        <div class="vcron-a-spacer">
+          <custom-select
+            v-bind="period.attrs"
+            :items="period.items"
+            v-on="period.events"
+            item-value="id"
+            :button-props="buttonProps" />
+        </div>
 
         {{period.suffix}}
 
         <template v-for="f in fields" :key="f.id">
           {{f.prefix}}
 
-          <div class="vcron-el-spacer">
+          <div class="vcron-a-spacer">
             <custom-select
               v-bind="f.attrs"
               v-on="f.events"
@@ -29,7 +31,7 @@
               :items="f.items"
               multiple
               :button-props="buttonProps"
-              :dropdown-props="{ hideOnClick: false }"
+              :hideOnClick="false"
               clearable />
           </div>
 
@@ -74,7 +76,7 @@ export default {
 
 <style lang="css">
 
-.vcron-el-spacer {
+.vcron-a-spacer {
   display: inline-block;
   padding: 3px;
 }

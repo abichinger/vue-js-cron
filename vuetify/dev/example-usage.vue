@@ -4,7 +4,7 @@
         <v-card>
             <v-card-text>
                 <v-text-field label="" :model-value="value" @update:model-value="nextValue = $event" @blur="value=nextValue"></v-text-field>
-                <VueCronEditor v-model="value" :chipProps="{ color: 'primary' }" />
+                <VueCronEditor v-model="value" :fields="fields" :chipProps="{ color: 'primary' }" />
             </v-card-text>
         </v-card>
     </v-container>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import cronCore from '@vue-js-cron/core'
 import VueCronEditor from '../src/CronEditor'
 
 export default {
@@ -20,11 +21,31 @@ export default {
   },
 
   data: () => {
-    const value = '1-3,5,10-12 */4 * * *'
+    const value = '* */4 * * *'
+
+    const minuteItems = (() => {
+      const res = []
+      for (const i of cronCore.util.range(0, 59, 15)) {
+        const item = {
+          text: cronCore.util.pad(i, 2),
+          alt: i + '',
+          value: i
+        }
+        res.push(item)
+      }
+      return res
+    })()
 
     return {
       value,
-      nextValue: value
+      nextValue: value,
+      fields: [
+        { id: 'minute', items: minuteItems },
+        { id: 'hour', items: cronCore.locale.defaultItems('en').hourItems },
+        { id: 'day', items: cronCore.locale.defaultItems('en').dayItems },
+        { id: 'month', items: cronCore.locale.defaultItems('en').monthItems },
+        { id: 'dayOfWeek', items: cronCore.locale.defaultItems('en').dayOfWeekItems }
+      ]
     }
   }
 }
