@@ -22,7 +22,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "3.1.1",
+    "@vue-js-cron/core": "3.2.0",
     "ant-design-vue": "^3.2.12"
   },
   "files": [
