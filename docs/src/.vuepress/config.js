@@ -2,7 +2,7 @@ const { description } = require('../../package')
 
 module.exports = {
 
-  base: '/vue-js-cron/',
+  base: '/vue-js-cron/vue2/',
 
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
@@ -38,6 +38,10 @@ module.exports = {
     editLinkText: '',
     lastUpdated: false,
     nav: [
+      {
+        text: 'Vue v3',
+        link: 'https://abichinger.github.io/vue-js-cron/'
+      },
       {
         text: 'Demo',
         link: '/demo',
