@@ -14,12 +14,12 @@ If you would like to use a different UI framework, follow the quick start guide 
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/light
+yarn add @vue-js-cron/light@^1.0.4
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/light
+npm install @vue-js-cron/light@^1.0.4
 ```
 #### Usage
 
@@ -55,12 +55,12 @@ Now you can use the component `CronLight`.
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/vuetify
+yarn add @vue-js-cron/vuetify@^2.1.0
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/vuetify
+npm install @vue-js-cron/vuetify@^2.1.0
 ```
 #### Usage
 
@@ -99,12 +99,12 @@ In this example [Vuetify](https://vuetifyjs.com/en/) will be used to render the 
 First open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/core
+yarn add @vue-js-cron/core@^2.1.2
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/core
+npm install @vue-js-cron/core@^2.1.2
 ```
 
 #### Usage
