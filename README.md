@@ -6,9 +6,9 @@
 
 # Getting Started
 
-Vue v2: [documentation](https://abichinger.github.io/vue-js-cron)
+Vue v2: [documentation](https://abichinger.github.io/vue-js-cron/vue2)
 
-Vue v3: [documentation](https://abichinger.github.io/vue-js-cron/next)
+Vue v3: [documentation](https://abichinger.github.io/vue-js-cron)
 
 # Packages
 

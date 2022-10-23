@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - next
+      - vue2
 
 jobs:
   build-and-deploy:
@@ -29,6 +30,7 @@ jobs:
           folder: docs/src/.vuepress/dist
           clean-exclude: |
             next
+            vue2
 
       - name: Deploy next
         if: github.ref == 'refs/heads/next'
@@ -37,3 +39,11 @@ jobs:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
           target-folder: ./next
+
+      - name: Deploy vue2
+        if: github.ref == 'refs/heads/vue2'
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: docs/src/.vuepress/dist
+          target-folder: ./vue2

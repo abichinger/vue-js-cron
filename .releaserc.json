@@ -1,8 +1,8 @@
 {
     "branches": [
-        "main",
-        "next",
-        { "name": "beta", "prerelease": true }
+        { "name": "main" },
+        { "name": "vue2" },
+        { "name": "next", "channel": "next" }
     ],
     "plugins": [
         "@semantic-release/commit-analyzer",
