@@ -1,14 +1,15 @@
-# Vue.js Cron
-
-**generate cron expressions using Vue.js**
-
-![Vue.js Cron Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/cron-light-hero.png)
+<p align="center">
+<img src="./assets/vue-js-cron-hero.png" alt="vue-js-cron Hero">
+</p>
+<p align="center">
+    <em>generate cron expressions using Vue.js</em>
+</p>
 
 # Getting Started
 
-Vue v2: [documentation](https://abichinger.github.io/vue-js-cron)
+Vue v3: [documentation](https://abichinger.github.io/vue-js-cron)
 
-Vue v3: [documentation](https://abichinger.github.io/vue-js-cron/next)
+Vue v2: [documentation](https://abichinger.github.io/vue-js-cron/vue2)
 
 # Packages
 
@@ -18,6 +19,7 @@ This monorepo includes the following packages:
 - light - a lightweight cron editor without external dependencies
 - vuetify - Vuetify component to edit cron expressions.
 - element-plus - Element Plus component
+- ant - Ant Design Vue component
 - docs - Vue.js Cron documentation powered by [VuePress](https://vuepress.vuejs.org/)
 
 # Development

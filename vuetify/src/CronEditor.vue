@@ -1,7 +1,7 @@
 
 <template>
     <CronCore v-bind="$attrs" @update:model-value="$emit('update:model-value', $event)" @error="$emit('error', $event)" v-slot="{fields, period}">
-
+      <div style="display: inline-block" >
         <v-row align="baseline" dense>
             <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
             <v-col cols="auto">
@@ -31,7 +31,7 @@
                 <v-col v-if="f.suffix" class="flex-grow-0">{{f.suffix}}</v-col>
             </template>
         </v-row>
-
+      </div>
     </CronCore>
 </template>
 

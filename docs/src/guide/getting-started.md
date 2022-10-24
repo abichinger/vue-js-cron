@@ -15,12 +15,12 @@ If you would like to use a different UI framework, follow the quick start guide 
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/light@next
+yarn add @vue-js-cron/light@latest
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/light@next
+npm install @vue-js-cron/light@latest
 ```
 
 Then you need to register `vue-js-cron/light` with `app.use()`
@@ -58,12 +58,12 @@ Now you can use the `cron-light` component.
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/vuetify@next
+yarn add @vue-js-cron/vuetify@latest
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/vuetify@next
+npm install @vue-js-cron/vuetify@latest
 ```
 
 Then you need to register `vue-js-cron/vuetify` with `app.use()`
@@ -102,12 +102,12 @@ Now you can use the `cron-vuetify` component.
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/element-plus@next
+yarn add @vue-js-cron/element-plus@latest
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/element-plus@next
+npm install @vue-js-cron/element-plus@latest
 ```
 
 Then you need to register `@vue-js-cron/element-plus` with `app.use()`
@@ -145,12 +145,12 @@ Now you can use the `cron-element-plus` component.
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/ant@next
+yarn add @vue-js-cron/ant@latest
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/ant@next
+npm install @vue-js-cron/ant@latest
 ```
 
 Then you need to register `@vue-js-cron/ant` with `app.use()`
@@ -187,12 +187,12 @@ In this example [Vuetify](https://vuetifyjs.com/en/) will be used to render the 
 First open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/core@next
+yarn add @vue-js-cron/core@latest
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/core@next
+npm install @vue-js-cron/core@latest
 ```
 
 Then you need to register `vue-js-cron/core` with `Vue.app()`
