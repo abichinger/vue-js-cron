@@ -1,8 +1,9 @@
-# Vue.js Cron
-
-**generate cron expressions using Vue.js**
-
-![Vue.js Cron Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/cron-light-hero.png)
+<p align="center">
+<img src="./assets/vue-js-cron-hero.png" alt="vue-js-cron Hero">
+</p>
+<p align="center">
+    <em>generate cron expressions using Vue.js</em>
+</p>
 
 # Getting Started
 

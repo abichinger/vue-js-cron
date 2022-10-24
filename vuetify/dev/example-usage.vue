@@ -7,6 +7,16 @@
                 <VueCronEditor v-model="value" :fields="fields" :chipProps="{ color: 'primary' }" />
             </v-card-text>
         </v-card>
+
+        <v-card class="mt-10 pa-15" elevation="0" :border="30" color="#ddd" style="margin: auto">
+            <v-card-text class="text-center text-black">
+                <div class="mb-5 text-h2 text-center font-weight-regular">vue-js-cron</div>
+                <VueCronEditor v-model="value" :chipProps="{ color: '#004ba0' }" />
+                <div class="mt-4 text-h4 text-grey-darken-3 font-weight-light">
+                  {{value}}
+                </div>
+            </v-card-text>
+        </v-card>
     </v-container>
   </v-app>
 </template>
@@ -21,7 +31,7 @@ export default {
   },
 
   data: () => {
-    const value = '* */4 * * *'
+    const value = '0 */5 7,14,21 * *'
 
     const minuteItems = (() => {
       const res = []
