@@ -1,11 +1,11 @@
-const { description } = require('../../package')
-const { defaultTheme } = require('@vuepress/theme-default')
-const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
-const { path } = require('@vuepress/utils')
-const { viteBundler } = require('@vuepress/bundler-vite')
-const { googleAnalyticsPlugin } = require('@vuepress/plugin-google-analytics')
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+import { defaultTheme } from '@vuepress/theme-default'
+import { path } from '@vuepress/utils'
+import { defineUserConfig, viteBundler } from 'vuepress'
+import { description } from '../../package'
 
-module.exports = {
+export default defineUserConfig({
 
   /**
    * Ref: https://v2.vuepress.vuejs.org/guide/configuration.html#config-file
@@ -112,7 +112,7 @@ module.exports = {
       // https://github.com/vuepress/vuepress-next/issues/585#issuecomment-1046188074
       // https://v2.vuepress.vuejs.org/reference/bundler/vite.html#ssr-externals-issue
       ssr: {
-        noExternal: ['vuetify', 'ant-design-vue']
+        noExternal: ['vuetify', '@vue-js-cron/core']
       }
     },
     vuePluginOptions: {}
@@ -133,4 +133,4 @@ module.exports = {
       id: 'G-8E2WXHH0QS'
     })
   ]
-}
+})

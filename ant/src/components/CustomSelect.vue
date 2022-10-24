@@ -13,12 +13,12 @@
 
       <template #overlay>
         <a-menu multiple :selectedKeys="Array.isArray(modelValue) ? modelValue : [modelValue]">
-          <a-row class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
-            <a-col class="vcron-a-col"  :flex="1" v-for="(item, j) in itemRow" :key="j">
+          <div class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
+            <div class="vcron-a-col"  :flex="1" v-for="(item, j) in itemRow" :key="j">
               <a-menu-item v-if="item" :key="item[itemValue]" @click="select(item); updateVisibility();">{{item.text}}</a-menu-item>
               <a-menu-item v-else></a-menu-item>
-            </a-col>
-          </a-row>
+            </div>
+          </div>
         </a-menu>
       </template>
 
@@ -71,11 +71,12 @@ export default {
 <style scoped>
 
 .vcron-a-row {
-  flex-wrap: nowrap !important;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .vcron-a-col {
-  flex-basis: 100% !important;
+  flex-basis: 100%;
   min-width: 0;
   text-align: center;
 }

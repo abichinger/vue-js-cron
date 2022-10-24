@@ -10,24 +10,28 @@ import '@vue-js-cron/vuetify/dist/vuetify.css'
 
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 import 'vuetify/styles'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
 import Ant from 'ant-design-vue'
+// import 'ant-design-vue/dist/antd.css'
 import '../styles/antd.css'
 
 import { defineClientConfig } from '@vuepress/client'
 
 import { variables } from './vars'
 
-const vuetify = createVuetify({
-  components
-})
-
 export default defineClientConfig({
   enhance ({ app, router, siteData }) {
+    const vuetify = createVuetify({
+      components,
+      directives,
+      ssr: true
+    })
+
     app.use(vuetify)
     app.use(ElementPlus)
     app.use(Ant)
@@ -48,16 +52,3 @@ export default defineClientConfig({
   setup () {},
   rootComponents: []
 })
-
-// export default ({
-//   Vue, // the version of Vue being used in the VuePress app
-//   options, // the options for the root Vue instance
-//   router, // the router instance for the app
-//   siteData // site metadata
-// }) => {
-//   Vue.use(Vuetify)
-//   options.vuetify = new Vuetify({})
-//   Vue.use(CronCore)
-//   Vue.use(CronVuetify)
-//   Vue.use(CronLight)
-// }

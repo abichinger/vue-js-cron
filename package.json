@@ -8,8 +8,7 @@
     "light",
     "vuetify",
     "element-plus",
-    "ant",
-    "docs"
+    "ant"
   ],
   "private": true,
   "scripts": {
