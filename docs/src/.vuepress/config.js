@@ -11,7 +11,7 @@ module.exports = {
    * Ref: https://v2.vuepress.vuejs.org/guide/configuration.html#config-file
    */
 
-  base: '/vue-js-cron/next/',
+  base: '/vue-js-cron/',
 
   title: 'Vue-js-cron Docs',
 
@@ -32,6 +32,10 @@ module.exports = {
     editLinkText: '',
     lastUpdated: false,
     navbar: [
+      {
+        text: 'Vue v2',
+        link: 'https://abichinger.github.io/vue-js-cron/vue2/'
+      },
       {
         text: 'Demo',
         link: '/demo'

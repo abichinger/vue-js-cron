@@ -1,6 +1,7 @@
 {
     "branches": [
         { "name": "main" },
+        { "name": "vue2" },
         { "name": "next", "channel": "next" }
     ],
     "plugins": [
