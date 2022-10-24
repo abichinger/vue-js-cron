@@ -1,8 +1,24 @@
-# @vue-js-cron/element-plus
+![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/vue-js-cron-hero.png)
 
-**Cron editor for Element Plus**
+<p align="center">
+    <em>generate cron expressions using vue.js</em>
+</p>
 
-[Get Started](https://abichinger.github.io/vue-js-cron/next/guide/getting-started.html#element-plus)
+<p align="center">
+<a href="https://www.npmjs.com/package/@vue-js-cron/core">Core</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/light">Light</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a>
+</p>
+
+## Usage - Element Plus
+
+[Demo](https://abichinger.github.io/vue-js-cron/demo.html)
+
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#element-plus)
+
+[API - cron-element-plus](https://abichinger.github.io/vue-js-cron/api/element-plus.html)
 
 ## Attribution
 

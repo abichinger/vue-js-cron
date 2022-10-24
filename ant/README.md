@@ -1,8 +1,24 @@
-# @vue-js-cron/ant
+![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/vue-js-cron-hero.png)
 
-**Cron editor for Ant Vue**
+<p align="center">
+    <em>generate cron expressions using vue.js</em>
+</p>
 
-[Get Started](https://abichinger.github.io/vue-js-cron/next/guide/getting-started.html#ant)
+<p align="center">
+<a href="https://www.npmjs.com/package/@vue-js-cron/core">Core</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/light">Light</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a>
+</p>
+
+## Usage - Ant
+
+[Demo](https://abichinger.github.io/vue-js-cron/demo.html)
+
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#ant)
+
+[API - cron-ant](https://abichinger.github.io/vue-js-cron/api/ant.html)
 
 ## Attribution
 
