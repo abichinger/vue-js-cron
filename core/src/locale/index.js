@@ -2,11 +2,13 @@ import Mustache from 'mustache'
 import util from '../util'
 import de from './de'
 import en from './en'
+import pt from './pt'
 const { genItems, pad, traverse } = util
 
 const locales = {
   en,
-  de
+  de,
+  pt
 }
 
 class Locale {
