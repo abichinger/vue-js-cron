@@ -252,40 +252,40 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-3.1.2.tgz#3cd52114e8871a0b5e7bd7d837469c032e503036"
   integrity sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==
 
-"@vue-js-cron/ant@file:../ant":
-  version "1.0.0"
+"@vue-js-cron/ant@../ant":
+  version "1.0.2"
   dependencies:
-    "@vue-js-cron/core" "3.1.1"
+    "@vue-js-cron/core" "3.3.0"
     ant-design-vue "^3.2.12"
 
-"@vue-js-cron/core@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@vue-js-cron/core/-/core-3.1.1.tgz#8a007c5f91f8177afb7da15edf7d8fd787daf796"
-  integrity sha512-NUOaIfS2WZs5c8owl0R1JvvkRslNoxtf9hLsMC+HE+qzWZrBO+/ZtVyOaYtqIZ82H9dRlcsxHZtVx6tiMxNl8g==
+"@vue-js-cron/core@../core":
+  version "3.3.0"
   dependencies:
     mustache "^4.2.0"
 
-"@vue-js-cron/core@file:../core":
-  version "3.1.1"
+"@vue-js-cron/core@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@vue-js-cron/core/-/core-3.3.0.tgz#6c8e42168bfbf5b415eb0ed0e1f1a9725c56739c"
+  integrity sha512-PO2nPoYVE1RnU1wE3eBzSsm3ldzEALxpp2pqnnF7ftDtqPA/V0N5YyGX1WTZDlZtsli6d5xLe6DTqHnPoX3oig==
   dependencies:
     mustache "^4.2.0"
 
-"@vue-js-cron/element-plus@file:../element-plus":
-  version "1.0.1"
+"@vue-js-cron/element-plus@../element-plus":
+  version "1.1.2"
   dependencies:
     "@element-plus/icons-vue" "^2.0.9"
-    "@vue-js-cron/core" "3.1.1"
+    "@vue-js-cron/core" "3.3.0"
     element-plus "^2.2.13"
 
-"@vue-js-cron/light@file:../light":
-  version "2.1.1"
+"@vue-js-cron/light@../light":
+  version "2.2.2"
   dependencies:
-    "@vue-js-cron/core" "3.1.1"
+    "@vue-js-cron/core" "3.3.0"
 
-"@vue-js-cron/vuetify@file:../vuetify":
-  version "3.1.1"
+"@vue-js-cron/vuetify@../vuetify":
+  version "3.2.2"
   dependencies:
-    "@vue-js-cron/core" "3.1.1"
+    "@vue-js-cron/core" "3.3.0"
     vuetify "^3.0.0-beta.6"
 
 "@vue/compiler-core@3.2.41":
