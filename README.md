@@ -20,6 +20,7 @@ This monorepo includes the following packages:
 - vuetify - Vuetify component to edit cron expressions.
 - element-plus - Element Plus component
 - ant - Ant Design Vue component
+- quasar - Quasar component
 - docs - Vue.js Cron documentation powered by [VuePress](https://vuepress.vuejs.org/)
 
 # Development

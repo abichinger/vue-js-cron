@@ -6,7 +6,8 @@ const packages = [
   { name: 'Light', dir: 'light' },
   { name: 'Vuetify', dir: 'vuetify' },
   { name: 'Element Plus', dir: 'element-plus' },
-  { name: 'Ant', dir: 'ant' }
+  { name: 'Ant', dir: 'ant' },
+  { name: 'Quasar', dir: 'quasar' }
 ]
 packages.forEach((p) => {
   p.json = readPackageJson(p.dir)
