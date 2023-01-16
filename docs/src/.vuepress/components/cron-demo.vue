@@ -66,7 +66,7 @@ export default {
       }
     ]
 
-    const locales = ['en', 'de', 'pt']
+    const locales = ['en', 'de', 'pt','es']
 
     const flavor = flavors[0]
 
