@@ -23,6 +23,27 @@ This monorepo includes the following packages:
 - quasar - Quasar component
 - docs - Vue.js Cron documentation powered by [VuePress](https://vuepress.vuejs.org/)
 
+# Contributing
+
+Contributions are always welcome.
+
+Before you open a PR, please make sure your changes comply with the following rules:
+- commits messages follow the [AngularJS commit message format](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit)
+- `yarn lint` completes without errors
+- `yarn build` completes without errors
+- `yarn test` completes without errors
+
+## Contributing new localization strings
+
+You can use the commit [feat: add portuguese translation](https://github.com/abichinger/vue-js-cron/commit/64fbe1e7b30bd07e4e61b11cf98292f1cc81bfd4) as a reference.
+
+[Here](https://abichinger.github.io/vue-js-cron/api/core.html#types) you can find the structure of a localization object.
+
+## Contributors
+<a href="https://github.com/abichinger/vue-js-cron/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=abichinger/vue-js-cron" />
+</a>
+
 # Development
 
 ## Install dependencies
