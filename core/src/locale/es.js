@@ -9,38 +9,38 @@ export default {
       range: { text: '{{ start.text }}-{{ end.text }}' },
       everyX: { text: 'todos/as {{ every.value }}' }
     },
-    meses: {
+    month: {
       '*': { prefix: 'en' },
       value: { text: '{{ val.alt }}' },
       range: { text: '{{ start.alt }}-{{ end.alt }}' }
     },
-    días: {
-      '*': { prefix: 'y' },
-      value: { text: 'los días {{ val.alt }}' },
+    day: {
+      '*': { prefix: 'en' },
+      value: { text: 'los días {{ val.alt }}' }
     },
-    diaDeLaSemana: {
+    dayOfWeek: {
       '*': { prefix: 'de' },
       empty: { text: 'todos los días de la semana' },
       value: { text: 'los {{ val.alt }}' },
       range: { text: '{{ start.alt }}-{{ end.alt }}' }
     },
-    horas: {
+    hour: {
       '*': { prefix: 'a' },
       empty: { text: 'todas las {{ field.id }}' },
-      value: { text: 'las {{ val.text }}' },
+      value: { text: 'las {{ val.text }}' }
     },
-    minutos: {
+    minute: {
       '*': { prefix: ':' }
     }
   },
-  minutos: {
+  minute: {
     prefix: 'todos los',
-    text: 'minutos',
+    text: 'minutos'
   },
-  horas: {
+  hour: {
     prefix: 'todas las',
     text: 'horas',
-    minutos: {
+    minute: {
       '*': {
         prefix: 'a los',
         suffix: 'minutos'
@@ -48,19 +48,19 @@ export default {
       empty: { text: 'todos', prefix: 'a', suffix: 'los minutos' }
     }
   },
-  días: {
+  day: {
     text: 'Días'
   },
-  semanas: {
+  week: {
     text: 'Semanas'
   },
-  meses: {
+  month: {
     text: 'Meses',
     dayOfWeek: {
       '*': { prefix: 'y' }
     }
   },
-  años: {
+  year: {
     text: 'años',
     dayOfWeek: {
       '*': { prefix: 'y' }
