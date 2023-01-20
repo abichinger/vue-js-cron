@@ -11,11 +11,13 @@ export default {
     },
     month: {
       '*': { prefix: 'en' },
+      empty: { text: 'todos los meses' },
       value: { text: '{{ val.alt }}' },
       range: { text: '{{ start.alt }}-{{ end.alt }}' }
     },
     day: {
       '*': { prefix: 'en' },
+      empty: { text: 'todos los días' },
       value: { text: 'los días {{ val.alt }}' }
     },
     dayOfWeek: {
@@ -26,11 +28,12 @@ export default {
     },
     hour: {
       '*': { prefix: 'a' },
-      empty: { text: 'todas las {{ field.id }}' },
+      empty: { text: 'todas las horas' },
       value: { text: 'las {{ val.text }}' }
     },
     minute: {
-      '*': { prefix: ':' }
+      '*': { prefix: ':' },
+      empty: { text: 'todos los minutos' }
     }
   },
   minute: {
