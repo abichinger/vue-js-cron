@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2f475f50","path":"/guide/custom-fields.html","title":"Custom Cron Expression","lang":"en-US","frontmatter":{},"excerpt":"","headers":[],"git":{"contributors":[{"name":"Fernando Cappiello","email":"40238226+fernandoc83@users.noreply.github.com","commits":1}]},"filePathRelative":"guide/custom-fields.md"}');export{e as data};
