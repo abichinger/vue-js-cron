@@ -2,7 +2,8 @@
     "branches": [
         { "name": "main" },
         { "name": "vue2" },
-        { "name": "next", "channel": "next" }
+        { "name": "next", "channel": "next" },
+        { "name": "+([0-9])?(.{+([0-9]),x}).x" }
     ],
     "plugins": [
         "@semantic-release/commit-analyzer",
