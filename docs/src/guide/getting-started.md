@@ -14,12 +14,12 @@ If you would like to use a different UI framework, follow the quick start guide 
 Open up a terminal and run the following command:
 
 ```bash 
-yarn add @vue-js-cron/light@^1.0.4
+yarn add @vue-js-cron/light@^1.0.5
 ```
 or
 
 ```bash 
-npm install @vue-js-cron/light@^1.0.4
+npm install @vue-js-cron/light@^1.0.5
 ```
 #### Usage
 
