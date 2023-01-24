@@ -9,7 +9,8 @@
 <a href="https://www.npmjs.com/package/@vue-js-cron/light">Light</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
-<a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a>
+<a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/quasar">Quasar</a>
 </p>
 
 ## Usage - Vuetify
