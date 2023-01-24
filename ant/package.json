@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/ant",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Cron editor for Ant Vue",
   "main": "dist/ant.umd.js",
   "module": "dist/ant.esm.js",
@@ -22,7 +22,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "3.4.0",
+    "@vue-js-cron/core": "3.4.1",
     "ant-design-vue": "^3.2.12"
   },
   "files": [
