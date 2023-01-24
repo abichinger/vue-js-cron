@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/light",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "lightweight vue.js cron editor",
   "main": "dist/light.umd.js",
   "module": "dist/light.esm.js",
@@ -22,7 +22,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "3.4.0"
+    "@vue-js-cron/core": "3.4.1"
   },
   "devDependencies": {},
   "files": [
