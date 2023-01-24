@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/light",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "lightweight vue.js cron editor",
   "main": "dist/light.umd.js",
   "module": "dist/light.esm.js",
