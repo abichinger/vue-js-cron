@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import multiple from '@vue-js-cron/core/src/fields/multiple'
 
 export default {
   inheritAttrs: false,
