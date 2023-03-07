@@ -23,5 +23,9 @@ const plugin = {
 export default plugin
 
 export {
-  RenderlessSelect
+  RenderlessSelect,
+  component as CronCore,
+  plugin as CronCorePlugin,
+  util,
+  locale
 }

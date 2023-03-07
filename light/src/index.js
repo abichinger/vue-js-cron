@@ -18,3 +18,8 @@ const plugin = {
 
 // To allow use as module (npm/webpack/etc.) export component
 export default plugin
+
+export {
+  component as CronLight,
+  plugin as CronLightPlugin
+}
