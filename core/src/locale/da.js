@@ -1,64 +1,64 @@
 export default {
-  "*": {
-    prefix: "Hver",
-    suffix: "",
-    text: "Ukendt",
-    "*": {
-      empty: { text: "hver {{field.id}}" },
-      value: { text: "{{val.text}}" },
-      range: { text: "{{start.text}}-{{end.text}}" },
-      everyX: { text: "hver {{every.value}}" },
+  '*': {
+    prefix: 'Hver',
+    suffix: '',
+    text: 'Ukendt',
+    '*': {
+      empty: { text: 'hver {{field.id}}' },
+      value: { text: '{{val.text}}' },
+      range: { text: '{{start.text}}-{{end.text}}' },
+      everyX: { text: 'hver {{every.value}}' }
     },
     month: {
-      "*": { prefix: "i" },
-      value: { text: "{{val.alt}}" },
-      range: { text: "{{start.alt}}-{{end.alt}}" },
+      '*': { prefix: 'i' },
+      value: { text: '{{val.alt}}' },
+      range: { text: '{{start.alt}}-{{end.alt}}' }
     },
     day: {
-      "*": { prefix: "på" },
+      '*': { prefix: 'på' }
     },
     dayOfWeek: {
-      "*": { prefix: "på" },
-      empty: { text: "hver dag i ugen" },
-      value: { text: "{{val.alt}}" },
-      range: { text: "{{start.alt}}-{{end.alt}}" },
+      '*': { prefix: 'på' },
+      empty: { text: 'hver dag i ugen' },
+      value: { text: '{{val.alt}}' },
+      range: { text: '{{start.alt}}-{{end.alt}}' }
     },
     hour: {
-      "*": { prefix: "klokken" },
+      '*': { prefix: 'klokken' }
     },
     minute: {
-      "*": { prefix: ":" },
-    },
+      '*': { prefix: ':' }
+    }
   },
   minute: {
-    text: "Minut",
+    text: 'Minut'
   },
   hour: {
-    text: "Time",
+    text: 'Time',
     minute: {
-      "*": {
-        prefix: "på de(t)",
-        suffix: "minutter",
+      '*': {
+        prefix: 'på de(t)',
+        suffix: 'minutter'
       },
-      empty: { text: "hver" },
-    },
+      empty: { text: 'hver' }
+    }
   },
   day: {
-    text: "Dag",
+    text: 'Dag'
   },
   week: {
-    text: "Uge",
+    text: 'Uge'
   },
   month: {
-    text: "Måned",
+    text: 'Måned',
     dayOfWeek: {
-      "*": { prefix: "og" },
-    },
+      '*': { prefix: 'og' }
+    }
   },
   year: {
-    text: "År",
+    text: 'År',
     dayOfWeek: {
-      "*": { prefix: "og" },
-    },
-  },
-};
+      '*': { prefix: 'og' }
+    }
+  }
+}
