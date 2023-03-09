@@ -4,13 +4,15 @@ import de from './de'
 import en from './en'
 import pt from './pt'
 import es from './es'
+import da from './da'
 const { genItems, pad, traverse } = util
 
 const locales = {
   en,
   de,
   pt,
-  es
+  es,
+  da
 }
 
 class Locale {
