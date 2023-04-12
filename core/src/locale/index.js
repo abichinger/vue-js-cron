@@ -5,6 +5,7 @@ import en from './en'
 import pt from './pt'
 import es from './es'
 import da from './da'
+import cn from './cn'
 const { genItems, pad, traverse } = util
 
 const locales = {
@@ -12,7 +13,8 @@ const locales = {
   de,
   pt,
   es,
-  da
+  da,
+  cn
 }
 
 class Locale {
