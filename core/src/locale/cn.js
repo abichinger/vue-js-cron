@@ -11,7 +11,7 @@ export default {
     },
     month: {
       '*': { prefix: '的' },
-      empty: { text: "每月" },
+      empty: { text: '每月' },
       value: { text: '{{val.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' }
     },
@@ -59,7 +59,7 @@ export default {
       empty: { text: '每天' },
       value: { text: '{{val.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' }
-    },
+    }
   },
   month: {
     text: '月',
@@ -67,7 +67,7 @@ export default {
       '*': { prefix: '和' }
     },
     day: {
-      prefix: "的"
+      prefix: '的'
     }
   },
   year: {
