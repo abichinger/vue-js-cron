@@ -14,8 +14,8 @@ const locales = {
   pt,
   es,
   da,
-  zh_cn: cn,
-  zh: cn
+  zh: cn,
+  'zh-cn': cn
 }
 
 class Locale {
@@ -42,7 +42,7 @@ class Locale {
  */
 function getLocale (locale, mixin) {
   const [language] = locale.split('-')
-  const l = locales[locale] || locales[language] || locales.en
+  const l = locales[locale.toLowerCase()] || locales[language.toLowerCase()] || locales.en
   const dict = util.deepMerge(l, mixin || {})
   return new Locale(dict)
 }

@@ -1,5 +1,20 @@
 import { getLocale } from '../src/locale'
 
+test('test getLocale', () => {
+  const testCases = [
+    { locale: 'en', expected: 'Hour' },
+    { locale: 'foo-bar', expected: 'Hour' },
+    { locale: 'de', expected: 'Stunde' },
+    { locale: 'DE-AT', expected: 'Stunde' },
+    { locale: 'de-li', expected: 'Stunde' }
+  ]
+
+  for (const test of testCases) {
+    const l = getLocale(test.locale)
+    expect(l.getLocaleStr('hour', 'text')).toBe(test.expected)
+  }
+})
+
 test('test getLocaleStr', () => {
   const l = getLocale('en', {
     custom: {
