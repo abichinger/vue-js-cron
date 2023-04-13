@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2da6d1b7","path":"/guide/custom-periods.html","title":"Custom Periods","lang":"en-US","frontmatter":{},"headers":[],"git":{"contributors":[{"name":"Andreas Bichinger","email":"andreas.bichinger@gmail.com","commits":1}]},"filePathRelative":"guide/custom-periods.md"}');export{e as data};
