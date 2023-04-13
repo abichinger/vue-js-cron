@@ -1,10 +1,11 @@
 import Mustache from 'mustache'
 import util from '../util'
+import cn from './cn'
+import da from './da'
 import de from './de'
 import en from './en'
-import pt from './pt'
 import es from './es'
-import da from './da'
+import pt from './pt'
 const { genItems, pad, traverse } = util
 
 const locales = {
@@ -12,7 +13,9 @@ const locales = {
   de,
   pt,
   es,
-  da
+  da,
+  zh_cn: cn,
+  zh: cn
 }
 
 class Locale {
@@ -38,7 +41,8 @@ class Locale {
  * @returns {Locale} Dictionary with all strings in the requested language
  */
 function getLocale (locale, mixin) {
-  const l = locales[locale] || locales.en
+  const [language] = locale.split('-')
+  const l = locales[locale] || locales[language] || locales.en
   const dict = util.deepMerge(l, mixin || {})
   return new Locale(dict)
 }
