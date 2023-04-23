@@ -3,8 +3,10 @@
 The fastest way to get started, is to install one of the prebuilt components.
 For now `vue-js-cron` provides the following prebuilt components:
 - [cron-light](#light) - a lightweight cron editor without external dependencies
-- [cron-vuetify](#vuetify) - a cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/).
+- [cron-vuetify](#vuetify) - a cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
 - [cron-element-plus](#element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
+- [cron-ant](#ant) - a cron editor for [Ant Design Vue](https://antdv.com/)
+- [cron-quasar](#quasar) - a cron editor for [Quasar](https://quasar.dev/)
 
 If you would like to use a different UI framework, follow the quick start guide on how to use the [renderless component](#renderless).
 
@@ -176,6 +178,50 @@ Now you can use the `cron-ant` component.
 ### API
 
 - [cron-ant](../api/ant)
+
+## Quasar
+
+### Requirements
+
+- [Quasar](https://quasar.dev/start)
+
+### Installation
+
+Open up a terminal and run the following command:
+
+```bash 
+yarn add @vue-js-cron/quasar@latest
+```
+or
+
+```bash 
+npm install @vue-js-cron/quasar@latest
+```
+
+Then you need to register `@vue-js-cron/quasar` with `app.use()`
+
+```js
+import cronQuasar from '@vue-js-cron/quasar'
+app.use(cronQuasar)
+```
+
+Now you can use the `cron-quasar` component.
+
+<br />
+
+<!--
+### Example
+
+@[code](../.vuepress/components/get-started-ant.vue)
+
+**Result:**
+<get-started-ant />
+
+### API
+
+- [cron-ant](../api/ant)
+
+-->
 
 ## Renderless
 
