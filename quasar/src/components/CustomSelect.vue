@@ -24,7 +24,6 @@
           >
             <q-item
               clickable
-              v-ripple
               dense
               :active="isSelected(item)"
               class="col"
@@ -49,6 +48,7 @@ export default {
 
 <script setup>
 import { RenderlessSelect } from "@vue-js-cron/core";
+import { QMenu, QBtn, QItem, QIcon } from "quasar";
 
 defineProps({
   buttonProps: {
