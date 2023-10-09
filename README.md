@@ -1,3 +1,7 @@
+# vue-js-cron 
+[![npm latest version](https://img.shields.io/npm/v/@vue-js-cron/core)](https://www.npmjs.com/package/@vue-js-cron/core) 
+[![Test badge](https://github.com/abichinger/vue-js-cron/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/abichinger/vue-js-cron/actions?query=workflow%3ATest+branch%3Amain)
+
 <p align="center">
 <img src="./assets/vue-js-cron-hero.png" alt="vue-js-cron Hero">
 </p>
