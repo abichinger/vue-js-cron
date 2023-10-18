@@ -1,8 +1,12 @@
 <template>
   <div>
-    <VueCronEditor v-model="value">
+    <VueCronEditor v-model="value" @error="error = $event">
     </VueCronEditor>
-    <div><br />cron expression: {{value}}</div>
+    <div>
+      <br />
+      cron expression: <input :value="value" @change="updateValue"/></div>
+      <br />
+      Error: {{ error }}
   </div>
 </template>
 
@@ -13,10 +17,15 @@ export default {
   components: {
     VueCronEditor
   },
-
   data: () => {
     return {
-      value: '* * * * *'
+      value: '* * * * *',
+      error: ''
+    }
+  },
+  methods: {
+    updateValue (evt) {
+      this.value = evt.target.value
     }
   }
 }
