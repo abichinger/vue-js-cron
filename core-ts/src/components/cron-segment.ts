@@ -82,7 +82,8 @@ export function useCronSegment(options: FieldOptions) {
   })
 
   return {
-    field,
+    id: field.id,
+    items: field.items,
     cron,
     selected,
     error,

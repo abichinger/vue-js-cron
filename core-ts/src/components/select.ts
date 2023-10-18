@@ -1,72 +1,228 @@
-import { defineComponent, ref, type PropType } from 'vue'
+import { computed, defineComponent, ref, watch, type PropType, type Ref } from 'vue'
+import { splitArray } from '..'
 
-interface SelectOptions<T> {
-  initialValue?: T[]
+interface SetOptions<T> {
   items: T[]
 }
 
-export function useSelect<T>(options: SelectOptions<T>) {
-  const { initialValue = [], items } = options
+export function useSet<T>(options: SetOptions<T>) {
+  const { items } = options
 
-  const selected = ref(new Set())
+  const values = new Set<T>()
+  const updated = ref(0)
+
+  const forceUpdate = () => {
+    updated.value = updated.value + 1
+  }
 
   const add = (item: T) => {
     if (items.indexOf(item) == -1) {
       return
     }
-    selected.value.add(item)
+    values.add(item)
+    forceUpdate()
   }
-  initialValue.forEach((i) => add(i))
 
   const has = (item: T) => {
-    selected.value.has(item)
+    return values.has(item)
   }
 
   const remove = (item: T) => {
-    selected.value.delete(item)
+    if (values.delete(item)) {
+      forceUpdate()
+    }
   }
 
   const clear = () => {
-    selected.value.clear()
+    values.clear()
+    forceUpdate()
   }
 
-  const set = (item: T) => {
-    clear();
-    add(item);
+  const toggle = (item: T) => {
+    if (has(item)) {
+      remove(item)
+    } else {
+      add(item)
+    }
+  }
+
+  const equals = (items: T[]) => {
+    if (items.length != values.size) {
+      return false
+    }
+    for (const item of items) {
+      if (!values.has(item)) {
+        return false
+      }
+    }
+    return true
   }
 
   return {
-    selected,
+    values,
     add,
-    set,
+    toggle,
     has,
     remove,
-    clear
+    clear,
+    updated,
+    equals
   }
 }
 
-export function useSelectComponent<T>() {
-  const selectProps = {
-    initialValue: {
-      type: Array as PropType<Array<T>>,
-      default: () => []
-    },
+interface SelectOptions<T, V> extends SetOptions<T> {
+  multiple?: boolean
+  itemText?: string | ((item: T) => string)
+  itemValue?: string | ((item: T) => V)
+  cols?: number
+}
+
+export function selectProps<T, V>() {
+  return {
     items: {
       type: Array as PropType<Array<T>>,
       default: () => []
     },
-  }
-
-  return defineComponent({
-    props: selectProps,
-    setup(props, ctx) {
-      const select = useSelect(props)
-
-      return () => {
-        return ctx.slots.default?.(select)
-      }
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    cols: {
+      type: Number,
+      default: 1
+    },
+    itemText: {
+      type: [String, Function] as PropType<string | ((item: T) => string)>,
+      default: 'text'
+    },
+    itemValue: {
+      type: [String, Function] as PropType<string | ((item: T) => V)>,
+      default: 'value'
     }
-  })
+  }
 }
 
+export function useSelect<T, V>(options: SelectOptions<T, V>) {
+  const { items, cols = 1, multiple = false, itemText = 'text', itemValue = 'value' } = options
+  const s = useSet<T>(options)
+  const selected: Ref<V[] | V> = multiple ? ref<Array<any>>([]) : ref<any>(null)
+  const selectedStr = ref('')
 
+  const select = (item: T) => {
+    if (multiple) {
+      s.toggle(item)
+    } else {
+      s.clear()
+      s.add(item)
+    }
+  }
+
+  const getValue = (item: any): V => {
+    if (typeof itemValue == 'function') {
+      return itemValue(item)
+    } else {
+      return item[itemValue]
+    }
+  }
+
+  const getText = (item: any): string => {
+    if (typeof itemText == 'function') {
+      return itemText(item)
+    } else {
+      return item[itemText]
+    }
+  }
+
+  const itemMap = new Map(items.map((i) => [getValue(i), i]))
+
+  const selectItems = (items: T[]) => {
+    if (s.equals(items)) {
+      return
+    }
+    s.clear()
+    items.forEach((i) => select(i))
+  }
+
+  const selectValues = (values: V[] | V) => {
+    values = Array.isArray(values) ? values : [values]
+    const items = values.map((v) => itemMap.get(v)).filter((item): item is T => !!item)
+    selectItems(items)
+  }
+
+  watch(s.updated, () => {
+    const items = Array.from(s.values)
+    selected.value = multiple ? items.map(getValue) : getValue(items[0])
+    selectedStr.value = items.map(getText).join(',')
+  })
+
+  return {
+    ...s,
+    select,
+    selected,
+    selectedStr,
+    itemRows: splitArray(items, cols),
+    selectItems,
+    selectValues
+  }
+}
+
+export const RenderlessSelect = defineComponent({
+  name: 'RenderlessSelect',
+  props: {
+    ...selectProps<any, any>(),
+    modelValue: {
+      type: [String, Number, Array]
+    },
+    selection: {
+      type: String
+    },
+    clearable: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ['update:modelValue'],
+  setup(props, { emit, slots }) {
+    const s = useSelect<any, any>(props)
+
+    watch(s.selected, () => {
+      emit('update:modelValue', s.selected.value)
+    })
+
+    watch(
+      () => props.modelValue,
+      (value) => {
+        if (value) {
+          s.selectValues(value)
+        }
+      },
+      { immediate: true }
+    )
+
+    const isEmpty = computed(() => {
+      return props.multiple
+        ? !Array.isArray(s.selected.value) || s.selected.value.length == 0
+        : !!s.selected.value
+    })
+
+    return () => {
+      const slotProps = {
+        selectedStr: props.selection || s.selectedStr,
+        modelValue: props.modelValue,
+        items: props.items,
+        select: s.select,
+        isSelected: s.has,
+        clearable: props.clearable && !isEmpty.value,
+        clear: s.clear,
+        cols: props.cols,
+        rows: s.itemRows.length,
+        itemRows: s.itemRows,
+        multiple: props.multiple,
+        itemText: props.itemText,
+        itemValue: props.itemValue
+      }
+
+      return slots.default?.(slotProps)
+    }
+  }
+})
