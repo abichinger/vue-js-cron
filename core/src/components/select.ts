@@ -135,7 +135,7 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
 
   const itemMap = new Map(items.map((i) => [getValue(i), i]))
 
-  const selectItems = (items: T[]) => {
+  const setItems = (items: T[]) => {
     if (s.equals(items)) {
       return
     }
@@ -143,10 +143,10 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     items.forEach((i) => select(i))
   }
 
-  const selectValues = (values: V[] | V) => {
+  const setValues = (values: V[] | V) => {
     values = Array.isArray(values) ? values : [values]
     const items = values.map((v) => itemMap.get(v)).filter((item): item is T => !!item)
-    selectItems(items)
+    setItems(items)
   }
 
   watch(s.updated, () => {
@@ -161,8 +161,8 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     selected,
     selectedStr,
     itemRows: splitArray(items, cols),
-    selectItems,
-    selectValues
+    setItems,
+    setValues,
   }
 }
 
@@ -193,7 +193,7 @@ export const RenderlessSelect = defineComponent({
       () => props.modelValue,
       (value) => {
         if (value) {
-          s.selectValues(value)
+          s.setValues(value)
         }
       },
       { immediate: true }
@@ -207,7 +207,7 @@ export const RenderlessSelect = defineComponent({
 
     return () => {
       const slotProps = {
-        selectedStr: props.selection || s.selectedStr,
+        selectedStr: props.selection || s.selectedStr.value,
         modelValue: props.modelValue,
         items: props.items,
         select: s.select,
