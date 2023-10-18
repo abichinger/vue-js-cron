@@ -1,62 +1,77 @@
 <template>
-  <renderless-select
-    v-bind="$attrs"
-    @update:model-value="$emit('update:model-value', $event)"
-    #default="{ selectedStr, itemRows, select, isSelected, multiple }">
+  <div class="vcron-select-container">
+    <span class="vcron-select-input" @click="toggleMenu">
+      {{ selection ?? selectedStr }}
+    </span>
 
-    <div class="vcron-select-container">
-      <span class="vcron-select-input" @click="toggleMenu">
-        {{selectedStr}}
-      </span>
+    <div class="vcron-select-list" v-if="menu">
+      <div class="vcron-select-row" v-for="(row, i) in itemRows" :key="i">
+        <div v-for="(item, j) in row"
+          :key="i+'-'+j"
+          class="vcron-select-col"
+          :class="{'vcron-select-selected': has(item)}"
+          @click="select(item)"
+          @click.stop="multiple ? () => {} : toggleMenu()">
 
-      <div class="vcron-select-list" v-if="menu">
-        <div class="vcron-select-row" v-for="(row, i) in itemRows" :key="i">
-          <div v-for="(item, j) in row"
-            :key="i+'-'+j"
-            class="vcron-select-col"
-            :class="{'vcron-select-selected': isSelected(item)}"
-            @click="select(item)"
-            @click.stop="multiple ? () => {} : toggleMenu()">
-
-            <div v-if="item">{{item.text}}</div>
-          </div>
+          <div v-if="item">{{item.text}}</div>
         </div>
       </div>
     </div>
-  </renderless-select>
+  </div>
 </template>
 
 <script>
-import { RenderlessSelect } from '@vue-js-cron/core'
+import { selectProps, useSelect } from '@vue-js-cron/core-ts'
+import { ref, watch } from 'vue'
 
 export default {
-  inheritAttrs: false,
-  components: {
-    RenderlessSelect
-  },
   name: 'CustomSelect',
-  props: {},
-  emits: ['update:model-value'],
-  data () {
-    return {
-      menu: false
+  props: {
+    ...selectProps(),
+    modelValue: {
+      type: [String, Number, Array]
+    },
+    selection: {
+      type: String
     }
   },
-  methods: {
-    menuEvtListener (evt) {
-      this.menu = false
-      document.removeEventListener('click', this.menuEvtListener)
-    },
-    toggleMenu () {
-      this.menu = !this.menu
+  emits: ['update:modelValue'],
+  setup (props, { emit }) {
+    const s = useSelect(props)
+    const menu = ref(false)
 
-      if (this.menu) {
+    if (props.modelValue) {
+      s.selectValues(props.modelValue)
+    }
+
+    const menuEvtListener = (evt) => {
+      menu.value = false
+      document.removeEventListener('click', menuEvtListener)
+    }
+    const toggleMenu = () => {
+      menu.value = !menu.value
+
+      if (menu.value) {
         setTimeout(() => {
-          document.addEventListener('click', this.menuEvtListener)
+          document.addEventListener('click', menuEvtListener)
         }, 1)
       } else {
-        document.removeEventListener('click', this.menuEvtListener)
+        document.removeEventListener('click', menuEvtListener)
       }
+    }
+
+    watch(s.selected, () => {
+      emit('update:modelValue', s.selected.value)
+    })
+
+    watch(() => props.modelValue, (value) => {
+      s.selectValues(value)
+    })
+
+    return {
+      ...s,
+      menu,
+      toggleMenu
     }
   }
 }

@@ -5,6 +5,7 @@
   "license": "MIT",
   "workspaces": [
     "core",
+    "core-ts",
     "light",
     "vuetify",
     "element-plus",
@@ -65,6 +66,6 @@
     "vue-jest": "^5.0.0-alpha.10"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.3.4"
   }
 }
