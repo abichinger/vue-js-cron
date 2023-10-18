@@ -50,11 +50,11 @@ select[multiple] {
 </style>
 
 <script lang="ts">
-import { useCronComponent } from './components/cron-core'
+import { CronCore } from './components/cron-core'
 
 export default {
   components: {
-    CronCore: useCronComponent()
+    CronCore: CronCore
   },
   props: {},
   data() {

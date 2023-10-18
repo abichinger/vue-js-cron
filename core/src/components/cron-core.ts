@@ -175,8 +175,7 @@ export const cronProps = {
   }
 }
 
-export function useCronComponent() {
-  return defineComponent({
+export const CronCore = defineComponent({
     name: 'VueCronCore',
     props: cronProps,
     emits: ['update:model-value', 'error'],
@@ -237,4 +236,3 @@ export function useCronComponent() {
       }
     }
   })
-}

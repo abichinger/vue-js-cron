@@ -5,7 +5,6 @@
   "license": "MIT",
   "workspaces": [
     "core",
-    "core-ts",
     "light",
     "vuetify",
     "element-plus",
