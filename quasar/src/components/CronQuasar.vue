@@ -31,7 +31,6 @@
             :items="f.items"
             multiple
             :button-props="buttonProps"
-            :hideOnClick="false"
             clearable
           />
 
@@ -43,9 +42,8 @@
 </template>
 
 <script setup>
-import core from "@vue-js-cron/core";
+import { CronCore } from "@vue-js-cron/core";
 import CustomSelect from "./CustomSelect.vue";
-const CronCore = core.component;
 
 defineProps({
   buttonProps: {

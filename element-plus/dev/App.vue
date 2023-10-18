@@ -4,11 +4,13 @@
     <!-- <v-text-field label="" :model-value="value" @update:model-value="nextValue = $event" @blur="value=nextValue"></v-text-field> -->
     <VueCronEditor v-model="value" />
 
+    <br />
+    {{ value }}
   </div>
 </template>
 
 <script>
-import VueCronEditor from '../src/CronEditor'
+import VueCronEditor from '../src/CronEditor';
 
 export default {
   components: {
