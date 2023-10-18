@@ -56,26 +56,27 @@ export function useCron(options: CronOptions) {
   const cronDefaults = new DefaultCronOptions()
 
   const locale = options.locale ?? 'en'
-  const {
-    customLocale,
-    fields = cronDefaults.fields(locale),
-    periods = cronDefaults.periods()
-  } = options
+  const { customLocale, fields = cronDefaults.fields(locale) } = options
   const initialValue = options.initialValue ?? cronDefaults.initialValue(fields.length)
 
   const l10n = getLocale(locale, customLocale)
+  const periods = (options.periods ?? cronDefaults.periods()).map((p) => {
+    return {
+      ...p,
+      text: l10n.getLocaleStr(p.id, TextPosition.Text)
+    }
+  })
 
   const cron = ref(initialValue)
   const error = ref('')
   const period = ref(periods[periods.length - 1])
-  const periodText = ref('')
   const periodPrefix = ref('')
   const periodSuffix = ref('')
   const segments = fields.map((f) => {
     return useCronSegment({ field: new FieldWrapper(f), locale: l10n, period })
   })
 
-  const segmentMap = new Map(segments.map((s) => [s.field.id, s]))
+  const segmentMap = new Map(segments.map((s) => [s.id, s]))
   const selected = computed(() => {
     return period.value.value.map((fieldId) => {
       const segment = segmentMap.get(fieldId)
@@ -111,7 +112,7 @@ export function useCron(options: CronOptions) {
   const toCron = () => {
     cron.value = segments
       .map((s) => {
-        return period.value.value.includes(s.field.id) ? s.cron.value : '*'
+        return period.value.value.includes(s.id) ? s.cron.value : '*'
       })
       .join(' ')
   }
@@ -123,10 +124,16 @@ export function useCron(options: CronOptions) {
   translate()
 
   watch(cron, fromCron)
-  watch(period, translate)
+  watch(period, () => {
+    toCron()
+    translate()
+  })
 
   segments.forEach((s) => {
     watch(s.cron, toCron)
+    watch(s.error, (value) => {
+      error.value = value
+    })
   })
 
   return {
@@ -143,17 +150,10 @@ export function useCron(options: CronOptions) {
         period.value = periods[i]
       },
       selected: period,
-      items: periods.map((p) => {
-        return {
-          ...p,
-          text: l10n.getLocaleStr(p.id, TextPosition.Text)
-        }
-      }),
-      text: periodText,
+      items: periods,
       prefix: periodPrefix,
       suffix: periodSuffix
-    },
-    fields
+    }
   }
 }
 
@@ -205,8 +205,8 @@ export function useCronComponent() {
           error: error,
           fields: selected.value.map((s) => {
             return {
-              id: s.field.id,
-              items: s.field.items,
+              id: s.id,
+              items: s.items,
               cron: s.cron.value,
               selectedStr: s.text.value,
               events: {

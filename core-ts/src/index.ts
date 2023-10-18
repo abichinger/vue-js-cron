@@ -1,15 +1,17 @@
 import { type App } from 'vue'
 import { useCronComponent } from './components/cron-core'
 
-export { useCron, useCronComponent } from './components/cron-core'
-export { useSelect, useSelectComponent } from './components/select'
+export { cronProps, useCron, useCronComponent } from './components/cron-core'
+export { selectProps, useSelect } from './components/select'
 export { Locale, getLocale } from './locale'
-export { defaultItems, genItems, pad } from './util'
+export { CronType, FieldWrapper, TextPosition } from './types'
+export type { Field, FieldItem, Period } from './types'
+export { defaultItems, genItems, pad, splitArray } from './util'
 
 function install(app: App) {
   app.component('CronCore', useCronComponent())
 }
 
 export const corePlugin = {
-  install,
+  install
 }

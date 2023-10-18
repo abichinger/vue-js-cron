@@ -54,7 +54,7 @@ import { useCronComponent } from './components/cron-core'
 
 export default {
   components: {
-    'CronCore': useCronComponent()
+    CronCore: useCronComponent()
   },
   props: {},
   data() {
@@ -77,4 +77,3 @@ export default {
   }
 }
 </script>
-./components/core

@@ -186,5 +186,26 @@ function unimplemented(): never {
   throw new Error('not implemented')
 }
 
-export { Range, deepMerge, defaultItems, genItems, isObject, isSquence, pad, range, traverse, unimplemented }
+function splitArray<T>(arr: T[], chunkSize: number): T[][] {
+  const res = []
 
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    res.push(arr.slice(i, i + chunkSize))
+  }
+
+  return res
+}
+
+export {
+  Range,
+  deepMerge,
+  defaultItems,
+  genItems,
+  isObject,
+  isSquence,
+  pad,
+  range,
+  splitArray,
+  traverse,
+  unimplemented
+}
