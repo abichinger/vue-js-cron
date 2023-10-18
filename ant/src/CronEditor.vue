@@ -43,13 +43,13 @@
 </template>
 
 <script>
-import CronCore from '@vue-js-cron/core'
+import { CronCore } from '@vue-js-cron/core'
 import CustomSelect from './components/CustomSelect.vue'
 
 export default {
   name: 'VueCronEditor',
   components: {
-    CronCore: CronCore.component,
+    CronCore,
     CustomSelect
   },
   props: {

@@ -41,7 +41,7 @@ export default {
     const menu = ref(false)
 
     if (props.modelValue) {
-      s.selectValues(props.modelValue)
+      s.setValues(props.modelValue)
     }
 
     const menuEvtListener = (evt) => {
@@ -65,7 +65,7 @@ export default {
     })
 
     watch(() => props.modelValue, (value) => {
-      s.selectValues(value)
+      s.setValues(value)
     })
 
     return {

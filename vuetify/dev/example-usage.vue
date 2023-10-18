@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import cronCore from '@vue-js-cron/core'
+import { defaultItems, pad } from '@vue-js-cron/core'
 import VueCronEditor from '../src/CronEditor'
 
 export default {
@@ -34,9 +34,9 @@ export default {
 
     const minuteItems = (() => {
       const res = []
-      for (const i of cronCore.util.range(0, 59, 15)) {
+      for (const i of [0, 15, 30, 45]) {
         const item = {
-          text: cronCore.util.pad(i, 2),
+          text: pad(i, 2),
           alt: i + '',
           value: i
         }
@@ -45,15 +45,17 @@ export default {
       return res
     })()
 
+    const fieldItems = defaultItems('en')
+
     return {
       value,
       nextValue: value,
       fields: [
         { id: 'minute', items: minuteItems },
-        { id: 'hour', items: cronCore.locale.defaultItems('en').hourItems },
-        { id: 'day', items: cronCore.locale.defaultItems('en').dayItems },
-        { id: 'month', items: cronCore.locale.defaultItems('en').monthItems },
-        { id: 'dayOfWeek', items: cronCore.locale.defaultItems('en').dayOfWeekItems }
+        { id: 'hour', items: fieldItems.hourItems },
+        { id: 'day', items: fieldItems.dayItems },
+        { id: 'month', items: fieldItems.monthItems },
+        { id: 'dayOfWeek', items: fieldItems.dayOfWeekItems }
       ]
     }
   }
