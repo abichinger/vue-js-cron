@@ -162,7 +162,7 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     selectedStr,
     itemRows: splitArray(items, cols),
     setItems,
-    setValues,
+    setValues
   }
 }
 

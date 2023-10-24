@@ -57,6 +57,14 @@ const locale: Localization = {
         prefix: '',
         text: 'alle {{every.value}} Minuten'
       }
+    },
+    second: {
+      '*': { prefix: ':' },
+      empty: { text: 'jede Sekunde' },
+      everyX: {
+        prefix: '',
+        text: 'alle {{every.value}} Sekunden'
+      }
     }
   },
   minute: {
@@ -86,7 +94,33 @@ const locale: Localization = {
   year: {
     prefix: 'Jedes',
     text: 'Jahr'
-  }
+  },
+
+  //quartz format
+  'q-second': {
+    text: 'Sekunde'
+  },
+  'q-minute': {
+    text: 'Minute',
+    second: {
+      '*': {
+        prefix: 'und',
+      },
+    }
+  },
+  'q-hour': {
+    text: 'Stunde',
+    minute: {
+      '*': {
+        prefix: 'und'
+      }
+    },
+    second: {
+      '*': {
+        prefix: 'und'
+      }
+    }
+  },
 }
 
 export default locale

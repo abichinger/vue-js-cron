@@ -60,6 +60,7 @@ defineProps({
     type: Object,
     default: () => {
       return {
+        second: 5,
         minute: 5,
         hour: 4,
         day: 4,
