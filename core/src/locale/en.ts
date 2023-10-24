@@ -30,6 +30,9 @@ const locale: Localization = {
     },
     minute: {
       '*': { prefix: ':' }
+    },
+    second: {
+      '*': { prefix: ':' }
     }
   },
   minute: {
@@ -62,7 +65,30 @@ const locale: Localization = {
     dayOfWeek: {
       '*': { prefix: 'and' }
     }
-  }
+  },
+
+  //quartz format
+  'q-second': {
+    text: 'Second'
+  },
+  'q-minute': {
+    text: 'Minute',
+    second: {
+      '*': {
+        prefix: 'at',
+        suffix: 'second(s)'
+      },
+      empty: { text: 'every' }
+    }
+  },
+  'q-hour': {
+    text: 'Hour',
+    minute: {
+      '*': {
+        prefix: 'at'
+      }
+    }
+  },
 }
 
 export default locale

@@ -51,27 +51,23 @@ describe('select', () => {
       }
     })
 
-    const withTick = async (fn : () => void) => {
+    const withTick = async (fn: () => void) => {
       fn()
       await nextTick()
     }
 
-    const { select, setItems, selected } = useSelect<any, number>({items, multiple: true})
+    const { select, setItems, selected } = useSelect<any, number>({ items, multiple: true })
 
-    let counter = 0;
-    const expected = [
-      [0],
-      [],
-      [1,2]
-    ]
+    let counter = 0
+    const expected = [[0], [], [1, 2]]
     watch(selected, (value) => {
-      expect((value as number[]).sort()).toEqual(expected[counter].sort());
-      counter++;
+      expect((value as number[]).sort()).toEqual(expected[counter].sort())
+      counter++
     })
 
     await withTick(() => select(items[0]))
     await withTick(() => select(items[0]))
-    await withTick(() => select({value: 100, text: 'Item-100'})) // ignored
+    await withTick(() => select({ value: 100, text: 'Item-100' })) // ignored
     await withTick(() => setItems([items[1], items[2]]))
     await withTick(() => setItems([items[1], items[2]])) // ignored
   })

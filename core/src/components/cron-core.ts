@@ -5,12 +5,15 @@ import { FieldWrapper, TextPosition, type Field, type Period } from '../types'
 import { defaultItems } from '../util'
 import { useCronSegment } from './cron-segment'
 
+export type CronFormat = 'crontab' | 'quartz'
+
 interface CronOptions {
   initialValue?: string
   locale?: string
   fields?: Field[]
   periods?: Period[]
   customLocale?: Localization
+  format?: CronFormat
 }
 
 function createCron(len: number, seg: string = '*') {
@@ -24,14 +27,17 @@ function isDefined<T>(obj: T | undefined): obj is T {
 class DefaultCronOptions {
   locale = 'en'
 
+  format: CronFormat = 'crontab'
+
   initialValue(len: number, seg: string = '*') {
     return createCron(len, seg)
   }
 
-  fields(locale: string) {
+  fields(format: CronFormat, locale: string) {
     const items = defaultItems(locale)
 
     return [
+      ...(format == 'quartz' ? [{ id: 'second', items: items.secondItems }] : []),
       { id: 'minute', items: items.minuteItems },
       { id: 'hour', items: items.hourItems },
       { id: 'day', items: items.dayItems },
@@ -40,14 +46,20 @@ class DefaultCronOptions {
     ]
   }
 
-  periods() {
+  periods(format: CronFormat) {
+    const isQuartz = format == 'quartz';
+    const second = isQuartz ? [{ id: 'q-second', value: [] }] : []
+    const secondField = isQuartz ? ['second'] : []
+    const prefix = isQuartz ? 'q-' : ''; 
+
     return [
-      { id: 'minute', value: [] },
-      { id: 'hour', value: ['minute'] },
-      { id: 'day', value: ['hour', 'minute'] },
-      { id: 'week', value: ['dayOfWeek', 'hour', 'minute'] },
-      { id: 'month', value: ['day', 'dayOfWeek', 'hour', 'minute'] },
-      { id: 'year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute'] }
+      ...second,
+      { id: prefix + 'minute', value: [...secondField] },
+      { id: prefix + 'hour', value: ['minute', ...secondField] },
+      { id: 'day', value: ['hour', 'minute', ...secondField] },
+      { id: 'week', value: ['dayOfWeek', 'hour', 'minute', ...secondField] },
+      { id: 'month', value: ['day', 'dayOfWeek', 'hour', 'minute', ...secondField] },
+      { id: 'year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute', ...secondField] }
     ]
   }
 }
@@ -55,12 +67,13 @@ class DefaultCronOptions {
 export function useCron(options: CronOptions) {
   const cronDefaults = new DefaultCronOptions()
 
-  const locale = options.locale ?? 'en'
-  const { customLocale, fields = cronDefaults.fields(locale) } = options
+  const locale = options.locale ?? cronDefaults.locale
+  const format = options.format ?? cronDefaults.format
+  const { customLocale, fields = cronDefaults.fields(format, locale) } = options
   const initialValue = options.initialValue ?? cronDefaults.initialValue(fields.length)
 
   const l10n = getLocale(locale, customLocale)
-  const periods = (options.periods ?? cronDefaults.periods()).map((p) => {
+  const periods = (options.periods ?? cronDefaults.periods(format)).map((p) => {
     return {
       ...p,
       text: l10n.getLocaleStr(p.id, TextPosition.Text)
@@ -161,6 +174,9 @@ export const cronProps = {
   modelValue: {
     type: String
   },
+  format: {
+    type: String as PropType<CronFormat>
+  },
   locale: {
     type: String
   },
@@ -176,63 +192,63 @@ export const cronProps = {
 }
 
 export const CronCore = defineComponent({
-    name: 'VueCronCore',
-    props: cronProps,
-    emits: ['update:model-value', 'error'],
-    setup(props, ctx) {
-      const { cron, error, selected, period } = useCron(props)
+  name: 'VueCronCore',
+  props: cronProps,
+  emits: ['update:model-value', 'error'],
+  setup(props, ctx) {
+    const { cron, error, selected, period } = useCron(props)
 
-      watch(cron, (value) => {
-        ctx.emit('update:model-value', value)
-      })
+    watch(cron, (value) => {
+      ctx.emit('update:model-value', value)
+    })
 
-      watch(error, (value) => {
-        ctx.emit('error', value)
-      })
+    watch(error, (value) => {
+      ctx.emit('error', value)
+    })
 
-      watch(
-        () => props.modelValue,
-        (value) => {
-          if (value) {
-            cron.value = value
-          }
+    watch(
+      () => props.modelValue,
+      (value) => {
+        if (value) {
+          cron.value = value
         }
-      )
-
-      return () => {
-        const slotProps = {
-          error: error,
-          fields: selected.value.map((s) => {
-            return {
-              id: s.id,
-              items: s.items,
-              cron: s.cron.value,
-              selectedStr: s.text.value,
-              events: {
-                'update:model-value': s.select
-              },
-              attrs: {
-                modelValue: s.selected.value
-              },
-              prefix: s.prefix.value,
-              suffix: s.suffix.value
-            }
-          }),
-
-          period: {
-            attrs: {
-              modelValue: period.selected.value.id
-            },
-            events: {
-              'update:model-value': period.select
-            },
-            items: period.items,
-            prefix: period.prefix.value,
-            suffix: period.suffix.value
-          }
-        }
-
-        return ctx.slots.default?.(slotProps)
       }
+    )
+
+    return () => {
+      const slotProps = {
+        error: error,
+        fields: selected.value.map((s) => {
+          return {
+            id: s.id,
+            items: s.items,
+            cron: s.cron.value,
+            selectedStr: s.text.value,
+            events: {
+              'update:model-value': s.select
+            },
+            attrs: {
+              modelValue: s.selected.value
+            },
+            prefix: s.prefix.value,
+            suffix: s.suffix.value
+          }
+        }),
+
+        period: {
+          attrs: {
+            modelValue: period.selected.value.id
+          },
+          events: {
+            'update:model-value': period.select
+          },
+          items: period.items,
+          prefix: period.prefix.value,
+          suffix: period.suffix.value
+        }
+      }
+
+      return ctx.slots.default?.(slotProps)
     }
-  })
+  }
+})

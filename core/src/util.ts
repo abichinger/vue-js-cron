@@ -82,6 +82,7 @@ function genItems(
  */
 function defaultItems(localeCode: string) {
   return {
+    secondItems: genItems(0, 59, (value) => pad(value, 2)),
     minuteItems: genItems(0, 59, (value) => pad(value, 2)),
     hourItems: genItems(0, 23, (value) => pad(value, 2)),
     dayItems: genItems(1, 31),

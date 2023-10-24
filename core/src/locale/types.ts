@@ -11,6 +11,7 @@ interface FieldLocalization {
   [fieldId: string]: unknown
 
   '*'?: CronLocalization
+  second?: CronLocalization
   minute?: CronLocalization
   hour?: CronLocalization
   day?: CronLocalization
