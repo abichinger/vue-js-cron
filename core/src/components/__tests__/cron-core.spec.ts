@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { nextTick } from 'vue'
 import { useCron, type CronFormat } from '../cron-core'
 
 type UseCronReturn = ReturnType<typeof useCron>
@@ -19,10 +20,11 @@ function cronToString({ selected: { value: selected }, period }: UseCronReturn):
 }
 
 describe('useCron', () => {
-  it('renders properly', () => {
+  it('renders properly', async () => {
     const tests: {
       format: CronFormat
       value: string
+      period?: string
       expected: string
     }[] = [
       {
@@ -34,11 +36,36 @@ describe('useCron', () => {
         format: 'quartz',
         value: '* * * * * *',
         expected: `Every Year in every month on every day and every day of the week at every hour : every minute : every second`
+      },
+      {
+        format: 'crontab',
+        value: '* * * * *',
+        period: 'hour',
+        expected: `Every Hour at every minute(s)`
+      },
+      {
+        format: 'quartz',
+        value: '* * * * * *',
+        period: 'q-hour',
+        expected: `Every Hour at every minute : every second`
+      },
+      {
+        format: 'quartz',
+        value: '0 15 10 * * ?',
+        period: 'month',
+        expected: `Every Month on every day and no specific day of the week at 10 : 15 : 00`
+      },
+      {
+        format: 'quartz',
+        value: '0 15 10 ? * *',
+        period: 'month',
+        expected: `Every Month on no specific day and every day of the week at 10 : 15 : 00`
       }
     ]
 
     for (const t of tests) {
-      const cron = useCron({ format: t.format, initialValue: t.value })
+      const cron = useCron({ format: t.format, initialValue: t.value, initialPeriod: t.period })
+      await nextTick()
       expect(cronToString(cron)).toEqual(t.expected)
     }
   })

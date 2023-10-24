@@ -10,6 +10,7 @@ export type CronFormat = 'crontab' | 'quartz'
 
 export interface CronOptions {
   initialValue?: string
+  initialPeriod?: string
   locale?: string
   fields?: Field[]
   periods?: Period[]
@@ -125,10 +126,12 @@ export function useCron(options: CronOptions) {
       text: l10n.getLocaleStr(p.id, TextPosition.Text)
     }
   })
+  const initialPeriod =
+    periods.find((p) => p.id == options.initialPeriod) ?? periods[periods.length - 1]
 
   const cron = ref(initialValue)
   const error = ref('')
-  const period = ref(periods[periods.length - 1])
+  const period = ref(initialPeriod)
   const periodPrefix = ref('')
   const periodSuffix = ref('')
   const segments = fields.map((f) => {
@@ -221,6 +224,9 @@ export function useCron(options: CronOptions) {
 
 export const cronProps = {
   modelValue: {
+    type: String
+  },
+  initialPeriod: {
     type: String
   },
   format: {
