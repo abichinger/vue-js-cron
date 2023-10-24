@@ -17,13 +17,19 @@ const locale: Localization = {
       range: { text: '{{start.alt}}-{{end.alt}}' }
     },
     day: {
-      '*': { prefix: 'on' }
+      '*': { prefix: 'on' },
+      noSpecific: {
+        text: 'no specific day'
+      }
     },
     dayOfWeek: {
       '*': { prefix: 'on' },
       empty: { text: 'every day of the week' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
+      noSpecific: {
+        text: 'no specific day of the week'
+      }
     },
     hour: {
       '*': { prefix: 'at' }
@@ -88,7 +94,7 @@ const locale: Localization = {
         prefix: 'at'
       }
     }
-  },
+  }
 }
 
 export default locale

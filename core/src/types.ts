@@ -1,9 +1,24 @@
+import type { CronContext } from './components/cron-core'
+import type { UseCronSegmentReturn } from './components/cron-segment'
+
+export interface CronSegment {
+  field: FieldWrapper
+  type: CronType
+  toCron: () => string
+  toArray: () => number[]
+  items: Record<string, FieldItem>
+}
+
+export type SegmentFromArray = (arr: number[], field: FieldWrapper) => CronSegment | null
+export type SegmentFromString = (str: string, field: FieldWrapper) => CronSegment | null
+
 export enum CronType {
   Empty = 'empty',
   Value = 'value',
   Range = 'range',
   EveryX = 'everyX',
-  Combined = 'combined'
+  Combined = 'combined',
+  NoSpecific = 'noSpecific'
 }
 
 export enum TextPosition {
@@ -21,6 +36,8 @@ export interface FieldItem {
 export interface Field {
   id: string
   items: FieldItem[]
+  onChange?: (segment: UseCronSegmentReturn, ctx: CronContext) => void
+  segmentFactories?: SegmentFromString[]
 }
 
 export interface Period {
@@ -49,6 +66,12 @@ export class FieldWrapper {
   }
   get items() {
     return this.field.items
+  }
+  get onChange() {
+    return this.field.onChange
+  }
+  get segmentFactories() {
+    return this.field.segmentFactories
   }
 
   get min() {

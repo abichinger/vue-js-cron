@@ -1,19 +1,24 @@
+import { AnySegment, EverySegment, NoSpecificSegment, RangeSegment, ValueSegment } from '@/cron'
 import type { Localization } from '@/locale/types'
 import { computed, defineComponent, ref, watch, type PropType } from 'vue'
 import { getLocale } from '../locale'
 import { FieldWrapper, TextPosition, type Field, type Period } from '../types'
 import { defaultItems } from '../util'
-import { useCronSegment } from './cron-segment'
+import { useCronSegment, type UseCronSegmentReturn } from './cron-segment'
 
 export type CronFormat = 'crontab' | 'quartz'
 
-interface CronOptions {
+export interface CronOptions {
   initialValue?: string
   locale?: string
   fields?: Field[]
   periods?: Period[]
   customLocale?: Localization
   format?: CronFormat
+}
+
+export interface CronContext {
+  segmentMap: Map<string, UseCronSegmentReturn>
 }
 
 function createCron(len: number, seg: string = '*') {
@@ -33,24 +38,65 @@ class DefaultCronOptions {
     return createCron(len, seg)
   }
 
-  fields(format: CronFormat, locale: string) {
+  fields(format: CronFormat, locale: string): Field[] {
+    const isQuartz = format == 'quartz'
     const items = defaultItems(locale)
 
+    const setNoSpecific = (fieldId: string) => {
+      return (value: UseCronSegmentReturn, { segmentMap }: CronContext) => {
+        if (value.cron.value == '?') {
+          return
+        }
+
+        const segment = segmentMap.get(fieldId)
+        if (!segment) {
+          return
+        }
+        segment.cron.value = '?'
+      }
+    }
+
     return [
-      ...(format == 'quartz' ? [{ id: 'second', items: items.secondItems }] : []),
+      ...(isQuartz ? [{ id: 'second', items: items.secondItems }] : []),
       { id: 'minute', items: items.minuteItems },
       { id: 'hour', items: items.hourItems },
-      { id: 'day', items: items.dayItems },
+      {
+        id: 'day',
+        items: items.dayItems,
+        onChange: isQuartz ? setNoSpecific('dayOfWeek') : undefined,
+        segmentFactories: isQuartz
+          ? [
+              AnySegment.fromString,
+              NoSpecificSegment.fromString,
+              EverySegment.fromString,
+              RangeSegment.fromString,
+              ValueSegment.fromString
+            ]
+          : undefined
+      },
       { id: 'month', items: items.monthItems },
-      { id: 'dayOfWeek', items: items.dayOfWeekItems }
+      {
+        id: 'dayOfWeek',
+        items: items.dayOfWeekItems,
+        onChange: isQuartz ? setNoSpecific('day') : undefined,
+        segmentFactories: isQuartz
+          ? [
+              AnySegment.fromString,
+              NoSpecificSegment.fromString,
+              EverySegment.fromString,
+              RangeSegment.fromString,
+              ValueSegment.fromString
+            ]
+          : undefined
+      }
     ]
   }
 
   periods(format: CronFormat) {
-    const isQuartz = format == 'quartz';
+    const isQuartz = format == 'quartz'
     const second = isQuartz ? [{ id: 'q-second', value: [] }] : []
     const secondField = isQuartz ? ['second'] : []
-    const prefix = isQuartz ? 'q-' : ''; 
+    const prefix = isQuartz ? 'q-' : ''
 
     return [
       ...second,
@@ -143,7 +189,10 @@ export function useCron(options: CronOptions) {
   })
 
   segments.forEach((s) => {
-    watch(s.cron, toCron)
+    watch(s.cron, () => {
+      s.onChange?.(s, { segmentMap })
+      toCron()
+    })
     watch(s.error, (value) => {
       error.value = value
     })

@@ -1,6 +1,6 @@
-import { CombinedSegment, arrayToSegment, cronToSegment, type CronSegment } from '@/cron'
+import { CombinedSegment, arrayToSegment, cronToSegment } from '@/cron'
 import type { Locale } from '@/locale'
-import { TextPosition, type FieldWrapper, type Period } from '@/types'
+import { TextPosition, type CronSegment, type FieldWrapper, type Period } from '@/types'
 import { ref, watch, type Ref } from 'vue'
 
 export interface FieldOptions {
@@ -48,6 +48,10 @@ export function useCronSegment(options: FieldOptions) {
   }
 
   const toCron = (value: number[]) => {
+    if (cron.value == '?' && value.length == 0) {
+      return
+    }
+
     const seg = arrayToSegment(value, field)
     if (seg != null) {
       cron.value = seg.toCron()
@@ -84,6 +88,7 @@ export function useCronSegment(options: FieldOptions) {
   return {
     id: field.id,
     items: field.items,
+    onChange: field.onChange,
     cron,
     selected,
     error,
@@ -93,3 +98,5 @@ export function useCronSegment(options: FieldOptions) {
     suffix
   }
 }
+
+export type UseCronSegmentReturn = ReturnType<typeof useCronSegment>

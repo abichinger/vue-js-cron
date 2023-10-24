@@ -1,15 +1,32 @@
-import { CronType, FieldWrapper, type FieldItem } from './types'
+import { CronType, FieldWrapper, type CronSegment, type SegmentFromString } from './types'
 import { isSquence, range, unimplemented } from './util'
 
-type SegmentFromArray = (arr: number[], field: FieldWrapper) => CronSegment | null
-type SegmentFromString = (str: string, field: FieldWrapper) => CronSegment | null
-
-export interface CronSegment {
+class NoSpecificSegment implements CronSegment {
   field: FieldWrapper
-  type: CronType
-  toCron: () => string
-  toArray: () => number[]
-  items: Record<string, FieldItem>
+  type: CronType = CronType.NoSpecific
+
+  constructor(field: FieldWrapper) {
+    this.field = field
+  }
+
+  toCron() {
+    return '?'
+  }
+
+  toArray() {
+    return []
+  }
+
+  get items() {
+    return {}
+  }
+
+  static fromString(str: string, field: FieldWrapper) {
+    if (str !== '?') {
+      return null
+    }
+    return new NoSpecificSegment(field)
+  }
 }
 
 class AnySegment implements CronSegment {
@@ -284,6 +301,7 @@ class CombinedSegment implements CronSegment {
   }
 
   static fromString(str: string, field: FieldWrapper) {
+    const factories = field.segmentFactories ?? CombinedSegment.segmentFactories
     let segments: CronSegment[] = []
     for (const strSeg of str.split(',')) {
       if (strSeg === '*') {
@@ -292,7 +310,7 @@ class CombinedSegment implements CronSegment {
       }
 
       let segment = null
-      for (const fromString of CombinedSegment.segmentFactories) {
+      for (const fromString of factories) {
         segment = fromString(strSeg, field)
         if (segment !== null) {
           break
@@ -358,6 +376,7 @@ export {
   AnySegment,
   CombinedSegment,
   EverySegment,
+  NoSpecificSegment,
   RangeSegment,
   ValueSegment,
   arrayToSegment,

@@ -28,6 +28,10 @@ const locale: Localization = {
       everyX: {
         prefix: '',
         text: 'alle {{every.value}} Tage'
+      },
+      noSpecific: {
+        prefix: 'an',
+        text: 'keinem bestimmten Tag'
       }
     },
     dayOfWeek: {
@@ -37,7 +41,11 @@ const locale: Localization = {
         text: 'jedem Wochentag'
       },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
+      noSpecific: {
+        prefix: 'und',
+        text: 'keinem bestimmten Wochentag'
+      }
     },
     hour: {
       '*': { prefix: 'um' },
@@ -104,8 +112,8 @@ const locale: Localization = {
     text: 'Minute',
     second: {
       '*': {
-        prefix: 'und',
-      },
+        prefix: 'und'
+      }
     }
   },
   'q-hour': {
@@ -120,7 +128,7 @@ const locale: Localization = {
         prefix: 'und'
       }
     }
-  },
+  }
 }
 
 export default locale
