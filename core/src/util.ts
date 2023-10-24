@@ -187,11 +187,15 @@ function unimplemented(): never {
   throw new Error('not implemented')
 }
 
-function splitArray<T>(arr: T[], chunkSize: number): T[][] {
+function splitArray<T>(arr: T[], chunkSize: number, fill: boolean = true): (T|null)[][] {
   const res = []
 
   for (let i = 0; i < arr.length; i += chunkSize) {
-    res.push(arr.slice(i, i + chunkSize))
+    const slice: (T | null)[] = arr.slice(i, i + chunkSize)
+    while (fill && slice.length < chunkSize) {
+      slice.push(null);
+    }
+    res.push(slice)
   }
 
   return res
