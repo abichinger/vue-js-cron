@@ -174,7 +174,7 @@ export function useCron(options: CronOptions) {
   const toCron = () => {
     cron.value = segments
       .map((s) => {
-        return period.value.value.includes(s.id) ? s.cron.value : '*'
+        return period.value.value.includes(s.id) || s.cron.value == '?' ? s.cron.value : '*'
       })
       .join(' ')
   }
