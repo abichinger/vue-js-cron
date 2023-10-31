@@ -18,8 +18,10 @@
                   v-if="item"
                   :key="item[itemValue]"
                   @click="
-                    select(item)
-                    updateVisibility()
+                    () => {
+                      select(item)
+                      updateVisibility()
+                    }
                   "
                   >{{ item.text }}</a-menu-item
                 >
@@ -34,8 +36,8 @@
 </template>
 
 <script>
-import { RenderlessSelect } from '@vue-js-cron/core'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
+import { RenderlessSelect } from '@vue-js-cron/core'
 
 export default {
   inheritAttrs: false,

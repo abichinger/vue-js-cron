@@ -36,14 +36,10 @@ export default {
       type: String,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
   setup(props, { emit }) {
     const s = useSelect(props)
     const menu = ref(false)
-
-    if (props.modelValue) {
-      s.setValues(props.modelValue)
-    }
 
     const menuEvtListener = () => {
       menu.value = false
@@ -62,14 +58,17 @@ export default {
     }
 
     watch(s.selected, () => {
-      emit('update:modelValue', s.selected.value)
+      emit('update:model-value', s.selected.value)
     })
 
     watch(
       () => props.modelValue,
       (value) => {
-        s.setValues(value)
+        if (value) {
+          s.setValues(value)
+        }
       },
+      { immediate: true },
     )
 
     return {
