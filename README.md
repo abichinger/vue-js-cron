@@ -76,3 +76,9 @@ yarn build-docs
 ## Attribution
 
 This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
+
+### Articles
+
+[Renderless Components in Vue.js](https://adamwathan.me/renderless-components-in-vuejs/) by Adam Wathan
+<br />
+[Composition API v Renderless Components](https://dev.to/thomasferro/composition-api-v-renderless-components-let-s-use-vue-3-s-features-to-clean-our-components-n25) by Thomas Ferro

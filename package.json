@@ -33,7 +33,8 @@
     "test-core": "cd core && yarn test",
     "dry-run": "multi-semantic-release --dry-run --ignore-private-packages",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
-    "lint-fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
+    "lint-fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "build-readme": "node scripts/gen_readme.js"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
