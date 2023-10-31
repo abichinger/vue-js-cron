@@ -191,9 +191,9 @@ export function useCron(options: CronOptions) {
     translate()
   })
 
-  segments.forEach((s) => {
+  segments.forEach((s, i) => {
     watch(s.cron, () => {
-      s.onChange?.(s, { segmentMap })
+      fields[i].onChange?.(s, { segmentMap })
       toCron()
     })
     watch(s.error, (value) => {
