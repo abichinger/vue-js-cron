@@ -106,7 +106,7 @@ class RangeSegment implements CronSegment {
   get items() {
     return {
       start: this.field.itemMap[this.start],
-      end: this.field.itemMap[this.end]
+      end: this.field.itemMap[this.end],
     }
   }
 
@@ -162,7 +162,7 @@ class EverySegment implements CronSegment {
 
   get items() {
     return {
-      every: this.field.itemMap[this.every]
+      every: this.field.itemMap[this.every],
     }
   }
 
@@ -229,7 +229,7 @@ class ValueSegment implements CronSegment {
 
   get items() {
     return {
-      value: this.field.itemMap[this.value]
+      value: this.field.itemMap[this.value],
     }
   }
 
@@ -262,7 +262,7 @@ class CombinedSegment implements CronSegment {
     AnySegment.fromString,
     EverySegment.fromString,
     RangeSegment.fromString,
-    ValueSegment.fromString
+    ValueSegment.fromString,
   ]
 
   field: FieldWrapper
@@ -362,7 +362,7 @@ function arrayToSegment(arr: number[], field: FieldWrapper) {
   for (const fromArray of [
     AnySegment.fromArray,
     EverySegment.fromArray,
-    CombinedSegment.fromArray
+    CombinedSegment.fromArray,
   ]) {
     const seg = fromArray(arr, field)
     if (seg != null) {
@@ -380,5 +380,5 @@ export {
   RangeSegment,
   ValueSegment,
   arrayToSegment,
-  cronToSegment
+  cronToSegment,
 }

@@ -6,8 +6,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import CronQuasar from "./components/CronQuasar.vue";
+import { ref } from 'vue'
+import CronQuasar from './components/CronQuasar.vue'
 
-const expr = ref("* * * * *");
+const expr = ref('* * * * *')
 </script>

@@ -9,7 +9,7 @@ describe('locale', () => {
       { locale: 'foo-bar', expected: 'Hour' },
       { locale: 'de', expected: 'Stunde' },
       { locale: 'DE-AT', expected: 'Stunde' },
-      { locale: 'de-li', expected: 'Stunde' }
+      { locale: 'de-li', expected: 'Stunde' },
     ]
 
     for (const test of testCases) {
@@ -22,8 +22,8 @@ describe('locale', () => {
     const l = getLocale('en', {
       custom: {
         '*': 'bar',
-        message: 'baz'
-      }
+        message: 'baz',
+      },
     })
 
     expect(l.getLocaleStr('year', 'minute', 'empty', 'text')).toBe('every {{field.id}}')
@@ -37,8 +37,8 @@ describe('locale', () => {
     const l = getLocale('pt', {
       custom: {
         '*': 'bar',
-        message: 'baz'
-      }
+        message: 'baz',
+      },
     })
 
     expect(l.getLocaleStr('year', 'minute', 'empty', 'text')).toBe('cada minuto')
@@ -53,21 +53,21 @@ describe('locale', () => {
       '*': {
         '*': {
           value: {
-            text: '{{start.text}}-{{end.text}}'
-          }
-        }
-      }
+            text: '{{start.text}}-{{end.text}}',
+          },
+        },
+      },
     })
 
     expect(
       l.render('period', 'field', CronType.Value, TextPosition.Text, {
         start: {
-          text: 'foo'
+          text: 'foo',
         },
         end: {
-          text: 'bar'
-        }
-      })
+          text: 'bar',
+        },
+      }),
     ).toBe('foo-bar')
   })
 })

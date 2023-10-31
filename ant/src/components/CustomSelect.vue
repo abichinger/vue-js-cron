@@ -2,27 +2,33 @@
   <renderless-select
     v-bind="$attrs"
     @update:model-value="$emit('update:model-value', $event)"
-    #default="{ selectedStr, itemRows, select, clearable, clear, modelValue, itemValue }">
-
+    #default="{ selectedStr, itemRows, select, clearable, clear, modelValue, itemValue }"
+  >
     <span class="custom-select">
-    <a-dropdown :trigger="['click']" v-model:visible="visible" v-bind="dropdownProps">
+      <a-dropdown :trigger="['click']" v-model:visible="visible" v-bind="dropdownProps">
+        <a-button v-bind="buttonProps">
+          {{ selectedStr }}<CloseCircleFilled v-if="clearable" @click="clear()" @click.stop="" />
+        </a-button>
 
-      <a-button v-bind="buttonProps">
-        {{selectedStr}}<CloseCircleFilled v-if="clearable" @click="clear()" @click.stop="" />
-      </a-button>
-
-      <template #overlay>
-        <a-menu multiple :selectedKeys="Array.isArray(modelValue) ? modelValue : [modelValue]">
-          <div class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
-            <div class="vcron-a-col"  :flex="1" v-for="(item, j) in itemRow" :key="j">
-              <a-menu-item v-if="item" :key="item[itemValue]" @click="select(item); updateVisibility();">{{item.text}}</a-menu-item>
-              <a-menu-item v-else></a-menu-item>
+        <template #overlay>
+          <a-menu multiple :selectedKeys="Array.isArray(modelValue) ? modelValue : [modelValue]">
+            <div class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
+              <div class="vcron-a-col" :flex="1" v-for="(item, j) in itemRow" :key="j">
+                <a-menu-item
+                  v-if="item"
+                  :key="item[itemValue]"
+                  @click="
+                    select(item)
+                    updateVisibility()
+                  "
+                  >{{ item.text }}</a-menu-item
+                >
+                <a-menu-item v-else></a-menu-item>
+              </div>
             </div>
-          </div>
-        </a-menu>
-      </template>
-
-    </a-dropdown>
+          </a-menu>
+        </template>
+      </a-dropdown>
     </span>
   </renderless-select>
 </template>
@@ -35,41 +41,40 @@ export default {
   inheritAttrs: false,
   components: {
     RenderlessSelect,
-    CloseCircleFilled
+    CloseCircleFilled,
   },
   name: 'CustomSelect',
   props: {
     buttonProps: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     dropdownProps: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     hideOnClick: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data: () => {
     return {
-      visible: false
+      visible: false,
     }
   },
   emits: ['update:model-value'],
   methods: {
-    updateVisibility () {
+    updateVisibility() {
       if (this.hideOnClick && this.visible) {
         this.visible = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-
 .vcron-a-row {
   display: flex;
   flex-wrap: nowrap;
@@ -80,5 +85,4 @@ export default {
   min-width: 0;
   text-align: center;
 }
-
 </style>

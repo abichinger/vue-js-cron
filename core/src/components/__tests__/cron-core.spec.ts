@@ -30,37 +30,37 @@ describe('useCron', () => {
       {
         format: 'crontab',
         value: '* * * * *',
-        expected: `Every Year in every month on every day and every day of the week at every hour : every minute`
+        expected: `Every Year in every month on every day and every day of the week at every hour : every minute`,
       },
       {
         format: 'quartz',
         value: '* * * * * *',
-        expected: `Every Year in every month on every day and every day of the week at every hour : every minute : every second`
+        expected: `Every Year in every month on every day and every day of the week at every hour : every minute : every second`,
       },
       {
         format: 'crontab',
         value: '* * * * *',
         period: 'hour',
-        expected: `Every Hour at every minute(s)`
+        expected: `Every Hour at every minute(s)`,
       },
       {
         format: 'quartz',
         value: '* * * * * *',
         period: 'q-hour',
-        expected: `Every Hour at every minute : every second`
+        expected: `Every Hour at every minute : every second`,
       },
       {
         format: 'quartz',
         value: '0 15 10 * * ?',
         period: 'month',
-        expected: `Every Month on every day and no specific day of the week at 10 : 15 : 00`
+        expected: `Every Month on every day and no specific day of the week at 10 : 15 : 00`,
       },
       {
         format: 'quartz',
         value: '0 15 10 ? * *',
         period: 'month',
-        expected: `Every Month on no specific day and every day of the week at 10 : 15 : 00`
-      }
+        expected: `Every Month on no specific day and every day of the week at 10 : 15 : 00`,
+      },
     ]
 
     for (const t of tests) {
@@ -79,13 +79,13 @@ describe('useCron', () => {
       {
         value: 'crontab',
         expectedFields: 5,
-        expectedPeriods: 6
+        expectedPeriods: 6,
       },
       {
         value: 'quartz',
         expectedFields: 6,
-        expectedPeriods: 7
-      }
+        expectedPeriods: 7,
+      },
     ]
 
     for (const format of formats) {

@@ -5,16 +5,16 @@ export default {
   input: 'src/index.js', // Path relative to package.json
   output: {
     name: 'element_plus',
-    exports: 'named'
+    exports: 'named',
   },
   plugins: [
     css({
-      output: 'element-plus.css'
+      output: 'element-plus.css',
     }),
     vue({
       css: false, // Dynamically inject css as a <style> tag
-      compileTemplate: false // Explicitly convert template to render function
+      compileTemplate: false, // Explicitly convert template to render function
     }),
-    commonjs()
-  ]
+    commonjs(),
+  ],
 }

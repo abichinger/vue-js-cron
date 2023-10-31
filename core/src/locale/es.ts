@@ -9,38 +9,38 @@ const locale: Localization = {
       empty: { text: 'todos los {{ field.id }}' },
       value: { text: '{{ value.text }}' },
       range: { text: '{{ start.text }}-{{ end.text }}' },
-      everyX: { text: 'todos/as {{ every.value }}' }
+      everyX: { text: 'todos/as {{ every.value }}' },
     },
     month: {
       '*': { prefix: 'en' },
       empty: { text: 'todos los meses' },
       value: { text: '{{ value.alt }}' },
-      range: { text: '{{ start.alt }}-{{ end.alt }}' }
+      range: { text: '{{ start.alt }}-{{ end.alt }}' },
     },
     day: {
       '*': { prefix: 'en' },
       empty: { text: 'todos los días' },
-      value: { text: 'los días {{ value.alt }}' }
+      value: { text: 'los días {{ value.alt }}' },
     },
     dayOfWeek: {
       '*': { prefix: 'de' },
       empty: { text: 'todos los días de la semana' },
       value: { text: 'los {{ value.alt }}' },
-      range: { text: '{{ start.alt }}-{{ end.alt }}' }
+      range: { text: '{{ start.alt }}-{{ end.alt }}' },
     },
     hour: {
       '*': { prefix: 'a' },
       empty: { text: 'todas las horas' },
-      value: { text: 'las {{ value.text }}' }
+      value: { text: 'las {{ value.text }}' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'todos los minutos' }
-    }
+      empty: { text: 'todos los minutos' },
+    },
   },
   minute: {
     prefix: 'todos los',
-    text: 'minutos'
+    text: 'minutos',
   },
   hour: {
     prefix: 'todas las',
@@ -48,29 +48,29 @@ const locale: Localization = {
     minute: {
       '*': {
         prefix: 'a los',
-        suffix: 'minutos'
+        suffix: 'minutos',
       },
-      empty: { text: 'todos', prefix: 'a', suffix: 'los minutos' }
-    }
+      empty: { text: 'todos', prefix: 'a', suffix: 'los minutos' },
+    },
   },
   day: {
-    text: 'Días'
+    text: 'Días',
   },
   week: {
-    text: 'Semanas'
+    text: 'Semanas',
   },
   month: {
     text: 'Meses',
     dayOfWeek: {
-      '*': { prefix: 'y' }
-    }
+      '*': { prefix: 'y' },
+    },
   },
   year: {
     text: 'años',
     dayOfWeek: {
-      '*': { prefix: 'y' }
-    }
-  }
+      '*': { prefix: 'y' },
+    },
+  },
 }
 
 export default locale

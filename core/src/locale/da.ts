@@ -9,60 +9,60 @@ const locale: Localization = {
       empty: { text: 'hver {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'hver {{every.value}}' }
+      everyX: { text: 'hver {{every.value}}' },
     },
     month: {
       '*': { prefix: 'i' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
-      '*': { prefix: 'på' }
+      '*': { prefix: 'på' },
     },
     dayOfWeek: {
       '*': { prefix: 'på' },
       empty: { text: 'hver dag i ugen' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     hour: {
-      '*': { prefix: 'klokken' }
+      '*': { prefix: 'klokken' },
     },
     minute: {
-      '*': { prefix: ':' }
-    }
+      '*': { prefix: ':' },
+    },
   },
   minute: {
-    text: 'Minut'
+    text: 'Minut',
   },
   hour: {
     text: 'Time',
     minute: {
       '*': {
         prefix: 'på de(t)',
-        suffix: 'minutter'
+        suffix: 'minutter',
       },
-      empty: { text: 'hver' }
-    }
+      empty: { text: 'hver' },
+    },
   },
   day: {
-    text: 'Dag'
+    text: 'Dag',
   },
   week: {
-    text: 'Uge'
+    text: 'Uge',
   },
   month: {
     text: 'Måned',
     dayOfWeek: {
-      '*': { prefix: 'og' }
-    }
+      '*': { prefix: 'og' },
+    },
   },
   year: {
     text: 'År',
     dayOfWeek: {
-      '*': { prefix: 'og' }
-    }
-  }
+      '*': { prefix: 'og' },
+    },
+  },
 }
 
 export default locale

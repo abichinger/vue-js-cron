@@ -13,5 +13,5 @@ function install(app: App) {
 }
 
 export const corePlugin = {
-  install
+  install,
 }

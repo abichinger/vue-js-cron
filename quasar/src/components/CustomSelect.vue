@@ -16,12 +16,7 @@
           @click.stop=""
         />
         <q-menu :offset="[0, 7]" v-bind="menuProps">
-          <div
-            class="row"
-            style="line-height: 32px"
-            v-for="(itemRow, r) in itemRows"
-            :key="r"
-          >
+          <div class="row" style="line-height: 32px" v-for="(itemRow, r) in itemRows" :key="r">
             <q-item
               clickable
               dense
@@ -43,12 +38,12 @@
 <script>
 export default {
   inheritAttrs: false,
-};
+}
 </script>
 
 <script setup>
-import { RenderlessSelect } from "@vue-js-cron/core";
-import { QMenu, QBtn, QItem, QIcon } from "quasar";
+import { RenderlessSelect } from '@vue-js-cron/core'
+import { QMenu, QBtn, QItem, QIcon } from 'quasar'
 
 defineProps({
   buttonProps: {
@@ -59,10 +54,9 @@ defineProps({
     type: Object,
     default: () => {},
   },
-});
+})
 
-defineEmits(["update:model-value"]);
+defineEmits(['update:model-value'])
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

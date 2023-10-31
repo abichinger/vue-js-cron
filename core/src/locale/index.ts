@@ -17,7 +17,7 @@ const locales: Record<string, Localization> = {
   es,
   da,
   zh: cn,
-  'zh-cn': cn
+  'zh-cn': cn,
 }
 
 class Locale {
@@ -37,7 +37,7 @@ class Locale {
     fieldId: string,
     cronType: CronType,
     position: TextPosition,
-    params: any
+    params: any,
   ) {
     const template = this.getLocaleStr(periodId, fieldId, cronType, position)
     return Mustache.render(template, params || {})

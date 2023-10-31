@@ -9,7 +9,7 @@
           <select
             @input="
               period.events['update:model-value'](
-                JSON.parse(($event.target as HTMLInputElement).value).id
+                JSON.parse(($event.target as HTMLInputElement).value).id,
               )
             "
           >
@@ -54,12 +54,12 @@ import { CronCore } from './components/cron-core'
 
 export default {
   components: {
-    CronCore: CronCore
+    CronCore: CronCore,
   },
   props: {},
   data() {
     return {
-      value: '* * * * *'
+      value: '* * * * *',
     }
   },
 
@@ -73,7 +73,7 @@ export default {
       return Array.from(options)
         .filter((opt: any) => opt.selected)
         .map((opt: any) => opt.value)
-    }
-  }
+    },
+  },
 }
 </script>

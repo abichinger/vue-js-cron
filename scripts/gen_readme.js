@@ -7,14 +7,14 @@ const packages = [
   { name: 'Vuetify', dir: 'vuetify' },
   { name: 'Element Plus', dir: 'element-plus' },
   { name: 'Ant', dir: 'ant' },
-  { name: 'Quasar', dir: 'quasar' }
+  { name: 'Quasar', dir: 'quasar' },
 ]
 packages.forEach((p) => {
   p.json = readPackageJson(p.dir)
   p.anchor = p.anchor || p.dir
 })
 
-function readPackageJson (path) {
+function readPackageJson(path) {
   const content = fs.readFileSync(path + '/package.json')
   return JSON.parse(content)
 }

@@ -2,26 +2,29 @@
   <renderless-select
     v-bind="$attrs"
     @update:model-value="$emit('update:model-value', $event)"
-    #default="{ selectedStr, itemRows, select, isSelected, clearable, clear }">
-
+    #default="{ selectedStr, itemRows, select, isSelected, clearable, clear }"
+  >
     <v-chip v-bind="chipProps">
-
       <template #append v-if="clearable">
-        <v-icon size="small" icon="mdi-close" @click.stop="clear()">
-        </v-icon>
+        <v-icon size="small" icon="mdi-close" @click.stop="clear()"> </v-icon>
       </template>
 
-      {{selectedStr}}
+      {{ selectedStr }}
 
       <v-menu activator="parent" v-bind="menuProps">
         <v-list class="pa-0 ma-0">
-            <v-row v-for="(itemRow, index) in itemRows" :key="index" no-gutters>
-              <v-col v-for="(item, index) in itemRow" :key="index">
-                <v-list-item v-if="item" class="vcron-v-item" @click="select(item)" :active="isSelected(item)">
-                  {{item.text}}
-                </v-list-item>
-              </v-col>
-            </v-row>
+          <v-row v-for="(itemRow, index) in itemRows" :key="index" no-gutters>
+            <v-col v-for="(item, index) in itemRow" :key="index">
+              <v-list-item
+                v-if="item"
+                class="vcron-v-item"
+                @click="select(item)"
+                :active="isSelected(item)"
+              >
+                {{ item.text }}
+              </v-list-item>
+            </v-col>
+          </v-row>
         </v-list>
       </v-menu>
     </v-chip>
@@ -34,27 +37,25 @@ import { RenderlessSelect } from '@vue-js-cron/core'
 export default {
   inheritAttrs: false,
   components: {
-    RenderlessSelect
+    RenderlessSelect,
   },
   name: 'CustomSelect',
   props: {
     menuProps: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     chipProps: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  emits: ['update:model-value']
+  emits: ['update:model-value'],
 }
 </script>
 
 <style>
-
 .vcron-v-item div {
   overflow: visible;
 }
-
 </style>

@@ -6,14 +6,15 @@
 
     <div class="vcron-select-list" v-if="menu">
       <div class="vcron-select-row" v-for="(row, i) in itemRows" :key="i">
-        <div v-for="(item, j) in row"
-          :key="i+'-'+j"
+        <div
+          v-for="(item, j) in row"
+          :key="i + '-' + j"
           class="vcron-select-col"
-          :class="{'vcron-select-selected': has(item)}"
+          :class="{ 'vcron-select-selected': has(item) }"
           @click="select(item)"
-          @click.stop="multiple ? () => {} : toggleMenu()">
-
-          <div v-if="item">{{item.text}}</div>
+          @click.stop="multiple ? () => {} : toggleMenu()"
+        >
+          <div v-if="item">{{ item.text }}</div>
         </div>
       </div>
     </div>
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-import { selectProps, useSelect } from '@vue-js-cron/core-ts'
+import { selectProps, useSelect } from '@vue-js-cron/core'
 import { ref, watch } from 'vue'
 
 export default {
@@ -29,14 +30,14 @@ export default {
   props: {
     ...selectProps(),
     modelValue: {
-      type: [String, Number, Array]
+      type: [String, Number, Array],
     },
     selection: {
-      type: String
-    }
+      type: String,
+    },
   },
   emits: ['update:modelValue'],
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     const s = useSelect(props)
     const menu = ref(false)
 
@@ -44,7 +45,7 @@ export default {
       s.setValues(props.modelValue)
     }
 
-    const menuEvtListener = (evt) => {
+    const menuEvtListener = () => {
       menu.value = false
       document.removeEventListener('click', menuEvtListener)
     }
@@ -64,21 +65,23 @@ export default {
       emit('update:modelValue', s.selected.value)
     })
 
-    watch(() => props.modelValue, (value) => {
-      s.setValues(value)
-    })
+    watch(
+      () => props.modelValue,
+      (value) => {
+        s.setValues(value)
+      },
+    )
 
     return {
       ...s,
       menu,
-      toggleMenu
+      toggleMenu,
     }
-  }
+  },
 }
 </script>
 
 <style>
-
 .vcron-select-container {
   display: inline-block;
   position: relative;
@@ -106,7 +109,7 @@ export default {
   left: 0px;
   margin: 0;
   padding: 0;
-  box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   border: 1px solid #aaa;
   background-color: #eee;
   list-style: none;
@@ -142,5 +145,4 @@ export default {
   background-color: rgb(43, 108, 138);
   color: white;
 }
-
 </style>

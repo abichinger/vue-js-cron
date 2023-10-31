@@ -18,13 +18,13 @@ export enum CronType {
   Range = 'range',
   EveryX = 'everyX',
   Combined = 'combined',
-  NoSpecific = 'noSpecific'
+  NoSpecific = 'noSpecific',
 }
 
 export enum TextPosition {
   Prefix = 'prefix',
   Suffix = 'suffix',
-  Text = 'text'
+  Text = 'text',
 }
 
 export interface FieldItem {
@@ -57,7 +57,7 @@ export class FieldWrapper {
         acc[item.value] = item
         return acc
       },
-      {} as Record<number, FieldItem>
+      {} as Record<number, FieldItem>,
     )
   }
 

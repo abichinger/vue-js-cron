@@ -71,9 +71,9 @@ class DefaultCronOptions {
               NoSpecificSegment.fromString,
               EverySegment.fromString,
               RangeSegment.fromString,
-              ValueSegment.fromString
+              ValueSegment.fromString,
             ]
-          : undefined
+          : undefined,
       },
       { id: 'month', items: items.monthItems },
       {
@@ -86,10 +86,10 @@ class DefaultCronOptions {
               NoSpecificSegment.fromString,
               EverySegment.fromString,
               RangeSegment.fromString,
-              ValueSegment.fromString
+              ValueSegment.fromString,
             ]
-          : undefined
-      }
+          : undefined,
+      },
     ]
   }
 
@@ -106,7 +106,7 @@ class DefaultCronOptions {
       { id: 'day', value: ['hour', 'minute', ...secondField] },
       { id: 'week', value: ['dayOfWeek', 'hour', 'minute', ...secondField] },
       { id: 'month', value: ['day', 'dayOfWeek', 'hour', 'minute', ...secondField] },
-      { id: 'year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute', ...secondField] }
+      { id: 'year', value: ['month', 'day', 'dayOfWeek', 'hour', 'minute', ...secondField] },
     ]
   }
 }
@@ -123,7 +123,7 @@ export function useCron(options: CronOptions) {
   const periods = (options.periods ?? cronDefaults.periods(format)).map((p) => {
     return {
       ...p,
-      text: l10n.getLocaleStr(p.id, TextPosition.Text)
+      text: l10n.getLocaleStr(p.id, TextPosition.Text),
     }
   })
   const initialPeriod =
@@ -217,33 +217,33 @@ export function useCron(options: CronOptions) {
       selected: period,
       items: periods,
       prefix: periodPrefix,
-      suffix: periodSuffix
-    }
+      suffix: periodSuffix,
+    },
   }
 }
 
 export const cronProps = {
   modelValue: {
-    type: String
+    type: String,
   },
   initialPeriod: {
-    type: String
+    type: String,
   },
   format: {
-    type: String as PropType<CronFormat>
+    type: String as PropType<CronFormat>,
   },
   locale: {
-    type: String
+    type: String,
   },
   fields: {
-    type: Array as PropType<Field[]>
+    type: Array as PropType<Field[]>,
   },
   periods: {
-    type: Array as PropType<Period[]>
+    type: Array as PropType<Period[]>,
   },
   customLocale: {
-    type: Object as PropType<Localization>
-  }
+    type: Object as PropType<Localization>,
+  },
 }
 
 export const CronCore = defineComponent({
@@ -267,7 +267,7 @@ export const CronCore = defineComponent({
         if (value) {
           cron.value = value
         }
-      }
+      },
     )
 
     return () => {
@@ -280,30 +280,30 @@ export const CronCore = defineComponent({
             cron: s.cron.value,
             selectedStr: s.text.value,
             events: {
-              'update:model-value': s.select
+              'update:model-value': s.select,
             },
             attrs: {
-              modelValue: s.selected.value
+              modelValue: s.selected.value,
             },
             prefix: s.prefix.value,
-            suffix: s.suffix.value
+            suffix: s.suffix.value,
           }
         }),
 
         period: {
           attrs: {
-            modelValue: period.selected.value.id
+            modelValue: period.selected.value.id,
           },
           events: {
-            'update:model-value': period.select
+            'update:model-value': period.select,
           },
           items: period.items,
           prefix: period.prefix.value,
-          suffix: period.suffix.value
-        }
+          suffix: period.suffix.value,
+        },
       }
 
       return ctx.slots.default?.(slotProps)
     }
-  }
+  },
 })

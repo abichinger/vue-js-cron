@@ -22,7 +22,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core-ts": "^3.7.1"
+    "@vue-js-cron/core": "^3.7.1"
   },
   "files": [
     "package.json",

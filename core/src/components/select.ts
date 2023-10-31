@@ -66,7 +66,7 @@ export function useSet<T>(options: SetOptions<T>) {
     remove,
     clear,
     updated,
-    equals
+    equals,
   }
 }
 
@@ -81,24 +81,24 @@ export function selectProps<T, V>() {
   return {
     items: {
       type: Array as PropType<Array<T>>,
-      default: () => []
+      default: () => [],
     },
     multiple: {
       type: Boolean,
-      default: false
+      default: false,
     },
     cols: {
       type: Number,
-      default: 1
+      default: 1,
     },
     itemText: {
       type: [String, Function] as PropType<string | ((item: T) => string)>,
-      default: 'text'
+      default: 'text',
     },
     itemValue: {
       type: [String, Function] as PropType<string | ((item: T) => V)>,
-      default: 'value'
-    }
+      default: 'value',
+    },
   }
 }
 
@@ -162,7 +162,7 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     selectedStr,
     itemRows: splitArray(items, cols),
     setItems,
-    setValues
+    setValues,
   }
 }
 
@@ -171,15 +171,15 @@ export const RenderlessSelect = defineComponent({
   props: {
     ...selectProps<any, any>(),
     modelValue: {
-      type: [String, Number, Array]
+      type: [String, Number, Array],
     },
     selection: {
-      type: String
+      type: String,
     },
     clearable: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit, slots }) {
@@ -196,7 +196,7 @@ export const RenderlessSelect = defineComponent({
           s.setValues(value)
         }
       },
-      { immediate: true }
+      { immediate: true },
     )
 
     const isEmpty = computed(() => {
@@ -219,10 +219,10 @@ export const RenderlessSelect = defineComponent({
         itemRows: s.itemRows,
         multiple: props.multiple,
         itemText: props.itemText,
-        itemValue: props.itemValue
+        itemValue: props.itemValue,
       }
 
       return slots.default?.(slotProps)
     }
-  }
+  },
 })

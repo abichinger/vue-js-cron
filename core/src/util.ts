@@ -26,7 +26,7 @@ class Range {
           return target.start + target.step * i
         }
         return Reflect.get(target, prop)
-      }
+      },
     })
   }
 
@@ -39,7 +39,7 @@ class Range {
     return {
       next: () => {
         return { value: this[++index], done: !(this[index + 1] !== undefined) }
-      }
+      },
     }
   }
 }
@@ -62,14 +62,14 @@ function genItems(
   },
   genAltText: toText = (value) => {
     return value + ''
-  }
+  },
 ): FieldItem[] {
   const res = []
   for (const i of new Range(min, max)) {
     res.push({
       text: genText(i),
       alt: genAltText(i),
-      value: i
+      value: i,
     })
   }
   return res
@@ -94,7 +94,7 @@ function defaultItems(localeCode: string) {
       },
       (value) => {
         return new Date(2021, value - 1, 1).toLocaleDateString(localeCode, { month: 'short' })
-      }
+      },
     ),
     dayOfWeekItems: genItems(
       0,
@@ -106,8 +106,8 @@ function defaultItems(localeCode: string) {
       (value) => {
         const date = new Date(2021, 0, 3 + value) // first sunday in 2021
         return date.toLocaleDateString(localeCode, { weekday: 'short' })
-      }
-    )
+      },
+    ),
   }
 }
 
@@ -212,5 +212,5 @@ export {
   range,
   splitArray,
   traverse,
-  unimplemented
+  unimplemented,
 }

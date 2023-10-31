@@ -5,16 +5,16 @@ export default {
   input: 'src/index.js', // Path relative to package.json
   output: {
     name: 'light',
-    exports: 'named'
+    exports: 'named',
   },
   plugins: [
     css({
-      output: 'light.css'
+      output: 'light.css',
     }),
     vue({
       css: false, // Dynamically inject css as a <style> tag
-      compileTemplate: true // Explicitly convert template to render function
+      compileTemplate: true, // Explicitly convert template to render function
     }),
-    commonjs()
-  ]
+    commonjs(),
+  ],
 }

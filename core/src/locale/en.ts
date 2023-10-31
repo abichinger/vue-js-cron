@@ -9,18 +9,18 @@ const locale: Localization = {
       empty: { text: 'every {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'every {{every.value}}' }
+      everyX: { text: 'every {{every.value}}' },
     },
     month: {
       '*': { prefix: 'in' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: 'on' },
       noSpecific: {
-        text: 'no specific day'
-      }
+        text: 'no specific day',
+      },
     },
     dayOfWeek: {
       '*': { prefix: 'on' },
@@ -28,73 +28,73 @@ const locale: Localization = {
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       noSpecific: {
-        text: 'no specific day of the week'
-      }
+        text: 'no specific day of the week',
+      },
     },
     hour: {
-      '*': { prefix: 'at' }
+      '*': { prefix: 'at' },
     },
     minute: {
-      '*': { prefix: ':' }
+      '*': { prefix: ':' },
     },
     second: {
-      '*': { prefix: ':' }
-    }
+      '*': { prefix: ':' },
+    },
   },
   minute: {
-    text: 'Minute'
+    text: 'Minute',
   },
   hour: {
     text: 'Hour',
     minute: {
       '*': {
         prefix: 'at',
-        suffix: 'minute(s)'
+        suffix: 'minute(s)',
       },
-      empty: { text: 'every' }
-    }
+      empty: { text: 'every' },
+    },
   },
   day: {
-    text: 'Day'
+    text: 'Day',
   },
   week: {
-    text: 'Week'
+    text: 'Week',
   },
   month: {
     text: 'Month',
     dayOfWeek: {
-      '*': { prefix: 'and' }
-    }
+      '*': { prefix: 'and' },
+    },
   },
   year: {
     text: 'Year',
     dayOfWeek: {
-      '*': { prefix: 'and' }
-    }
+      '*': { prefix: 'and' },
+    },
   },
 
   //quartz format
   'q-second': {
-    text: 'Second'
+    text: 'Second',
   },
   'q-minute': {
     text: 'Minute',
     second: {
       '*': {
         prefix: 'at',
-        suffix: 'second(s)'
+        suffix: 'second(s)',
       },
-      empty: { text: 'every' }
-    }
+      empty: { text: 'every' },
+    },
   },
   'q-hour': {
     text: 'Hour',
     minute: {
       '*': {
-        prefix: 'at'
-      }
-    }
-  }
+        prefix: 'at',
+      },
+    },
+  },
 }
 
 export default locale

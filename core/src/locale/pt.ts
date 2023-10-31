@@ -9,64 +9,64 @@ const locale: Localization = {
       empty: { text: 'todo {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'todo {{every.value}}' }
+      everyX: { text: 'todo {{every.value}}' },
     },
     month: {
       '*': { prefix: 'de' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
-      empty: { text: 'todo mês' }
+      empty: { text: 'todo mês' },
     },
     day: {
       '*': { prefix: 'no(s) dia(s)' },
-      empty: { text: 'todos' }
+      empty: { text: 'todos' },
     },
     dayOfWeek: {
       '*': { prefix: 'de' },
       empty: { text: 'todos dias da semana' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     hour: {
       '*': { prefix: 'às' },
-      empty: { text: 'cada hora' }
+      empty: { text: 'cada hora' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'cada minuto' }
-    }
+      empty: { text: 'cada minuto' },
+    },
   },
   minute: {
-    text: 'Minuto'
+    text: 'Minuto',
   },
   hour: {
     text: 'Hora',
     minute: {
       '*': {
         prefix: 'e',
-        suffix: 'minuto(s)'
+        suffix: 'minuto(s)',
       },
-      empty: { text: 'cada' }
-    }
+      empty: { text: 'cada' },
+    },
   },
   day: {
-    text: 'Dia'
+    text: 'Dia',
   },
   week: {
-    text: 'Semana'
+    text: 'Semana',
   },
   month: {
     text: 'Mês',
     dayOfWeek: {
-      '*': { prefix: 'e de' }
-    }
+      '*': { prefix: 'e de' },
+    },
   },
   year: {
     text: 'Ano',
     dayOfWeek: {
-      '*': { prefix: 'e de' }
-    }
-  }
+      '*': { prefix: 'e de' },
+    },
+  },
 }
 
 export default locale

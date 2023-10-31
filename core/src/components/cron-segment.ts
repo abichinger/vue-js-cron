@@ -28,7 +28,7 @@ export function useCronSegment(options: FieldOptions) {
       .map((seg) => {
         return locale.render(period.value.id, field.id, seg.type, TextPosition.Text, {
           field: field,
-          ...seg.items
+          ...seg.items,
         })
       })
       .join(',')
@@ -94,7 +94,7 @@ export function useCronSegment(options: FieldOptions) {
     select,
     text,
     prefix,
-    suffix
+    suffix,
   }
 }
 

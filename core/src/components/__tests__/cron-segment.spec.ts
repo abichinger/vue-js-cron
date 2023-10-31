@@ -9,7 +9,7 @@ import { useCronSegment } from '../cron-segment'
 const f = () => {
   const fieldDesc = new FieldWrapper({
     id: 'month',
-    items: defaultItems('en').monthItems
+    items: defaultItems('en').monthItems,
   })
 
   const period = { id: 'year', value: [] }
@@ -18,7 +18,7 @@ const f = () => {
     locale: getLocale('en'),
     field: fieldDesc,
     period: ref(period),
-    initialCron: '*'
+    initialCron: '*',
   })
 }
 
@@ -32,15 +32,15 @@ describe('CronSegment', () => {
         expectedCron: '1',
         expectedArr: [1],
         expectedText: 'Jan',
-        error: ''
+        error: '',
       },
       {
         cron: '2-5,6',
         expectedCron: '2-6',
         expectedArr: [2, 3, 4, 5, 6],
         expectedText: 'Feb-Jun',
-        error: ''
-      }
+        error: '',
+      },
     ]
 
     for (const t of tests) {

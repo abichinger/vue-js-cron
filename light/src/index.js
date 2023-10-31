@@ -2,7 +2,7 @@
 import component from './CronEditor.vue'
 
 // Declare install function executed by Vue.use()
-export function install (Vue) {
+export function install(Vue) {
   if (install.installed) return
   install.installed = true
   Vue.component('CronLight', component)
@@ -11,13 +11,10 @@ export function install (Vue) {
 // Create module definition for Vue.use()
 const plugin = {
   install,
-  component
+  component,
 }
 
 // To allow use as module (npm/webpack/etc.) export component
 export default plugin
 
-export {
-  component as CronLight,
-  plugin as CronLightPlugin
-}
+export { component as CronLight, plugin as CronLightPlugin }

@@ -2,34 +2,37 @@
   <renderless-select
     v-bind="$attrs"
     @update:model-value="$emit('update:model-value', $event)"
-    #default="{ selectedStr, itemRows, select, isSelected, clearable, clear }">
-
+    #default="{ selectedStr, itemRows, select, isSelected, clearable, clear }"
+  >
     <span class="custom-select">
-    <el-dropdown style="vertical-align: baseline" trigger="click" v-bind="dropdownProps">
+      <el-dropdown style="vertical-align: baseline" trigger="click" v-bind="dropdownProps">
+        <el-button v-bind="buttonProps">
+          {{ selectedStr
+          }}<el-icon v-if="clearable" class="el-icon--right" @click="clear()" @click.stop=""
+            ><Close
+          /></el-icon>
+        </el-button>
 
-      <el-button v-bind="buttonProps">
-        {{selectedStr}}<el-icon v-if="clearable" class="el-icon--right" @click="clear()" @click.stop=""><Close /></el-icon>
-      </el-button>
-
-      <template #dropdown>
-        <el-dropdown-menu>
-          <div class="vcron-el-row" v-for="(itemRow, index) in itemRows" :key="index">
-            <template
-              v-for="(item, index) in itemRow"
-              :key="index">
-
-              <div class="vcron-el-col selected" @click="select(item)">
-                <el-dropdown-item :style="isSelected(item) ? {'color': 'var(--el-color-primary)', 'font-weight': 700} : {}">
-                  <template v-if="item">{{item.text}}</template>
-                </el-dropdown-item>
-              </div>
-
-            </template>
-          </div>
-        </el-dropdown-menu>
-      </template>
-
-    </el-dropdown>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <div class="vcron-el-row" v-for="(itemRow, index) in itemRows" :key="index">
+              <template v-for="(item, index) in itemRow" :key="index">
+                <div class="vcron-el-col selected" @click="select(item)">
+                  <el-dropdown-item
+                    :style="
+                      isSelected(item)
+                        ? { color: 'var(--el-color-primary)', 'font-weight': 700 }
+                        : {}
+                    "
+                  >
+                    <template v-if="item">{{ item.text }}</template>
+                  </el-dropdown-item>
+                </div>
+              </template>
+            </div>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </span>
   </renderless-select>
 </template>
@@ -42,25 +45,24 @@ export default {
   inheritAttrs: false,
   components: {
     RenderlessSelect,
-    Close
+    Close,
   },
   name: 'CustomSelect',
   props: {
     buttonProps: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     dropdownProps: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  emits: ['update:model-value']
+  emits: ['update:model-value'],
 }
 </script>
 
 <style scoped>
-
 .vcron-el-row {
   display: flex;
   flex-wrap: nowrap;
@@ -77,5 +79,4 @@ export default {
   user-select: none;
   text-align: center;
 }
-
 </style>

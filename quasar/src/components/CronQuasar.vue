@@ -42,8 +42,8 @@
 </template>
 
 <script setup>
-import { CronCore } from "@vue-js-cron/core";
-import CustomSelect from "./CustomSelect.vue";
+import { CronCore } from '@vue-js-cron/core'
+import CustomSelect from './CustomSelect.vue'
 
 defineProps({
   buttonProps: {
@@ -52,8 +52,8 @@ defineProps({
       return {
         outline: true,
         rounded: true,
-        color: "primary",
-      };
+        color: 'primary',
+      }
     },
   },
   cols: {
@@ -64,8 +64,8 @@ defineProps({
         minute: 5,
         hour: 4,
         day: 4,
-      };
+      }
     },
   },
-});
+})
 </script>

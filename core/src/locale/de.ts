@@ -8,127 +8,127 @@ const locale: Localization = {
     '*': {
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'alle {{every.value}}' }
+      everyX: { text: 'alle {{every.value}}' },
     },
     month: {
       '*': { prefix: 'im' },
       empty: {
         prefix: 'in',
-        text: 'jedem Monat'
+        text: 'jedem Monat',
       },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' }
+      range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: 'den' },
       empty: {
         prefix: 'an',
-        text: 'jedem Tag'
+        text: 'jedem Tag',
       },
       everyX: {
         prefix: '',
-        text: 'alle {{every.value}} Tage'
+        text: 'alle {{every.value}} Tage',
       },
       noSpecific: {
         prefix: 'an',
-        text: 'keinem bestimmten Tag'
-      }
+        text: 'keinem bestimmten Tag',
+      },
     },
     dayOfWeek: {
       '*': { prefix: 'am' },
       empty: {
         prefix: 'an',
-        text: 'jedem Wochentag'
+        text: 'jedem Wochentag',
       },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       noSpecific: {
         prefix: 'und',
-        text: 'keinem bestimmten Wochentag'
-      }
+        text: 'keinem bestimmten Wochentag',
+      },
     },
     hour: {
       '*': { prefix: 'um' },
       empty: {
         prefix: 'zu',
-        text: 'jeder Stunde'
+        text: 'jeder Stunde',
       },
       everyX: {
         prefix: '',
-        text: 'alle {{every.value}} Stunden'
-      }
+        text: 'alle {{every.value}} Stunden',
+      },
     },
     minute: {
       '*': { prefix: ':' },
       empty: { text: 'jede Minute' },
       everyX: {
         prefix: '',
-        text: 'alle {{every.value}} Minuten'
-      }
+        text: 'alle {{every.value}} Minuten',
+      },
     },
     second: {
       '*': { prefix: ':' },
       empty: { text: 'jede Sekunde' },
       everyX: {
         prefix: '',
-        text: 'alle {{every.value}} Sekunden'
-      }
-    }
+        text: 'alle {{every.value}} Sekunden',
+      },
+    },
   },
   minute: {
-    text: 'Minute'
+    text: 'Minute',
   },
   hour: {
     text: 'Stunde',
     minute: {
       '*': {
         prefix: 'zu',
-        suffix: 'Minute(n)'
+        suffix: 'Minute(n)',
       },
-      empty: { text: 'jeder' }
-    }
+      empty: { text: 'jeder' },
+    },
   },
   day: {
     prefix: 'Jeden',
-    text: 'Tag'
+    text: 'Tag',
   },
   week: {
-    text: 'Woche'
+    text: 'Woche',
   },
   month: {
     prefix: 'Jedes',
-    text: 'Monat'
+    text: 'Monat',
   },
   year: {
     prefix: 'Jedes',
-    text: 'Jahr'
+    text: 'Jahr',
   },
 
   //quartz format
   'q-second': {
-    text: 'Sekunde'
+    text: 'Sekunde',
   },
   'q-minute': {
     text: 'Minute',
     second: {
       '*': {
-        prefix: 'und'
-      }
-    }
+        prefix: 'und',
+      },
+    },
   },
   'q-hour': {
     text: 'Stunde',
     minute: {
       '*': {
-        prefix: 'und'
-      }
+        prefix: 'und',
+      },
     },
     second: {
       '*': {
-        prefix: 'und'
-      }
-    }
-  }
+        prefix: 'und',
+      },
+    },
+  },
 }
 
 export default locale

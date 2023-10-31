@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-
     <!-- <v-text-field label="" :model-value="value" @update:model-value="nextValue = $event" @blur="value=nextValue"></v-text-field> -->
     <VueCronEditor v-model="value" />
-
   </div>
 </template>
 
@@ -12,7 +10,7 @@ import VueCronEditor from '../src/CronEditor'
 
 export default {
   components: {
-    VueCronEditor
+    VueCronEditor,
   },
 
   data: () => {
@@ -20,9 +18,9 @@ export default {
 
     return {
       value,
-      nextValue: value
+      nextValue: value,
     }
-  }
+  },
 }
 </script>
 

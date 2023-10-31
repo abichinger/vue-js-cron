@@ -1,45 +1,46 @@
-
 <template>
-    <CronCore v-bind="$attrs"
-      @update:model-value="$emit('update:model-value', $event)"
-      @error="$emit('error', $event)"
-      v-slot="{fields, period}">
+  <CronCore
+    v-bind="$attrs"
+    @update:model-value="$emit('update:model-value', $event)"
+    @error="$emit('error', $event)"
+    v-slot="{ fields, period }"
+  >
+    <div>
+      {{ period.prefix }}
 
-      <div>
-        {{period.prefix}}
+      <div class="vcron-a-spacer">
+        <custom-select
+          v-bind="period.attrs"
+          :items="period.items"
+          v-on="period.events"
+          item-value="id"
+          :button-props="buttonProps"
+        />
+      </div>
+
+      {{ period.suffix }}
+
+      <template v-for="f in fields" :key="f.id">
+        {{ f.prefix }}
 
         <div class="vcron-a-spacer">
           <custom-select
-            v-bind="period.attrs"
-            :items="period.items"
-            v-on="period.events"
-            item-value="id"
-            :button-props="buttonProps" />
+            v-bind="f.attrs"
+            v-on="f.events"
+            :selection="f.selectedStr"
+            :cols="cols[f.id]"
+            :items="f.items"
+            multiple
+            :button-props="buttonProps"
+            :hideOnClick="false"
+            clearable
+          />
         </div>
 
-        {{period.suffix}}
-
-        <template v-for="f in fields" :key="f.id">
-          {{f.prefix}}
-
-          <div class="vcron-a-spacer">
-            <custom-select
-              v-bind="f.attrs"
-              v-on="f.events"
-              :selection="f.selectedStr"
-              :cols="cols[f.id]"
-              :items="f.items"
-              multiple
-              :button-props="buttonProps"
-              :hideOnClick="false"
-              clearable />
-          </div>
-
-          {{f.suffix}}
-        </template>
-      </div>
-
-    </CronCore>
+        {{ f.suffix }}
+      </template>
+    </div>
+  </CronCore>
 </template>
 
 <script>
@@ -50,14 +51,14 @@ export default {
   name: 'VueCronEditor',
   components: {
     CronCore,
-    CustomSelect
+    CustomSelect,
   },
   props: {
     buttonProps: {
       type: Object,
-      default () {
+      default() {
         return {}
-      }
+      },
     },
     cols: {
       type: Object,
@@ -66,20 +67,18 @@ export default {
           second: 5,
           minute: 5,
           hour: 4,
-          day: 4
+          day: 4,
         }
-      }
-    }
+      },
+    },
   },
-  emits: ['update:model-value', 'error']
+  emits: ['update:model-value', 'error'],
 }
 </script>
 
 <style lang="css">
-
 .vcron-a-spacer {
   display: inline-block;
   padding: 3px;
 }
-
 </style>

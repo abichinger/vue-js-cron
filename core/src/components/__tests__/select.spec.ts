@@ -7,17 +7,17 @@ describe('select', () => {
     const items = [
       {
         value: 0,
-        text: 'zero'
+        text: 'zero',
       },
       {
         value: 1,
-        text: 'one'
-      }
+        text: 'one',
+      },
     ]
 
     const s = useSelect({
       items: items,
-      multiple: true
+      multiple: true,
     })
 
     let counter = 0
@@ -47,7 +47,7 @@ describe('select', () => {
     const items = new Array(10).fill(0).map((_, i) => {
       return {
         value: i,
-        text: `Item-${i}`
+        text: `Item-${i}`,
       }
     })
 
