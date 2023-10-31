@@ -15,3 +15,4 @@ function install(app: App) {
 export const corePlugin = {
   install,
 }
+export default corePlugin
