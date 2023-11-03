@@ -1,0 +1,27 @@
+{
+  "name": "@vue-js-cron/generated",
+  "version": "1.0.0",
+  "description": "generate code and documentation for all vue-js-cron flavors",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "nunjucks": "^3.2.3"
+  },
+  "scripts": {
+    "build": "tsc && npm run copy && chmod +x dist/cli.js",
+    "copy": "copyfiles -u 1 src/templates/* dist"
+  },
+  "bin": {
+    "cron-cli": "./dist/cli.js"
+  },
+  "devDependencies": {
+    "@types/argparse": "^2.0.12",
+    "typescript": "^5.2.2",
+    "copyfiles": "^2.4.1"
+  }
+}

@@ -5,19 +5,19 @@
 </p>
 
 <p align="center">
-{%- for p in packages %}
+{%- for f in flavors %}
 {%- if loop.index != 1 %} | {%- endif %}
-<a href="https://www.npmjs.com/package/{{ p.json.name }}">{{p.name}}</a>
+<a href="https://www.npmjs.com/package/{{ f.package }}">{{f.name}}</a>
 {%- endfor %}
 </p>
 
-## Usage - {{ entry.name }}
+## Usage - {{ flavor.name }}
 
 [Demo](https://abichinger.github.io/vue-js-cron/demo.html)
 
-[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#{{ entry.anchor }})
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#{{ flavor.dir }})
 
-[API - cron-{{ entry.dir }}](https://abichinger.github.io/vue-js-cron/api/{{ entry.dir }}.html)
+[API - cron-{{ flavor.dir }}](https://abichinger.github.io/vue-js-cron/api/{{ flavor.dir }}.html)
 
 ## Attribution
 
