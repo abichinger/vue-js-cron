@@ -18,18 +18,33 @@ import 'element-plus/dist/index.css'
 
 import Ant from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
-import '../styles/antd.css'
+// import '../styles/antd.css'
 
 import { defineClientConfig } from '@vuepress/client'
 
 import { variables } from './vars'
 
+function prefersDark() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 export default defineClientConfig({
   enhance ({ app, router, siteData }) {
+    const myTheme = {
+      dark: prefersDark(),
+      colors: {
+        secondary: '#3AA675',
+      },
+    }
+    
     const vuetify = createVuetify({
       components,
       directives,
-      ssr: true
+      ssr: true,
+      theme: {
+        defaultTheme: 'myTheme',
+        themes: {myTheme}
+      }
     })
 
     app.use(vuetify)

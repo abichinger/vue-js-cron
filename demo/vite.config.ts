@@ -7,7 +7,7 @@ const flavor = process.env.VITE_FLAVOR
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: flavor,
+  base: `demo/${flavor}`,
   plugins: [vue()],
   resolve: {
     alias: {
@@ -15,6 +15,6 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: `../docs/src/.vuepress/public/${flavor}`,
+    outDir: `../docs/src/.vuepress/public/demo/${flavor}`,
   },
 })

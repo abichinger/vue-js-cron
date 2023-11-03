@@ -17,3 +17,11 @@
 .text-lightest {
   color: var(--c-text-lightest)
 }
+
+iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  overflow: hidden;
+  border-radius: 15px;
+}

@@ -22,6 +22,10 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: |
+          cd demo
+          yarn install
+          yarn build-all
+      - run: |
           cd docs
           yarn install
       - run: yarn build-docs

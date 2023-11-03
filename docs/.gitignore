@@ -12,3 +12,5 @@ config.local.js
 basement_dist
 .cache
 .temp
+
+src/.vuepress/public/demo

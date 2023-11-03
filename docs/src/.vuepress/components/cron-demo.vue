@@ -7,7 +7,7 @@
         color="secondary"
         group
         density="compact"
-        class="mb-2 elevation-5">
+        class="mb-5 elevation-5">
 
         <v-btn v-for="item in flavors" :value="item.name" :key="item.name" @click="flavor = item">
           {{item.name}}
@@ -22,53 +22,68 @@
         color="secondary"
         group
         density="compact"
-        class="mb-10 elevation-5">
+        class="mb-5 elevation-5">
 
         <v-btn v-for="item in locales" :value="item" :key="item">
+          {{item}}
+        </v-btn>
+    </v-btn-toggle>
+
+    <p>Format</p>
+    <v-btn-toggle
+        v-model="format"
+        tile
+        color="secondary"
+        group
+        density="compact"
+        class="mb-10 elevation-5">
+
+        <v-btn v-for="item in formats" :value="item" :key="item">
           {{item}}
         </v-btn>
 
     </v-btn-toggle>
 
-    <p class="mb-2">
-      <template v-for="l in locales" :key=l>
-        <component v-if="l == locale" :is="flavor.component" v-model="value" :locale="locale"></component>
-      </template>
-    </p>
-    <p class="text-lightest mb-5">
-      cron expression: {{value}}
-    </p>
+    <iframe :src="src"></iframe>
 
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { withBase, } from '@vuepress/client'
+import { computed, ref } from 'vue'
 
 export default {
-  setup () {
+  props: {
+    index: {
+      type: Number,
+      default: 0,
+    }
+  },
+  setup (props) {
     const flavors = [
       {
         name: 'Light',
-        component: 'cron-light'
       },
       {
         name: 'Vuetify',
-        component: 'cron-vuetify'
       },
       {
         name: 'Element Plus',
-        component: 'cron-element-plus'
       },
       {
         name: 'Ant',
-        component: 'cron-ant'
+      },
+      {
+        name: 'Quasar',
       }
     ]
-
     const locales = ['en', 'de', 'pt', 'es', 'da', 'zh-cn']
-
-    const flavor = flavors[0]
+    const formats = ['crontab', 'quartz']
+    
+    const flavor = ref(flavors[props.index])
+    const locale = ref('en')
+    const format = ref(formats[0])
 
     const selectFlavor = (name) => {
       let i = flavors.map(f => f.name).indexOf(name)
@@ -76,13 +91,28 @@ export default {
       return flavors[i]
     }
 
+    const src = computed(() => {
+      const params = {
+        locale: locale.value,
+        format: format.value,
+        'initial-value': format.value == 'quartz' ? '* * * * * *' : '* * * * *'
+      }
+      const query = new URLSearchParams(params)
+      const path = 'demo/' + flavor.value.name.replace(' ', '-').toLowerCase() + '/index.html?' + query.toString()
+      
+      return withBase(path)
+    })
+
     return {
-      flavor: ref(flavor),
+      src,
+      flavor: flavor,
       flavors,
       selectFlavor,
       text: ref(flavor.name),
       locales,
-      locale: ref('en'),
+      locale: locale,
+      formats,
+      format,
       value: ref('* * * * *')
     }
   }
