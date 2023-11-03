@@ -1,0 +1,24 @@
+![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/vue-js-cron-hero.png)
+
+<p align="center">
+    <em>generate cron expressions using vue.js</em>
+</p>
+
+<p align="center">
+{%- for f in flavors %}
+{%- if loop.index != 1 %} | {%- endif %}
+<a href="https://www.npmjs.com/package/{{ f.package }}">{{f.name}}</a>
+{%- endfor %}
+</p>
+
+## Usage - {{ flavor.name }}
+
+[Demo](https://abichinger.github.io/vue-js-cron/demo.html)
+
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#{{ flavor.dir }})
+
+[API - cron-{{ flavor.dir }}](https://abichinger.github.io/vue-js-cron/api/{{ flavor.dir }}.html)
+
+## Attribution
+
+This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
