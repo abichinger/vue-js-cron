@@ -42,7 +42,7 @@ export default defineUserConfig({
       },
       {
         text: 'Guide',
-        link: '/guide/getting-started'
+        link: '/guide/getting-started-light'
       },
       {
         text: 'API',
@@ -59,7 +59,12 @@ export default defineUserConfig({
           title: 'Guide',
           collapsable: false,
           children: [
-            'getting-started',
+            'getting-started-core',
+            'getting-started-light',
+            'getting-started-ant',
+            'getting-started-element-plus',
+            'getting-started-quasar',
+            'getting-started-vuetify',
             'custom-periods',
             'custom-fields'
           ]

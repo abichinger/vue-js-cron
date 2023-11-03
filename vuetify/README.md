@@ -7,17 +7,17 @@
 <p align="center">
 <a href="https://www.npmjs.com/package/@vue-js-cron/core">Core</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/light">Light</a> |
-<a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a> |
-<a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a> |
-<a href="https://www.npmjs.com/package/@vue-js-cron/quasar">Quasar</a>
+<a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/quasar">Quasar</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a>
 </p>
 
 ## Usage - Vuetify
 
 [Demo](https://abichinger.github.io/vue-js-cron/demo.html)
 
-[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#vuetify)
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-vuetify)
 
 [API - cron-vuetify](https://abichinger.github.io/vue-js-cron/api/vuetify.html)
 

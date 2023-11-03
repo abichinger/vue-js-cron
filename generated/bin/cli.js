@@ -3,6 +3,7 @@ import { ArgumentParser } from 'argparse';
 import nunjucks from 'nunjucks';
 import path from 'path';
 import { generateSetups } from './demo.js';
+import { generateGuides } from './guide.js';
 import { generateReadmes } from './readme.js';
 import { __dirname } from './util.js';
 const templates = path.resolve(__dirname, 'templates');
@@ -20,6 +21,10 @@ const demo = subparsers.add_parser('demo-setup', {
     description: 'generate demo setup for each flavor',
 });
 demo.add_argument('outDir', { type: 'str' });
+const guide = subparsers.add_parser('guide', {
+    description: 'generate getting started for each flavor',
+});
+guide.add_argument('outDir', { type: 'str' });
 // Parse arguments
 const args = parser.parse_args();
 if (args.subcommand == 'readme') {
@@ -27,5 +32,8 @@ if (args.subcommand == 'readme') {
 }
 else if (args.subcommand == 'demo-setup') {
     generateSetups(args);
+}
+else if (args.subcommand == 'guide') {
+    generateGuides(args);
 }
 //# sourceMappingURL=cli.js.map

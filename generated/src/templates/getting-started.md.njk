@@ -1,0 +1,64 @@
+<!-- Generated file -->
+# Getting Started - {{ flavor.name }}
+
+The fastest way to get started, is to use one of the prebuilt components.
+{%- for f in flavors %}
+{%- if f.name == flavor.name %}
+- {{ f.componentHypen }} - {{ f.description }}
+{%- else %}
+- [{{ f.componentHypen }}](./getting-started-{{ f.dir }}) - {{ f.description }}
+{%- endif %}
+{%- endfor %}
+
+{%- if flavor.requirements %}
+## Requirements
+
+Make sure to install and setup all requirements.
+
+{%- for r in flavor.requirements %}
+- [{{ r.name }}]({{ r.url }})
+{%- endfor %}
+{%- endif %}
+
+## Installation
+
+Open up a terminal and run the following command:
+
+```bash 
+yarn add {{ flavor.package }}
+```
+or
+
+```bash 
+npm install {{ flavor.package }}
+```
+
+Then you need to register the component
+
+```js
+{%- if flavor.css %}
+import '{{ flavor.css }}'
+
+{%- endif %}
+// registers the component globally
+// registered name: {{ flavor.component }}
+import {{ flavor.component }}Plugin from '{{ flavor.package }}'
+app.use({{ flavor.component }}Plugin)
+
+// alternatively you can also register the component yourself
+// https://vuejs.org/guide/components/registration.html
+import { {{ flavor.component }} } from '{{ flavor.package }}'
+app.component('{{ flavor.component }}', {{ flavor.component }})
+```
+
+Done! 🚀
+
+<br />
+
+{%- if flavor.example %}
+
+## Example
+
+@[code]({{ flavor.example }})
+
+{%- endif %}

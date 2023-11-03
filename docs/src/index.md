@@ -4,7 +4,7 @@ tagline: A guide to generate cron expressions with Vue.js
 actions: 
   - text: Quick Start →
     type: primary
-    link: /guide/getting-started
+    link: /guide/getting-started-light
 features:
 - title: Renderless Component
   details: Vue-js-cron provides a renderless component, which can be used with any UI Library.

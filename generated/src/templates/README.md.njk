@@ -7,7 +7,7 @@
 <p align="center">
 {%- for f in flavors %}
 {%- if loop.index != 1 %} | {%- endif %}
-<a href="https://www.npmjs.com/package/{{ f.package }}">{{f.name}}</a>
+<a href="https://www.npmjs.com/package/{{ f.package }}">{{ f.name }}</a>
 {%- endfor %}
 </p>
 
@@ -15,7 +15,7 @@
 
 [Demo](https://abichinger.github.io/vue-js-cron/demo.html)
 
-[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started.html#{{ flavor.dir }})
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-{{ flavor.dir }})
 
 [API - cron-{{ flavor.dir }}](https://abichinger.github.io/vue-js-cron/api/{{ flavor.dir }}.html)
 
