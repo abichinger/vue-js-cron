@@ -13,12 +13,11 @@
 
 <script>
 
-import core from '@vue-js-cron/core'
-const { locale, util } = core
+import { defaultItems, genItems, pad } from '@vue-js-cron/core'
 
 export default {
   data () {
-    const defaultItems = locale.defaultItems('en')
+    const items = defaultItems('en')
 
     return {
       value: '* * * * *',
@@ -30,11 +29,11 @@ export default {
         { id: 'second', value: [] }
       ],
       fields: [
-        { id: 'second', items: util.genItems(0, 59, (value) => util.pad(value, 2)) },
-        { id: 'minute', items: defaultItems.minuteItems },
-        { id: 'hour', items: defaultItems.hourItems },
-        { id: 'day', items: defaultItems.dayItems },
-        { id: 'month', items: defaultItems.monthItems }
+        { id: 'second', items: genItems(0, 59, (value) => pad(value, 2)) },
+        { id: 'minute', items: items.minuteItems },
+        { id: 'hour', items: items.hourItems },
+        { id: 'day', items: items.dayItems },
+        { id: 'month', items: items.monthItems }
       ],
       cols (fieldId) {
         if (fieldId === 'minute') return 5

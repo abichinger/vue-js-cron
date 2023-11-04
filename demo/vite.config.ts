@@ -7,7 +7,7 @@ const flavor = process.env.VITE_FLAVOR
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: `demo/${flavor}`,
+  base: `vue-js-cron/demo/${flavor}`,
   plugins: [vue()],
   resolve: {
     alias: {

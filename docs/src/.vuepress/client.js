@@ -30,8 +30,13 @@ function prefersDark() {
 
 export default defineClientConfig({
   enhance ({ app, router, siteData }) {
+    let dark = true;
+    if (!__VUEPRESS_SSR__) {
+      dark = prefersDark()
+    }
+    
     const myTheme = {
-      dark: prefersDark(),
+      dark: dark,
       colors: {
         secondary: '#3AA675',
       },
