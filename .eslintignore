@@ -1,5 +1,6 @@
 node_modules
 dist
+bin
 
 docs/src/api/types/*
 docs/src/api/default/*
