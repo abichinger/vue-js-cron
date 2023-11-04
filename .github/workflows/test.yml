@@ -1,12 +1,6 @@
 name: Test
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request, workflow_call]
 
 jobs:
   test:
@@ -23,8 +17,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Node.js modules
-      run: yarn install
+      run: npm install
     - name: Lint
-      run: yarn lint
+      run: npm run lint
     - name: Test
-      run: yarn test
+      run: npm run test

@@ -4,7 +4,6 @@
   "description": "Cron editor for Element Plus",
   "main": "dist/element-plus.umd.js",
   "module": "dist/element-plus.esm.js",
-  "unpkg": "dist/element-plus.min.js",
   "browser": {
     "./sfc": "src/CronEditor.vue"
   },
@@ -13,12 +12,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jest",
-    "serve": "vue-cli-service serve dev/serve.js",
-    "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
-    "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/element-plus.umd.js",
-    "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/element-plus.esm.js",
-    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/element-plus.min.js",
+    "dev": "vue-cli-service serve dev/serve.js",
+    "build": "npx rollup --config",
     "clean": "git clean -xf dist"
   },
   "dependencies": {

@@ -6,29 +6,30 @@ on:
       - main
       - next
       - vue2
+      - beta
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
-      - run: yarn install
-      - run: yarn build
+      - run: npm install
+      - run: npm run build
       - run: |
           cd demo
-          yarn install
-          yarn build-all
+          npm install
+          npm run build-all
       - run: |
           cd docs
-          yarn install
-      - run: yarn build-docs
+          npm install
+      - run: npm run build-docs
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
@@ -39,6 +40,7 @@ jobs:
           clean-exclude: |
             next
             vue2
+            beta
 
       - name: Deploy next
         if: github.ref == 'refs/heads/next'
@@ -55,3 +57,11 @@ jobs:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
           target-folder: ./vue2
+
+      - name: Deploy beta
+        if: github.ref == 'refs/heads/beta'
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: docs/src/.vuepress/dist
+          target-folder: ./beta

@@ -33,9 +33,9 @@ Contributions are always welcome.
 
 Before you open a PR, please make sure your changes comply with the following rules:
 - commits messages follow the [AngularJS commit message format](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit)
-- `yarn lint` completes without errors
-- `yarn build` completes without errors
-- `yarn test` completes without errors
+- `npm run lint` completes without errors
+- `npm run build` completes without errors
+- `npm run test` completes without errors
 
 ## Contributing new localization strings
 
@@ -51,26 +51,28 @@ You can use the commit [feat: add portuguese translation](https://github.com/abi
 # Development
 
 ## Install dependencies
-```
-yarn install
+```bash
+npm install
 ```
 
 ## Run development server
-```
-yarn dev-core
-yarn dev-vuetify
-yarn dev-docs
+```bash
+npm run dev -w=core
+npm run dev -w=light
+...
+cd docs && npm run dev
 ```
 
 ## Test
-```
-yarn test
+```bash
+npm run test
 ```
 
 ## Build
-```
-yarn build
-yarn build-docs
+```bash
+npm run build # builds all public packages
+npm run build-demo # build demo, embedded inside docs
+npm run build-docs # build documentaion using vuepress
 ```
 
 ## Attribution

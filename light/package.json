@@ -4,7 +4,6 @@
   "description": "lightweight vue.js cron editor",
   "main": "dist/light.umd.js",
   "module": "dist/light.esm.js",
-  "unpkg": "dist/light.min.js",
   "browser": {
     "./sfc": "src/CronEditor.vue"
   },
@@ -13,12 +12,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jest",
-    "serve": "vue-cli-service serve dev/serve.js",
-    "build": "yarn build:umd & yarn run build:es & yarn run build:unpkg",
-    "build:umd": "yarn rollup --config build/rollup.config.js --format umd --file dist/light.umd.js",
-    "build:es": "yarn rollup --config build/rollup.config.js --format es --file dist/light.esm.js",
-    "build:unpkg": "yarn rollup --config build/rollup.config.js --format iife --file dist/light.min.js",
+    "dev": "vue-cli-service serve dev/serve.js",
+    "build": "npx rollup --config",
     "clean": "git clean -xf dist"
   },
   "dependencies": {
