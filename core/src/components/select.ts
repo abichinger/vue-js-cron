@@ -155,6 +155,12 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     selectedStr.value = items.map(getText).join(',')
   })
 
+  const isEmpty = computed(() => {
+    return multiple
+      ? !Array.isArray(selected.value) || selected.value.length == 0
+      : !!selected.value
+  })
+
   return {
     ...s,
     select,
@@ -163,6 +169,7 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     itemRows: splitArray(items, cols),
     setItems,
     setValues,
+    isEmpty,
   }
 }
 
@@ -199,12 +206,6 @@ export const RenderlessSelect = defineComponent({
       { immediate: true },
     )
 
-    const isEmpty = computed(() => {
-      return props.multiple
-        ? !Array.isArray(s.selected.value) || s.selected.value.length == 0
-        : !!s.selected.value
-    })
-
     return () => {
       const slotProps = {
         selectedStr: props.selection || s.selectedStr.value,
@@ -212,7 +213,7 @@ export const RenderlessSelect = defineComponent({
         items: props.items,
         select: s.select,
         isSelected: s.has,
-        clearable: props.clearable && !isEmpty.value,
+        clearable: props.clearable && !s.isEmpty.value,
         clear: s.clear,
         cols: props.cols,
         rows: s.itemRows.length,
