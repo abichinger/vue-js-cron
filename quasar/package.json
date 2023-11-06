@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/quasar",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cron editor for Quasar",
   "main": "dist/quasar.umd.js",
   "module": "dist/quasar.es.js",
@@ -18,7 +18,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "4.0.0"
+    "@vue-js-cron/core": "4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
