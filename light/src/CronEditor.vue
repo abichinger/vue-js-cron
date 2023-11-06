@@ -23,6 +23,7 @@
           :cols="cols[f.id] || 1"
           :selection="f.text.value"
           multiple
+          clearable
         ></custom-select>
       </div>
       <span>{{ f.suffix.value }}</span>

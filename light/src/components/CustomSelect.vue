@@ -2,6 +2,8 @@
   <div class="vcron-select-container">
     <span class="vcron-select-input" @click="toggleMenu">
       {{ selection ?? selectedStr }}
+
+      <span v-if="clearable && !isEmpty" @click="clear">&#x2715;</span>
     </span>
 
     <div class="vcron-select-list" v-if="menu">
@@ -34,6 +36,10 @@ export default {
     },
     selection: {
       type: String,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update:model-value'],
