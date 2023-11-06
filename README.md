@@ -25,7 +25,7 @@ This monorepo includes the following packages:
 - element-plus - Element Plus component
 - ant - Ant Design Vue component
 - quasar - Quasar component
-- docs - Vue.js Cron documentation powered by [VuePress](https://vuepress.vuejs.org/)
+- docs - Vue.js Cron documentation powered by [VuePress](https://v2.vuepress.vuejs.org/)
 
 # Contributing
 
