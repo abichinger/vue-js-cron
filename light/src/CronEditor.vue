@@ -1,6 +1,5 @@
 <template>
   <span class="vcron-editor">
-    {{ period.text }}
     <span>{{ period.prefix.value }}</span>
     <div class="vcron-l-spacer">
       <custom-select
@@ -31,13 +30,13 @@
   </span>
 </template>
 
-<script>
+<script lang="ts">
 import { cronProps, useCron } from '@vue-js-cron/core'
 import { defineComponent, watch } from 'vue'
 import CustomSelect from './components/CustomSelect.vue'
 
 export default defineComponent({
-  name: 'VueCronEditor',
+  name: 'CronLight',
   components: {
     CustomSelect,
   },
@@ -62,7 +61,9 @@ export default defineComponent({
     watch(
       () => props.modelValue,
       (value) => {
-        cron.cron.value = value
+        if (value) {
+          cron.cron.value = value
+        }
       },
     )
 

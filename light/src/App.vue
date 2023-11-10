@@ -1,13 +1,13 @@
 <template>
   <div>
-    <VueCronEditor
+    <cron-light
       v-model="value"
       initial-period="month"
       format="quartz"
       locale="en"
       @error="error = $event"
     >
-    </VueCronEditor>
+    </cron-light>
     <div>
       <br />
       cron expression: <input :value="value" @change="updateValue" />
@@ -17,12 +17,12 @@
   </div>
 </template>
 
-<script>
-import VueCronEditor from '../src/CronEditor'
+<script lang="ts">
+import CronLight from './CronEditor.vue'
 
 export default {
   components: {
-    VueCronEditor,
+    CronLight,
   },
   data: () => {
     return {
@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    updateValue(evt) {
+    updateValue(evt: any) {
       this.value = evt.target.value
     },
   },

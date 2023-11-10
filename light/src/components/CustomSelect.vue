@@ -23,11 +23,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { selectProps, useSelect } from '@vue-js-cron/core'
-import { ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'CustomSelect',
   props: {
     ...selectProps(),
@@ -44,7 +44,7 @@ export default {
   },
   emits: ['update:model-value'],
   setup(props, { emit }) {
-    const s = useSelect(props)
+    const s = useSelect<any, any>(props)
     const menu = ref(false)
 
     const menuEvtListener = () => {
@@ -83,7 +83,7 @@ export default {
       toggleMenu,
     }
   },
-}
+})
 </script>
 
 <style>
