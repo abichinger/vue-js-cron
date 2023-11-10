@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
+import type { CronFormat } from '@/types'
 import { nextTick } from 'vue'
-import { useCron, type CronFormat } from '../cron-core'
+import { useCron } from '../cron-core'
 
 type UseCronReturn = ReturnType<typeof useCron>
 

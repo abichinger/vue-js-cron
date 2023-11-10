@@ -2,11 +2,9 @@ import { AnySegment, EverySegment, NoSpecificSegment, RangeSegment, ValueSegment
 import type { Localization } from '@/locale/types'
 import { computed, defineComponent, ref, watch, type PropType } from 'vue'
 import { getLocale } from '../locale'
-import { FieldWrapper, TextPosition, type Field, type Period } from '../types'
+import { FieldWrapper, TextPosition, type CronFormat, type Field, type Period } from '../types'
 import { defaultItems } from '../util'
 import { useCronSegment, type UseCronSegmentReturn } from './cron-segment'
-
-export type CronFormat = 'crontab' | 'quartz'
 
 export interface CronOptions {
   initialValue?: string
