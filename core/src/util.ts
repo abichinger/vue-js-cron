@@ -44,7 +44,7 @@ class Range {
   }
 }
 
-type toText = (value: number) => string
+export type toText = (value: number) => string
 
 /**
  * generate items for fields

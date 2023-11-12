@@ -70,7 +70,7 @@ export function useSet<T>(options: SetOptions<T>) {
   }
 }
 
-interface SelectOptions<T, V> extends SetOptions<T> {
+export interface SelectOptions<T, V> extends SetOptions<T> {
   multiple?: boolean
   itemText?: string | ((item: T) => string)
   itemValue?: string | ((item: T) => V)

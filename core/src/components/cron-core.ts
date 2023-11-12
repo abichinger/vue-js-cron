@@ -220,33 +220,81 @@ export function useCron(options: CronOptions) {
   }
 }
 
-export const cronProps = {
+/** Shared props of all cron components */
+export const CronCoreProps = {
+  /**
+   * The value of the cron expression
+   *
+   * @defaultValue crontab: `* * * * *`, quartz: `* * * * * *`
+   */
   modelValue: {
     type: String,
   },
+  /**
+   * The id of a period to select
+   *
+   * @defaultValue last entry of `CronCoreProps.periods`
+   */
   initialPeriod: {
     type: String,
   },
+  /**
+   * The format of the cron expression, either crontab or quartz
+   *
+   * @defaultValue `crontab`
+   */
   format: {
     type: String as PropType<CronFormat>,
   },
+  /**
+   * The locale of the component, such as `en`, `de`, etc.
+   *
+   * @defaultValue `en`
+   */
   locale: {
     type: String,
   },
+  /** The segments of the cron expression, such as second, minute, hour, etc. */
   fields: {
     type: Array as PropType<Field[]>,
   },
+  /** The periods to select, e.g. Every month, day, etc.  */
   periods: {
     type: Array as PropType<Period[]>,
   },
+  /** The custom locale object, used to override values of the current {@link Localization} */
   customLocale: {
     type: Object as PropType<Localization>,
+  },
+  /** Number of columns in the dropdown,
+   * e.g. the possible values of minute (0-59) will be displayed in a grid with 5 columns
+   *
+   * @defaultValue
+   * ```
+   * {
+   *    second: 5,
+   *    minute: 5,
+   *    hour: 4,
+   *    day: 4,
+   *  }
+   * ```
+   */
+  cols: {
+    type: Object as PropType<Record<string, number>>,
+    default: () => {
+      return {
+        second: 5,
+        minute: 5,
+        hour: 4,
+        day: 4,
+      }
+    },
   },
 }
 
 export const CronCore = defineComponent({
   name: 'VueCronCore',
-  props: cronProps,
+  props: CronCoreProps,
   emits: ['update:model-value', 'error'],
   setup(props, ctx) {
     const { cron, error, selected, period } = useCron(props)
