@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import CronLight from './CronEditor.vue'
+import CronLight from '@/components/cron-light.vue'
 
 export default {
   components: {

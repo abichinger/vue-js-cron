@@ -31,55 +31,8 @@
 </template>
 
 <script lang="ts">
-import { cronProps, useCron } from '@vue-js-cron/core'
-import { defineComponent, watch } from 'vue'
-import CustomSelect from './components/CustomSelect.vue'
-
-export default defineComponent({
-  name: 'CronLight',
-  components: {
-    CustomSelect,
-  },
-  emits: ['update:model-value', 'error'],
-  props: {
-    ...cronProps,
-    cols: {
-      type: Object,
-      default: () => {
-        return {
-          second: 5,
-          minute: 5,
-          hour: 4,
-          day: 4,
-        }
-      },
-    },
-  },
-  setup(props, { emit }) {
-    const cron = useCron(props)
-
-    watch(
-      () => props.modelValue,
-      (value) => {
-        if (value) {
-          cron.cron.value = value
-        }
-      },
-    )
-
-    watch(cron.cron, (value) => {
-      emit('update:model-value', value)
-    })
-
-    watch(cron.error, (error) => {
-      emit('error', error)
-    })
-
-    return {
-      ...cron,
-    }
-  },
-})
+// External script works better with Typedoc
+export { CronLight as default } from './cron-light-script'
 </script>
 
 <style>
