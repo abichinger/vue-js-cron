@@ -7,7 +7,7 @@
       </a-button>
 
       <template #overlay>
-        <a-menu multiple :selectedKeys="Array.isArray(modelValue) ? modelValue : [modelValue]">
+        <a-menu multiple :selectedKeys="selectedKeys">
           <div class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
             <div class="vcron-a-col" :flex="1" v-for="(item, j) in itemRow" :key="j">
               <a-menu-item
@@ -34,7 +34,7 @@
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { selectProps, setupSelect } from '@vue-js-cron/core'
 import type { ButtonProps, DropdownProps } from 'ant-design-vue'
-import { defineComponent, ref, type PropType } from 'vue'
+import { computed, defineComponent, ref, type PropType } from 'vue'
 
 export default defineComponent({
   inheritAttrs: false,
@@ -43,7 +43,7 @@ export default defineComponent({
   },
   name: 'CustomSelect',
   props: {
-    ...selectProps<any, any>(),
+    ...selectProps<any, string | number>(),
     buttonProps: {
       type: Object as PropType<ButtonProps>,
       default: () => {},
@@ -68,10 +68,19 @@ export default defineComponent({
       }
     }
 
+    const selectedKeys = computed(() => {
+      const modelValue = props.modelValue
+      if (!modelValue) {
+        return []
+      }
+      return Array.isArray(modelValue) ? modelValue : [modelValue]
+    })
+
     return {
       ...s,
-      updateVisibility,
       visible,
+      updateVisibility,
+      selectedKeys,
     }
   },
 })
