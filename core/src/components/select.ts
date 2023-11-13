@@ -1,4 +1,13 @@
-import { computed, defineComponent, ref, watch, type PropType, type Ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  watch,
+  type PropType,
+  type Ref,
+  type SetupContext,
+  type WatchSource,
+} from 'vue'
 import { splitArray } from '..'
 
 interface SetOptions<T> {
@@ -171,6 +180,30 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     setValues,
     isEmpty,
   }
+}
+
+export function setupSelect<T, V>(
+  options: SelectOptions<T, V>,
+  modelValue: WatchSource<V>,
+  { emit }: SetupContext<['update:model-value']>,
+) {
+  const s = useSelect(options)
+
+  watch(s.selected, () => {
+    emit('update:model-value', s.selected.value)
+  })
+
+  watch(
+    modelValue,
+    (value) => {
+      if (value) {
+        s.setValues(value)
+      }
+    },
+    { immediate: true },
+  )
+
+  return s
 }
 
 export const RenderlessSelect = defineComponent({

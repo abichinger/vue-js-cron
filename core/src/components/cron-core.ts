@@ -1,6 +1,15 @@
 import { AnySegment, EverySegment, NoSpecificSegment, RangeSegment, ValueSegment } from '@/cron'
 import type { Localization } from '@/locale/types'
-import { computed, defineComponent, ref, watch, type ExtractPropTypes, type PropType } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  watch,
+  type ExtractPropTypes,
+  type PropType,
+  type SetupContext,
+  type WatchSource,
+} from 'vue'
 import { getLocale } from '../locale'
 import { FieldWrapper, TextPosition, type CronFormat, type Field, type Period } from '../types'
 import { defaultItems } from '../util'
@@ -218,6 +227,34 @@ export function useCron(options: CronOptions) {
       suffix: periodSuffix,
     },
   }
+}
+
+export function setupCron(
+  options: CronOptions,
+  modelValue: WatchSource<string | undefined>,
+  { emit }: SetupContext<['update:model-value', 'error']>,
+) {
+  const cron = useCron(options)
+
+  watch(
+    modelValue,
+    (value) => {
+      if (value) {
+        cron.cron.value = value
+      }
+    },
+    { immediate: true },
+  )
+
+  watch(cron.cron, (value) => {
+    emit('update:model-value', value)
+  })
+
+  watch(cron.error, (error) => {
+    emit('error', error)
+  })
+
+  return cron
 }
 
 export const cronCoreProps = () => ({

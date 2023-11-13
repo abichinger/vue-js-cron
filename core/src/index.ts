@@ -4,12 +4,19 @@ import { CronCore } from './components/cron-core'
 export {
   CronCore,
   cronCoreProps,
+  setupCron,
   useCron,
   type CronContext,
   type CronCoreProps,
   type CronOptions,
 } from './components/cron-core'
-export { RenderlessSelect, selectProps, useSelect, type SelectOptions } from './components/select'
+export {
+  RenderlessSelect,
+  selectProps,
+  setupSelect,
+  useSelect,
+  type SelectOptions,
+} from './components/select'
 export { Locale, getLocale } from './locale'
 export type * from './locale/types'
 export type * from './types'
