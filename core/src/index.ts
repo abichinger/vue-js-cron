@@ -3,10 +3,10 @@ import { CronCore } from './components/cron-core'
 
 export {
   CronCore,
-  CronCoreProps,
-  CronCoreProps as cronProps,
+  cronCoreProps,
   useCron,
   type CronContext,
+  type CronCoreProps,
   type CronOptions,
 } from './components/cron-core'
 export { RenderlessSelect, selectProps, useSelect, type SelectOptions } from './components/select'
@@ -16,11 +16,9 @@ export type * from './types'
 export { CronType, FieldWrapper, TextPosition } from './types'
 export { defaultItems, genItems, pad, splitArray, type toText } from './util'
 
-function install(app: App) {
-  app.component('CronCore', CronCore)
+export const CronCorePlugin = {
+  install: (app: App) => {
+    app.component('CronCore', CronCore)
+  },
 }
-
-export const corePlugin = {
-  install,
-}
-export default corePlugin
+export default CronCorePlugin

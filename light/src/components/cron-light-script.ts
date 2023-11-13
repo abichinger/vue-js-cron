@@ -1,15 +1,10 @@
 import CustomSelect from '@/components/select.vue'
-import { CronCoreProps, useCron } from '@vue-js-cron/core'
-import { defineComponent, watch } from 'vue'
+import { cronCoreProps, useCron } from '@vue-js-cron/core'
+import { defineComponent, watch, type ExtractPropTypes } from 'vue'
 
-/**
- * Props declaration of {@link CronLight}
- *
- * See {@link @vue-js-cron/core!CronCoreProps | CronCoreProps} for a detailed description of each prop
- */
-export const CronLightProps = {
-  ...CronCoreProps,
-}
+export const cronLightProps = () => ({
+  ...cronCoreProps(),
+})
 
 export const CronLight = defineComponent({
   name: 'CronLight',
@@ -17,7 +12,7 @@ export const CronLight = defineComponent({
     CustomSelect,
   },
   emits: ['update:model-value', 'error'],
-  props: CronLightProps,
+  props: cronLightProps(),
   setup(props, { emit }) {
     const cron = useCron(props)
 
@@ -43,3 +38,12 @@ export const CronLight = defineComponent({
     }
   },
 })
+
+/**
+ * Props of {@link CronLight}
+ *
+ * See {@link @vue-js-cron/core!CronCoreProps | CronCoreProps} for a detailed description of each prop
+ *
+ * @interface
+ */
+export type CronLightProps = Partial<ExtractPropTypes<ReturnType<typeof cronLightProps>>>

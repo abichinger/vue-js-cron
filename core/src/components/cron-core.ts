@@ -1,6 +1,6 @@
 import { AnySegment, EverySegment, NoSpecificSegment, RangeSegment, ValueSegment } from '@/cron'
 import type { Localization } from '@/locale/types'
-import { computed, defineComponent, ref, watch, type PropType } from 'vue'
+import { computed, defineComponent, ref, watch, type ExtractPropTypes, type PropType } from 'vue'
 import { getLocale } from '../locale'
 import { FieldWrapper, TextPosition, type CronFormat, type Field, type Period } from '../types'
 import { defaultItems } from '../util'
@@ -220,8 +220,7 @@ export function useCron(options: CronOptions) {
   }
 }
 
-/** Shared props of all cron components */
-export const CronCoreProps = {
+export const cronCoreProps = () => ({
   /**
    * The value of the cron expression
    *
@@ -290,11 +289,19 @@ export const CronCoreProps = {
       }
     },
   },
-}
+})
+
+/**
+ * Properties of {@link CronCore}.
+ * These properties are shared across all cron components
+ *
+ * @interface
+ */
+export type CronCoreProps = Partial<ExtractPropTypes<ReturnType<typeof cronCoreProps>>>
 
 export const CronCore = defineComponent({
   name: 'VueCronCore',
-  props: CronCoreProps,
+  props: cronCoreProps(),
   emits: ['update:model-value', 'error'],
   setup(props, ctx) {
     const { cron, error, selected, period } = useCron(props)
