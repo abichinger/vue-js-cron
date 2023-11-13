@@ -3,4 +3,5 @@
     "entryPoints": ["core", "light", "ant"],
     "entryPointStrategy": "packages",
     "out": "typedoc",
+    "plugin": ["typedoc-plugin-vue"]
 }

@@ -43,7 +43,14 @@ export interface Field {
 }
 
 export interface Period {
+  /**
+   * The id of the period
+   */
   id: string
+
+  /**
+   * The value determines which fields are visible
+   */
   value: string[]
 }
 

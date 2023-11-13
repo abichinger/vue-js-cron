@@ -192,11 +192,16 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
   }
 }
 
+/**
+ * @interface
+ */
+export type UseSelectReturn<T, V> = ReturnType<typeof useSelect<T, V>>
+
 export function setupSelect<T, V>(
   options: SelectOptions<T, V>,
   modelValue: WatchSource<V>,
   { emit }: SetupContext<['update:model-value']>,
-) {
+): UseSelectReturn<T, V> {
   const s = useSelect(options)
 
   watch(s.selected, () => {

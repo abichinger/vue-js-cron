@@ -9,6 +9,7 @@ export {
   type CronContext,
   type CronCoreProps,
   type CronOptions,
+  type UseCronReturn,
 } from './components/cron-core'
 export {
   RenderlessSelect,
@@ -16,6 +17,7 @@ export {
   setupSelect,
   useSelect,
   type SelectOptions,
+  type UseSelectReturn,
 } from './components/select'
 export { Locale, getLocale } from './locale'
 export type * from './locale/types'

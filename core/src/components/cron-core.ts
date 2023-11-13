@@ -229,11 +229,16 @@ export function useCron(options: CronOptions) {
   }
 }
 
+/**
+ * @interface
+ */
+export type UseCronReturn = ReturnType<typeof useCron>
+
 export function setupCron(
   options: CronOptions,
   modelValue: WatchSource<string | undefined>,
   { emit }: SetupContext<['update:model-value', 'error']>,
-) {
+): UseCronReturn {
   const cron = useCron(options)
 
   watch(
