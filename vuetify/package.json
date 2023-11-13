@@ -2,23 +2,24 @@
   "name": "@vue-js-cron/vuetify",
   "version": "4.0.1",
   "description": "Cron editor for vuetify",
+  "type": "module",
   "main": "dist/vuetify.umd.js",
-  "module": "dist/vuetify.esm.js",
-  "browser": {
-    "./sfc": "src/CronEditor.vue"
-  },
+  "module": "dist/vuetify.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/abichinger/vue-js-cron",
   "author": "Andreas Bichinger",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "vue-cli-service serve dev/serve.js",
-    "build": "npx rollup --config",
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "clean": "git clean -xf dist"
   },
   "dependencies": {
     "@vue-js-cron/core": "4.1.0",
-    "vuetify": "^3.0.0-beta.6"
+    "vuetify": "^3.4.0"
   },
   "devDependencies": {
     "@mdi/font": "^7.0.96"

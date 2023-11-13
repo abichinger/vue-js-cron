@@ -9,13 +9,13 @@
             @update:model-value="nextValue = $event"
             @blur="value = nextValue"
           ></v-text-field>
-          <VueCronEditor v-model="value" :fields="fields" :chipProps="{ color: 'primary' }" />
+          <CronVuetify v-model="value" :fields="fields" :chipProps="{ color: 'primary' }" />
         </v-card-text>
       </v-card>
 
       <v-card class="mt-10 pa-15" elevation="0" :border="30" color="#f5f5f5" style="margin: auto">
         <v-card-text class="text-center text-black">
-          <VueCronEditor v-model="value" :chipProps="{ color: '#004ba0' }" />
+          <CronVuetify v-model="value" :chipProps="{ color: '#004ba0' }" />
           <div class="mt-6 text-h4 text-grey-darken-3 font-weight-light">
             {{ value }}
           </div>
@@ -25,13 +25,13 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
+import CronVuetify from '@/components/cron-vuetify.vue'
 import { defaultItems, pad } from '@vue-js-cron/core'
-import VueCronEditor from '../src/CronEditor'
 
 export default {
   components: {
-    VueCronEditor,
+    CronVuetify,
   },
 
   data: () => {
