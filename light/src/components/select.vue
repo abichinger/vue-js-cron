@@ -31,16 +31,6 @@ export default defineComponent({
   name: 'CustomSelect',
   props: {
     ...selectProps(),
-    modelValue: {
-      type: [String, Number, Array],
-    },
-    selection: {
-      type: String,
-    },
-    clearable: {
-      type: Boolean,
-      default: false,
-    },
   },
   emits: ['update:model-value'],
   setup(props, ctx) {

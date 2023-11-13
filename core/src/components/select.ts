@@ -88,6 +88,16 @@ export interface SelectOptions<T, V> extends SetOptions<T> {
 
 export function selectProps<T, V>() {
   return {
+    modelValue: {
+      type: [String, Number, Array],
+    },
+    selection: {
+      type: String,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
     items: {
       type: Array as PropType<Array<T>>,
       default: () => [],

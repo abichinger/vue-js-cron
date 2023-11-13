@@ -44,16 +44,6 @@ export default defineComponent({
   name: 'CustomSelect',
   props: {
     ...selectProps<any, any>(),
-    modelValue: {
-      type: [String, Number, Array],
-    },
-    selection: {
-      type: String,
-    },
-    clearable: {
-      type: Boolean,
-      default: false,
-    },
     buttonProps: {
       type: Object as PropType<ButtonProps>,
       default: () => {},
