@@ -1,51 +1,98 @@
 <template>
-  <CronCore
-    v-bind="$attrs"
-    @update:model-value="$emit('update:model-value', $event)"
-    @error="$emit('error', $event)"
-    v-slot="{ fields, period }"
-  >
-    <div>
-      {{ period.prefix }}
+  <div>
+    {{ period.prefix.value }}
+
+    <div class="vcron-a-spacer">
+      <custom-select
+        :model-value="period.selected.value.id"
+        item-value="id"
+        :items="period.items"
+        @update:model-value="period.select($event)"
+        :button-props="buttonProps"
+      />
+    </div>
+
+    {{ period.suffix.value }}
+
+    <template v-for="f in selected" :key="f.id">
+      {{ f.prefix.value }}
 
       <div class="vcron-a-spacer">
         <custom-select
-          v-bind="period.attrs"
-          :items="period.items"
-          v-on="period.events"
-          item-value="id"
+          :model-value="f.selected.value"
+          @update:model-value="f.select($event)"
+          :items="f.items"
+          :cols="cols[f.id] || 1"
+          :selection="f.text.value"
+          multiple
+          clearable
           :button-props="buttonProps"
+          :dropdown-props="dropdownProps"
+          :hideOnClick="false"
         />
       </div>
 
-      {{ period.suffix }}
-
-      <template v-for="f in fields" :key="f.id">
-        {{ f.prefix }}
-
-        <div class="vcron-a-spacer">
-          <custom-select
-            v-bind="f.attrs"
-            v-on="f.events"
-            :selection="f.selectedStr"
-            :cols="cols[f.id]"
-            :items="f.items"
-            multiple
-            :button-props="buttonProps"
-            :hideOnClick="false"
-            clearable
-          />
-        </div>
-
-        {{ f.suffix }}
-      </template>
-    </div>
-  </CronCore>
+      {{ f.suffix.value }}
+    </template>
+  </div>
 </template>
 
 <script lang="ts">
-// External script works better with Typedoc
-export { CronAnt as default } from './cron-ant-script'
+import CustomSelect from '@/components/select.vue'
+import { cronCoreProps, setupCron } from '@vue-js-cron/core'
+
+import type { ButtonProps, DropdownProps } from 'ant-design-vue'
+import { defineComponent, type ExtractPropTypes, type PropType } from 'vue'
+
+export const cronAntProps = () => ({
+  /**
+   * Properties of Ant Design Vue Button
+   *
+   * @remarks
+   * See {@link https://antdv.com/components/button#api}
+   */
+  buttonProps: {
+    type: Object as PropType<ButtonProps>,
+    default() {
+      return {}
+    },
+  },
+  /**
+   * Properties of Ant Design Vue Dropdown
+   *
+   * @remarks
+   * See {@link https://antdv.com/components/dropdown#api}
+   */
+  dropdownProps: {
+    type: Object as PropType<DropdownProps>,
+    default: () => {},
+  },
+  ...cronCoreProps(),
+})
+
+/**
+ * Props of {@link CronAnt}
+ *
+ * See {@link @vue-js-cron/core!CronCoreProps | CronCoreProps} for a detailed description of each prop
+ *
+ * @interface
+ */
+export type CronAntProps = Partial<ExtractPropTypes<ReturnType<typeof cronAntProps>>>
+
+export default defineComponent({
+  name: 'CronAnt',
+  components: {
+    CustomSelect,
+  },
+  props: cronAntProps(),
+  emits: ['update:model-value', 'error'],
+  setup(props, ctx) {
+    const cron = setupCron(props, () => props.modelValue, ctx)
+    return {
+      ...cron,
+    }
+  },
+})
 </script>
 
 <style lang="css">

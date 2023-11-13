@@ -31,8 +31,38 @@
 </template>
 
 <script lang="ts">
-// External script works better with Typedoc
-export { CronLight as default } from './cron-light-script'
+import CustomSelect from '@/components/select.vue'
+import { cronCoreProps, setupCron } from '@vue-js-cron/core'
+import { defineComponent, type ExtractPropTypes } from 'vue'
+
+export const cronLightProps = () => ({
+  ...cronCoreProps(),
+})
+
+/**
+ * Props of {@link CronLight}
+ *
+ * See {@link @vue-js-cron/core!CronCoreProps | CronCoreProps} for a detailed description of each prop
+ *
+ * @interface
+ */
+export type CronLightProps = Partial<ExtractPropTypes<ReturnType<typeof cronLightProps>>>
+
+export default defineComponent({
+  name: 'CronLight',
+  components: {
+    CustomSelect,
+  },
+  emits: ['update:model-value', 'error'],
+  props: cronLightProps(),
+  setup(props, ctx) {
+    const cron = setupCron(props, () => props.modelValue, ctx)
+
+    return {
+      ...cron,
+    }
+  },
+})
 </script>
 
 <style>

@@ -1,58 +1,65 @@
 <template>
-  <renderless-select
-    v-bind="$attrs"
-    @update:model-value="$emit('update:model-value', $event)"
-    #default="{ selectedStr, itemRows, select, clearable, clear, modelValue, itemValue }"
-  >
-    <span class="custom-select">
-      <a-dropdown :trigger="['click']" v-model:visible="visible" v-bind="dropdownProps">
-        <a-button v-bind="buttonProps">
-          {{ selectedStr }}<CloseCircleFilled v-if="clearable" @click="clear()" @click.stop="" />
-        </a-button>
+  <span class="custom-select">
+    <a-dropdown :trigger="['click']" v-model:visible="visible" v-bind="dropdownProps">
+      <a-button v-bind="buttonProps">
+        {{ selection ?? selectedStr
+        }}<CloseCircleFilled v-if="clearable && !isEmpty" @click="clear()" @click.stop="" />
+      </a-button>
 
-        <template #overlay>
-          <a-menu multiple :selectedKeys="Array.isArray(modelValue) ? modelValue : [modelValue]">
-            <div class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
-              <div class="vcron-a-col" :flex="1" v-for="(item, j) in itemRow" :key="j">
-                <a-menu-item
-                  v-if="item"
-                  :key="item[itemValue]"
-                  @click="
-                    () => {
-                      select(item)
-                      updateVisibility()
-                    }
-                  "
-                  >{{ item.text }}</a-menu-item
-                >
-                <a-menu-item v-else></a-menu-item>
-              </div>
+      <template #overlay>
+        <a-menu multiple :selectedKeys="Array.isArray(modelValue) ? modelValue : [modelValue]">
+          <div class="vcron-a-row" type="flex" v-for="(itemRow, i) in itemRows" :key="i">
+            <div class="vcron-a-col" :flex="1" v-for="(item, j) in itemRow" :key="j">
+              <a-menu-item
+                v-if="item"
+                :key="item['value']"
+                @click="
+                  () => {
+                    select(item)
+                    updateVisibility()
+                  }
+                "
+                >{{ item.text }}</a-menu-item
+              >
+              <a-menu-item v-else></a-menu-item>
             </div>
-          </a-menu>
-        </template>
-      </a-dropdown>
-    </span>
-  </renderless-select>
+          </div>
+        </a-menu>
+      </template>
+    </a-dropdown>
+  </span>
 </template>
 
 <script lang="ts">
 import { CloseCircleFilled } from '@ant-design/icons-vue'
-import { RenderlessSelect } from '@vue-js-cron/core'
+import { selectProps, setupSelect } from '@vue-js-cron/core'
+import type { ButtonProps, DropdownProps } from 'ant-design-vue'
+import { defineComponent, ref, type PropType } from 'vue'
 
-export default {
+export default defineComponent({
   inheritAttrs: false,
   components: {
-    RenderlessSelect,
     CloseCircleFilled,
   },
   name: 'CustomSelect',
   props: {
+    ...selectProps<any, any>(),
+    modelValue: {
+      type: [String, Number, Array],
+    },
+    selection: {
+      type: String,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
     buttonProps: {
-      type: Object,
+      type: Object as PropType<ButtonProps>,
       default: () => {},
     },
     dropdownProps: {
-      type: Object,
+      type: Object as PropType<DropdownProps>,
       default: () => {},
     },
     hideOnClick: {
@@ -60,20 +67,24 @@ export default {
       default: true,
     },
   },
-  data: () => {
+  emits: ['update:model-value'],
+  setup(props, ctx) {
+    const s = setupSelect(props, () => props.modelValue, ctx)
+    const visible = ref(false)
+
+    const updateVisibility = () => {
+      if (props.hideOnClick && visible.value) {
+        visible.value = false
+      }
+    }
+
     return {
-      visible: false,
+      ...s,
+      updateVisibility,
+      visible,
     }
   },
-  emits: ['update:model-value'],
-  methods: {
-    updateVisibility() {
-      if (this.hideOnClick && this.visible) {
-        this.visible = false
-      }
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

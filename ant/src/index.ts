@@ -1,8 +1,7 @@
-import CronAnt from '@/components/cron-ant.vue'
+import { default as CronAnt, cronAntProps, type CronAntProps } from '@/components/cron-ant.vue'
 import type { App } from 'vue'
 
-export { cronAntProps, type CronAntProps } from '@/components/cron-ant-script'
-export { CronAnt }
+export { CronAnt, cronAntProps, type CronAntProps }
 export const CronAntPlugin = {
   install: (app: App) => {
     app.component('CronAnt', CronAnt)

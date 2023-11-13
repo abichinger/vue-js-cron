@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts">
-import { selectProps, useSelect } from '@vue-js-cron/core'
-import { defineComponent, ref, watch } from 'vue'
+import { selectProps, setupSelect } from '@vue-js-cron/core'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'CustomSelect',
@@ -43,8 +43,8 @@ export default defineComponent({
     },
   },
   emits: ['update:model-value'],
-  setup(props, { emit }) {
-    const s = useSelect<any, any>(props)
+  setup(props, ctx) {
+    const s = setupSelect<any, any>(props, () => props.modelValue, ctx)
     const menu = ref(false)
 
     const menuEvtListener = () => {
@@ -62,20 +62,6 @@ export default defineComponent({
         document.removeEventListener('click', menuEvtListener)
       }
     }
-
-    watch(s.selected, () => {
-      emit('update:model-value', s.selected.value)
-    })
-
-    watch(
-      () => props.modelValue,
-      (value) => {
-        if (value) {
-          s.setValues(value)
-        }
-      },
-      { immediate: true },
-    )
 
     return {
       ...s,

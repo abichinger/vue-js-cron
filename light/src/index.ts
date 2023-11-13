@@ -1,8 +1,11 @@
-import CronLight from '@/components/cron-light.vue'
+import {
+  default as CronLight,
+  cronLightProps,
+  type CronLightProps,
+} from '@/components/cron-light.vue'
 import type { App } from 'vue'
 
-export { cronLightProps, type CronLightProps } from '@/components/cron-light-script'
-export { CronLight }
+export { CronLight, cronLightProps, type CronLightProps }
 export const CronLightPlugin = {
   install: (app: App) => {
     app.component('CronLight', CronLight)
