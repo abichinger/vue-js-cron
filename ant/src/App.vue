@@ -5,8 +5,8 @@
   </div>
 </template>
 
-<script>
-import VueCronEditor from '../src/CronEditor'
+<script lang="ts">
+import VueCronEditor from '@/components/cron-ant.vue'
 
 export default {
   components: {

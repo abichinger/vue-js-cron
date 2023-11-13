@@ -1,6 +1,8 @@
 node_modules
 dist
 bin
+playground
+typedoc
 
 docs/src/api/types/*
 docs/src/api/default/*

@@ -35,7 +35,7 @@
   </renderless-select>
 </template>
 
-<script>
+<script lang="ts">
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { RenderlessSelect } from '@vue-js-cron/core'
 

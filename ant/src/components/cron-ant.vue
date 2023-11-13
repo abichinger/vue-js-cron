@@ -43,37 +43,9 @@
   </CronCore>
 </template>
 
-<script>
-import { CronCore } from '@vue-js-cron/core'
-import CustomSelect from './components/CustomSelect.vue'
-
-export default {
-  name: 'VueCronEditor',
-  components: {
-    CronCore,
-    CustomSelect,
-  },
-  props: {
-    buttonProps: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
-    cols: {
-      type: Object,
-      default: () => {
-        return {
-          second: 5,
-          minute: 5,
-          hour: 4,
-          day: 4,
-        }
-      },
-    },
-  },
-  emits: ['update:model-value', 'error'],
-}
+<script lang="ts">
+// External script works better with Typedoc
+export { CronAnt as default } from './cron-ant-script'
 </script>
 
 <style lang="css">
