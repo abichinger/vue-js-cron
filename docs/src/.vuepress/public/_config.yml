@@ -1,0 +1,3 @@
+include:
+  - "_*.html"
+  - "_*.js"
