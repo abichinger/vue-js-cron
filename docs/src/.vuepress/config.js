@@ -46,7 +46,7 @@ export default defineUserConfig({
       },
       {
         text: 'API',
-        link: '/api/core'
+        link: 'https://abichinger.github.io/vue-js-cron/typedoc/'
       },
       {
         text: 'Github',
@@ -70,45 +70,6 @@ export default defineUserConfig({
           ]
         }
       ],
-      '/api/': [
-        {
-          title: 'Core',
-          collapsable: false,
-          children: [
-            'core',
-            'util',
-            'locale'
-          ]
-        },
-        {
-          title: 'Light',
-          collapsable: false,
-          children: [
-            'light'
-          ]
-        },
-        {
-          title: 'Vuetify',
-          collapsable: false,
-          children: [
-            'vuetify'
-          ]
-        },
-        {
-          title: 'Element Plus',
-          collapsable: false,
-          children: [
-            'element-plus'
-          ]
-        },
-        {
-          title: 'Ant',
-          collapsable: false,
-          children: [
-            'ant'
-          ]
-        }
-      ]
     }
   }),
 
