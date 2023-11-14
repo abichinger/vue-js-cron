@@ -5,9 +5,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import CronQuasar from '@/components/cron-quasar.vue'
 import { ref } from 'vue'
-import CronQuasar from './components/CronQuasar.vue'
 
 const expr = ref('* * * * *')
 </script>

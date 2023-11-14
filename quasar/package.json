@@ -2,19 +2,19 @@
   "name": "@vue-js-cron/quasar",
   "version": "2.0.1",
   "description": "Cron editor for Quasar",
-  "main": "dist/quasar.umd.js",
-  "module": "dist/quasar.es.js",
-  "browser": {
-    "./sfc": "src/components/quasar-cron.vue"
-  },
+  "type": "module",
+  "main": "dist/quasar.umd.cjs",
+  "module": "dist/quasar.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/abichinger/vue-js-cron",
   "author": "Andreas Bichinger",
   "license": "MIT",
   "private": false,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "clean": "git clean -xf dist"
   },
   "dependencies": {
