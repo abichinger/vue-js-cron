@@ -8,13 +8,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "generate": "npx cron-cli demo-setup ./src/setup",
-    "build-ant": "VITE_FLAVOR=ant npm run build",
-    "build-light": "VITE_FLAVOR=light npm run build",
-    "build-element-plus": "VITE_FLAVOR=element-plus npm run build",
-    "build-quasar": "VITE_FLAVOR=quasar npm run build",
-    "build-vuetify": "VITE_FLAVOR=vuetify npm run build",
-    "build-all": "npm run build-ant && npm run build-light && npm run build-element-plus && npm run build-quasar && npm run build-vuetify"
+    "generate": "npx cron-cli demo-setup ."
   },
   "dependencies": {
     "vue": "^3.3.4",

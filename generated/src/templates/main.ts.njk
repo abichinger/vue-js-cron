@@ -1,0 +1,39 @@
+// Generated file, do not modify
+import './assets/main.css'
+import { createApp } from 'vue'
+import App from './App.vue'
+import type { App as VueApp } from 'vue'
+import { customSetup } from './setup'
+
+export async function setup(app: VueApp) {
+  // imports
+  {%- for name in imports %}
+  await import('{{ name }}')
+  {%- endfor %}
+
+  // uses
+  let module = null
+  {%- for name, exports in uses %}
+  module = await import('{{ name }}')
+    {%- for export in exports %}
+  // @ts-ignore
+  app.use(module.{{ export }})
+    {%- endfor %}
+  {%- endfor %}
+
+  // register cron component
+  {%- if css %}
+  await import('{{ css }}')
+  {%- endif %}
+  module = await import('{{ package }}')
+  app.component('cron-editor', module['{{ component }}'])
+}
+
+async function main() {
+  const app = createApp(App)
+  await setup(app)
+  await customSetup('{{ dir }}', app)
+  app.mount('#app')
+}
+
+main()
