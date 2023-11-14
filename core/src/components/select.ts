@@ -118,6 +118,10 @@ export function selectProps<T, V>() {
       type: [String, Function] as PropType<string | ((item: T) => V)>,
       default: 'value',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   }
 }
 

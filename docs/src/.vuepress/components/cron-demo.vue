@@ -2,14 +2,15 @@
   <div class="cron-demo">
     <p>Flavor</p>
     <v-btn-toggle
-        v-model="text"
+        v-model="toggle"
         tile
         color="secondary"
         group
         density="compact"
-        class="mb-5 elevation-5">
+        class="mb-5 elevation-5"
+        mandatory>
 
-        <v-btn v-for="item in flavors" :value="item.name" :key="item.name" @click="flavor = item">
+        <v-btn v-for="item in flavors" :key="item.name" @click="flavor = item">
           {{item.name}}
         </v-btn>
 
@@ -36,13 +37,15 @@
         color="secondary"
         group
         density="compact"
-        class="mb-10 elevation-5">
+        class="mb-5 elevation-5">
 
         <v-btn v-for="item in formats" :value="item" :key="item">
           {{item}}
         </v-btn>
 
     </v-btn-toggle>
+
+    <v-switch v-model="disabled" color="secondary" label="Disabled"></v-switch>
 
     <iframe :src="src"></iframe>
 
@@ -54,12 +57,6 @@ import { withBase, } from '@vuepress/client'
 import { computed, ref } from 'vue'
 
 export default {
-  props: {
-    index: {
-      type: Number,
-      default: 0,
-    }
-  },
   setup (props) {
     const flavors = [
       {
@@ -81,9 +78,10 @@ export default {
     const locales = ['en', 'de', 'pt', 'es', 'da', 'zh-cn']
     const formats = ['crontab', 'quartz']
     
-    const flavor = ref(flavors[props.index])
+    const flavor = ref(flavors[0])
     const locale = ref('en')
     const format = ref(formats[0])
+    const disabled = ref(false)
 
     const selectFlavor = (name) => {
       let i = flavors.map(f => f.name).indexOf(name)
@@ -95,7 +93,8 @@ export default {
       const params = {
         locale: locale.value,
         format: format.value,
-        'initial-value': format.value == 'quartz' ? '* * * * * *' : '* * * * *'
+        'initial-value': format.value == 'quartz' ? '* * * * * *' : '* * * * *',
+        ...(disabled.value ? { disabled:true } : {})
       }
       const query = new URLSearchParams(params)
       const path = 'demo/' + flavor.value.name.replace(' ', '-').toLowerCase() + '/index.html?' + query.toString()
@@ -108,11 +107,12 @@ export default {
       flavor: flavor,
       flavors,
       selectFlavor,
-      text: ref(flavor.name),
+      toggle: ref(0),
       locales,
       locale: locale,
       formats,
       format,
+      disabled,
       value: ref('* * * * *')
     }
   }

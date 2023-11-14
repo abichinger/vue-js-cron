@@ -331,6 +331,11 @@ export const cronCoreProps = () => ({
       }
     },
   },
+  /** Disable the cron editor */
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 /**

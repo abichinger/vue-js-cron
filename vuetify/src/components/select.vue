@@ -1,5 +1,5 @@
 <template>
-  <v-chip v-bind="chipProps">
+  <v-chip v-bind="chipProps" :disabled="disabled">
     <template #append v-if="clearable && !isEmpty">
       <v-icon size="small" icon="mdi-close" @click.stop="clear()"> </v-icon>
     </template>

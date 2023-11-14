@@ -1,6 +1,11 @@
 <template>
   <span class="custom-select">
-    <a-dropdown :trigger="['click']" v-model:visible="visible" v-bind="dropdownProps">
+    <a-dropdown
+      :trigger="['click']"
+      v-model:visible="visible"
+      v-bind="dropdownProps"
+      :disabled="disabled"
+    >
       <a-button v-bind="buttonProps">
         {{ selection ?? selectedStr
         }}<CloseCircleFilled v-if="clearable && !isEmpty" @click="clear()" @click.stop="" />

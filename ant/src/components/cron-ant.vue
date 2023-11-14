@@ -8,6 +8,7 @@
         item-value="id"
         :items="period.items"
         @update:model-value="period.select($event)"
+        :disabled="disabled"
         :button-props="buttonProps"
       />
     </div>
@@ -26,6 +27,7 @@
           :selection="f.text.value"
           multiple
           clearable
+          :disabled="disabled"
           :button-props="buttonProps"
           :dropdown-props="dropdownProps"
           :hideOnClick="false"

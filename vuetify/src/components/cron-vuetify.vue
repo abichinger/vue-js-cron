@@ -8,6 +8,7 @@
           item-value="id"
           :items="period.items"
           @update:model-value="period.select($event)"
+          :disabled="disabled"
           :chip-props="chipProps"
         />
       </v-col>
@@ -24,6 +25,7 @@
             :selection="f.text.value"
             multiple
             clearable
+            :disabled="disabled"
             :chip-props="chipProps"
             :menu-props="{ closeOnContentClick: false }"
           />

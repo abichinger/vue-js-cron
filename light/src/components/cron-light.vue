@@ -8,6 +8,7 @@
         :items="period.items"
         @update:model-value="period.select($event)"
         :cols="cols['period'] || 1"
+        :disabled="disabled"
       />
     </div>
     <span>{{ period.suffix.value }}</span>
@@ -23,6 +24,7 @@
           :selection="f.text.value"
           multiple
           clearable
+          :disabled="disabled"
         ></custom-select>
       </div>
       <span>{{ f.suffix.value }}</span>

@@ -1,6 +1,14 @@
 <template>
   <div class="vcron-select-container">
-    <span class="vcron-select-input" @click="toggleMenu">
+    <span
+      class="vcron-select-input"
+      :class="{ 'vcron-select-disabled': disabled }"
+      @click="
+        () => {
+          if (!disabled) toggleMenu()
+        }
+      "
+    >
       {{ selection ?? selectedStr }}
 
       <span v-if="clearable && !isEmpty" @click="clear">&#x2715;</span>
@@ -73,13 +81,21 @@ export default defineComponent({
   display: inline-block;
   border-radius: 3px;
   border: 1px solid #ddd;
-  background-color: #eee;
   user-select: none;
   padding: 0 0.5em;
   color: black;
 }
 
-.vcron-select-input:hover {
+.vcron-select-disabled {
+  background-color: #ccc;
+  color: #444;
+}
+
+:not(.vcron-select-disabled).vcron-select-input {
+  background-color: #eee;
+}
+
+:not(.vcron-select-disabled).vcron-select-input:hover {
   border: 1px solid #ccc;
   background-color: #ddd;
 }

@@ -1,6 +1,6 @@
 <template>
   <span>
-    <q-btn class="q-ma-xs" v-bind="buttonProps">
+    <q-btn class="q-ma-xs" v-bind="buttonProps" :disabled="disabled">
       {{ selection ?? selectedStr }}
       <q-icon
         class="q-pl-xs"
