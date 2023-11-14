@@ -6,14 +6,13 @@
       :periods="periods"
       :fields="fields"
       @error="error=$event"
-      :custom-locale="customLocale"
-      :cols="cols" />
+      :custom-locale="customLocale" />
   </div>
 </template>
 
 <script>
 
-import { defaultItems, genItems, pad } from '@vue-js-cron/core'
+import { defaultItems, genItems, pad } from '@vue-js-cron/core';
 
 export default {
   data () {
@@ -35,13 +34,6 @@ export default {
         { id: 'day', items: items.dayItems },
         { id: 'month', items: items.monthItems }
       ],
-      cols (fieldId) {
-        if (fieldId === 'minute') return 5
-        else if (fieldId === 'hour') return 4
-        else if (fieldId === 'day') return 4
-        else if (fieldId === 'second') return 3
-        else return 1
-      },
       customLocale: {
         '*': {
           second: {
