@@ -40,6 +40,16 @@ Done! 🚀
 
 <br />
 
+## API
+
+
+[CronCore API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_core.CronCore)
+
+[CronCoreProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_core.CronCoreProps)
+
+
+
+
 ## Example
 
 @[code](../.vuepress/components/get-started-renderless.vue)

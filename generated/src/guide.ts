@@ -4,9 +4,10 @@ import path from 'path'
 import { Flavor, flavors } from './flavors.js'
 
 const template = 'getting-started.md.njk'
+const baseUrl = 'https://abichinger.github.io/vue-js-cron'
 
 function generateGuide(flavor: Flavor, outDir: string = './'): void {
-  const rendered = nunjucks.render(template, { flavor, flavors })
+  const rendered = nunjucks.render(template, { flavor, flavors, baseUrl })
   const filePath = path.resolve(outDir, `getting-started-${flavor.dir}.md`)
   writeFileSync(filePath, rendered)
 }

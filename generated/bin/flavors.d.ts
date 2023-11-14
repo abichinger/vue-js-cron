@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-export interface Requirement {
+export interface Link {
     name: string;
     url: string;
 }
@@ -14,13 +14,8 @@ export interface Flavor {
     uses?: Record<string, string[]>;
     imports?: string[];
     setup?: (app: App) => Promise<void>;
-    requirements?: Requirement[];
+    requirements?: Link[];
     example?: string;
+    api?: Link[];
 }
-export declare const core: Flavor;
-export declare const light: Flavor;
-export declare const ant: Flavor;
-export declare const element: Flavor;
-export declare const quasar: Flavor;
-export declare const vuetify: Flavor;
 export declare const flavors: Flavor[];

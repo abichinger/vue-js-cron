@@ -45,6 +45,16 @@ Done! 🚀
 
 <br />
 
+## API
+
+
+[CronElementPlus API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_element_plus.CronElementPlus)
+
+[CronElementPlusProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_element_plus.CronElementPlusProps)
+
+
+
+
 ## Example
 
 @[code](../.vuepress/components/get-started-element.vue)

@@ -1,4 +1,4 @@
-export const core = {
+const core = {
     name: 'Core',
     description: 'renderless cron editor',
     package: '@vue-js-cron/core',
@@ -7,7 +7,7 @@ export const core = {
     componentHypen: 'cron-core',
     example: '../.vuepress/components/get-started-renderless.vue',
 };
-export const light = {
+const light = {
     name: 'Light',
     description: 'lightweight cron editor without external dependencies',
     package: '@vue-js-cron/light',
@@ -17,7 +17,7 @@ export const light = {
     componentHypen: 'cron-light',
     example: '../.vuepress/components/get-started-light.vue',
 };
-export const ant = {
+const ant = {
     name: 'Ant',
     description: 'cron editor for [Ant Design Vue](https://antdv.com/)',
     package: '@vue-js-cron/ant',
@@ -29,7 +29,7 @@ export const ant = {
     requirements: [{ name: 'Ant Design Vue', url: 'https://www.antdv.com/components/overview/' }],
     example: '../.vuepress/components/get-started-ant.vue',
 };
-export const element = {
+const element = {
     name: 'Element Plus',
     description: 'cron editor for [Element Plus](https://element-plus.org/en-US/)',
     package: '@vue-js-cron/element-plus',
@@ -42,7 +42,7 @@ export const element = {
     requirements: [{ name: 'Element Plus', url: 'https://element-plus.org/en-US/' }],
     example: '../.vuepress/components/get-started-element.vue',
 };
-export const quasar = {
+const quasar = {
     name: 'Quasar',
     description: 'cron editor for [Quasar](https://quasar.dev/)',
     package: '@vue-js-cron/quasar',
@@ -53,7 +53,7 @@ export const quasar = {
     imports: ['quasar/src/css/index.sass', '@quasar/extras/material-icons/material-icons.css'],
     requirements: [{ name: 'Quasar', url: 'https://quasar.dev/start' }],
 };
-export const vuetify = {
+const vuetify = {
     name: 'Vuetify',
     description: 'cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)',
     package: '@vue-js-cron/vuetify',
@@ -76,5 +76,18 @@ export const vuetify = {
     requirements: [{ name: 'Vuetify', url: 'https://next.vuetifyjs.com/en/' }],
     example: '../.vuepress/components/get-started-vuetify.vue',
 };
-export const flavors = [core, light, ant, element, quasar, vuetify];
+export const flavors = [core, light, ant, element, quasar, vuetify].map((f) => {
+    const packageName = f.package.replace(/[-@/]/g, '_');
+    f.api = [
+        {
+            name: `${f.component} API`,
+            url: `/typedoc/classes/${packageName}.${f.component}`,
+        },
+        {
+            name: `${f.component}Props API`,
+            url: `/typedoc/interfaces/${packageName}.${f.component}Props`,
+        },
+    ];
+    return f;
+});
 //# sourceMappingURL=flavors.js.map

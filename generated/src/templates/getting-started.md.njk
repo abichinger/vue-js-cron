@@ -55,7 +55,13 @@ Done! 🚀
 
 <br />
 
-{%- if flavor.example %}
+## API
+
+{% for link in flavor.api %}
+[{{ link.name }}]({{ baseUrl }}{{ link.url }})
+{% endfor %}
+
+{% if flavor.example %}
 
 ## Example
 

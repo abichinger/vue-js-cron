@@ -13,13 +13,16 @@
 <a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a>
 </p>
 
-## Usage - Quasar
+## Links - Quasar
 
 [Demo](https://abichinger.github.io/vue-js-cron/demo.html)
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-quasar)
 
-[API - cron-quasar](https://abichinger.github.io/vue-js-cron/api/quasar.html)
+[CronQuasar API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_quasar.CronQuasar)
+
+[CronQuasarProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_quasar.CronQuasarProps)
+
 
 ## Attribution
 

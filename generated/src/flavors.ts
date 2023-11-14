@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 
-export interface Requirement {
+export interface Link {
   name: string
   url: string
 }
@@ -16,11 +16,12 @@ export interface Flavor {
   uses?: Record<string, string[]>
   imports?: string[]
   setup?: (app: App) => Promise<void>
-  requirements?: Requirement[]
+  requirements?: Link[]
   example?: string
+  api?: Link[]
 }
 
-export const core: Flavor = {
+const core: Flavor = {
   name: 'Core',
   description: 'renderless cron editor',
   package: '@vue-js-cron/core',
@@ -30,7 +31,7 @@ export const core: Flavor = {
   example: '../.vuepress/components/get-started-renderless.vue',
 }
 
-export const light: Flavor = {
+const light: Flavor = {
   name: 'Light',
   description: 'lightweight cron editor without external dependencies',
   package: '@vue-js-cron/light',
@@ -41,7 +42,7 @@ export const light: Flavor = {
   example: '../.vuepress/components/get-started-light.vue',
 }
 
-export const ant: Flavor = {
+const ant: Flavor = {
   name: 'Ant',
   description: 'cron editor for [Ant Design Vue](https://antdv.com/)',
   package: '@vue-js-cron/ant',
@@ -54,7 +55,7 @@ export const ant: Flavor = {
   example: '../.vuepress/components/get-started-ant.vue',
 }
 
-export const element: Flavor = {
+const element: Flavor = {
   name: 'Element Plus',
   description: 'cron editor for [Element Plus](https://element-plus.org/en-US/)',
   package: '@vue-js-cron/element-plus',
@@ -68,7 +69,7 @@ export const element: Flavor = {
   example: '../.vuepress/components/get-started-element.vue',
 }
 
-export const quasar: Flavor = {
+const quasar: Flavor = {
   name: 'Quasar',
   description: 'cron editor for [Quasar](https://quasar.dev/)',
   package: '@vue-js-cron/quasar',
@@ -80,7 +81,7 @@ export const quasar: Flavor = {
   requirements: [{ name: 'Quasar', url: 'https://quasar.dev/start' }],
 }
 
-export const vuetify: Flavor = {
+const vuetify: Flavor = {
   name: 'Vuetify',
   description: 'cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)',
   package: '@vue-js-cron/vuetify',
@@ -106,4 +107,18 @@ export const vuetify: Flavor = {
   example: '../.vuepress/components/get-started-vuetify.vue',
 }
 
-export const flavors = [core, light, ant, element, quasar, vuetify]
+export const flavors = [core, light, ant, element, quasar, vuetify].map((f) => {
+  const packageName = f.package.replace(/[-@/]/g, '_')
+
+  f.api = [
+    {
+      name: `${f.component} API`,
+      url: `/typedoc/classes/${packageName}.${f.component}`,
+    },
+    {
+      name: `${f.component}Props API`,
+      url: `/typedoc/interfaces/${packageName}.${f.component}Props`,
+    },
+  ]
+  return f
+})

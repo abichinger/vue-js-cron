@@ -41,6 +41,16 @@ Done! 🚀
 
 <br />
 
+## API
+
+
+[CronLight API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_light.CronLight)
+
+[CronLightProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_light.CronLightProps)
+
+
+
+
 ## Example
 
 @[code](../.vuepress/components/get-started-light.vue)

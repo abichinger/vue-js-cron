@@ -11,13 +11,14 @@
 {%- endfor %}
 </p>
 
-## Usage - {{ flavor.name }}
+## Links - {{ flavor.name }}
 
-[Demo](https://abichinger.github.io/vue-js-cron/demo.html)
+[Demo]({{ baseUrl }}/demo.html)
 
-[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-{{ flavor.dir }})
-
-[API - cron-{{ flavor.dir }}](https://abichinger.github.io/vue-js-cron/api/{{ flavor.dir }}.html)
+[Get Started]({{ baseUrl }}/guide/getting-started-{{ flavor.dir }})
+{% for link in flavor.api %}
+[{{ link.name }}]({{ baseUrl }}{{ link.url }})
+{% endfor %}
 
 ## Attribution
 

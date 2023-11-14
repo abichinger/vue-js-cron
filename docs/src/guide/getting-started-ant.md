@@ -45,6 +45,16 @@ Done! 🚀
 
 <br />
 
+## API
+
+
+[CronAnt API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_ant.CronAnt)
+
+[CronAntProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_ant.CronAntProps)
+
+
+
+
 ## Example
 
 @[code](../.vuepress/components/get-started-ant.vue)

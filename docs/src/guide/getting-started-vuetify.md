@@ -45,6 +45,16 @@ Done! 🚀
 
 <br />
 
+## API
+
+
+[CronVuetify API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_vuetify.CronVuetify)
+
+[CronVuetifyProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_vuetify.CronVuetifyProps)
+
+
+
+
 ## Example
 
 @[code](../.vuepress/components/get-started-vuetify.vue)

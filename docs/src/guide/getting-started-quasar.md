@@ -43,3 +43,12 @@ app.component('CronQuasar', CronQuasar)
 Done! 🚀
 
 <br />
+
+## API
+
+
+[CronQuasar API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_quasar.CronQuasar)
+
+[CronQuasarProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_quasar.CronQuasarProps)
+
+

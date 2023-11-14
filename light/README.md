@@ -13,13 +13,16 @@
 <a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a>
 </p>
 
-## Usage - Light
+## Links - Light
 
 [Demo](https://abichinger.github.io/vue-js-cron/demo.html)
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-light)
 
-[API - cron-light](https://abichinger.github.io/vue-js-cron/api/light.html)
+[CronLight API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_light.CronLight)
+
+[CronLightProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_light.CronLightProps)
+
 
 ## Attribution
 
