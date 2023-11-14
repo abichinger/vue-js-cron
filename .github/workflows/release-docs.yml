@@ -20,18 +20,28 @@ jobs:
         with:
           node-version: 18
 
-      - run: npm install
-      - run: npm run build
-      - run: |
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Build demo
+        run: |
           cd demo
           npm install
           npm run build-all
-      - run: |
+
+      - name: Build vuepress
+        run: |
           cd docs
           npm install
-      - run: npm run build-docs
+          npm run build-docs
 
-      - name: Deploy
+      - name: Build Typedoc
+        run: npm run typedoc
+
+      - name: Deploy main
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
@@ -65,3 +75,11 @@ jobs:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
           target-folder: ./beta
+
+      - name: Deploy Typedoc
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: typedoc
+          target-folder: ./typedoc

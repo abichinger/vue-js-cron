@@ -2,5 +2,4 @@
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": ["src/index.ts"],
     "tsconfig": "tsconfig.app.json",
-    "includeVersion": true,
 }
