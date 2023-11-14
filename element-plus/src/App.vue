@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <!-- <v-text-field label="" :model-value="value" @update:model-value="nextValue = $event" @blur="value=nextValue"></v-text-field> -->
-    <VueCronEditor v-model="value" />
+    <CronElementPlus v-model="value" />
 
     <br />
     {{ value }}
   </div>
 </template>
 
-<script>
-import VueCronEditor from '../src/CronEditor'
+<script lang="ts">
+import CronElementPlus from '@/components/cron-element-plus.vue'
 
 export default {
   components: {
-    VueCronEditor,
+    CronElementPlus,
   },
 
   data: () => {
