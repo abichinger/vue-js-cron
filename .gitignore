@@ -1,8 +1,0 @@
-.env
-node_modules
-dist
-
-vitepress-test
-vuepress-test
-playground
-docs
