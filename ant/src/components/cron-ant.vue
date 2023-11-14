@@ -87,10 +87,7 @@ export default defineComponent({
   props: cronAntProps(),
   emits: ['update:model-value', 'error'],
   setup(props, ctx) {
-    const cron = setupCron(props, () => props.modelValue, ctx)
-    return {
-      ...cron,
-    }
+    return setupCron(props, () => props.modelValue, ctx)
   },
 })
 </script>

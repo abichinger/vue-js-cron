@@ -56,11 +56,7 @@ export default defineComponent({
   emits: ['update:model-value', 'error'],
   props: cronLightProps(),
   setup(props, ctx) {
-    const cron = setupCron(props, () => props.modelValue, ctx)
-
-    return {
-      ...cron,
-    }
+    return setupCron(props, () => props.modelValue, ctx)
   },
 })
 </script>
