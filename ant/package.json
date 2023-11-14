@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "description": "Cron editor for Ant Vue",
   "type": "module",
-  "main": "dist/ant.umd.js",
+  "main": "dist/ant.umd.cjs",
   "module": "dist/ant.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/abichinger/vue-js-cron",

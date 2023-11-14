@@ -3,7 +3,7 @@
   "version": "4.0.1",
   "description": "Cron editor for vuetify",
   "type": "module",
-  "main": "dist/vuetify.umd.js",
+  "main": "dist/vuetify.umd.cjs",
   "module": "dist/vuetify.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/abichinger/vue-js-cron",

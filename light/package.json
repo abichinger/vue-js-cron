@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "lightweight vue.js cron editor",
   "type": "module",
-  "main": "dist/light.umd.js",
+  "main": "dist/light.umd.cjs",
   "module": "dist/light.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/abichinger/vue-js-cron",
