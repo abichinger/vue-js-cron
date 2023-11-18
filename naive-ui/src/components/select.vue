@@ -6,7 +6,7 @@
           {{ selection ?? selectedStr }}
 
           <template v-if="clearable && !isEmpty" #icon>
-            <n-icon @click="clear">
+            <n-icon @click="clear" @click.stop="">
               <close />
             </n-icon>
           </template>
