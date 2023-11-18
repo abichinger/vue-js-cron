@@ -1,6 +1,6 @@
 {
     "$schema": "https://typedoc.org/schema.json",   
-    "entryPoints": ["core", "light", "ant", "element-plus", "quasar", "vuetify"],
+    "entryPoints": ["core", "light", "ant", "element-plus", "quasar", "vuetify", "naive-ui"],
     "entryPointStrategy": "packages",
     "out": "typedoc",
     "plugin": ["typedoc-plugin-vue"]

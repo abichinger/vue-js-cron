@@ -1,0 +1,42 @@
+{
+  "name": "@vue-js-cron/naive-ui",
+  "version": "1.0.0",
+  "description": "Cron editor for Naive UI",
+  "type": "module",
+  "main": "dist/naive-ui.umd.cjs",
+  "module": "dist/naive-ui.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/abichinger/vue-js-cron",
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
+    "clean": "git clean -xf dist"
+  },
+  "dependencies": {
+    "@vue-js-cron/core": "4.3.0"
+  },
+  "files": [
+    "package.json",
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue.js",
+    "vue component",
+    "cron",
+    "cron expression",
+    "cron editor",
+    "naive-ui",
+    "Naive UI"
+  ],
+  "devDependencies": {
+    "@vicons/ionicons5": "^0.12.0",
+    "naive-ui": "^2.35.0"
+  }
+}

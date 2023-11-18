@@ -9,20 +9,22 @@
     "vuetify",
     "element-plus",
     "ant",
-    "quasar"
+    "quasar",
+    "naive-ui"
   ],
   "private": true,
   "scripts": {
     "clean": "npm run clean --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "build-readme": "npx cron-cli readme .",
     "build-demo": "cd demo && npm run build-all",
     "build-docs": "cd docs && npm run build",
     "test": "npm run test --workspaces --if-present",
     "dry-run": "multi-semantic-release --dry-run --ignore-private-packages",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
     "lint-fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "typedoc": "typedoc --options typedoc.json"
+    "typedoc": "typedoc --options typedoc.json",
+    "gen-readme": "npx cron-cli readme .",
+    "generate": "npm run gen-readme && npm run generate --prefix demo && npm run generate --prefix docs"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
