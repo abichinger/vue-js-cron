@@ -21,6 +21,7 @@ export default defineConfig({
         ant: resolve(__dirname, 'ant/index.html'),
         light: resolve(__dirname, 'light/index.html'),
         'element-plus': resolve(__dirname, 'element-plus/index.html'),
+        'naive-ui': resolve(__dirname, 'naive-ui/index.html'),
         quasar: resolve(__dirname, 'quasar/index.html'),
         vuetify: resolve(__dirname, 'vuetify/index.html'),
       },

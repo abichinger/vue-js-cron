@@ -6,6 +6,7 @@ The fastest way to get started, is to use one of the prebuilt components.
 - [cron-light](./getting-started-light) - lightweight cron editor without external dependencies
 - [cron-ant](./getting-started-ant) - cron editor for [Ant Design Vue](https://antdv.com/)
 - [cron-element-plus](./getting-started-element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
+- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
 - [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
 - [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
 

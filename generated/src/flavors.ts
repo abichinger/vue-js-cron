@@ -107,7 +107,22 @@ const vuetify: Flavor = {
   example: '../.vuepress/components/get-started-vuetify.vue',
 }
 
-export const flavors = [core, light, ant, element, quasar, vuetify].map((f) => {
+const naiveUI: Flavor = {
+  name: 'Naive UI',
+  description: 'cron editor for [Naive UI](https://www.naiveui.com)',
+  package: '@vue-js-cron/naive-ui',
+  dir: 'naive-ui',
+  css: '@vue-js-cron/naive-ui/dist/naive-ui.css',
+  component: 'CronNaive',
+  componentHypen: 'cron-naive',
+  uses: { 'naive-ui': ['default'] },
+  requirements: [
+    { name: 'Naive UI', url: 'https://www.naiveui.com/en-US/os-theme/docs/installation' },
+  ],
+  example: '../.vuepress/components/get-started-naive-ui.vue',
+}
+
+export const flavors = [core, light, ant, element, naiveUI, quasar, vuetify].map((f) => {
   const packageName = f.package.replace(/[-@/]/g, '_')
 
   f.api = [

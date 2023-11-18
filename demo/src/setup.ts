@@ -1,8 +1,5 @@
-import type { App } from 'vue'
-
-function prefersDark(): boolean {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-}
+import { type App } from 'vue'
+import { prefersDark } from './util'
 
 async function customVuetifySetup(app: App) {
   const { createVuetify } = await import('vuetify')
@@ -45,6 +42,8 @@ export const customSetup = async (flavor: string, app: App) => {
       await customQuasarSetup()
       break
     case 'element-plus':
+      break
+    case 'naive-ui':
       break
   }
 }

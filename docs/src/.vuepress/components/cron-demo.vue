@@ -62,18 +62,22 @@ export default {
       {
         name: 'Light',
       },
+      
       {
-        name: 'Vuetify',
+        name: 'Ant',
       },
       {
         name: 'Element Plus',
       },
       {
-        name: 'Ant',
+        name: 'Naive UI',
       },
       {
         name: 'Quasar',
-      }
+      },
+      {
+        name: 'Vuetify',
+      },
     ]
     const locales = ['en', 'de', 'pt', 'es', 'da', 'zh-cn']
     const formats = ['crontab', 'quartz']

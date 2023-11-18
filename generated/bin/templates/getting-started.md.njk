@@ -38,8 +38,7 @@ Then you need to register the component
 ```js
 {%- if flavor.css %}
 import '{{ flavor.css }}'
-
-{%- endif %}
+{% endif %}
 // registers the component globally
 // registered name: {{ flavor.component }}
 import {{ flavor.component }}Plugin from '{{ flavor.package }}'
