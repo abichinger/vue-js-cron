@@ -1,34 +1,20 @@
 <template>
   <div class="cron-demo">
     <p>Flavor</p>
-    <v-btn-toggle
-        v-model="toggle"
-        tile
-        color="secondary"
-        group
-        density="compact"
-        class="mb-5 elevation-5"
-        mandatory>
-
-        <v-btn v-for="item in flavors" :key="item.name" @click="flavor = item">
-          {{item.name}}
-        </v-btn>
-
-    </v-btn-toggle>
+    <v-select 
+      :model-value="flavor"
+      @update:model-value="selectFlavor" 
+      :items="flavors" 
+      item-value="name" 
+      item-title="name">
+    </v-select>
 
     <p>Locale</p>
-    <v-btn-toggle
-        v-model="locale"
-        tile
-        color="secondary"
-        group
-        density="compact"
-        class="mb-5 elevation-5">
-
-        <v-btn v-for="item in locales" :value="item" :key="item">
-          {{item}}
-        </v-btn>
-    </v-btn-toggle>
+    <v-select v-model="locale" :items="locales" item-title="name">
+      <template #item="{ item, props }">
+        <v-list-item v-bind="props" :subtitle="'locale: '+item.value"></v-list-item>
+      </template>
+    </v-select>
 
     <p>Format</p>
     <v-btn-toggle
@@ -79,7 +65,50 @@ export default {
         name: 'Vuetify',
       },
     ]
-    const locales = ['en', 'de', 'pt', 'es', 'da', 'zh-cn']
+    const locales = [
+      {
+        name: 'English',
+        value: 'en'
+      },
+      {
+        name: 'German',
+        value: 'de',
+      },
+      {
+        name: 'Portuguese',
+        value: 'pt',
+      },
+      {
+        name: 'Spanish',
+        value: 'es',
+      },
+      {
+        name: 'Danish',
+        value: 'da',
+      },
+      {
+        name: 'Chinese',
+        value: 'zh-cn',
+      },
+      {
+        name: 'Russian (GPT-4)',
+        value: 'ru',
+      },
+      {
+        name: 'French (GPT-4)',
+        value: 'fr',
+      },
+      {
+        name: 'Japanese (GPT-4)',
+        value: 'ja',
+      },
+      {
+        name: 'Hindi (GPT-4)',
+        value: 'hi',
+      },
+    ]
+    locales.sort((a, b) => a.name.localeCompare(b.name))
+
     const formats = ['crontab', 'quartz']
     
     const flavor = ref(flavors[0])
@@ -88,9 +117,10 @@ export default {
     const disabled = ref(false)
 
     const selectFlavor = (name) => {
+      console.log(name)
       let i = flavors.map(f => f.name).indexOf(name)
       i = i >= 0 ? i : 0
-      return flavors[i]
+      flavor.value = flavors[i]
     }
 
     const src = computed(() => {
