@@ -23,7 +23,7 @@ export default defineConfig({
       formats: ['es', 'umd'],
     },
     rollupOptions: {
-      external: ['vue', '@vue-js-cron/core'],
+      external: ['vue', '@vue-js-cron/core', 'quasar'],
       output: {
         assetFileNames: 'quasar.css',
         exports: 'named',
