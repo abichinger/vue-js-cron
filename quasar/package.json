@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/quasar",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Cron editor for Quasar",
   "type": "module",
   "main": "dist/quasar.umd.cjs",
