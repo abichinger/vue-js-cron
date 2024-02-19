@@ -24,7 +24,7 @@ export default defineClientConfig({
     const myTheme = {
       dark: dark,
       colors: {
-        secondary: '#3AA675',
+        secondary: '#1F8657',
       },
     }
     

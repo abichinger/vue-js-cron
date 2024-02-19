@@ -16,7 +16,7 @@
   "scripts": {
     "clean": "npm run clean --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "build-demo": "cd demo && npm run build-all",
+    "build-demo": "cd demo && npm run build",
     "build-docs": "cd docs && npm run build",
     "test": "npm run test --workspaces --if-present",
     "dry-run": "multi-semantic-release --dry-run --ignore-private-packages",
