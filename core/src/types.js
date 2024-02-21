@@ -114,10 +114,9 @@ class RangeColumn extends CronColumn {
 
 class EveryColumn extends CronColumn {
 
-    constructor(field, every, beginAt){
+    constructor(field, every){
         super(field)
         this.every = every
-        this.beginAt = beginAt
     }
 
     get localeKey(){
@@ -127,14 +126,10 @@ class EveryColumn extends CronColumn {
     get localeParams(){
         return {
             every: this.every,
-            beginAt: this.beginAt,
         }
     }
 
     get value(){
-        if (this.beginAt !== undefined && this.beginAt !== this.field.min) {
-            return `${this.beginAt}/${this.every}`
-        }
         return `*/${this.every}`
     }
 

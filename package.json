@@ -17,7 +17,7 @@
     "build-light": "cd light && yarn build",
     "build-vuetify": "cd vuetify && yarn build",
     "dev-docs": "cd docs && yarn dev",
-    "dev-core": "export NODE_OPTIONS=--openssl-legacy-provider && cd core && yarn serve",
+    "dev-core": "cd core && yarn serve",
     "dev-light": "cd light && yarn serve",
     "dev-vuetify": "cd vuetify && yarn serve",
     "test": "yarn test-core",

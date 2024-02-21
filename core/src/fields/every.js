@@ -2,23 +2,17 @@
 import types from '../types'
 const { EveryColumn } = types
 
-let re = /^(\*|\d+)\/\d+$/
+let re = /^\*\/\d+$/
 
 function strToArray(str, {min, max}){
     if(!re.test(str)){
         return null
     }
 
-    let start = null
-    let [beginAtStr, everyStr] = str.split('/')
+    let [, everyStr] = str.split('/')
     let every = parseInt(everyStr)
 
-    if (beginAtStr !== '*') {
-        start = parseInt(beginAtStr)
-    } else {
-        start = every * parseInt(min/every)
-    }
-
+    let start = every * parseInt(min/every)
     let res = []
     for(let i = start; i <= max; i+=every){
         if(i >= min){
@@ -35,7 +29,7 @@ function arrayToStr(arr, field){
         return null
     }
 
-    let step = arr[2] - arr[1]
+    let step = arr[1] - arr[0]
     if(step <= 1){
         return null
     }
@@ -45,17 +39,10 @@ function arrayToStr(arr, field){
         return null
     }
 
-    let lastVal = arr[0]
     for(let value of arr){
-
-        if (lastVal === value) {
-            continue
-        } else {
-            if (value-lastVal !== step) {
-                return null
-            }
+        if(value%step != 0){
+            return null
         }
-        lastVal = value
     }
 
     return new EveryColumn(field, step)
