@@ -6,9 +6,9 @@ const {getLocaleStr} = locale
 class Field {
 
     /**
-     * 
-     * @param {String} name 
-     * @param {Array} items 
+     *
+     * @param {String} name
+     * @param {Array} items
      */
     constructor(id, items){
         this.id = id
@@ -37,8 +37,8 @@ class Field {
 class CronColumn{
 
     /**
-     * 
-     * @param {Field} field 
+     *
+     * @param {Field} field
      */
     constructor(field){
         this.field = field
@@ -76,11 +76,11 @@ class CronColumn{
 }
 
 class AnyColumn extends CronColumn {
-    
+
     get localeKey(){
         return 'empty'
     }
-    
+
     get value(){
         return '*'
     }
@@ -88,7 +88,7 @@ class AnyColumn extends CronColumn {
 }
 
 class RangeColumn extends CronColumn {
-    
+
     constructor(field, start, end){
         super(field)
         this.start = start
@@ -105,7 +105,7 @@ class RangeColumn extends CronColumn {
             end: this.end
         }
     }
-    
+
     get value(){
         return `${this.start}-${this.end}`
     }
@@ -114,9 +114,10 @@ class RangeColumn extends CronColumn {
 
 class EveryColumn extends CronColumn {
 
-    constructor(field, every){
+    constructor(field, every, beginAt){
         super(field)
         this.every = every
+        this.beginAt = beginAt
     }
 
     get localeKey(){
@@ -126,10 +127,14 @@ class EveryColumn extends CronColumn {
     get localeParams(){
         return {
             every: this.every,
+            beginAt: this.beginAt,
         }
     }
 
     get value(){
+        if (this.beginAt !== undefined && this.beginAt !== this.field.min) {
+            return `${this.beginAt}/${this.every}`
+        }
         return `*/${this.every}`
     }
 
