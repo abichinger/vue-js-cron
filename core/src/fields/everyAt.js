@@ -33,19 +33,14 @@ function arrayToStr(arr, field){
         return null
     }
 
-    let firstStep = arr[1] - arr[0]
-    let secondStep = arr[2] - arr[1]
-    if(secondStep <= 1){
+    let at = arr[0]
+    let step = arr[1] - arr[0]
+
+    if(step <= 1){
         return null
     }
 
-    let at = arr[0]
-
-    if (firstStep < secondStep && (arr[1] - secondStep) < min) {
-        at = arr[1] - secondStep
-    }
-    let computedArray = buildArray(min, max, at, secondStep)
-
+    let computedArray = buildArray(min, max, at, step)
     if (arr.length !== computedArray.length) {
         return null
     }
@@ -55,11 +50,10 @@ function arrayToStr(arr, field){
         return null
     }
 
-    return new EveryAtColumn(field, secondStep, at)
+    return new EveryAtColumn(field, step, at)
 }
 
 export default {
     strToArray,
     arrayToStr
 }
-
