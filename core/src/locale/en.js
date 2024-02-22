@@ -4,7 +4,8 @@ export default {
             empty: 'every {{field.id}}',
             value: '{{value.text}}',
             range: '{{start.text}}-{{end.text}}',
-            everyX: 'every {{every.value}}'
+            everyX: 'every {{every.value}}',
+            everyXatY: 'every {{every.value}} starting at {{at.value}}'
         },
         monthField: {
             prefix: 'in',

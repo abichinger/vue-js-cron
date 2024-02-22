@@ -135,6 +135,31 @@ class EveryColumn extends CronColumn {
 
 }
 
+class EveryAtColumn extends CronColumn {
+
+    constructor(field, every, at){
+        super(field)
+        this.every = every
+        this.at = at
+    }
+
+    get localeKey(){
+        return 'everyXatY'
+    }
+
+    get localeParams(){
+        return {
+            every: this.every,
+            at: this.at,
+        }
+    }
+
+    get value(){
+        return `${this.at}/${this.every}`
+    }
+
+}
+
 class ValueColumn extends CronColumn {
 
     constructor(field, value){
@@ -185,5 +210,6 @@ export default {
     RangeColumn,
     ValueColumn,
     EveryColumn,
+    EveryAtColumn,
     CombinedColumn,
 }
