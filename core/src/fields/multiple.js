@@ -2,10 +2,11 @@
 
 import any from './any'
 import every from './every'
+import everyAt from './everyAt'
 import range from './range'
 import value from './value'
 
-let fieldTypes = [any, every, range, value]
+let fieldTypes = [any, every, everyAt, range, value]
 
 function strToArray(str, field){
     let fields = str.split(',')

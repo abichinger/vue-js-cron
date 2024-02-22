@@ -7,9 +7,9 @@ const locales = {
 }
 
 /**
- * 
- * @param {string} locale=en 
- * @returns {object} object with all strings in the requested language  
+ *
+ * @param {string} locale=en
+ * @returns {object} object with all strings in the requested language
  */
 function getLocale(locale){
     if(locales.hasOwnProperty(locale)){
@@ -20,16 +20,36 @@ function getLocale(locale){
     }
 }
 
+/** Solution provided by https://stackoverflow.com/a/57518703
+ *
+ *
+ */
+function getLocaleOrdinalSuffix(locale, value) {
+    const ordRules = new Intl.PluralRules(locale, {type: "ordinal"});
+    const suffixes = {
+        one: "st",
+        two: "nd",
+        few: "rd",
+        other: "th"
+    };
+    const category = ordRules.select(value);
+    const suffix = suffixes[category];
+    return (value + suffix);
+}
+
 /**
- * 
- * @param {string} locale 
+ *
+ * @param {string} locale
  * @returns {object} items for minute, hour, day, month and day of week
  */
 function defaultItems(locale){
     return {
         minuteItems: genItems(0, 59, (value) => pad(value, 2)),
         hourItems: genItems(0, 23, (value) => pad(value, 2)),
-        dayItems: genItems(1, 31),
+        dayItems: genItems(1, 31,
+          (value) => { return value+''},
+          (value) => getLocaleOrdinalSuffix(locale, value)
+        ),
         monthItems: genItems(1, 12, (value) => {
             return new Date(2021, value-1, 1).toLocaleDateString(locale, {month: 'long'})
         }, (value) => {
@@ -57,7 +77,7 @@ export default {
     getSuffix: (locale, periodId, fieldId) => {
         return traverse(locale, [periodId+'Period', 'eachPeriod'], [fieldId+'Field', 'eachField'], ['suffix']) || ''
     },
-    
+
     defaultItems,
     getLocale
 }
