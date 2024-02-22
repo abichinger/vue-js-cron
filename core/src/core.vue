@@ -1,5 +1,5 @@
 <script>
-import multiple from './fields/multiple'
+import {MultipleColumns} from './fields/multiple'
 import types from './types'
 import locale from './locale'
 import util from './util'
@@ -55,6 +55,10 @@ export default {
         mergeLocale: {
             type: Boolean,
             default: true
+        },
+        everyAtSyntaxEnabled: {
+          type: Boolean,
+          default: false
         }
     },
     data(){
@@ -67,7 +71,8 @@ export default {
         return {
             selected: selected,
             error: '',
-            selectedPeriod: this.periods[this.periods.length-1]
+            selectedPeriod: this.periods[this.periods.length-1],
+            multiple: new MultipleColumns(this.everyAtSyntaxEnabled)
         }
     },
 
@@ -106,7 +111,7 @@ export default {
             }
         }
     },
-    
+
     watch: {
         value: {
             handler: function(value){
@@ -156,7 +161,7 @@ export default {
             fieldProps.push({
                 ...field,
                 cron: this.splitValue[i],
-                selectedStr: multiple.arrayToStr(values, field).getText(this.computedLocale, this.selectedPeriod.id),
+                selectedStr: this.multiple.arrayToStr(values, field).getText(this.computedLocale, this.selectedPeriod.id),
                 events,
                 attrs,
                 prefix: getPrefix(this.computedLocale, this.selectedPeriod.id, field.id),
@@ -199,14 +204,14 @@ export default {
                 this.error = 'invalid pattern'
                 return
             }
-            
+
             for(var i = 0; i < this.splitValue.length; i++){
                 let field = this.computedFields[i]
                 if(!this.selectedPeriod.value.includes(field.id)){
                     continue
                 }
 
-                let array = multiple.strToArray(this.splitValue[i], field)
+                let array = this.multiple.strToArray(this.splitValue[i], field)
                 if(array === null){
                     this.error = 'invalid pattern'
                     return
@@ -225,7 +230,7 @@ export default {
                     continue
                 }
                 let array = selected[field.id]
-                let str = multiple.arrayToStr(array, field)
+                let str = this.multiple.arrayToStr(array, field)
                 if(str === null){
                     this.error = 'invalid selection'
                     return
