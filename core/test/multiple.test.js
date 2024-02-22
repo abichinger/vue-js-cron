@@ -17,6 +17,7 @@ test('test strToArray', () => {
     expect(strToArray('10-15', r(0, 59))).toEqual([10,11,12,13,14,15]);
     expect(strToArray('10-11,20-22,30-33', r(0, 59))).toEqual([10,11,20,21,22,30,31,32,33]);
     expect(strToArray('5,7-8', r(0, 59))).toEqual([5,7,8]);
+    expect(strToArray('5/10', r(0, 59))).toEqual([5, 15, 25, 35, 45, 55]);
 
     expect(strToArray('x', r(0, 59))).toBe(null);
     expect(strToArray('1-100', r(0, 59))).toBe(null);
@@ -36,4 +37,5 @@ test('test arrayToStr', () => {
     expect(arrayToStr([7,14,21,28], r(5, 30)).value).toEqual('*/7');
     expect(arrayToStr([0,5,10], r(0, 20)).value).toEqual('0,5,10');
     expect(arrayToStr([1,2,5,8,9,10], r(1, 10)).value).toEqual('1-2,5,8-10');
+    expect(arrayToStr([5, 15, 25, 35, 45, 55], r(0, 59)).value).toEqual('5/10');
 });
