@@ -134,7 +134,12 @@ export default {
             handler: function(error){
                 this.$emit('error', error)
             }
-        }
+        },
+      everyAtSyntaxEnabled: {
+          handler: function(everyAtSyntaxEnabled){
+            this.multiple.everyAtSyntaxEnabled = everyAtSyntaxEnabled
+          }
+      }
     },
 
     render(){
