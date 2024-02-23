@@ -56,7 +56,7 @@ export default {
             type: Boolean,
             default: true
         },
-        everyAtSyntaxEnabled: {
+        enableEveryAt: {
           type: Boolean,
           default: false
         }
@@ -72,7 +72,7 @@ export default {
             selected: selected,
             error: '',
             selectedPeriod: this.periods[this.periods.length-1],
-            multiple: new MultipleColumns(this.everyAtSyntaxEnabled)
+            multiple: new MultipleColumns(this.enableEveryAt)
         }
     },
 
@@ -135,9 +135,9 @@ export default {
                 this.$emit('error', error)
             }
         },
-      everyAtSyntaxEnabled: {
-          handler: function(everyAtSyntaxEnabled){
-            this.multiple.everyAtSyntaxEnabled = everyAtSyntaxEnabled
+      enableEveryAt: {
+          handler: function(enableEveryAt){
+            this.multiple.enableEveryAt = enableEveryAt
           }
       }
     },

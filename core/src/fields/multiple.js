@@ -12,21 +12,21 @@ import value from './value'
 
 export class MultipleColumns {
 
-    constructor(everyAtSyntaxEnabled){
-        this._everyAtSyntaxEnabled = null
-        this.everyAtSyntaxEnabled = everyAtSyntaxEnabled
+    constructor(enableEveryAt){
+        this._enableEveryAt = null
+        this.enableEveryAt = enableEveryAt
     }
 
-    get everyAtSyntaxEnabled(){
-        return this._everyAtSyntaxEnabled
+    get enableEveryAt(){
+        return this._enableEveryAt
     }
 
-    set everyAtSyntaxEnabled(value) {
-        this._everyAtSyntaxEnabled = !!value
+    set enableEveryAt(value) {
+        this._enableEveryAt = !!value
     }
 
     get fieldTypes() {
-        if (this.everyAtSyntaxEnabled) {
+        if (this.enableEveryAt) {
             return [any, every, everyAt, range, value]
         } else {
             return [any, every, range, value]
