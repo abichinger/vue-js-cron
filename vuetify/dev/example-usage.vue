@@ -4,9 +4,11 @@
         <v-card>
             <v-card-text>
                 <v-text-field label="" :value="value" @change="value=$event"></v-text-field>
-                <VueCronEditor v-model="value" :chip-props="{ color: 'primary' }">
-
+                <v-checkbox v-model="enableEveryAt" label="Enable the every, starting at syntax"></v-checkbox>
+                <VueCronEditor v-model="value" :chip-props="{ color: 'primary' }" :enableEveryAt="enableEveryAt" @error="error=$event">
                 </VueCronEditor>
+                <br>
+                <span class="red--text">{{error}}</span>
             </v-card-text>
         </v-card>
     </v-container>
@@ -24,7 +26,9 @@ export default {
 
   data:() => {
     return {
-      value: '* * * * *'
+      value: '* * * * *',
+      error: '',
+      enableEveryAt: false
     }
   }
 }
