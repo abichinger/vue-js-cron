@@ -1,6 +1,6 @@
 
 <template>
-    <CronCore v-bind="$attrs" @input="$emit('input', $event)" @error="$emit('error', $event)">
+    <CronCore v-bind="$attrs" @input="$emit('input', $event)" @error="$emit('error', $event)" :enableEveryAt="enableEveryAt">
         <template #default="{fields, period}">
             <v-row align="baseline" dense>
                 <v-col v-if="period.prefix" class="flex-grow-0">{{period.prefix}}</v-col>
@@ -69,6 +69,10 @@ export default {
                 else if (fieldId === 'day') return 4
                 else return 1
             }
+        },
+        enableEveryAt: {
+            type: Boolean,
+            default: false
         }
     }
 }

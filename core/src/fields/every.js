@@ -8,7 +8,7 @@ function strToArray(str, {min, max}){
     if(!re.test(str)){
         return null
     }
-    
+
     let [, everyStr] = str.split('/')
     let every = parseInt(everyStr)
 
