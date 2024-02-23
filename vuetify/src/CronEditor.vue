@@ -70,10 +70,10 @@ export default {
                 else return 1
             }
         },
-      enableEveryAt: {
-          type: Boolean,
-          default: false
-      }
+        enableEveryAt: {
+            type: Boolean,
+            default: false
+        }
     }
 }
 </script>
