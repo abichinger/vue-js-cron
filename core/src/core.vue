@@ -138,6 +138,7 @@ export default {
       enableEveryAt: {
           handler: function(enableEveryAt){
             this.multiple.enableEveryAt = enableEveryAt
+            this.selectedToCron(this.selected)
           }
       }
     },

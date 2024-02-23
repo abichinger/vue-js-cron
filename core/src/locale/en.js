@@ -23,7 +23,7 @@ export default {
             value: '{{value.alt}}',
             range: '{{start.alt}}-{{end.alt}}',
             everyX: 'every {{every.value}} day(s) of the week',
-            everyXatY: 'every {{every.value}} day(s) of the week, starting on {{at.alt}}',
+            everyXatY: 'every {{every.value}} day(s) of the week, starting on {{at.alt}}'
         },
         hourField: {
             prefix: 'at'
@@ -34,9 +34,7 @@ export default {
     },
     hourPeriod: {
         minuteField: {
-            prefix: 'at',
-            suffix: 'minute(s)',
-            empty: 'every'
+            prefix: 'at'
         }
     },
     monthPeriod: {
