@@ -5,17 +5,17 @@ export default {
             value: '{{value.text}}',
             range: '{{start.text}}-{{end.text}}',
             everyX: 'every {{every.value}} {{field.id}}(s)',
-            everyXatY: 'every {{every.value}} {{field.id}}(s), starting at {{at.value}} {{field.id}}(s)'
+            everyAt: 'every {{every.value}} {{field.id}}(s), starting at {{at.value}} {{field.id}}(s)'
         },
         monthField: {
             prefix: 'in',
             value: '{{value.alt}}',
             range: '{{start.alt}}-{{end.alt}}',
-            everyXatY: 'every {{every.value}} {{field.id}}(s), starting in {{at.alt}}'
+            everyAt: 'every {{every.value}} {{field.id}}(s), starting in {{at.alt}}'
         },
         dayField: {
             prefix: 'on',
-            everyXatY: 'every {{every.value}} {{field.id}}(s), starting on the {{at.alt}} of the month'
+            everyAt: 'every {{every.value}} {{field.id}}(s), starting on the {{at.alt}} of the month'
         },
         dayOfWeekField: {
             prefix: 'on',
@@ -23,7 +23,7 @@ export default {
             value: '{{value.alt}}',
             range: '{{start.alt}}-{{end.alt}}',
             everyX: 'every {{every.value}} day(s) of the week',
-            everyXatY: 'every {{every.value}} day(s) of the week, starting on {{at.alt}}'
+            everyAt: 'every {{every.value}} day(s) of the week, starting on {{at.alt}}'
         },
         hourField: {
             prefix: 'at'

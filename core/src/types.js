@@ -144,7 +144,7 @@ class EveryAtColumn extends CronColumn {
     }
 
     get localeKey(){
-        return 'everyXatY'
+        return 'everyAt'
     }
 
     get localeParams(){

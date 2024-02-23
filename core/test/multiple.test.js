@@ -1,7 +1,6 @@
 import {MultipleColumns} from '../src/fields/multiple'
 import util from '../src/util'
 import types from '../src/types'
-// const {multiple.strToArray, multiple.arrayToStr} = multiple
 const {Range,genItems} = util
 const {Field} = types
 
