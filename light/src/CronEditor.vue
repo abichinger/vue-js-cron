@@ -1,6 +1,6 @@
 
 <template>
-    <CronCore v-bind="$attrs" @input="$emit('input', $event)" @error="$emit('error', $event)">
+    <CronCore v-bind="$attrs" @input="$emit('input', $event)" @error="$emit('error', $event)" :enableEveryAt="enableEveryAt">
         <template #default="{fields, period}">
             
             <span class="vcron-editor">
@@ -52,6 +52,10 @@ export default {
                 else if (fieldId == 'day') return '8em'
                 else return 'unset'
             }
+        },
+        enableEveryAt: {
+            type: Boolean,
+            default: false
         }
     }   
 }

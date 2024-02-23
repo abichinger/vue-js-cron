@@ -1,7 +1,13 @@
 <template>
-  <VueCronEditor v-model="value">
-
-  </VueCronEditor>
+  <div>
+    <input v-model="value" placeholder="edit me" />
+    <br><br>
+    <input type="checkbox" id="checkbox" v-model="enableEveryAt" />
+    <label for="checkbox">Enable the every, starting at syntax</label>
+    <br><br>
+    <VueCronEditor v-model="value" @error="error=$event" :enableEveryAt="enableEveryAt">
+    </VueCronEditor>
+  </div>
 </template>
 
 <script>
@@ -15,7 +21,9 @@ export default {
 
   data:() => {
     return {
-      value: '* * * * *'
+      value: '* * * * *',
+      error: '',
+      enableEveryAt: false
     }
   }
 }
