@@ -117,7 +117,6 @@ export default {
     const disabled = ref(false)
 
     const selectFlavor = (name) => {
-      console.log(name)
       let i = flavors.map(f => f.name).indexOf(name)
       i = i >= 0 ? i : 0
       flavor.value = flavors[i]

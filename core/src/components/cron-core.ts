@@ -8,7 +8,6 @@ import {
   type ExtractPropTypes,
   type PropType,
   type SetupContext,
-  type WatchSource,
 } from 'vue'
 import { getLocale } from '../locale'
 import { FieldWrapper, TextPosition, type CronFormat, type Field, type Period } from '../types'
@@ -235,24 +234,41 @@ export function useCron(options: CronOptions) {
 export type UseCronReturn = ReturnType<typeof useCron>
 
 export function setupCron(
-  options: CronOptions,
-  modelValue: WatchSource<string | undefined>,
-  { emit }: SetupContext<['update:model-value', 'error']>,
+  props: CronCoreProps,
+  { emit }: SetupContext<['update:model-value', 'update:period', 'error']>,
 ): UseCronReturn {
+  const options: CronOptions = {
+    ...props,
+    initialValue: props.modelValue,
+    initialPeriod: props.period,
+  }
+
   const cron = useCron(options)
 
   watch(
-    modelValue,
+    () => props.modelValue,
     (value) => {
       if (value) {
         cron.cron.value = value
       }
     },
-    { immediate: true },
+  )
+
+  watch(
+    () => props.period,
+    (value) => {
+      if (value) {
+        cron.period.select(value)
+      }
+    },
   )
 
   watch(cron.cron, (value) => {
     emit('update:model-value', value)
+  })
+
+  watch(cron.period.selected, (value) => {
+    emit('update:period', value.id)
   })
 
   watch(cron.error, (error) => {
@@ -276,7 +292,7 @@ export const cronCoreProps = () => ({
    *
    * @defaultValue last entry of `CronCoreProps.periods`
    */
-  initialPeriod: {
+  period: {
     type: String,
   },
   /**
@@ -349,26 +365,9 @@ export type CronCoreProps = Partial<ExtractPropTypes<ReturnType<typeof cronCoreP
 export const CronCore = defineComponent({
   name: 'VueCronCore',
   props: cronCoreProps(),
-  emits: ['update:model-value', 'error'],
+  emits: ['update:model-value', 'update:period', 'error'],
   setup(props, ctx) {
-    const { cron, error, selected, period } = useCron(props)
-
-    watch(cron, (value) => {
-      ctx.emit('update:model-value', value)
-    })
-
-    watch(error, (value) => {
-      ctx.emit('error', value)
-    })
-
-    watch(
-      () => props.modelValue,
-      (value) => {
-        if (value) {
-          cron.value = value
-        }
-      },
-    )
+    const { error, selected, period } = setupCron(props, ctx)
 
     return () => {
       const slotProps = {

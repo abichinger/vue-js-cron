@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
 import type { CronFormat } from '@/types'
-import { nextTick } from 'vue'
-import { useCron } from '../cron-core'
+import { mount } from '@vue/test-utils'
+import { defineComponent, nextTick } from 'vue'
+import { cronCoreProps, setupCron, useCron } from '../cron-core'
 
 type UseCronReturn = ReturnType<typeof useCron>
 
@@ -96,4 +97,39 @@ describe('useCron', () => {
       expect(cron.period.items.length).toEqual(format.expectedPeriods)
     }
   })
+})
+
+it('setupCron events', async () => {
+  let cron!: UseCronReturn
+
+  const component = defineComponent({
+    props: cronCoreProps(),
+    emits: ['update:model-value', 'update:period', 'error'],
+    setup(props, ctx) {
+      cron = setupCron(props, ctx)
+
+      return () => {}
+    },
+  })
+
+  const wrapper = mount(component, {
+    props: {
+      modelValue: '5 * * * *',
+      period: 'day',
+    },
+  })
+
+  expect(cron.cron.value).toEqual('5 * * * *')
+  expect(cron.period.selected.value.id).toEqual('day')
+
+  cron.segments[1].select([12]) // select hour: 12
+  cron.period.select('month')
+
+  await nextTick()
+
+  expect(cron.cron.value).toEqual('5 12 * * *')
+  expect(cron.period.selected.value.id).toEqual('month')
+
+  expect(wrapper.emitted('update:model-value')![0]).toEqual(['5 12 * * *'])
+  expect(wrapper.emitted('update:period')![0]).toEqual(['month'])
 })

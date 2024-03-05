@@ -55,10 +55,10 @@ export default defineComponent({
   components: {
     CustomSelect,
   },
-  emits: ['update:model-value', 'error'],
+  emits: ['update:model-value', 'update:period', 'error'],
   props: cronLightProps(),
   setup(props, ctx) {
-    return setupCron(props, () => props.modelValue, ctx)
+    return setupCron(props, ctx)
   },
 })
 </script>
