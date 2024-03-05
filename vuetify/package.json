@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/vuetify",
-  "version": "4.1.3",
+  "version": "5.0.0",
   "description": "Cron editor for vuetify",
   "type": "module",
   "main": "dist/vuetify.umd.cjs",
@@ -18,7 +18,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "4.4.1",
+    "@vue-js-cron/core": "5.0.0",
     "vuetify": "^3.4.0"
   },
   "devDependencies": {
