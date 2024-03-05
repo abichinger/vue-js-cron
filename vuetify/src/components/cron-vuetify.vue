@@ -73,9 +73,9 @@ export default defineComponent({
     CustomSelect,
   },
   props: cronVuetifyProps(),
-  emits: ['update:model-value', 'error'],
+  emits: ['update:model-value', 'update:period', 'error'],
   setup(props, ctx) {
-    return setupCron(props, () => props.modelValue, ctx)
+    return setupCron(props, ctx)
   },
 })
 </script>

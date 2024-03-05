@@ -2,7 +2,7 @@
   <div>
     <cron-light
       v-model="value"
-      initial-period="month"
+      v-model:period="period"
       format="quartz"
       locale="en"
       @error="error = $event"
@@ -27,8 +27,17 @@ export default {
   data: () => {
     return {
       value: '* * * * * *',
+      period: 'month',
       error: '',
     }
+  },
+  watch: {
+    value: function (value) {
+      console.log('value changed: ' + value)
+    },
+    period: function (value) {
+      console.log('period changed: ' + value)
+    },
   },
   methods: {
     updateValue(evt: any) {
