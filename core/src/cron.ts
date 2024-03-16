@@ -129,40 +129,45 @@ class RangeSegment implements CronSegment {
 }
 
 const _every = (n: number, min: number, max: number) => {
-  const start = n * Math.floor(min / n)
   const res = []
-  for (let i = start; i <= max; i += n) {
-    if (i >= min) {
-      res.push(i)
-    }
+  for (let i = min; i <= max; i += n) {
+    res.push(i)
   }
   return res
 }
 
 class EverySegment implements CronSegment {
-  static re = /^\*\/\d+$/
+  static re = /^(\*|\d+-\d+)\/\d+$/
 
   field: FieldWrapper
   type: CronType = CronType.EveryX
   every: number
+  start: number
+  end: number
 
-  constructor(field: FieldWrapper, every: number) {
+  constructor(field: FieldWrapper, every: number, start?: number, end?: number) {
     this.field = field
     this.every = every
+    this.start = start ?? field.min
+    this.end = end ?? field.max
   }
 
   toCron() {
-    return `*/${this.every}`
+    if (this.start == this.field.min && this.end == this.field.max) {
+      return `*/${this.every}`
+    }
+    return `${this.start}-${this.end}/${this.every}`
   }
 
   toArray() {
-    const { min, max } = this.field
-    return _every(this.every, min, max)
+    return _every(this.every, this.start, this.end)
   }
 
   get items() {
     return {
       every: this.field.itemMap[this.every],
+      start: this.field.itemMap[this.start],
+      end: this.field.itemMap[this.end],
     }
   }
 
@@ -171,15 +176,22 @@ class EverySegment implements CronSegment {
       return null
     }
 
-    const [, everyStr] = str.split('/')
+    const [rangeStr, everyStr] = str.split('/')
     const every = parseInt(everyStr)
-    const { min, max } = field
+
+    if (every > field.items.length) {
+      return null
+    }
+
+    const range = str.split('-').map((s) => parseInt(s))
+    const min = rangeStr == '*' ? field.min : range[0]
+    const max = rangeStr == '*' ? field.max : range[1]
 
     if (_every(every, min, max).length == 0) {
       return null
     }
 
-    return new EverySegment(field, every)
+    return new EverySegment(field, every, min, max)
   }
 
   static fromArray(arr: number[], field: FieldWrapper) {
@@ -194,18 +206,22 @@ class EverySegment implements CronSegment {
       return null
     }
 
-    const first = min % step === 0 ? min : (Math.floor(min / step) + 1) * step
-    if (arr.length !== Math.floor((max - first) / step) + 1) {
+    // prevent a-b/x segments until localization is ready
+    if (arr[0] != min) {
+      return null
+    }
+    const end = arr[arr.length - 1]
+    if (max - end >= step) {
       return null
     }
 
-    for (const value of arr) {
-      if (value % step !== 0) {
+    for (let i = 2; i < arr.length; i++) {
+      if (arr[i] - arr[i - 1] != step) {
         return null
       }
     }
 
-    return new EverySegment(field, step)
+    return new EverySegment(field, step, min, max)
   }
 }
 
