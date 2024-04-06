@@ -41,7 +41,7 @@ Before you open a PR, please make sure your changes comply with the following ru
 
 You can use the commit [feat: add portuguese translation](https://github.com/abichinger/vue-js-cron/commit/64fbe1e7b30bd07e4e61b11cf98292f1cc81bfd4) as a reference.
 
-[Here](https://abichinger.github.io/vue-js-cron/api/core.html#types) you can find the structure of a localization object.
+[Here](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_core.Localization.html) you can find the structure of a localization object.
 
 ## Contributors
 <a href="https://github.com/abichinger/vue-js-cron/graphs/contributors">
@@ -57,11 +57,14 @@ npm install
 
 ## Scripts
 ```bash
+# Build packages, demo and docs
+npm run build -w=core   # Build the core package, required by other packages
+npm run build           # builds all public packages
+npm run build-demo      # build demo, embedded inside docs
+npm run build-docs      # build documentaion using vuepress
+
 # Start a developement server for the core package
 npm run dev -w=core
-
-# Build the core package, required by other packages
-npm run build -w=core
 
 # Run the development server of @vue-js-cron/light
 npm run dev -w=light
@@ -69,19 +72,10 @@ npm run dev -w=light
 # Start a development server of the documentation
 cd docs && npm run dev
 
-# Have a look at package.json for more scripts
-```
-
-## Test
-```bash
+# Run tests
 npm run test
-```
 
-## Build
-```bash
-npm run build # builds all public packages
-npm run build-demo # build demo, embedded inside docs
-npm run build-docs # build documentaion using vuepress
+# Have a look at package.json for more scripts
 ```
 
 ## Attribution
