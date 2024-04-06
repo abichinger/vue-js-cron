@@ -55,12 +55,21 @@ You can use the commit [feat: add portuguese translation](https://github.com/abi
 npm install
 ```
 
-## Run development server
+## Scripts
 ```bash
+# Start a developement server for the core package
 npm run dev -w=core
+
+# Build the core package, required by other packages
+npm run build -w=core
+
+# Run the development server of @vue-js-cron/light
 npm run dev -w=light
-...
+
+# Start a development server of the documentation
 cd docs && npm run dev
+
+# Have a look at package.json for more scripts
 ```
 
 ## Test
