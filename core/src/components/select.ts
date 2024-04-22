@@ -71,7 +71,6 @@ export function useSet<T>(options: SetOptions<T>) {
     values,
     add,
     toggle,
-    has,
     remove,
     clear,
     updated,
@@ -140,6 +139,18 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     }
   }
 
+  const has = (item: T | null): boolean => {
+    if (item === null) {
+      return false
+    }
+    const value = getValue(item)
+    if (Array.isArray(selected.value)) {
+      return selected.value.includes(value)
+    } else {
+      return selected.value === value
+    }
+  }
+
   const getValue = (item: any): V => {
     if (typeof itemValue == 'function') {
       return itemValue(item)
@@ -193,6 +204,7 @@ export function useSelect<T, V>(options: SelectOptions<T, V>) {
     setItems,
     setValues,
     isEmpty,
+    has,
   }
 }
 
