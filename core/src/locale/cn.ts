@@ -37,6 +37,10 @@ const locale: Localization = {
       '*': { prefix: ':' },
       empty: { text: '每分钟' },
     },
+    second: {
+      '*': { prefix: ':' },
+      empty: { text: '每秒' },
+    },
   },
   minute: {
     text: '分',
@@ -76,6 +80,29 @@ const locale: Localization = {
     text: '年',
     dayOfWeek: {
       '*': { prefix: '和' },
+    },
+  },
+
+  //quartz format
+  'q-second': {
+    text: '秒',
+  },
+  'q-minute': {
+    text: '分钟',
+    second: {
+      '*': {
+        prefix: ':',
+        suffix: '秒',
+      },
+      empty: { text: '每' },
+    },
+  },
+  'q-hour': {
+    text: '小时',
+    minute: {
+      '*': {
+        prefix: ':',
+      },
     },
   },
 }
