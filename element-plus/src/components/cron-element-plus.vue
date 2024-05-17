@@ -9,6 +9,7 @@
       @update:model-value="period.select($event)"
       :disabled="disabled"
       :button-props="buttonProps"
+      :dropdown-props="dropdownProps"
     />
 
     {{ period.suffix.value }}
@@ -27,7 +28,7 @@
           clearable
           :disabled="disabled"
           :button-props="buttonProps"
-          :dropdown-props="{ hideOnClick: false }"
+          :dropdown-props="{ ...dropdownProps, hideOnClick: false }"
         />
       </div>
 
@@ -53,6 +54,16 @@ export const cronElementPlusProps = () => ({
     default() {
       return {}
     },
+  },
+  /**
+   * Properties of Element Plus Dropdown
+   *
+   * @remarks
+   * See {@link https://element-plus.org/en-US/component/dropdown.html#dropdown-attributes}
+   */
+  dropdownProps: {
+    type: Object,
+    default: () => {},
   },
   ...cronCoreProps(),
 })
