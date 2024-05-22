@@ -9,6 +9,7 @@ import es from './es'
 import fr from './fr'
 import hi from './hi'
 import ja from './ja'
+import pl from './pl'
 import pt from './pt'
 import ru from './ru'
 import type { Localization } from './types'
@@ -26,6 +27,7 @@ const locales: Record<string, Localization> = {
   fr,
   hi,
   ja,
+  pl,
 }
 
 class Locale {
