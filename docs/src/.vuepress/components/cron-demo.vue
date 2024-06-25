@@ -91,6 +91,10 @@ export default {
         value: 'zh-cn',
       },
       {
+        name: 'Hebrew',
+        value: 'he',
+      },
+      {
         name: 'Russian (GPT-4)',
         value: 'ru',
       },
