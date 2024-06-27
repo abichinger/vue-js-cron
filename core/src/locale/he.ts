@@ -12,11 +12,14 @@ const locale: Localization = {
     },
     month: {
       '*': { prefix: 'ב' },
+      empty: { text: 'כל חודש' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: 'ב' },
+      empty: { text: 'כל יום' },
+      value: { text: 'יום {{value.alt}} לחודש' },
       noSpecific: {
         text: 'ללא יום מוגדר',
       },
@@ -24,7 +27,7 @@ const locale: Localization = {
     dayOfWeek: {
       '*': { prefix: 'ב' },
       empty: { text: 'כל יום מימות השבוע' },
-      value: { text: '{{value.alt}}' },
+      value: { text: 'ימי {{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       noSpecific: {
         text: 'ללא יום בשבוע מוגדר',
@@ -32,12 +35,16 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: 'ב' },
+      empty: { text: 'כל שעה' },
+      value: { text: 'שעה {{value.text}}' },
     },
     minute: {
       '*': { prefix: ':' },
+      empty: { text: 'כל דקה' },
     },
     second: {
       '*': { prefix: ':' },
+      empty: { text: 'כל שניה' },
     },
   },
   minute: {
