@@ -6,10 +6,9 @@ const locale: Localization = {
     suffix: '',
     text: 'לא ידוע',
     '*': {
-      empty: { text: 'בכל {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'בכל {{every.value}}' },
+      everyX: { text: 'כל {{every.value}}' },
     },
     month: {
       '*': { prefix: 'ב' },
@@ -51,7 +50,7 @@ const locale: Localization = {
         prefix: 'ב',
         suffix: 'דקות',
       },
-      empty: { text: 'בכל' },
+      empty: { text: 'כל' },
     },
   },
   day: {
@@ -67,7 +66,7 @@ const locale: Localization = {
     },
   },
   year: {
-    text: 'Year',
+    text: 'שנה',
     dayOfWeek: {
       '*': { prefix: 'ו' },
     },
@@ -84,7 +83,7 @@ const locale: Localization = {
         prefix: 'ב',
         suffix: 'שניות',
       },
-      empty: { text: 'בכל' },
+      empty: { text: 'כל' },
     },
   },
   'q-hour': {
