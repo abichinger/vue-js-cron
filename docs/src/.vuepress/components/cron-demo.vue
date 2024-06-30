@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import { withBase, } from '@vuepress/client'
-import { computed, ref } from 'vue'
+import { withBase, } from '@vuepress/client';
+import { computed, ref } from 'vue';
 
 export default {
   setup (props) {
@@ -109,6 +109,10 @@ export default {
       {
         name: 'Hindi (GPT-4)',
         value: 'hi',
+      },
+      {
+        name: 'Korean',
+        value: 'ko',
       },
     ]
     locales.sort((a, b) => a.name.localeCompare(b.name))
