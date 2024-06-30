@@ -7,6 +7,7 @@ import de from './de'
 import en from './en'
 import es from './es'
 import fr from './fr'
+import he from './he'
 import hi from './hi'
 import ja from './ja'
 import ko from './ko'
@@ -23,6 +24,7 @@ const locales: Record<string, Localization> = {
   da,
   zh: cn,
   'zh-cn': cn,
+  he,
   ru,
   fr,
   hi,

@@ -1,6 +1,6 @@
 <template>
   <n-config-provider :theme="theme">
-    <main class="cron-demo">
+    <main class="cron-demo" :dir="dir">
       <cron-editor v-bind="props" v-model="value"></cron-editor>
       <p>cron expression: {{ value }}</p>
     </main>
@@ -22,13 +22,14 @@ export default defineComponent({
     const props = Object.fromEntries(params.entries())
 
     const value = ref(params.get('initial-value') ?? '* * * * *')
-
     const theme = prefersDark() ? darkTheme : lightTheme
+    const dir = ['he'].includes(params.get('locale') ?? '') ? 'rtl' : 'ltr'
 
     return {
       props: props,
       value: ref(value),
       theme,
+      dir,
     }
   },
 })
