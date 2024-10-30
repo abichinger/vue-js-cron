@@ -1,9 +1,15 @@
 import { describe, expect, it } from 'vitest'
 
-import type { CronFormat } from '@/types'
+import type { CronFormat, Period } from '@/types'
 import { mount } from '@vue/test-utils'
 import { defineComponent, nextTick } from 'vue'
-import { cronCoreProps, setupCron, useCron } from '../cron-core'
+import {
+  cronCoreProps,
+  DefaultCronOptions,
+  findFirstPeriod,
+  setupCron,
+  useCron,
+} from '../cron-core'
 
 type UseCronReturn = ReturnType<typeof useCron>
 
@@ -132,4 +138,50 @@ it('setupCron events', async () => {
 
   expect(wrapper.emitted('update:model-value')![0]).toEqual(['5 12 * * *'])
   expect(wrapper.emitted('update:period')![0]).toEqual(['month'])
+})
+
+describe('findFirstPeriod', () => {
+  const periods: Period[] = [
+    { id: 'week', value: ['dayOfWeek', 'hour', 'minute'] },
+    { id: 'month', value: ['day', 'hour', 'minute'] },
+    { id: 'day', value: ['hour', 'minute'] },
+  ].reverse()
+  const options = new DefaultCronOptions()
+  const fields = options.fields('crontab', 'en')
+  const qFields = options.fields('quartz', 'en')
+
+  const tests = [
+    {
+      cron: '0 2 * * 0', // Every Sunday at 02:00
+      expected: 'week',
+    },
+    {
+      cron: '0 * * * *', // Every hour
+      expected: 'day',
+    },
+    {
+      cron: '0 2 1 * *', // Every 1st of the month at 02:00
+      expected: 'month',
+    },
+    {
+      cron: '* * * 1 *', // Every minute in January
+      expected: undefined,
+    },
+    {
+      cron: '* 0 2 1 * ?',
+      fields: qFields,
+      expected: 'month',
+    },
+    {
+      cron: '* * * * *',
+      periods: options.periods('crontab').reverse(),
+      expected: 'year',
+    },
+  ]
+
+  for (const t of tests) {
+    it(t.cron, () => {
+      expect(findFirstPeriod(t.periods ?? periods, t.cron, t.fields ?? fields)?.id).toBe(t.expected)
+    })
+  }
 })

@@ -36,7 +36,7 @@ function isDefined<T>(obj: T | undefined): obj is T {
   return obj !== undefined
 }
 
-class DefaultCronOptions {
+export class DefaultCronOptions {
   locale = 'en'
 
   format: CronFormat = 'crontab'
@@ -117,6 +117,23 @@ class DefaultCronOptions {
   }
 }
 
+export function findFirstPeriod(
+  periods: Period[],
+  cron: string,
+  fields: Field[],
+): Period | undefined {
+  const segments = cron.split(' ')
+  if (segments.length !== fields.length) {
+    return
+  }
+  const dirtyFields = fields.filter((_, i) => !['*', '?'].includes(segments[i])).map((f) => f.id)
+  // find the first period, which includes all dirty fields
+  return periods.find((p) => {
+    const visible = new Set(p.value)
+    return dirtyFields.every((fid) => visible.has(fid))
+  })
+}
+
 export function useCron(options: CronOptions) {
   const cronDefaults = new DefaultCronOptions()
 
@@ -133,7 +150,9 @@ export function useCron(options: CronOptions) {
     }
   })
   const initialPeriod =
-    periods.find((p) => p.id == options.initialPeriod) ?? periods[periods.length - 1]
+    (options.initialPeriod ? periods.find((p) => p.id == options.initialPeriod) : undefined) ??
+    findFirstPeriod([...periods].reverse(), initialValue, fields) ??
+    periods[periods.length - 1]
 
   const cron = ref(initialValue)
   const error = ref('')

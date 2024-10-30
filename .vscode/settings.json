@@ -1,9 +1,9 @@
 {
     "editor.formatOnSave": false,
-    "jest.autoRun": "off",
     "eslint.enable": true,
     "editor.codeActionsOnSave": [
         "source.organizeImports",
         "source.fixAll.eslint"
-    ]
+    ],
+    "vitest.workspaceConfig": "vitest.workspace.ts"
 }
