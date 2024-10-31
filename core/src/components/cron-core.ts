@@ -99,7 +99,7 @@ export class DefaultCronOptions {
     ]
   }
 
-  periods(format: CronFormat) {
+  periods(format: CronFormat): Period[] {
     const isQuartz = format == 'quartz'
     const second = isQuartz ? [{ id: 'q-second', value: [] }] : []
     const secondField = isQuartz ? ['second'] : []
@@ -146,7 +146,7 @@ export function useCron(options: CronOptions) {
   const periods = (options.periods ?? cronDefaults.periods(format)).map((p) => {
     return {
       ...p,
-      text: l10n.getLocaleStr(p.id, TextPosition.Text),
+      text: p.text ?? l10n.getLocaleStr(p.id, TextPosition.Text),
     }
   })
   const initialPeriod =

@@ -52,6 +52,11 @@ export interface Period {
    * The value determines which fields are visible
    */
   value: string[]
+
+  /**
+   * The display name of the period
+   */
+  text?: string
 }
 
 export class FieldWrapper {
