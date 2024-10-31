@@ -52,6 +52,12 @@ describe('useCron', () => {
         expected: `Every Hour at every minute(s)`,
       },
       {
+        format: 'crontab',
+        value: '59 23 ? * 0',
+        period: 'week',
+        expected: `Every Week on Sun at 23 : 59`,
+      },
+      {
         format: 'quartz',
         value: '* * * * * *',
         period: 'q-hour',
@@ -68,6 +74,12 @@ describe('useCron', () => {
         value: '0 15 10 ? * *',
         period: 'month',
         expected: `Every Month on no specific day and every day of the week at 10 : 15 : 00`,
+      },
+      {
+        format: 'quartz',
+        value: '59 59 23 ? * 1',
+        period: 'week',
+        expected: `Every Week on Sun at 23 : 59 : 59`,
       },
     ]
 

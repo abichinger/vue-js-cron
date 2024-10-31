@@ -1,4 +1,4 @@
-import type { FieldItem } from './types'
+import type { CronFormat, FieldItem } from './types'
 
 function range(start: number, end: number, step = 1) {
   const r = []
@@ -78,36 +78,38 @@ function genItems(
 /**
  *
  * @param locale - locale code, e.g.: en, en-GB de-DE
+ * @param [format='crontab'] format of cron expression
  * @returns items for minute, hour, day, month and day of week
  */
-function defaultItems(localeCode: string) {
+function defaultItems(localeCode: string, format: CronFormat = 'crontab') {
+  const monthName = (month: number, short: boolean = false) => {
+    return new Date(2021, month - 1, 1).toLocaleDateString(localeCode, {
+      month: short ? 'short' : 'long',
+    })
+  }
+
+  const weekdayName = (weekday: number, short: boolean = false) => {
+    // if weekday is 0, this is the first sunday in 2021
+    return new Date(2021, 0, 3 + weekday).toLocaleDateString(localeCode, {
+      weekday: short ? 'short' : 'long',
+    })
+  }
+
   return {
     secondItems: genItems(0, 59, (value) => pad(value, 2)),
     minuteItems: genItems(0, 59, (value) => pad(value, 2)),
     hourItems: genItems(0, 23, (value) => pad(value, 2)),
     dayItems: genItems(1, 31),
-    monthItems: genItems(
-      1,
-      12,
-      (value) => {
-        return new Date(2021, value - 1, 1).toLocaleDateString(localeCode, { month: 'long' })
-      },
-      (value) => {
-        return new Date(2021, value - 1, 1).toLocaleDateString(localeCode, { month: 'short' })
-      },
-    ),
-    dayOfWeekItems: genItems(
-      0,
-      6,
-      (value) => {
-        const date = new Date(2021, 0, 3 + value) // first sunday in 2021
-        return date.toLocaleDateString(localeCode, { weekday: 'long' })
-      },
-      (value) => {
-        const date = new Date(2021, 0, 3 + value) // first sunday in 2021
-        return date.toLocaleDateString(localeCode, { weekday: 'short' })
-      },
-    ),
+    monthItems: genItems(1, 12, monthName, (value) => monthName(value, true)),
+    dayOfWeekItems:
+      format === 'crontab'
+        ? genItems(0, 6, weekdayName, (value) => weekdayName(value, true))
+        : genItems(
+            1,
+            7,
+            (value) => weekdayName(value - 1),
+            (value) => weekdayName(value - 1, true),
+          ),
   }
 }
 
@@ -202,13 +204,13 @@ function splitArray<T>(arr: T[], chunkSize: number, fill: boolean = true): (T | 
 }
 
 export {
-  Range,
   deepMerge,
   defaultItems,
   genItems,
   isObject,
   isSquence,
   pad,
+  Range,
   range,
   splitArray,
   traverse,

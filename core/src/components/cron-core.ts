@@ -47,7 +47,7 @@ export class DefaultCronOptions {
 
   fields(format: CronFormat, locale: string): Field[] {
     const isQuartz = format == 'quartz'
-    const items = defaultItems(locale)
+    const items = defaultItems(locale, format)
 
     const setNoSpecific = (fieldId: string) => {
       return (value: UseCronSegmentReturn, { segmentMap }: CronContext) => {
