@@ -1,8 +1,15 @@
 {
   "name": "@vue-js-cron/prime",
   "version": "0.0.0",
-  "private": true,
+  "description": "Cron editor for PrimeVue",
   "type": "module",
+  "main": "dist/prime.umd.cjs",
+  "module": "dist/prime.js",
+  "types": "dist/prime.d.ts",
+  "repository": "https://github.com/abichinger/vue-js-cron",
+  "author": "Andreas Bichinger",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -11,17 +18,25 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
-    "vue": "^3.5.12"
+    "@vue-js-cron/core": "5.3.0"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0",
-    "@types/node": "^22.9.0",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "@vue/tsconfig": "^0.5.1",
-    "npm-run-all2": "^7.0.1",
-    "typescript": "~5.6.3",
-    "vite": "^5.4.10",
-    "vite-plugin-vue-devtools": "^7.5.4",
-    "vue-tsc": "^2.1.10"
-  }
+    "@primevue/themes": "^4.2.1",
+    "primevue": "^4.2.1",
+    "primeicons": "^7.0.0"
+  },
+  "files": [
+    "package.json",
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue.js",
+    "vue component",
+    "cron",
+    "cron expression",
+    "cron editor",
+    "PrimeVue"
+  ]
 }
