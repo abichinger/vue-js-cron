@@ -10,7 +10,8 @@
     "element-plus",
     "ant",
     "quasar",
-    "naive-ui"
+    "naive-ui",
+    "prime"
   ],
   "private": true,
   "scripts": {
