@@ -6,18 +6,21 @@ const locale: Localization = {
     suffix: '',
     text: 'Ukendt',
     '*': {
-      empty: { text: 'hver {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
       everyX: { text: 'hver {{every.value}}' },
     },
     month: {
       '*': { prefix: 'i' },
+      // TODO: translate to danish
+      empty: { text: 'every month' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: 'på' },
+      // TODO: translate to danish
+      empty: { text: 'every day' },
     },
     dayOfWeek: {
       '*': { prefix: 'på' },
@@ -27,9 +30,18 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: 'klokken' },
+      // TODO: translate to danish
+      empty: { text: 'every hour' },
     },
     minute: {
       '*': { prefix: ':' },
+      // TODO: translate to danish
+      empty: { text: 'every minute' },
+    },
+    second: {
+      '*': { prefix: ':' },
+      // TODO: translate to danish
+      empty: { text: 'every second' },
     },
   },
   minute: {
@@ -61,6 +73,30 @@ const locale: Localization = {
     text: 'År',
     dayOfWeek: {
       '*': { prefix: 'og' },
+    },
+  },
+
+  // quartz format
+  // TODO: translate to danish
+  'q-second': {
+    text: 'Second',
+  },
+  'q-minute': {
+    text: 'Minute',
+    second: {
+      '*': {
+        prefix: 'at',
+        suffix: 'second(s)',
+      },
+      empty: { text: 'every' },
+    },
+  },
+  'q-hour': {
+    text: 'Hour',
+    minute: {
+      '*': {
+        prefix: 'at',
+      },
     },
   },
 }
