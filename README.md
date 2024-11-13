@@ -27,56 +27,19 @@ This monorepo includes the following packages:
 - quasar - Quasar component
 - docs - Vue.js Cron documentation powered by [VuePress](https://v2.vuepress.vuejs.org/)
 
-# Contributing
+# Contributing and Development
 
-Contributions are always welcome.
+Please have a look at [CONTRIBUTING.md](/CONTRIBUTING.md)
 
-Before you open a PR, please make sure your changes comply with the following rules:
-- commits messages follow the [AngularJS commit message format](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#commit)
-- `npm run lint` completes without errors
-- `npm run build` completes without errors
-- `npm run test` completes without errors
-
-## Contributing new localization strings
-
-You can use the commit [feat: add portuguese translation](https://github.com/abichinger/vue-js-cron/commit/64fbe1e7b30bd07e4e61b11cf98292f1cc81bfd4) as a reference.
-
-[Here](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_core.Localization.html) you can find the structure of a localization object.
+- [Contributing](/CONTRIBUTING.md#contributing)
+  - [Setup Development Environment](/CONTRIBUTING.md#setup-development-environment)
+  - [Add new localization](/CONTRIBUTING.md#add-new-localization)
+  - [Add a new UI Framework](/CONTRIBUTING.md#add-a-new-ui-framework)
 
 ## Contributors
 <a href="https://github.com/abichinger/vue-js-cron/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=abichinger/vue-js-cron" />
 </a>
-
-# Development
-
-## Install dependencies
-```bash
-npm install
-```
-
-## Scripts
-```bash
-# Build packages, demo and docs
-npm run build -w=core   # Build the core package, required by other packages
-npm run build           # builds all public packages
-npm run build-demo      # build demo, embedded inside docs
-npm run build-docs      # build documentaion using vuepress
-
-# Start a developement server for the core package
-npm run dev -w=core
-
-# Run the development server of @vue-js-cron/light
-npm run dev -w=light
-
-# Start a development server of the documentation
-cd docs && npm run dev
-
-# Run tests
-npm run test
-
-# Have a look at package.json for more scripts
-```
 
 ## Attribution
 
