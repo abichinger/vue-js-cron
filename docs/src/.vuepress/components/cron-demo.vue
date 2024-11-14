@@ -1,6 +1,6 @@
 <template>
   <div class="cron-demo">
-    <p>Flavor</p>
+    <p class="pb-1">Flavor</p>
     <v-select 
       v-model="flavor"
       :items="flavors" 
@@ -9,14 +9,14 @@
       return-object>
     </v-select>
 
-    <p>Locale</p>
+    <p class="pb-1">Locale</p>
     <v-select v-model="locale" :items="locales" item-title="name">
       <template #item="{ item, props }">
         <v-list-item v-bind="props" :subtitle="'locale: '+item.value"></v-list-item>
       </template>
     </v-select>
 
-    <p>Format</p>
+    <p class="pb-1">Format</p>
     <v-btn-toggle
         v-model="format"
         tile
@@ -26,10 +26,12 @@
         class="mb-5 elevation-5">
 
         <v-btn v-for="item in formats" :value="item" :key="item">
-          {{item}}
+          {{ item.value }}
         </v-btn>
 
     </v-btn-toggle>
+
+    <p>{{ format.value }} documentation: <a :href="format.docs">{{ format.docs }}</a></p>
 
     <v-switch v-model="disabled" color="secondary" label="Disabled"></v-switch>
 
@@ -125,7 +127,11 @@ export default {
     ]
     locales.sort((a, b) => a.name.localeCompare(b.name))
 
-    const formats = ['crontab', 'quartz']
+    const formats = [
+      {value: 'crontab', docs: 'https://man7.org/linux/man-pages/man5/crontab.5.html'}, 
+      {value: 'quartz', docs: 'https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html'}, 
+      {value: 'spring', docs: 'https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions'},
+    ]
     
     const flavor = ref(flavors[0])
     const locale = ref('en')
