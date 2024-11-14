@@ -2,6 +2,7 @@
 # Getting Started - {{ flavor.name }}
 
 The fastest way to get started, is to use one of the prebuilt components.
+
 {%- for f in flavors %}
 {%- if f.name == flavor.name %}
 - {{ f.componentHypen }} - {{ f.description }}
@@ -10,7 +11,7 @@ The fastest way to get started, is to use one of the prebuilt components.
 {%- endif %}
 {%- endfor %}
 
-{%- if flavor.requirements %}
+{% if flavor.requirements %}
 ## Requirements
 
 Make sure to install and setup all requirements.
