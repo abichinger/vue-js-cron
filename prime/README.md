@@ -1,33 +1,31 @@
-# @vue-js-cron/prime
+![Vue.js Cron Vuetify Hero](https://raw.githubusercontent.com/abichinger/vue-js-cron/main/assets/vue-js-cron-hero.png)
 
-This template should help get you started developing with Vue 3 in Vite.
+<p align="center">
+    <em>generate cron expressions using vue.js</em>
+</p>
 
-## Recommended IDE Setup
+<p align="center">
+<a href="https://www.npmjs.com/package/@vue-js-cron/core">Core</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/light">Light</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/naive-ui">Naive UI</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/prime">PrimeVue</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/quasar">Quasar</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a>
+</p>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Links - PrimeVue
 
-## Type Support for `.vue` Imports in TS
+[Demo](https://abichinger.github.io/vue-js-cron/demo.html)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+[Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-prime)
 
-## Customize configuration
+[CronPrime API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_prime.CronPrime)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+[CronPrimeProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_prime.CronPrimeProps)
 
-## Project Setup
 
-```sh
-npm install
-```
+## Attribution
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+This component is inspired by [react-js-cron](https://github.com/xrutayisire/react-js-cron) and [jqcron](https://github.com/arnapou/jqcron)
