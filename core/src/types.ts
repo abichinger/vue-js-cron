@@ -1,7 +1,7 @@
 import type { CronContext } from './components/cron-core'
 import type { UseCronSegmentReturn } from './components/cron-segment'
 
-export type CronFormat = 'crontab' | 'quartz'
+export type CronFormat = 'crontab' | 'quartz' | 'spring'
 
 export interface CronSegment {
   field: FieldWrapper

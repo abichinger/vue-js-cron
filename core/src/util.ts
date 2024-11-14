@@ -102,14 +102,14 @@ function defaultItems(localeCode: string, format: CronFormat = 'crontab') {
     dayItems: genItems(1, 31),
     monthItems: genItems(1, 12, monthName, (value) => monthName(value, true)),
     dayOfWeekItems:
-      format === 'crontab'
-        ? genItems(0, 6, weekdayName, (value) => weekdayName(value, true))
-        : genItems(
+      format === 'quartz'
+        ? genItems(
             1,
             7,
             (value) => weekdayName(value - 1),
             (value) => weekdayName(value - 1, true),
-          ),
+          )
+        : genItems(0, 6, weekdayName, (value) => weekdayName(value, true)),
   }
 }
 

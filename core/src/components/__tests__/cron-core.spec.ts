@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, test } from 'vitest'
 
 import type { CronFormat, Period } from '@/types'
 import { mount } from '@vue/test-utils'
@@ -28,7 +28,7 @@ function cronToString({ selected: { value: selected }, period }: UseCronReturn):
 }
 
 describe('useCron', () => {
-  it('renders properly', async () => {
+  describe('renders properly', () => {
     const tests: {
       format: CronFormat
       value: string
@@ -81,12 +81,20 @@ describe('useCron', () => {
         period: 'week',
         expected: `Every Week on Sun at 23 : 59 : 59`,
       },
+      {
+        format: 'spring',
+        value: '59 59 23 ? * 1',
+        period: 'week',
+        expected: `Every Week on Mon at 23 : 59 : 59`,
+      },
     ]
 
     for (const t of tests) {
-      const cron = useCron({ format: t.format, initialValue: t.value, initialPeriod: t.period })
-      await nextTick()
-      expect(cronToString(cron)).toEqual(t.expected)
+      test([t.value, t.format].join(', '), async () => {
+        const cron = useCron({ format: t.format, initialValue: t.value, initialPeriod: t.period })
+        await nextTick()
+        expect(cronToString(cron)).toEqual(t.expected)
+      })
     }
   })
 

@@ -46,7 +46,7 @@ export class DefaultCronOptions {
   }
 
   fields(format: CronFormat, locale: string): Field[] {
-    const isQuartz = format == 'quartz'
+    const isQuartz = format == 'quartz' || format == 'spring'
     const items = defaultItems(locale, format)
 
     const setNoSpecific = (fieldId: string) => {
@@ -100,7 +100,7 @@ export class DefaultCronOptions {
   }
 
   periods(format: CronFormat): Period[] {
-    const isQuartz = format == 'quartz'
+    const isQuartz = format == 'quartz' || format == 'spring'
     const second = isQuartz ? [{ id: 'q-second', value: [] }] : []
     const secondField = isQuartz ? ['second'] : []
     const prefix = isQuartz ? 'q-' : ''
