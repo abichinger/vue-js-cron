@@ -12,39 +12,47 @@ const locale: Localization = {
     },
     month: {
       '*': { prefix: 'i' },
-      // TODO: translate to danish
-      empty: { text: 'every month' },
+      empty: { text: 'hver måned' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
-      '*': { prefix: 'på' },
-      // TODO: translate to danish
-      empty: { text: 'every day' },
+      '*': { prefix: 'og' },
+      empty: { text: 'hver dag' },
+      value: { text: '{{value.alt}}.' },
+      range: { text: '{{start.alt}}.-{{end.alt}}.' },
+      noSpecific: {
+        text: 'ingen specifik dag',
+      },
     },
+
     dayOfWeek: {
       '*': { prefix: 'på' },
       empty: { text: 'hver dag i ugen' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      noSpecific: {
+        text: 'ingen specifik dag i ugen',
+      },
     },
     hour: {
       '*': { prefix: 'klokken' },
-      // TODO: translate to danish
-      empty: { text: 'every hour' },
+      empty: { text: 'hver time' },
     },
     minute: {
       '*': { prefix: ':' },
-      // TODO: translate to danish
-      empty: { text: 'every minute' },
+      empty: { text: 'hvert minut' },
     },
     second: {
       '*': { prefix: ':' },
-      // TODO: translate to danish
-      empty: { text: 'every second' },
+      empty: { text: 'hvert sekund' },
     },
   },
+  second: {
+    prefix: 'Hvert',
+  },
   minute: {
+    prefix: 'Hvert',
     text: 'Minut',
   },
   hour: {
@@ -70,6 +78,7 @@ const locale: Localization = {
     },
   },
   year: {
+    prefix: 'Hvert',
     text: 'År',
     dayOfWeek: {
       '*': { prefix: 'og' },
@@ -77,25 +86,23 @@ const locale: Localization = {
   },
 
   // quartz format
-  // TODO: translate to danish
   'q-second': {
-    text: 'Second',
+    text: 'Sekund',
   },
   'q-minute': {
-    text: 'Minute',
+    text: 'Minut',
     second: {
       '*': {
-        prefix: 'at',
-        suffix: 'second(s)',
+        suffix: 'sekund(er)',
       },
-      empty: { text: 'every' },
+      empty: { text: 'hvert' },
     },
   },
   'q-hour': {
-    text: 'Hour',
+    text: 'Time',
     minute: {
       '*': {
-        prefix: 'at',
+        prefix: 'på',
       },
     },
   },
