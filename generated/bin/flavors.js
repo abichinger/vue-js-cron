@@ -90,7 +90,18 @@ const naiveUI = {
     ],
     example: '../.vuepress/components/get-started-naive-ui.vue',
 };
-export const flavors = [core, light, ant, element, naiveUI, quasar, vuetify].map((f) => {
+const prime = {
+    name: 'PrimeVue',
+    description: 'cron editor for [PrimeVue](https://primevue.org/)',
+    package: '@vue-js-cron/prime',
+    dir: 'prime',
+    css: '@vue-js-cron/prime/dist/prime.css',
+    component: 'CronPrime',
+    componentHypen: 'cron-prime',
+    imports: ['primeicons/primeicons.css'],
+    requirements: [{ name: 'PrimeVue', url: 'https://primevue.org/setup/' }],
+};
+export const flavors = [core, light, ant, element, naiveUI, prime, quasar, vuetify].map((f) => {
     const packageName = f.package.replace(/[-@/]/g, '_');
     f.api = [
         {
