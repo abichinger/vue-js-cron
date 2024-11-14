@@ -17,7 +17,8 @@
     "@vue-js-cron/element-plus": "file:../element-plus",
     "@vue-js-cron/light": "file:../light",
     "@vue-js-cron/vuetify": "file:../vuetify",
-    "@vue-js-cron/naive-ui": "file:../naive-ui"
+    "@vue-js-cron/naive-ui": "file:../naive-ui",
+    "@vue-js-cron/prime": "file:../prime"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",

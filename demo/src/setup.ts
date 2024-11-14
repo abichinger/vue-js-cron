@@ -28,6 +28,22 @@ async function customAntSetup() {
   }
 }
 
+async function customPrimeSetup(app: App) {
+  const PrimeVue = await import('primevue/config')
+  const { Noir } = await import('@/presets/Noir')
+
+  app.use(PrimeVue.default, {
+    theme: {
+      preset: Noir,
+      options: {
+        prefix: 'p',
+        darkModeSelector: '.p-dark',
+        cssLayer: false,
+      },
+    },
+  })
+}
+
 export const customSetup = async (flavor: string, app: App) => {
   switch (flavor) {
     case 'ant':
@@ -44,6 +60,9 @@ export const customSetup = async (flavor: string, app: App) => {
     case 'element-plus':
       break
     case 'naive-ui':
+      break
+    case 'prime':
+      await customPrimeSetup(app)
       break
   }
 }
