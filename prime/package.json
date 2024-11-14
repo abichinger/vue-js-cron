@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/prime.umd.cjs",
   "module": "dist/prime.js",
-  "types": "dist/prime.d.ts",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/abichinger/vue-js-cron",
   "author": "Andreas Bichinger",
   "license": "MIT",
