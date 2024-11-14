@@ -10,6 +10,7 @@
 <a href="https://www.npmjs.com/package/@vue-js-cron/ant">Ant</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/element-plus">Element Plus</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/naive-ui">Naive UI</a> |
+<a href="https://www.npmjs.com/package/@vue-js-cron/prime">PrimeVue</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/quasar">Quasar</a> |
 <a href="https://www.npmjs.com/package/@vue-js-cron/vuetify">Vuetify</a>
 </p>
