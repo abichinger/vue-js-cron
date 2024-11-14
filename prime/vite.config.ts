@@ -23,7 +23,7 @@ export default defineConfig({
       formats: ['es', 'umd'],
     },
     rollupOptions: {
-      external: ['vue', '@vue', 'primevue', '@primevue/themes'],
+      external: ['vue', '@vue', /^primevue\/.*/gm, /^@primevue\/.*/gm, '@vue-js-cron/core'],
       output: {
         assetFileNames: 'prime.css',
         exports: 'named',
