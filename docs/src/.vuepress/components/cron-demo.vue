@@ -2,11 +2,11 @@
   <div class="cron-demo">
     <p>Flavor</p>
     <v-select 
-      :model-value="flavor"
-      @update:model-value="selectFlavor" 
+      v-model="flavor"
       :items="flavors" 
-      item-value="name" 
-      item-title="name">
+      item-value="value"
+      item-title="name"
+      return-object>
     </v-select>
 
     <p>Locale</p>
@@ -59,12 +59,20 @@ export default {
         name: 'Naive UI',
       },
       {
+        name: 'PrimeVue',
+        value: 'prime'
+      },
+      {
         name: 'Quasar',
       },
       {
         name: 'Vuetify',
       },
-    ]
+    ].map(f => ({
+      name: f.name,
+      value: f.value ?? f.name.replace(' ', '-').toLowerCase()
+    }))
+
     const locales = [
       {
         name: 'English',
@@ -124,12 +132,6 @@ export default {
     const format = ref(formats[0])
     const disabled = ref(false)
 
-    const selectFlavor = (name) => {
-      let i = flavors.map(f => f.name).indexOf(name)
-      i = i >= 0 ? i : 0
-      flavor.value = flavors[i]
-    }
-
     const src = computed(() => {
       const params = {
         locale: locale.value,
@@ -138,8 +140,9 @@ export default {
         ...(disabled.value ? { disabled:true } : {})
       }
       const query = new URLSearchParams(params)
-      const path = 'demo/' + flavor.value.name.replace(' ', '-').toLowerCase() + '/index.html?' + query.toString()
+      const path = 'demo/' + flavor.value.value + '/index.html?' + query.toString()
       
+      console.log("src", path)
       return withBase(path)
     })
 
@@ -147,7 +150,6 @@ export default {
       src,
       flavor: flavor,
       flavors,
-      selectFlavor,
       toggle: ref(0),
       locales,
       locale: locale,
