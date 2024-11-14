@@ -64,6 +64,7 @@ export default defineUserConfig({
             'getting-started-ant',
             'getting-started-element-plus',
             'getting-started-naive-ui',
+            'getting-started-prime',
             'getting-started-quasar',
             'getting-started-vuetify',
             'custom-periods',
