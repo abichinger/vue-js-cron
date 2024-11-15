@@ -141,14 +141,13 @@ export default {
     const src = computed(() => {
       const params = {
         locale: locale.value,
-        format: format.value,
-        'initial-value': format.value == 'quartz' ? '* * * * * *' : '* * * * *',
+        format: format.value.value,
+        'initial-value': format.value.value == 'crontab' ? '* * * * *' : '* * * * * *',
         ...(disabled.value ? { disabled:true } : {})
       }
       const query = new URLSearchParams(params)
       const path = 'demo/' + flavor.value.value + '/index.html?' + query.toString()
-      
-      console.log("src", path)
+
       return withBase(path)
     })
 
