@@ -18,7 +18,7 @@ const locale: Localization = {
     },
     day: {
       '*': { prefix: 'og' },
-      empty: { text: 'hver dag' },
+      empty: { text: 'hver dag i måneden' },
       value: { text: '{{value.alt}}.' },
       range: { text: '{{start.alt}}.-{{end.alt}}.' },
       noSpecific: {
@@ -59,10 +59,10 @@ const locale: Localization = {
     text: 'Time',
     minute: {
       '*': {
-        prefix: 'på de(t)',
+        prefix: 'ved',
         suffix: 'minutter',
       },
-      empty: { text: 'hver' },
+      empty: { text: 'alle' },
     },
   },
   day: {
