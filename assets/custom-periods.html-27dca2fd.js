@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-2da6d1b7","path":"/guide/custom-periods.html","title":"Custom Periods","lang":"en-US","frontmatter":{},"headers":[],"git":{"contributors":[{"name":"Lars Sommer","email":"ls@iot-sgdd.com","commits":1}]},"filePathRelative":"guide/custom-periods.md"}');export{t as data};
