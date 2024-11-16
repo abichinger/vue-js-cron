@@ -1,6 +1,9 @@
 # vue-js-cron 
-[![npm latest version](https://img.shields.io/npm/v/@vue-js-cron/core)](https://www.npmjs.com/package/@vue-js-cron/core) 
+[![npm latest version](https://img.shields.io/npm/v/@vue-js-cron/core)](https://www.npmjs.com/package/@vue-js-cron/core)
+[![VuePress](https://img.shields.io/badge/docs-VuePress-3AA675)](https://abichinger.github.io/vue-js-cron)
 [![Test badge](https://github.com/abichinger/vue-js-cron/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/abichinger/vue-js-cron/actions?query=workflow%3ATest+branch%3Amain)
+[![Downloads](https://img.shields.io/npm/dm/@vue-js-cron/core)](https://www.npmjs.com/package/@vue-js-cron/core)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/abichinger/vue-js-cron/blob/main/LICENSE)
 
 <p align="center">
 <img src="./assets/vue-js-cron-hero.png" alt="vue-js-cron Hero">
