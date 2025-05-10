@@ -65,11 +65,11 @@ class Locale {
 function getLocale(localeCode: string, mixin?: Localization) {
   const [language] = localeCode.split('-')
   const l = locales[localeCode.toLowerCase()] || locales[language.toLowerCase()] || locales.en
-  const dict = deepMerge(l, mixin || {}) as Localization
+  const dict = deepMerge(locales.en, l, mixin || {}) as Localization
   return new Locale(dict)
 }
 
-export { Locale, getLocale }
+export { getLocale, Locale }
 
 // The following prompt was used for localizations translated with GPT-4:
 //
