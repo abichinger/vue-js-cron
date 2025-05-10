@@ -22,12 +22,18 @@ const locale: Localization = {
       empty: { text: '每日' },
       value: { text: '{{value.alt}}号' },
       range: { text: '{{start.alt}}号-{{end.alt}}号' },
+      noSpecific: {
+        text: '无特定日期',
+      },
     },
     dayOfWeek: {
       '*': { prefix: '的' },
       empty: { text: '一周的每一天' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      noSpecific: {
+        text: '无特定星期几',
+      },
     },
     hour: {
       '*': { prefix: '的' },

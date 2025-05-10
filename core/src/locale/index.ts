@@ -23,7 +23,6 @@ const locales: Record<string, Localization> = {
   es,
   da,
   zh: cn,
-  'zh-cn': cn,
   he,
   ru,
   fr,
