@@ -13,5 +13,6 @@ describe('util', () => {
     expect(deepMerge({ a: { a: 1 } }, { a: { b: 1 }, b: 1 })).toEqual({ a: { a: 1, b: 1 }, b: 1 })
     expect(deepMerge({}, { a: { b: 1 } })).toEqual({ a: { b: 1 } })
     expect(deepMerge({ a: { b: 1 } }, { a: { b: 2 } })).toEqual({ a: { b: 2 } })
+    expect(deepMerge({ a: 1 }, { a: 2 }, { a: 3 })).toEqual({ a: 3 })
   })
 })

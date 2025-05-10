@@ -157,7 +157,7 @@ function deepMerge(target: Object, ...sources: { [key: string]: any }[]) {
     }
   }
 
-  if (sources.length > 0) deepMerge(target, sources)
+  if (sources.length > 0) deepMerge(target, ...sources)
   return target
 }
 
