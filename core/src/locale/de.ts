@@ -8,11 +8,11 @@ const locale: Localization = {
     '*': {
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'alle {{every.value}}' },
+      step: { text: 'alle {{step.value}}' },
     },
     month: {
       '*': { prefix: 'im' },
-      empty: {
+      any: {
         prefix: 'in',
         text: 'jedem Monat',
       },
@@ -21,13 +21,13 @@ const locale: Localization = {
     },
     day: {
       '*': { prefix: 'den' },
-      empty: {
+      any: {
         prefix: 'an',
         text: 'jedem Tag',
       },
-      everyX: {
+      step: {
         prefix: '',
-        text: 'alle {{every.value}} Tage',
+        text: 'alle {{step.value}} Tage',
       },
       noSpecific: {
         prefix: 'an',
@@ -36,7 +36,7 @@ const locale: Localization = {
     },
     dayOfWeek: {
       '*': { prefix: 'am' },
-      empty: {
+      any: {
         prefix: 'an',
         text: 'jedem Wochentag',
       },
@@ -49,29 +49,29 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: 'um' },
-      empty: {
+      any: {
         prefix: 'zu',
         text: 'jeder Stunde',
       },
-      everyX: {
+      step: {
         prefix: '',
-        text: 'alle {{every.value}} Stunden',
+        text: 'alle {{step.value}} Stunden',
       },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'jede Minute' },
-      everyX: {
+      any: { text: 'jede Minute' },
+      step: {
         prefix: '',
-        text: 'alle {{every.value}} Minuten',
+        text: 'alle {{step.value}} Minuten',
       },
     },
     second: {
       '*': { prefix: ':' },
-      empty: { text: 'jede Sekunde' },
-      everyX: {
+      any: { text: 'jede Sekunde' },
+      step: {
         prefix: '',
-        text: 'alle {{every.value}} Sekunden',
+        text: 'alle {{step.value}} Sekunden',
       },
     },
   },
@@ -85,7 +85,7 @@ const locale: Localization = {
         prefix: 'zu',
         suffix: 'Minute(n)',
       },
-      empty: { text: 'jeder' },
+      any: { text: 'jeder' },
     },
   },
   day: {

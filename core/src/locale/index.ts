@@ -1,4 +1,4 @@
-import type { CronType, TextPosition } from '@/types'
+import type { FieldPattern, TextPosition } from '@/types'
 import Mustache from 'mustache'
 import { deepMerge, traverse } from '../util'
 import cn from './cn'
@@ -46,11 +46,11 @@ class Locale {
   render(
     periodId: string,
     fieldId: string,
-    cronType: CronType,
+    fieldPattern: FieldPattern,
     position: TextPosition,
     params: any,
   ) {
-    const template = this.getLocaleStr(periodId, fieldId, cronType, position)
+    const template = this.getLocaleStr(periodId, fieldId, fieldPattern, position)
     return Mustache.render(template, params || {})
   }
 }
@@ -78,7 +78,7 @@ export { getLocale, Locale }
 // export type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
 // export type PositionedLocalization = PartialRecord<TextPosition, string>
-// export type CronLocalization = PartialRecord<CronType | '*', PositionedLocalization>
+// export type CronLocalization = PartialRecord<FieldPattern | '*', PositionedLocalization>
 
 // export interface FieldLocalization {
 //   // Allow custom field ids
@@ -98,7 +98,7 @@ export { getLocale, Locale }
 
 // /**
 //  * Interface to define localizations for vue-js-cron
-//  * The localization strings are accessed by {periodId}.{fieldId}.{cronType}.{position}
+//  * The localization strings are accessed by {periodId}.{fieldId}.{fieldPattern}.{position}
 //  */
 // export interface Localization {
 //   /** Allows custom period ids */
@@ -125,11 +125,11 @@ export { getLocale, Locale }
 //     '*': {
 //       value: { text: '{{value.text}}' },
 //       range: { text: '{{start.text}}-{{end.text}}' },
-//       everyX: { text: 'alle {{every.value}}' },
+//       step: { text: 'alle {{step.value}}' },
 //     },
 //     month: {
 //       '*': { prefix: 'im' },
-//       empty: {
+//       any: {
 //         prefix: 'in',
 //         text: 'jedem Monat',
 //       },
@@ -138,13 +138,13 @@ export { getLocale, Locale }
 //     },
 //     day: {
 //       '*': { prefix: 'den' },
-//       empty: {
+//       any: {
 //         prefix: 'an',
 //         text: 'jedem Tag',
 //       },
-//       everyX: {
+//       step: {
 //         prefix: '',
-//         text: 'alle {{every.value}} Tage',
+//         text: 'alle {{step.value}} Tage',
 //       },
 //       noSpecific: {
 //         prefix: 'an',
@@ -153,7 +153,7 @@ export { getLocale, Locale }
 //     },
 //     dayOfWeek: {
 //       '*': { prefix: 'am' },
-//       empty: {
+//       any: {
 //         prefix: 'an',
 //         text: 'jedem Wochentag',
 //       },
@@ -166,29 +166,29 @@ export { getLocale, Locale }
 //     },
 //     hour: {
 //       '*': { prefix: 'um' },
-//       empty: {
+//       any: {
 //         prefix: 'zu',
 //         text: 'jeder Stunde',
 //       },
-//       everyX: {
+//       step: {
 //         prefix: '',
-//         text: 'alle {{every.value}} Stunden',
+//         text: 'alle {{step.value}} Stunden',
 //       },
 //     },
 //     minute: {
 //       '*': { prefix: ':' },
-//       empty: { text: 'jede Minute' },
-//       everyX: {
+//       any: { text: 'jede Minute' },
+//       step: {
 //         prefix: '',
-//         text: 'alle {{every.value}} Minuten',
+//         text: 'alle {{step.value}} Minuten',
 //       },
 //     },
 //     second: {
 //       '*': { prefix: ':' },
-//       empty: { text: 'jede Sekunde' },
-//       everyX: {
+//       any: { text: 'jede Sekunde' },
+//       step: {
 //         prefix: '',
-//         text: 'alle {{every.value}} Sekunden',
+//         text: 'alle {{step.value}} Sekunden',
 //       },
 //     },
 //   },
@@ -202,7 +202,7 @@ export { getLocale, Locale }
 //         prefix: 'zu',
 //         suffix: 'Minute(n)',
 //       },
-//       empty: { text: 'jeder' },
+//       any: { text: 'jeder' },
 //     },
 //   },
 //   day: {

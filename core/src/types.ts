@@ -5,7 +5,7 @@ export type CronFormat = 'crontab' | 'quartz' | 'spring'
 
 export interface CronSegment {
   field: FieldWrapper
-  type: CronType
+  type: FieldPattern
   toCron: () => string
   toArray: () => number[]
   items: Record<string, FieldItem>
@@ -14,11 +14,12 @@ export interface CronSegment {
 export type SegmentFromArray = (arr: number[], field: FieldWrapper) => CronSegment | null
 export type SegmentFromString = (str: string, field: FieldWrapper) => CronSegment | null
 
-export enum CronType {
-  Empty = 'empty',
+export enum FieldPattern {
+  Any = 'any',
   Value = 'value',
   Range = 'range',
-  EveryX = 'everyX',
+  Step = 'step',
+  RangeStep = 'rangeStep',
   Combined = 'combined',
   NoSpecific = 'noSpecific',
 }

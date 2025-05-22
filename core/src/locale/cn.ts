@@ -6,20 +6,20 @@ const locale: Localization = {
     suffix: '',
     text: '未知',
     '*': {
-      empty: { text: '每 {{field.id}}' },
+      any: { text: '每 {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: '每 {{every.value}}' },
+      step: { text: '每 {{step.value}}' },
     },
     month: {
       '*': { prefix: '的' },
-      empty: { text: '每月' },
+      any: { text: '每月' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: '的' },
-      empty: { text: '每日' },
+      any: { text: '每日' },
       value: { text: '{{value.alt}}号' },
       range: { text: '{{start.alt}}号-{{end.alt}}号' },
       noSpecific: {
@@ -28,7 +28,7 @@ const locale: Localization = {
     },
     dayOfWeek: {
       '*': { prefix: '的' },
-      empty: { text: '一周的每一天' },
+      any: { text: '一周的每一天' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       noSpecific: {
@@ -37,15 +37,15 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: '的' },
-      empty: { text: '每小时' },
+      any: { text: '每小时' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: '每分钟' },
+      any: { text: '每分钟' },
     },
     second: {
       '*': { prefix: ':' },
-      empty: { text: '每秒' },
+      any: { text: '每秒' },
     },
   },
   minute: {
@@ -58,7 +58,7 @@ const locale: Localization = {
         prefix: ':',
         suffix: '分钟',
       },
-      empty: { text: '每' },
+      any: { text: '每' },
     },
   },
   day: {
@@ -68,7 +68,7 @@ const locale: Localization = {
     text: '周',
     dayOfWeek: {
       '*': { prefix: '的' },
-      empty: { text: '每天' },
+      any: { text: '每天' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
@@ -100,7 +100,7 @@ const locale: Localization = {
         prefix: ':',
         suffix: '秒',
       },
-      empty: { text: '每' },
+      any: { text: '每' },
     },
   },
   'q-hour': {

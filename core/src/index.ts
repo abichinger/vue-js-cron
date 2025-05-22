@@ -22,7 +22,7 @@ export {
 export { Locale, getLocale } from './locale'
 export type * from './locale/types'
 export type * from './types'
-export { CronType, FieldWrapper, TextPosition } from './types'
+export { FieldPattern, FieldWrapper, TextPosition } from './types'
 export { defaultItems, genItems, pad, splitArray, type toText } from './util'
 
 export const CronCorePlugin = {

@@ -1,4 +1,4 @@
-import { AnySegment, EverySegment, NoSpecificSegment, RangeSegment, ValueSegment } from '@/cron'
+import { AnySegment, NoSpecificSegment, RangeSegment, StepSegment, ValueSegment } from '@/cron'
 import type { Localization } from '@/locale/types'
 import {
   computed,
@@ -75,7 +75,7 @@ export class DefaultCronOptions {
           ? [
               AnySegment.fromString,
               NoSpecificSegment.fromString,
-              EverySegment.fromString,
+              StepSegment.fromString,
               RangeSegment.fromString,
               ValueSegment.fromString,
             ]
@@ -90,7 +90,7 @@ export class DefaultCronOptions {
           ? [
               AnySegment.fromString,
               NoSpecificSegment.fromString,
-              EverySegment.fromString,
+              StepSegment.fromString,
               RangeSegment.fromString,
               ValueSegment.fromString,
             ]

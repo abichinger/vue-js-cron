@@ -1,9 +1,9 @@
-import { CronType, FieldWrapper, type CronSegment, type SegmentFromString } from './types'
+import { FieldPattern, FieldWrapper, type CronSegment, type SegmentFromString } from './types'
 import { isSquence, range, unimplemented } from './util'
 
 class NoSpecificSegment implements CronSegment {
   field: FieldWrapper
-  type: CronType = CronType.NoSpecific
+  type: FieldPattern = FieldPattern.NoSpecific
 
   constructor(field: FieldWrapper) {
     this.field = field
@@ -31,7 +31,7 @@ class NoSpecificSegment implements CronSegment {
 
 class AnySegment implements CronSegment {
   field: FieldWrapper
-  type: CronType = CronType.Empty
+  type: FieldPattern = FieldPattern.Any
 
   constructor(field: FieldWrapper) {
     this.field = field
@@ -82,7 +82,7 @@ class RangeSegment implements CronSegment {
   static re = /^\d+-\d+$/
 
   field: FieldWrapper
-  type: CronType = CronType.Range
+  type: FieldPattern = FieldPattern.Range
   start: number
   end: number
 
@@ -128,58 +128,64 @@ class RangeSegment implements CronSegment {
   }
 }
 
-const _every = (n: number, min: number, max: number) => {
+function _rangeWithStep(n: number, min: number, max: number) {
   const res = []
   for (let i = min; i <= max; i += n) {
     res.push(i)
   }
   return res
 }
-
-class EverySegment implements CronSegment {
+class StepSegment implements CronSegment {
   static re = /^(\*|\d+-\d+)\/\d+$/
 
   field: FieldWrapper
-  type: CronType = CronType.EveryX
-  every: number
+  step: number
   start: number
   end: number
 
-  constructor(field: FieldWrapper, every: number, start?: number, end?: number) {
+  constructor(field: FieldWrapper, step: number, start?: number, end?: number) {
     this.field = field
-    this.every = every
+    this.step = step
     this.start = start ?? field.min
     this.end = end ?? field.max
   }
 
-  toCron() {
-    if (this.start == this.field.min && this.end == this.field.max) {
-      return `*/${this.every}`
+  get type() {
+    const { min, max } = this.field
+    if (this.start !== min || max - this.end >= this.step) {
+      return FieldPattern.RangeStep
     }
-    return `${this.start}-${this.end}/${this.every}`
+    return FieldPattern.Step
+  }
+
+  toCron() {
+    if (this.type == FieldPattern.RangeStep) {
+      return `${this.start}-${this.end}/${this.step}`
+    }
+    return `*/${this.step}`
   }
 
   toArray() {
-    return _every(this.every, this.start, this.end)
+    return _rangeWithStep(this.step, this.start, this.end)
   }
 
   get items() {
     return {
-      every: this.field.itemMap[this.every],
+      step: this.field.itemMap[this.step],
       start: this.field.itemMap[this.start],
       end: this.field.itemMap[this.end],
     }
   }
 
   static fromString(str: string, field: FieldWrapper) {
-    if (!EverySegment.re.test(str)) {
+    if (!StepSegment.re.test(str)) {
       return null
     }
 
-    const [rangeStr, everyStr] = str.split('/')
-    const every = parseInt(everyStr)
+    const [rangeStr, stepStr] = str.split('/')
+    const step = parseInt(stepStr)
 
-    if (every > field.items.length) {
+    if (step > field.items.length) {
       return null
     }
 
@@ -187,16 +193,14 @@ class EverySegment implements CronSegment {
     const min = rangeStr == '*' ? field.min : range[0]
     const max = rangeStr == '*' ? field.max : range[1]
 
-    if (_every(every, min, max).length == 0) {
+    if (_rangeWithStep(step, min, max).length == 0) {
       return null
     }
 
-    return new EverySegment(field, every, min, max)
+    return new StepSegment(field, step, min, max)
   }
 
   static fromArray(arr: number[], field: FieldWrapper) {
-    const { min, max } = field
-
     if (arr.length < 3) {
       return null
     }
@@ -206,28 +210,19 @@ class EverySegment implements CronSegment {
       return null
     }
 
-    // prevent a-b/x segments until localization is ready
-    if (arr[0] != min) {
-      return null
-    }
-    const end = arr[arr.length - 1]
-    if (max - end >= step) {
-      return null
-    }
-
     for (let i = 2; i < arr.length; i++) {
       if (arr[i] - arr[i - 1] != step) {
         return null
       }
     }
 
-    return new EverySegment(field, step, min, max)
+    return new StepSegment(field, step, arr[0], arr[arr.length - 1])
   }
 }
 
 class ValueSegment implements CronSegment {
   field: FieldWrapper
-  type: CronType = CronType.Value
+  type: FieldPattern = FieldPattern.Value
   value: number
 
   constructor(field: FieldWrapper, value: number) {
@@ -276,7 +271,7 @@ class ValueSegment implements CronSegment {
 class CombinedSegment implements CronSegment {
   static segmentFactories: SegmentFromString[] = [
     AnySegment.fromString,
-    EverySegment.fromString,
+    StepSegment.fromString,
     RangeSegment.fromString,
     ValueSegment.fromString,
   ]
@@ -293,7 +288,7 @@ class CombinedSegment implements CronSegment {
     if (this.segments.length == 1) {
       return this.segments[0].type
     }
-    return CronType.Range
+    return FieldPattern.Range
   }
 
   addSegment(segment: CronSegment) {
@@ -377,7 +372,7 @@ function cronToSegment(cron: string, field: FieldWrapper) {
 function arrayToSegment(arr: number[], field: FieldWrapper) {
   for (const fromArray of [
     AnySegment.fromArray,
-    EverySegment.fromArray,
+    StepSegment.fromArray,
     CombinedSegment.fromArray,
   ]) {
     const seg = fromArray(arr, field)
@@ -390,11 +385,11 @@ function arrayToSegment(arr: number[], field: FieldWrapper) {
 
 export {
   AnySegment,
+  arrayToSegment,
   CombinedSegment,
-  EverySegment,
+  cronToSegment,
   NoSpecificSegment,
   RangeSegment,
+  StepSegment,
   ValueSegment,
-  arrayToSegment,
-  cronToSegment,
 }

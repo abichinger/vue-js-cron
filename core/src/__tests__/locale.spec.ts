@@ -1,5 +1,5 @@
 import { getLocale } from '@/locale'
-import { CronType, TextPosition } from '@/types'
+import { FieldPattern, TextPosition } from '@/types'
 import { describe, expect, it } from 'vitest'
 
 describe('locale', () => {
@@ -60,7 +60,7 @@ describe('locale', () => {
     })
 
     expect(
-      l.render('period', 'field', CronType.Value, TextPosition.Text, {
+      l.render('period', 'field', FieldPattern.Value, TextPosition.Text, {
         start: {
           text: 'foo',
         },

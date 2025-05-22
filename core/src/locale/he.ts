@@ -8,17 +8,17 @@ const locale: Localization = {
     '*': {
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'כל {{every.value}}' },
+      step: { text: 'כל {{step.value}}' },
     },
     month: {
       '*': { prefix: 'ב' },
-      empty: { text: 'כל חודש' },
+      any: { text: 'כל חודש' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: 'ב' },
-      empty: { text: 'כל יום' },
+      any: { text: 'כל יום' },
       value: { text: 'יום {{value.alt}} לחודש' },
       noSpecific: {
         text: 'ללא יום מוגדר',
@@ -26,7 +26,7 @@ const locale: Localization = {
     },
     dayOfWeek: {
       '*': { prefix: 'ב' },
-      empty: { text: 'כל יום מימות השבוע' },
+      any: { text: 'כל יום מימות השבוע' },
       value: { text: 'ימי {{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       noSpecific: {
@@ -35,16 +35,16 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: 'ב' },
-      empty: { text: 'כל שעה' },
+      any: { text: 'כל שעה' },
       value: { text: 'שעה {{value.text}}' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'כל דקה' },
+      any: { text: 'כל דקה' },
     },
     second: {
       '*': { prefix: ':' },
-      empty: { text: 'כל שניה' },
+      any: { text: 'כל שניה' },
     },
   },
   minute: {
@@ -57,7 +57,7 @@ const locale: Localization = {
         prefix: 'ב',
         suffix: 'דקות',
       },
-      empty: { text: 'כל' },
+      any: { text: 'כל' },
     },
   },
   day: {
@@ -90,7 +90,7 @@ const locale: Localization = {
         prefix: 'ב',
         suffix: 'שניות',
       },
-      empty: { text: 'כל' },
+      any: { text: 'כל' },
     },
   },
   'q-hour': {

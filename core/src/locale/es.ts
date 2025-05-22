@@ -6,36 +6,36 @@ const locale: Localization = {
     suffix: '',
     text: 'Desconocido',
     '*': {
-      empty: { text: 'todos los {{ field.id }}' },
+      any: { text: 'todos los {{ field.id }}' },
       value: { text: '{{ value.text }}' },
       range: { text: '{{ start.text }}-{{ end.text }}' },
-      everyX: { text: 'todos/as {{ every.value }}' },
+      step: { text: 'todos/as {{ step.value }}' },
     },
     month: {
       '*': { prefix: 'en' },
-      empty: { text: 'todos los meses' },
+      any: { text: 'todos los meses' },
       value: { text: '{{ value.alt }}' },
       range: { text: '{{ start.alt }}-{{ end.alt }}' },
     },
     day: {
       '*': { prefix: 'en' },
-      empty: { text: 'todos los días' },
+      any: { text: 'todos los días' },
       value: { text: 'los días {{ value.alt }}' },
     },
     dayOfWeek: {
       '*': { prefix: 'de' },
-      empty: { text: 'todos los días de la semana' },
+      any: { text: 'todos los días de la semana' },
       value: { text: 'los {{ value.alt }}' },
       range: { text: '{{ start.alt }}-{{ end.alt }}' },
     },
     hour: {
       '*': { prefix: 'a' },
-      empty: { text: 'todas las horas' },
+      any: { text: 'todas las horas' },
       value: { text: 'las {{ value.text }}' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'todos los minutos' },
+      any: { text: 'todos los minutos' },
     },
   },
   minute: {
@@ -50,7 +50,7 @@ const locale: Localization = {
         prefix: 'a los',
         suffix: 'minutos',
       },
-      empty: { text: 'todos', prefix: 'a', suffix: 'los minutos' },
+      any: { text: 'todos', prefix: 'a', suffix: 'los minutos' },
     },
   },
   day: {

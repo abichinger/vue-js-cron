@@ -1,10 +1,10 @@
-import type { CronType, TextPosition } from '@/types'
+import type { FieldPattern, TextPosition } from '@/types'
 
 // https://stackoverflow.com/a/53276873/3140799
 export type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
 export type PositionedLocalization = PartialRecord<TextPosition, string>
-export type CronLocalization = PartialRecord<CronType | '*', PositionedLocalization>
+export type CronLocalization = PartialRecord<FieldPattern | '*', PositionedLocalization>
 
 export interface FieldLocalization {
   // Allow custom field ids
@@ -24,7 +24,7 @@ export type PeriodLocalization = PositionedLocalization | FieldLocalization
 
 /**
  * Interface to define localizations for vue-js-cron
- * The localization strings are accessed by {periodId}.{fieldId}.{cronType}.{position}
+ * The localization strings are accessed by {periodId}.{fieldId}.{fieldPattern}.{position}
  *
  * See {@link https://github.com/abichinger/vue-js-cron/blob/main/core/src/locale/en.ts | src/locale/en.ts} for the english localization object.
  *
@@ -35,11 +35,11 @@ export type PeriodLocalization = PositionedLocalization | FieldLocalization
  *   '*': {
  *     prefix: 'Every',
  *     '*': {
- *       empty: { text: 'any {field.id}' },
+ *       any: { text: 'any {field.id}' },
  *       // ...
  *     },
  *     hour: {
- *       empty: { text: 'every' },
+ *       any: { text: 'every' },
  *       // ...
  *     },
  *   },

@@ -58,6 +58,12 @@ describe('useCron', () => {
         expected: `Every Week on Sun at 23 : 59`,
       },
       {
+        format: 'crontab',
+        value: '10,20,30 23 * * 0-4/2',
+        period: 'week',
+        expected: `Every Week on Sun-Thu/2 at 23 : 10-30/10`,
+      },
+      {
         format: 'quartz',
         value: '* * * * * *',
         period: 'q-hour',

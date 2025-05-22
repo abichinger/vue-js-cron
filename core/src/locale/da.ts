@@ -8,17 +8,17 @@ const locale: Localization = {
     '*': {
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'hver {{every.value}}' },
+      step: { text: 'hver {{step.value}}' },
     },
     month: {
       '*': { prefix: 'i' },
-      empty: { text: 'hver måned' },
+      any: { text: 'hver måned' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     day: {
       '*': { prefix: 'og' },
-      empty: { text: 'hver dag i måneden' },
+      any: { text: 'hver dag i måneden' },
       value: { text: '{{value.alt}}.' },
       range: { text: '{{start.alt}}.-{{end.alt}}.' },
       noSpecific: {
@@ -28,7 +28,7 @@ const locale: Localization = {
 
     dayOfWeek: {
       '*': { prefix: 'på' },
-      empty: { text: 'hver dag i ugen' },
+      any: { text: 'hver dag i ugen' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       noSpecific: {
@@ -37,15 +37,15 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: 'klokken' },
-      empty: { text: 'hver time' },
+      any: { text: 'hver time' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'hvert minut' },
+      any: { text: 'hvert minut' },
     },
     second: {
       '*': { prefix: ':' },
-      empty: { text: 'hvert sekund' },
+      any: { text: 'hvert sekund' },
     },
   },
   second: {
@@ -62,7 +62,7 @@ const locale: Localization = {
         prefix: 'ved',
         suffix: 'minutter',
       },
-      empty: { text: 'alle' },
+      any: { text: 'alle' },
     },
   },
   day: {
@@ -95,7 +95,7 @@ const locale: Localization = {
       '*': {
         suffix: 'sekund(er)',
       },
-      empty: { text: 'hvert' },
+      any: { text: 'hvert' },
     },
   },
   'q-hour': {

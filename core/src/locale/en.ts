@@ -6,15 +6,17 @@ const locale: Localization = {
     suffix: '',
     text: 'Unknown',
     '*': {
-      empty: { text: 'every {{field.id}}' },
+      any: { text: 'every {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'every {{every.value}}' },
+      step: { text: 'every {{step.value}}' },
+      rangeStep: { text: '{{start.text}}-{{end.text}}/{{step.value}}' },
     },
     month: {
       '*': { prefix: 'in' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      rangeStep: { text: '{{start.alt}}-{{end.alt}}/{{step.value}}' },
     },
     day: {
       '*': { prefix: 'on' },
@@ -24,9 +26,10 @@ const locale: Localization = {
     },
     dayOfWeek: {
       '*': { prefix: 'on' },
-      empty: { text: 'every day of the week' },
+      any: { text: 'every day of the week' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      rangeStep: { text: '{{start.alt}}-{{end.alt}}/{{step.value}}' },
       noSpecific: {
         text: 'no specific day of the week',
       },
@@ -51,7 +54,7 @@ const locale: Localization = {
         prefix: 'at',
         suffix: 'minute(s)',
       },
-      empty: { text: 'every' },
+      any: { text: 'every' },
     },
   },
   day: {
@@ -84,7 +87,7 @@ const locale: Localization = {
         prefix: 'at',
         suffix: 'second(s)',
       },
-      empty: { text: 'every' },
+      any: { text: 'every' },
     },
   },
   'q-hour': {

@@ -6,34 +6,34 @@ const locale: Localization = {
     suffix: '',
     text: 'Desconhecido',
     '*': {
-      empty: { text: 'todo {{field.id}}' },
+      any: { text: 'todo {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      everyX: { text: 'todo {{every.value}}' },
+      step: { text: 'todo {{step.value}}' },
     },
     month: {
       '*': { prefix: 'de' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
-      empty: { text: 'todo mês' },
+      any: { text: 'todo mês' },
     },
     day: {
       '*': { prefix: 'no(s) dia(s)' },
-      empty: { text: 'todos' },
+      any: { text: 'todos' },
     },
     dayOfWeek: {
       '*': { prefix: 'de' },
-      empty: { text: 'todos dias da semana' },
+      any: { text: 'todos dias da semana' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
     },
     hour: {
       '*': { prefix: 'às' },
-      empty: { text: 'cada hora' },
+      any: { text: 'cada hora' },
     },
     minute: {
       '*': { prefix: ':' },
-      empty: { text: 'cada minuto' },
+      any: { text: 'cada minuto' },
     },
   },
   minute: {
@@ -46,7 +46,7 @@ const locale: Localization = {
         prefix: 'e',
         suffix: 'minuto(s)',
       },
-      empty: { text: 'cada' },
+      any: { text: 'cada' },
     },
   },
   day: {
