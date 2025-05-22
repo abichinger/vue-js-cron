@@ -31,18 +31,32 @@ const locales: Record<string, Localization> = {
   ko,
 }
 
-class Locale {
+class L10nEngine {
   dict: Localization
 
   constructor(dict: Localization) {
     this.dict = dict
   }
 
-  getLocaleStr(...keys: string[]) {
+  /**
+   * Gets a localization template by traversing the dictionary using provided keys.
+   * @param keys - Array of keys to traverse through the localization dictionary
+   * @returns The found template string or empty string if not found
+   */
+  getTemplate(...keys: string[]) {
     const k = keys.map((key) => [key, '*'])
     return traverse(this.dict, ...k) || ''
   }
 
+  /**
+   * Renders a localization template with the provided parameters using Mustache.
+   * @param periodId - The period identifier (e.g. 'year', 'month')
+   * @param fieldId - The field identifier (e.g. 'hour', 'minute')
+   * @param fieldPattern - The pattern type of the field
+   * @param position - The text position
+   * @param params - Parameters to be interpolated into the template
+   * @returns The rendered localization string
+   */
   render(
     periodId: string,
     fieldId: string,
@@ -50,26 +64,26 @@ class Locale {
     position: TextPosition,
     params: any,
   ) {
-    const template = this.getLocaleStr(periodId, fieldId, fieldPattern, position)
+    const template = this.getTemplate(periodId, fieldId, fieldPattern, position)
     return Mustache.render(template, params || {})
   }
 }
 
 /**
- *
- * @param locale - locale code, e.g.: en, en-GB de-DE
- * @param mixin - can be used to override values of the Locale
- * @returns {Locale} Dictionary with all strings in the requested language
+ * Creates a localization engine for the specified locale.
+ * @param localeCode - Locale code (e.g. 'en', 'en-GB', 'de-DE')
+ * @param mixin - Optional dictionary to override default locale strings
+ * @returns A new L10nEngine instance for the specified locale with English as fallback
  */
-function getLocale(localeCode: string, mixin?: Localization) {
+function createL10n(localeCode: string, mixin?: Localization) {
   const [language] = localeCode.split('-')
   const l = locales[localeCode.toLowerCase()] || locales[language.toLowerCase()] || locales.en
   // Note: always use an empty object as target
   const dict = deepMerge({}, locales.en, l, mixin || {}) as Localization
-  return new Locale(dict)
+  return new L10nEngine(dict)
 }
 
-export { getLocale, Locale }
+export { createL10n, L10nEngine }
 
 // The following prompt was used for localizations translated with GPT-4:
 //

@@ -1,4 +1,5 @@
 import { AnySegment, NoSpecificSegment, RangeSegment, StepSegment, ValueSegment } from '@/cron'
+import { createL10n } from '@/locale'
 import type { Localization } from '@/locale/types'
 import {
   computed,
@@ -9,7 +10,6 @@ import {
   type PropType,
   type SetupContext,
 } from 'vue'
-import { getLocale } from '../locale'
 import { FieldWrapper, TextPosition, type CronFormat, type Field, type Period } from '../types'
 import { defaultItems } from '../util'
 import { useCronSegment, type UseCronSegmentReturn } from './cron-segment'
@@ -142,11 +142,11 @@ export function useCron(options: CronOptions) {
   const { customLocale, fields = cronDefaults.fields(format, locale) } = options
   const initialValue = options.initialValue ?? cronDefaults.initialValue(fields.length)
 
-  const l10n = getLocale(locale, customLocale)
+  const l10n = createL10n(locale, customLocale)
   const periods = (options.periods ?? cronDefaults.periods(format)).map((p) => {
     return {
       ...p,
-      text: p.text ?? l10n.getLocaleStr(p.id, TextPosition.Text),
+      text: p.text ?? l10n.getTemplate(p.id, TextPosition.Text),
     }
   })
   const initialPeriod =
@@ -160,7 +160,7 @@ export function useCron(options: CronOptions) {
   const periodPrefix = ref('')
   const periodSuffix = ref('')
   const segments = fields.map((f) => {
-    return useCronSegment({ field: new FieldWrapper(f), locale: l10n, period })
+    return useCronSegment({ field: new FieldWrapper(f), l10n, period })
   })
 
   const segmentMap = new Map(segments.map((s) => [s.id, s]))
@@ -205,8 +205,8 @@ export function useCron(options: CronOptions) {
   }
 
   const translate = () => {
-    periodPrefix.value = l10n.getLocaleStr(period.value.id, TextPosition.Prefix)
-    periodSuffix.value = l10n.getLocaleStr(period.value.id, TextPosition.Suffix)
+    periodPrefix.value = l10n.getTemplate(period.value.id, TextPosition.Prefix)
+    periodSuffix.value = l10n.getTemplate(period.value.id, TextPosition.Suffix)
   }
   translate()
 

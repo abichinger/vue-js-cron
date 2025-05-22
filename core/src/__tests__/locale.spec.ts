@@ -1,9 +1,9 @@
-import { getLocale } from '@/locale'
+import { createL10n } from '@/locale'
 import { FieldPattern, TextPosition } from '@/types'
 import { describe, expect, it } from 'vitest'
 
 describe('locale', () => {
-  it('getLocale', () => {
+  it('createL10n', () => {
     const testCases = [
       { locale: 'en', expected: 'Hour' },
       { locale: 'foo-bar', expected: 'Hour' },
@@ -13,43 +13,43 @@ describe('locale', () => {
     ]
 
     for (const test of testCases) {
-      const l = getLocale(test.locale)
-      expect(l.getLocaleStr('hour', 'text')).toBe(test.expected)
+      const l = createL10n(test.locale)
+      expect(l.getTemplate('hour', 'text')).toBe(test.expected)
     }
   })
 
-  it('getLocaleStr', () => {
-    const l = getLocale('en', {
+  it('getTemplate', () => {
+    const l = createL10n('en', {
       custom: {
         '*': 'bar',
         message: 'baz',
       },
     })
 
-    expect(l.getLocaleStr('year', 'minute', 'empty', 'text')).toBe('every {{field.id}}')
-    expect(l.getLocaleStr('year', 'dayOfWeek', 'value', 'prefix')).toBe('and')
-    expect(l.getLocaleStr('year', 'minute', 'range', 'prefix')).toBe(':')
-    expect(l.getLocaleStr('custom', 'foo')).toBe('bar')
-    expect(l.getLocaleStr('custom', 'message')).toBe('baz')
+    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('every {{field.id}}')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('and')
+    expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
+    expect(l.getTemplate('custom', 'foo')).toBe('bar')
+    expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
 
-  it('getLocaleStr pt', () => {
-    const l = getLocale('pt', {
+  it('getTemplate pt', () => {
+    const l = createL10n('pt', {
       custom: {
         '*': 'bar',
         message: 'baz',
       },
     })
 
-    expect(l.getLocaleStr('year', 'minute', 'empty', 'text')).toBe('cada minuto')
-    expect(l.getLocaleStr('year', 'dayOfWeek', 'value', 'prefix')).toBe('e de')
-    expect(l.getLocaleStr('year', 'minute', 'range', 'prefix')).toBe(':')
-    expect(l.getLocaleStr('custom', 'foo')).toBe('bar')
-    expect(l.getLocaleStr('custom', 'message')).toBe('baz')
+    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('cada minuto')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('e de')
+    expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
+    expect(l.getTemplate('custom', 'foo')).toBe('bar')
+    expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
 
   it('render', () => {
-    const l = getLocale('en', {
+    const l = createL10n('en', {
       '*': {
         '*': {
           value: {

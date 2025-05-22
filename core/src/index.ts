@@ -19,7 +19,7 @@ export {
   type SelectOptions,
   type UseSelectReturn,
 } from './components/select'
-export { Locale, getLocale } from './locale'
+export { createL10n, L10nEngine } from './locale'
 export type * from './locale/types'
 export type * from './types'
 export { FieldPattern, FieldWrapper, TextPosition } from './types'

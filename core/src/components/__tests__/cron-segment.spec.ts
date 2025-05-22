@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { getLocale } from '@/locale'
+import { createL10n } from '@/locale'
 import { FieldWrapper } from '@/types'
 import { defaultItems } from '@/util'
 import { nextTick, ref } from 'vue'
@@ -15,7 +15,7 @@ const f = () => {
   const period = { id: 'year', value: [] }
 
   return useCronSegment({
-    locale: getLocale('en'),
+    l10n: createL10n('en'),
     field: fieldDesc,
     period: ref(period),
     initialCron: '*',

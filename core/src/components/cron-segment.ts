@@ -1,17 +1,17 @@
 import { CombinedSegment, arrayToSegment, cronToSegment } from '@/cron'
-import type { Locale } from '@/locale'
+import type { L10nEngine } from '@/locale'
 import { TextPosition, type CronSegment, type FieldWrapper, type Period } from '@/types'
 import { ref, watch, type Ref } from 'vue'
 
 export interface FieldOptions {
-  locale: Locale
+  l10n: L10nEngine
   period: Ref<Period>
   field: FieldWrapper
   initialCron?: string
 }
 
 export function useCronSegment(options: FieldOptions) {
-  const { period, field, initialCron = '*', locale } = options
+  const { period, field, initialCron = '*', l10n } = options
 
   const cron = ref(initialCron)
   const error = ref('')
@@ -26,15 +26,15 @@ export function useCronSegment(options: FieldOptions) {
 
     text.value = segments
       .map((seg) => {
-        return locale.render(period.value.id, field.id, seg.type, TextPosition.Text, {
+        return l10n.render(period.value.id, field.id, seg.type, TextPosition.Text, {
           field: field,
           ...seg.items,
         })
       })
       .join(',')
 
-    prefix.value = locale.getLocaleStr(period.value.id, field.id, seg.type, TextPosition.Prefix)
-    suffix.value = locale.getLocaleStr(period.value.id, field.id, seg.type, TextPosition.Suffix)
+    prefix.value = l10n.getTemplate(period.value.id, field.id, seg.type, TextPosition.Prefix)
+    suffix.value = l10n.getTemplate(period.value.id, field.id, seg.type, TextPosition.Suffix)
   }
 
   const parseCron = (cron: string) => {
