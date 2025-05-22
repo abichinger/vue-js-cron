@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/prime",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cron editor for PrimeVue",
   "type": "module",
   "main": "dist/prime.umd.cjs",
@@ -18,7 +18,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "5.4.2",
+    "@vue-js-cron/core": "6.0.0",
     "@primevue/themes": "^4.2.1",
     "primevue": "^4.2.1",
     "primeicons": "^7.0.0"
