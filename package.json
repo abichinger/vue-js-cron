@@ -15,7 +15,49 @@
     "quasar",
     "naive-ui",
     "prime"
-  ],
+  ],  "exports": {
+    ".": {
+      "import": "./core/dist/index.es.js",
+      "require": "./core/dist/index.cjs.js",
+      "types": "./core/dist/index.d.ts"
+    },
+    "./light": {
+      "import": "./light/dist/index.es.js",
+      "require": "./light/dist/index.cjs.js",
+      "types": "./light/dist/index.d.ts"
+    },
+    "./light/dist/light.css": "./light/dist/light.css",
+    "./vuetify": {
+      "import": "./vuetify/dist/index.es.js",
+      "require": "./vuetify/dist/index.cjs.js",
+      "types": "./vuetify/dist/index.d.ts"
+    },
+    "./element-plus": {
+      "import": "./element-plus/dist/index.es.js",
+      "require": "./element-plus/dist/index.cjs.js",
+      "types": "./element-plus/dist/index.d.ts"
+    },
+    "./ant": {
+      "import": "./ant/dist/index.es.js",
+      "require": "./ant/dist/index.cjs.js",
+      "types": "./ant/dist/index.d.ts"
+    },
+    "./quasar": {
+      "import": "./quasar/dist/index.es.js",
+      "require": "./quasar/dist/index.cjs.js",
+      "types": "./quasar/dist/index.d.ts"
+    },
+    "./naive-ui": {
+      "import": "./naive-ui/dist/index.es.js",
+      "require": "./naive-ui/dist/index.cjs.js",
+      "types": "./naive-ui/dist/index.d.ts"
+    },
+    "./prime": {
+      "import": "./prime/dist/index.es.js",
+      "require": "./prime/dist/index.cjs.js",
+      "types": "./prime/dist/index.d.ts"
+    }
+  },
   "private": false,
   "scripts": {
     "clean": "npm run clean --workspaces --if-present",
@@ -69,5 +111,5 @@
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.19"
   },
-  "version": "1.0.0"
+  "version": "1.0.2"
 }
