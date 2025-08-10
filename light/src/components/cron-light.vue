@@ -130,5 +130,9 @@ export default defineComponent({
   white-space: nowrap;
 }
 
-
+@media (max-width: 640px) {
+  .fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
