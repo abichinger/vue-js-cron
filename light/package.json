@@ -1,13 +1,13 @@
 {
-  "name": "@vue-js-cron/light",
-  "version": "4.0.11",
-  "description": "lightweight vue.js cron editor",
+  "name": "@dev-snake/vue-js-cron-light",
+  "version": "1.0.0",
+  "description": "Custom lightweight vue.js cron editor - Modified version",
   "type": "module",
   "main": "dist/light.umd.cjs",
   "module": "dist/light.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/abichinger/vue-js-cron",
-  "author": "Andreas Bichinger",
+  "repository": "https://github.com/dev-snake/vue-js-cron",
+  "author": "dev-snake",
   "license": "MIT",
   "private": false,
   "scripts": {
