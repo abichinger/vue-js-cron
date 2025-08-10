@@ -1,11 +1,19 @@
 {
-  "name": "@dev-snake/vue-js-cron-light",
-  "version": "1.0.0",
-  "description": "Custom lightweight vue.js cron editor - Modified version",
+  "name": "vue-cron-light-devsnake",
+  "version": "1.0.2",
+  "description": "Custom lightweight vue.js cron editor - Modified by dev-snake",
   "type": "module",
-  "main": "dist/light.umd.cjs",
-  "module": "dist/light.js",
+  "main": "dist/vue-cron-light-devsnake.umd.cjs",
+  "module": "dist/vue-cron-light-devsnake.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-cron-light-devsnake.js",
+      "require": "./dist/vue-cron-light-devsnake.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/light.css": "./dist/light.css"
+  },
   "repository": "https://github.com/dev-snake/vue-js-cron",
   "author": "dev-snake",
   "license": "MIT",

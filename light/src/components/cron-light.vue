@@ -1,24 +1,24 @@
 
 <template>
   <div class="cron-editor vcron-editor">
-    <div class="cron-section">
-      <div class="section-content">
-        <span class="prefix-text">{{ period.prefix.value }}</span>
-        <div class="select-container">
-          <custom-select
-            :model-value="period.selected.value.id"
-            item-value="id"
-            :items="period.items"
-            @update:model-value="period.select($event)"
-            :cols="cols['period'] || 1"
-            :disabled="disabled"
-          />
-        </div>
-        <span class="suffix-text">{{ period.suffix.value }}</span>
-      </div>
-    </div>
-
+    
     <div class="fields-grid">
+      <div class="cron-section">
+        <div class="section-content">
+          <span class="prefix-text">{{ period.prefix.value }}</span>
+          <div class="select-container">
+            <custom-select
+              :model-value="period.selected.value.id"
+              item-value="id"
+              :items="period.items"
+              @update:model-value="period.select($event)"
+              :cols="cols['period'] || 1"
+              :disabled="disabled"
+            />
+          </div>
+          <span class="suffix-text">{{ period.suffix.value }}</span>
+        </div>
+      </div>
       <div 
         v-for="f in selected" 
         :key="f.id" 
@@ -38,9 +38,9 @@
               :disabled="disabled"
             />
           </div>
-          <span class="suffix-text" v-if="f.suffix.value">
+          <!-- <span class="suffix-text" v-if="f.suffix.value">
             {{ f.suffix.value }}
-          </span>
+          </span> -->
         </div>
       </div>
     </div>
@@ -89,9 +89,9 @@ export default defineComponent({
 
 .section-content {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 8px 0;
+
 }
 
 .fields-grid {
