@@ -41,6 +41,7 @@ export interface Field {
   items: FieldItem[]
   onChange?: (segment: UseCronSegmentReturn, ctx: CronContext) => void
   segmentFactories?: SegmentFromString[]
+  default?: string
 }
 
 export interface Period {

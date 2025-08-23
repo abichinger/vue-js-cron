@@ -107,16 +107,25 @@ describe('useCron', () => {
   it('format option', () => {
     const formats: {
       value: CronFormat
+      expectedValue: string
       expectedFields: number
       expectedPeriods: number
     }[] = [
       {
         value: 'crontab',
+        expectedValue: '* * * * *',
         expectedFields: 5,
         expectedPeriods: 6,
       },
       {
         value: 'quartz',
+        expectedValue: '* * * * * ?',
+        expectedFields: 6,
+        expectedPeriods: 7,
+      },
+      {
+        value: 'spring',
+        expectedValue: '* * * * * *',
         expectedFields: 6,
         expectedPeriods: 7,
       },
@@ -125,6 +134,7 @@ describe('useCron', () => {
     for (const format of formats) {
       const cron = useCron({ format: format.value })
 
+      expect(cron.cron.value).toEqual(format.expectedValue)
       expect(cron.segments.length).toEqual(format.expectedFields)
       expect(cron.period.items.length).toEqual(format.expectedPeriods)
     }

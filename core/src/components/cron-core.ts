@@ -28,8 +28,8 @@ export interface CronContext {
   segmentMap: Map<string, UseCronSegmentReturn>
 }
 
-function createCron(len: number, seg: string = '*') {
-  return new Array(len).fill(seg).join(' ')
+function createCron(fields: Field[]) {
+  return fields.map((f) => f.default ?? '*').join(' ')
 }
 
 function isDefined<T>(obj: T | undefined): obj is T {
@@ -41,8 +41,8 @@ export class DefaultCronOptions {
 
   format: CronFormat = 'crontab'
 
-  initialValue(len: number, seg: string = '*') {
-    return createCron(len, seg)
+  initialValue(fields: Field[]) {
+    return createCron(fields)
   }
 
   fields(format: CronFormat, locale: string): Field[] {
@@ -84,6 +84,7 @@ export class DefaultCronOptions {
       { id: 'month', items: items.monthItems },
       {
         id: 'dayOfWeek',
+        default: format === 'quartz' ? '?' : undefined,
         items: items.dayOfWeekItems,
         onChange: isQuartz ? setNoSpecific('day') : undefined,
         segmentFactories: isQuartz
@@ -140,7 +141,7 @@ export function useCron(options: CronOptions) {
   const locale = options.locale ?? cronDefaults.locale
   const format = options.format ?? cronDefaults.format
   const { customLocale, fields = cronDefaults.fields(format, locale) } = options
-  const initialValue = options.initialValue ?? cronDefaults.initialValue(fields.length)
+  const initialValue = options.initialValue ?? cronDefaults.initialValue(fields)
 
   const l10n = createL10n(locale, customLocale)
   const periods = (options.periods ?? cronDefaults.periods(format)).map((p) => {
@@ -176,7 +177,7 @@ export function useCron(options: CronOptions) {
 
   const fromCron = (value: string) => {
     if (!value) {
-      cron.value = createCron(fields.length)
+      cron.value = createCron(fields)
       return
     }
 
@@ -282,9 +283,13 @@ export function setupCron(
     },
   )
 
-  watch(cron.cron, (value) => {
-    emit('update:model-value', value)
-  })
+  watch(
+    cron.cron,
+    (value) => {
+      emit('update:model-value', value)
+    },
+    { immediate: props.modelValue === undefined },
+  )
 
   watch(cron.period.selected, (value) => {
     emit('update:period', value.id)
