@@ -8,13 +8,14 @@
           if (!disabled) toggleMenu()
         }
       "
+      ref="btn"
     >
       {{ selection ?? selectedStr }}
 
       <span v-if="clearable && !isEmpty" @click="clear">&#x2715;</span>
     </span>
 
-    <div class="vcron-select-list" v-if="menu">
+    <div v-if="menu" class="vcron-select-list" :style="floatingStyles" ref="floating">
       <div class="vcron-select-row" v-for="(row, i) in itemRows" :key="i">
         <div
           v-for="(item, j) in row"
@@ -32,6 +33,7 @@
 </template>
 
 <script lang="ts">
+import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { selectProps, setupSelect } from '@vue-js-cron/core'
 import { defineComponent, ref } from 'vue'
 
@@ -43,7 +45,15 @@ export default defineComponent({
   emits: ['update:model-value'],
   setup(props, ctx) {
     const s = setupSelect<any, any>(props, () => props.modelValue, ctx)
+    const btn = ref(null)
+    const floating = ref(null)
     const menu = ref(false)
+
+    const { floatingStyles } = useFloating(btn, floating, {
+      placement: 'bottom-start',
+      middleware: [flip(), shift(), offset(7)],
+      whileElementsMounted: autoUpdate,
+    })
 
     const menuEvtListener = () => {
       menu.value = false
@@ -65,6 +75,9 @@ export default defineComponent({
       ...s,
       menu,
       toggleMenu,
+      btn,
+      floating,
+      floatingStyles,
     }
   },
 })
@@ -101,9 +114,6 @@ export default defineComponent({
 }
 
 .vcron-select-list {
-  position: absolute;
-  top: 1.8em;
-  left: 0px;
   margin: 0;
   padding: 0;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
