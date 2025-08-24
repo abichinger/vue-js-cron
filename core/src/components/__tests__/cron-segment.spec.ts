@@ -7,10 +7,13 @@ import { nextTick, ref } from 'vue'
 import { useCronSegment } from '../cron-segment'
 
 const f = () => {
-  const fieldDesc = new FieldWrapper({
-    id: 'month',
-    items: defaultItems('en').monthItems,
-  })
+  const fieldDesc = new FieldWrapper(
+    {
+      id: 'month',
+      items: defaultItems('en').monthItems,
+    },
+    { format: 'crontab' },
+  )
 
   const period = { id: 'year', value: [] }
 

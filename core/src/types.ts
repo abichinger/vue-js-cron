@@ -15,13 +15,14 @@ export type SegmentFromArray = (arr: number[], field: FieldWrapper) => CronSegme
 export type SegmentFromString = (str: string, field: FieldWrapper) => CronSegment | null
 
 export enum FieldPattern {
-  Any = 'any',
-  Value = 'value',
-  Range = 'range',
-  Step = 'step',
-  RangeStep = 'rangeStep',
+  Any = 'any', // *
+  Value = 'value', // a
+  Range = 'range', // a-b
+  Step = 'step', // */x
+  StepFrom = `stepFrom`, // a/x
+  RangeStep = 'rangeStep', // a-b/x
   Combined = 'combined',
-  NoSpecific = 'noSpecific',
+  NoSpecific = 'noSpecific', // ?
 }
 
 export enum TextPosition {
@@ -61,12 +62,17 @@ export interface Period {
   text?: string
 }
 
+interface FieldContext {
+  format: CronFormat
+}
 export class FieldWrapper {
   field: Field
   itemMap: Record<number, FieldItem>
+  ctx: FieldContext
 
-  constructor(field: Field) {
+  constructor(field: Field, ctx: FieldContext) {
     this.field = field
+    this.ctx = ctx
 
     this.itemMap = this.field.items.reduce(
       (acc, item) => {

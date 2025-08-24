@@ -135,8 +135,20 @@ function _rangeWithStep(n: number, min: number, max: number) {
   }
   return res
 }
+
+function parseRange(s: string, field: FieldWrapper): [number, number] {
+  if (s === '*') {
+    return [field.min, field.max]
+  }
+  const range = s.split('-').map((s) => parseInt(s))
+  if (range.length === 1 && field.ctx.format !== 'crontab') {
+    return [range[0], field.max]
+  }
+  return [range[0], range[1]]
+}
+
 class StepSegment implements CronSegment {
-  static re = /^(\*|\d+-\d+)\/\d+$/
+  static re = /^(\*|\d+(-\d+)?)\/\d+$/
 
   field: FieldWrapper
   step: number
@@ -152,6 +164,9 @@ class StepSegment implements CronSegment {
 
   get type() {
     const { min, max } = this.field
+    if (this.field.ctx.format !== 'crontab' && this.start !== min && max - this.end < this.step) {
+      return FieldPattern.StepFrom
+    }
     if (this.start !== min || max - this.end >= this.step) {
       return FieldPattern.RangeStep
     }
@@ -159,7 +174,10 @@ class StepSegment implements CronSegment {
   }
 
   toCron() {
-    if (this.type == FieldPattern.RangeStep) {
+    if (this.type === FieldPattern.StepFrom) {
+      return `${this.start}/${this.step}`
+    }
+    if (this.type === FieldPattern.RangeStep) {
       return `${this.start}-${this.end}/${this.step}`
     }
     return `*/${this.step}`
@@ -189,9 +207,7 @@ class StepSegment implements CronSegment {
       return null
     }
 
-    const range = str.split('-').map((s) => parseInt(s))
-    const min = rangeStr == '*' ? field.min : range[0]
-    const max = rangeStr == '*' ? field.max : range[1]
+    const [min, max] = parseRange(rangeStr, field)
 
     if (_rangeWithStep(step, min, max).length == 0) {
       return null

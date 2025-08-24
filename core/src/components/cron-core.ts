@@ -161,7 +161,7 @@ export function useCron(options: CronOptions) {
   const periodPrefix = ref('')
   const periodSuffix = ref('')
   const segments = fields.map((f) => {
-    return useCronSegment({ field: new FieldWrapper(f), l10n, period })
+    return useCronSegment({ field: new FieldWrapper(f, { format: format }), l10n, period })
   })
 
   const segmentMap = new Map(segments.map((s) => [s.id, s]))

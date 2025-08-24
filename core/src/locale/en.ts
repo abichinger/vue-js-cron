@@ -11,12 +11,14 @@ const locale: Localization = {
       range: { text: '{{start.text}}-{{end.text}}' },
       step: { text: 'every {{step.value}}' },
       rangeStep: { text: '{{start.text}}-{{end.text}}/{{step.value}}' },
+      stepFrom: { text: '{{start.text}}/{{step.value}}' },
     },
     month: {
       '*': { prefix: 'in' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       rangeStep: { text: '{{start.alt}}-{{end.alt}}/{{step.value}}' },
+      stepFrom: { text: '{{start.alt}}/{{step.value}}' },
     },
     day: {
       '*': { prefix: 'on' },
@@ -30,6 +32,7 @@ const locale: Localization = {
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       rangeStep: { text: '{{start.alt}}-{{end.alt}}/{{step.value}}' },
+      stepFrom: { text: '{{start.alt}}/{{step.value}}' },
       noSpecific: {
         text: 'no specific day of the week',
       },
