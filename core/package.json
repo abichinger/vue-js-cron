@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/core",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "A renderless Vue.js cron editor.",
   "repository": "https://github.com/abichinger/vue-js-cron",
   "author": "Andreas Bichinger",
