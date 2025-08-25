@@ -1,8 +1,8 @@
 <template>
-  <div class="vcron-select-container">
+  <div class="cl-select">
     <span
-      class="vcron-select-input"
-      :class="{ 'vcron-select-disabled': disabled }"
+      class="cl-btn"
+      :class="{ disabled: disabled }"
       @click="
         () => {
           if (!disabled) toggleMenu()
@@ -12,16 +12,16 @@
     >
       {{ selection ?? selectedStr }}
 
-      <span v-if="clearable && !isEmpty" @click="clear">&#x2715;</span>
+      <span v-if="clearable && !isEmpty" class="cl-btn-clear" @click="clear">&#x2715;</span>
     </span>
 
-    <div v-if="menu" class="vcron-select-list" :style="floatingStyles" ref="floating">
-      <div class="vcron-select-row" v-for="(row, i) in itemRows" :key="i">
+    <div v-if="menu" class="cl-menu" :style="floatingStyles" ref="floating">
+      <div class="cl-row" v-for="(row, i) in itemRows" :key="i">
         <div
           v-for="(item, j) in row"
           :key="i + '-' + j"
-          class="vcron-select-col"
-          :class="{ 'vcron-select-selected': has(item) }"
+          class="cl-col"
+          :class="{ selected: has(item) }"
           @click="select(item)"
           @click.stop="multiple ? () => {} : toggleMenu()"
         >
@@ -84,38 +84,42 @@ export default defineComponent({
 </script>
 
 <style>
-.vcron-select-container {
+.cl-select {
   display: inline-block;
   position: relative;
-  margin: 0 0.2em;
+  /* margin: 0.2em 0.3em; */
 }
 
-.vcron-select-input {
-  display: inline-block;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-  user-select: none;
-  padding: 0 0.5em;
+.cl-btn {
+  display: inline-flex;
+  align-items: center;
   color: black;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 0.2em 0.3em;
+  padding: 0.1em 0.5em;
+  user-select: none;
+  min-height: 1.2em;
 }
 
-.vcron-select-disabled {
+.cl-btn.disabled {
   background-color: #ccc;
   color: #444;
 }
 
-:not(.vcron-select-disabled).vcron-select-input {
-  background-color: #eee;
-}
-
-:not(.vcron-select-disabled).vcron-select-input:hover {
-  border: 1px solid #ccc;
+.cl-btn:not(.disabled):hover {
+  /* border: 1px solid #ccc; */
   background-color: #ddd;
 }
 
-.vcron-select-list {
-  margin: 0;
-  padding: 0;
+.cl-btn-clear {
+  font-size: 1.2em;
+  margin-left: 3px;
+  line-height: 1;
+}
+
+.cl-menu {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   border: 1px solid #aaa;
   background-color: #eee;
@@ -123,11 +127,11 @@ export default defineComponent({
   z-index: 100;
 }
 
-.vcron-select-row {
+.cl-row {
   display: flex;
 }
 
-.vcron-select-col {
+.cl-col {
   flex-grow: 1;
   flex-basis: 0%;
   display: inline-block;
@@ -138,17 +142,17 @@ export default defineComponent({
   color: black;
 }
 
-.vcron-select-col:hover {
+.cl-col:hover {
   background-color: rgb(52, 147, 190);
   color: white;
 }
 
-.vcron-select-selected {
+.cl-col.selected {
   background-color: rgb(43, 108, 138);
   color: white;
 }
 
-.vcron-select-selected:hover {
+.cl-col.selected:hover {
   background-color: rgb(43, 108, 138);
   color: white;
 }

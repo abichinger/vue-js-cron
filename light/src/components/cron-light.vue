@@ -1,33 +1,29 @@
 <template>
-  <span class="vcron-editor">
-    <span>{{ period.prefix.value }}</span>
-    <div class="vcron-l-spacer">
-      <custom-select
-        :model-value="period.selected.value.id"
-        item-value="id"
-        :items="period.items"
-        @update:model-value="period.select($event)"
-        :cols="cols['period'] || 1"
-        :disabled="disabled"
-      />
-    </div>
-    <span>{{ period.suffix.value }}</span>
+  <span class="cron-light">
+    <span class="cl-prefix">{{ period.prefix.value }}</span>
+    <custom-select
+      :model-value="period.selected.value.id"
+      item-value="id"
+      :items="period.items"
+      @update:model-value="period.select($event)"
+      :cols="cols['period'] || 1"
+      :disabled="disabled"
+    />
+    <span class="cl-suffix">{{ period.suffix.value }}</span>
 
     <template v-for="f in selected" :key="f.id">
-      <span>{{ f.prefix.value }}</span>
-      <div class="vcron-l-spacer">
-        <custom-select
-          :model-value="f.selected.value"
-          @update:model-value="f.select($event)"
-          :items="f.items"
-          :cols="cols[f.id] || 1"
-          :selection="f.text.value"
-          multiple
-          clearable
-          :disabled="disabled"
-        ></custom-select>
-      </div>
-      <span>{{ f.suffix.value }}</span>
+      <span class="cl-prefix">{{ f.prefix.value }}</span>
+      <custom-select
+        :model-value="f.selected.value"
+        @update:model-value="f.select($event)"
+        :items="f.items"
+        :cols="cols[f.id] || 1"
+        :selection="f.text.value"
+        multiple
+        clearable
+        :disabled="disabled"
+      ></custom-select>
+      <span class="cl-suffix">{{ f.suffix.value }}</span>
     </template>
   </span>
 </template>
@@ -63,9 +59,4 @@ export default defineComponent({
 })
 </script>
 
-<style>
-.vcron-l-spacer {
-  display: inline-block;
-  padding: 3px;
-}
-</style>
+<style></style>
