@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/element-plus",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "Cron editor for Element Plus",
   "type": "module",
   "main": "dist/element-plus.umd.cjs",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
-    "@vue-js-cron/core": "6.0.0",
+    "@vue-js-cron/core": "6.1.0",
     "element-plus": "^2.2.13"
   },
   "files": [
