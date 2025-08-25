@@ -1,9 +1,13 @@
 // Generated file, do not modify
 import './assets/main.css'
 import { createApp } from 'vue'
-import App from './App.vue'
 import type { App as VueApp } from 'vue'
 import { customSetup } from './setup'
+{%- if dir == 'naive-ui' %}
+import App from './NaiveUIApp.vue'
+{%- else %}
+import App from './App.vue'
+{%- endif %}
 
 export async function setup(app: VueApp) {
   // imports
