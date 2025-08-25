@@ -51,7 +51,7 @@ export default defineComponent({
 
     const { floatingStyles } = useFloating(btn, floating, {
       placement: 'bottom-start',
-      middleware: [flip(), shift(), offset(7)],
+      middleware: [flip(), shift(), offset(3)],
       whileElementsMounted: autoUpdate,
     })
 
@@ -93,9 +93,9 @@ export default defineComponent({
 .cl-btn {
   display: inline-flex;
   align-items: center;
-  color: black;
-  background-color: #eee;
-  border: 1px solid #ddd;
+  color: var(--cl-text-color, inherit);
+  background-color: var(--cl-bg-color, #eee);
+  border: var(--cl-border, 1px solid #ddd);
   border-radius: 3px;
   margin: 0.2em 0.3em;
   padding: 0.1em 0.5em;
@@ -104,13 +104,13 @@ export default defineComponent({
 }
 
 .cl-btn.disabled {
-  background-color: #ccc;
-  color: #444;
+  background-color: var(--cl-disabled-bg-color, #ccc);
+  color: var(--cl-disabled-text-color, #444);
 }
 
 .cl-btn:not(.disabled):hover {
   /* border: 1px solid #ccc; */
-  background-color: #ddd;
+  background-color: var(--cl-hover-bg-color, #d6d6d6);
 }
 
 .cl-btn-clear {
@@ -121,8 +121,8 @@ export default defineComponent({
 
 .cl-menu {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-  border: 1px solid #aaa;
-  background-color: #eee;
+  border: var(--cl-border, 1px solid #ddd);
+  background-color: var(--cl-bg-color, #eee);
   list-style: none;
   z-index: 100;
 }
@@ -139,21 +139,35 @@ export default defineComponent({
   user-select: none;
   padding: 0.2em 0.5em;
   text-align: center;
-  color: black;
 }
 
 .cl-col:hover {
-  background-color: rgb(52, 147, 190);
-  color: white;
+  background-color: var(--cl-hover-bg-color, #d6d6d6);
+  color: var(--cl-hover-text-color, inherit);
 }
 
-.cl-col.selected {
-  background-color: rgb(43, 108, 138);
-  color: white;
-}
-
+.cl-col.selected,
 .cl-col.selected:hover {
-  background-color: rgb(43, 108, 138);
-  color: white;
+  background-color: var(--cl-selected-bg-color, rgb(43, 108, 138));
+  color: var(--cl-selected-text-color, white);
+}
+
+/* Dark mode styles */
+.dark {
+  --cl-text-color: #eee;
+  --cl-bg-color: #222;
+  --cl-border: 1px solid #444;
+
+  --cl-disabled-bg-color: #333;
+  --cl-disabled-text-color: #888;
+
+  --cl-hover-bg-color: #333;
+
+  --cl-selected-bg-color: #0a3041;
+  --cl-selected-text-color: #43c3ff;
+}
+
+.dark .cl-menu {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 </style>

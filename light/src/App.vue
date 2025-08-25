@@ -3,7 +3,7 @@
     <cron-light
       v-model="value"
       v-model:period="period"
-      format="quartz"
+      format="crontab"
       locale="en"
       @error="error = $event"
     >
@@ -14,6 +14,11 @@
     </div>
     <br />
     Error: {{ error }}
+    <div>
+      <button @click="toggleDarkMode" class="cl-btn" style="margin-top: 1em">
+        Switch to {{ isDark ? 'Light' : 'Dark' }} Mode
+      </button>
+    </div>
   </div>
 </template>
 
@@ -26,9 +31,10 @@ export default {
   },
   data: () => {
     return {
-      value: '* * * * * *',
+      value: undefined,
       period: 'month',
       error: '',
+      isDark: false,
     }
   },
   watch: {
@@ -43,11 +49,24 @@ export default {
     updateValue(evt: any) {
       this.value = evt.target.value
     },
+    toggleDarkMode() {
+      const body = document.querySelector('body')
+      this.isDark = body?.classList.toggle('dark') ?? false
+    },
   },
 }
 </script>
 
 <style>
+body {
+  font-family: sans-serif;
+}
+
+body.dark {
+  color: #f0f6fc;
+  background-color: #0d1117;
+}
+
 .vcron-editor {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
