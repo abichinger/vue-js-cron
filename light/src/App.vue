@@ -66,8 +66,4 @@ body.dark {
   color: #f0f6fc;
   background-color: #0d1117;
 }
-
-.vcron-editor {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
 </style>
