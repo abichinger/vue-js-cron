@@ -15,19 +15,23 @@
       <span v-if="clearable && !isEmpty" class="cl-btn-clear" @click="clear">&#x2715;</span>
     </span>
 
-    <div v-if="menu" class="cl-menu" :style="floatingStyles" ref="floating">
-      <div class="cl-row" v-for="(row, i) in itemRows" :key="i">
-        <div
-          v-for="(item, j) in row"
-          :key="i + '-' + j"
-          class="cl-col"
-          :class="{ selected: has(item) }"
-          @click="select(item)"
-          @click.stop="multiple ? () => {} : toggleMenu()"
-        >
-          <div v-if="item">{{ item.text }}</div>
+    <div :style="floatingStyles" ref="floating">
+      <transition name="cl-menu">
+        <div v-if="menu" class="cl-menu">
+          <div class="cl-row" v-for="(row, i) in itemRows" :key="i">
+            <div
+              v-for="(item, j) in row"
+              :key="i + '-' + j"
+              class="cl-col"
+              :class="{ selected: has(item) }"
+              @click="select(item)"
+              @click.stop="multiple ? () => {} : toggleMenu()"
+            >
+              <div v-if="item">{{ item.text }}</div>
+            </div>
+          </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -125,6 +129,18 @@ export default defineComponent({
   background-color: var(--cl-bg-color, #eee);
   list-style: none;
   z-index: 100;
+  transform-origin: top left;
+}
+
+.cl-menu-enter-active,
+.cl-menu-leave-active {
+  transition: all 0.1s ease;
+}
+
+.cl-menu-enter-from,
+.cl-menu-leave-to {
+  transform: scaleY(0.7);
+  opacity: 0;
 }
 
 .cl-row {
