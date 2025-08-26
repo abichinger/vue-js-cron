@@ -26,7 +26,7 @@ describe('locale', () => {
       },
     })
 
-    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('every {{field.id}}')
+    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('every minute')
     expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('and')
     expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
     expect(l.getTemplate('custom', 'foo')).toBe('bar')

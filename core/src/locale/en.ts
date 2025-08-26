@@ -6,7 +6,6 @@ const locale: Localization = {
     suffix: '',
     text: 'Unknown',
     '*': {
-      any: { text: 'every {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
       step: { text: 'every {{step.value}}' },
@@ -15,6 +14,7 @@ const locale: Localization = {
     },
     month: {
       '*': { prefix: 'in' },
+      any: { text: 'every month' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
       rangeStep: { text: '{{start.alt}}-{{end.alt}}/{{step.value}}' },
@@ -22,6 +22,7 @@ const locale: Localization = {
     },
     day: {
       '*': { prefix: 'on' },
+      any: { text: 'every day' },
       noSpecific: {
         text: 'no specific day',
       },
@@ -39,12 +40,15 @@ const locale: Localization = {
     },
     hour: {
       '*': { prefix: 'at' },
+      any: { text: 'every hour' },
     },
     minute: {
       '*': { prefix: ':' },
+      any: { text: 'every minute' },
     },
     second: {
       '*': { prefix: ':' },
+      any: { text: 'every second' },
     },
   },
   minute: {
