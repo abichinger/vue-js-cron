@@ -4,7 +4,8 @@
       v-model="value"
       v-model:period="period"
       format="crontab"
-      locale="en"
+      :locale="locale"
+      :key="locale"
       @error="error = $event"
     >
     </cron-light>
@@ -14,46 +15,45 @@
     </div>
     <br />
     Error: {{ error }}
-    <div>
-      <button @click="toggleDarkMode" class="cl-btn" style="margin-top: 1em">
+    <div style="margin-top: 1em">
+      <button @click="toggleDarkMode" class="cl-btn">
         Switch to {{ isDark ? 'Light' : 'Dark' }} Mode
       </button>
+      <button @click="switchLocale" class="cl-btn">Locale: {{ locale }}</button>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import CronLight from '@/components/cron-light.vue'
+import { ref, watch } from 'vue'
 
-export default {
-  components: {
-    CronLight,
-  },
-  data: () => {
-    return {
-      value: undefined,
-      period: 'month',
-      error: '',
-      isDark: false,
-    }
-  },
-  watch: {
-    value: function (value) {
-      console.log('value changed: ' + value)
-    },
-    period: function (value) {
-      console.log('period changed: ' + value)
-    },
-  },
-  methods: {
-    updateValue(evt: any) {
-      this.value = evt.target.value
-    },
-    toggleDarkMode() {
-      const body = document.querySelector('body')
-      this.isDark = body?.classList.toggle('dark') ?? false
-    },
-  },
+const value = ref(undefined)
+const period = ref('month')
+const error = ref('')
+const isDark = ref(false)
+const locale = ref('en')
+
+watch(value, (value) => {
+  console.log('value changed: ' + value)
+})
+watch(period, (value) => {
+  console.log('period changed: ' + value)
+})
+
+function updateValue(evt: any) {
+  value.value = evt.target.value
+}
+
+function toggleDarkMode() {
+  const body = document.querySelector('body')
+  isDark.value = body?.classList.toggle('dark') ?? false
+}
+
+function switchLocale() {
+  const locales = ['en', 'de']
+  const i = (locales.indexOf(locale.value) + 1) % locales.length
+  locale.value = locales[i]
 }
 </script>
 
