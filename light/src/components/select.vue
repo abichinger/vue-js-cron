@@ -11,7 +11,11 @@
       ref="btn"
     >
       <span class="cl-btn-selection">{{ selection ?? selectedStr }}</span>
-      <span :class="{ clearable: clearable && !isEmpty }" class="cl-btn-suffix" @click="clear">
+      <span
+        :class="{ clearable: clearable && !isEmpty }"
+        class="cl-btn-suffix"
+        @click="iconClicked"
+      >
         <CloseCircleFilled v-if="clearable && !isEmpty" />
         <DownOutlined v-else />
       </span>
@@ -83,6 +87,16 @@ export default defineComponent({
       }
     }
 
+    function iconClicked(e: Event) {
+      if (!props.clearable || s.isEmpty.value) {
+        return
+      }
+      if (!menu.value) {
+        e.stopPropagation()
+      }
+      s.clear()
+    }
+
     return {
       ...s,
       menu,
@@ -90,6 +104,7 @@ export default defineComponent({
       btn,
       floating,
       floatingStyles,
+      iconClicked,
     }
   },
 })
