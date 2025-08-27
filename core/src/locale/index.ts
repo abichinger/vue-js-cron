@@ -9,6 +9,7 @@ import es from './es'
 import fr from './fr'
 import he from './he'
 import hi from './hi'
+import it from './it'
 import ja from './ja'
 import ko from './ko'
 import pt from './pt'
@@ -29,6 +30,7 @@ const locales: Record<string, Localization> = {
   hi,
   ja,
   ko,
+  it,
 }
 
 class L10nEngine {
