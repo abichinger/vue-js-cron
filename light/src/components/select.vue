@@ -21,7 +21,7 @@
       </span>
     </span>
 
-    <div :style="floatingStyles" ref="floating">
+    <div class="z-20" :style="floatingStyles" ref="floating">
       <transition name="cl-menu">
         <div v-if="menu" class="cl-menu">
           <div class="cl-row" v-for="(row, i) in itemRows" :key="i">
@@ -172,8 +172,11 @@ export default defineComponent({
   border: var(--cl-border, 1px solid #ddd);
   background-color: var(--cl-bg-color, #eee);
   list-style: none;
-  z-index: 100;
   transform-origin: top left;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .cl-menu-enter-active,
