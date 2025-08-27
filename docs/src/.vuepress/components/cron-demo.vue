@@ -124,6 +124,10 @@ export default {
         name: 'Korean',
         value: 'ko',
       },
+      {
+        name: 'Italian',
+        value: 'it',
+      },
     ]
     locales.sort((a, b) => a.name.localeCompare(b.name))
 

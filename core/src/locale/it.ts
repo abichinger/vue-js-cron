@@ -4,7 +4,7 @@ import type { Localization } from './types'
  * French localization generated with GPT-4
  */
 const locale: Localization = {
-    '*': {
+  '*': {
     prefix: 'Tutti',
     suffix: '',
     text: 'Sconosciuto',
