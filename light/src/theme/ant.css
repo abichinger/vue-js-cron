@@ -1,0 +1,64 @@
+/* Inspired by https://antdv.com/ */
+
+.ant {
+  --cl-bg-color: none;
+  --cl-btn-hover-border: 1px solid #1677ff;
+  --cl-selected-bg-color: #e6f4ff;
+  --cl-selected-text-color: #000;
+}
+
+.ant .cl-btn {
+  --cl-hover-bg-color: none;
+  border-radius: 6px;
+}
+
+.ant .cl-btn-selection {
+  line-height: 1.7;
+}
+
+.ant .cl-btn-suffix {
+  margin-left: 0.5em;
+  line-height: 1;
+}
+
+.ant .cl-menu {
+  --cl-bg-color: #fff;
+  --cl-hover-bg-color: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),0 3px 6px -4px rgba(0, 0, 0, 0.12),0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  padding: 4px;
+}
+
+.ant .cl-col {
+  padding: 5px 10px;
+}
+
+.ant .cl-row > .cl-col:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.ant .cl-row > .cl-col:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.ant .cl-col.selected,
+.ant .cl-col.selected:hover {
+  font-weight: bold;
+}
+
+/* Dark mode styles */
+.dark .ant {
+  --cl-text-color: inherit;
+  --cl-border: 1px solid rgba(255, 255, 255, 0.6);
+  --cl-selected-bg-color: #111b26;
+  --cl-selected-text-color:  #3497f3;
+}
+
+.dark .ant .cl-menu {
+  --cl-bg-color: #1f1f1f;
+  --cl-hover-bg-color: #ffffff14;
+  --cl-border: none;
+  box-shadow: 0 3px 6px -4px #0000007a,0 6px 16px #00000052,0 9px 28px 8px #0003;
+}

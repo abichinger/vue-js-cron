@@ -2,7 +2,7 @@
   <div class="cl-select">
     <span
       class="cl-btn"
-      :class="{ disabled: disabled }"
+      :class="{ disabled: disabled, active: menu }"
       @click="
         () => {
           if (!disabled) toggleMenu()
@@ -10,9 +10,11 @@
       "
       ref="btn"
     >
-      {{ selection ?? selectedStr }}
-
-      <span v-if="clearable && !isEmpty" class="cl-btn-clear" @click="clear">&#x2715;</span>
+      <span class="cl-btn-selection">{{ selection ?? selectedStr }}</span>
+      <span :class="{ clearable: clearable && !isEmpty }" class="cl-btn-suffix" @click="clear">
+        <CloseCircleFilled v-if="clearable && !isEmpty" />
+        <DownOutlined v-else />
+      </span>
     </span>
 
     <div :style="floatingStyles" ref="floating">
@@ -37,12 +39,18 @@
 </template>
 
 <script lang="ts">
+import CloseCircleFilled from '@/icons/CloseOutlined.vue'
+import DownOutlined from '@/icons/DownOutlined.vue'
 import { autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { selectProps, setupSelect } from '@vue-js-cron/core'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'CustomSelect',
+  components: {
+    CloseCircleFilled,
+    DownOutlined,
+  },
   props: {
     ...selectProps(),
   },
@@ -105,6 +113,7 @@ export default defineComponent({
   padding: 0.1em 0.5em;
   user-select: none;
   min-height: 1.2em;
+  position: relative;
 }
 
 .cl-btn.disabled {
@@ -113,14 +122,34 @@ export default defineComponent({
 }
 
 .cl-btn:not(.disabled):hover {
-  /* border: 1px solid #ccc; */
+  border: var(--cl-btn-hover-border, 1px solid #ddd);
   background-color: var(--cl-hover-bg-color, #d6d6d6);
 }
 
-.cl-btn-clear {
-  font-size: 1.2em;
-  margin-left: 3px;
+.cl-btn.active {
+  border: var(--cl-btn-hover-border, 1px solid #ddd);
+  background-color: var(--cl-hover-bg-color, #d6d6d6);
+}
+
+.cl-btn-suffix {
+  margin-left: 0.4em;
+}
+
+.cl-btn-suffix svg {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
   line-height: 1;
+  opacity: 0.6;
+}
+
+.cl-btn-suffix.clearable svg:hover {
+  opacity: 0.9;
+}
+
+.legacy .cl-btn-suffix:not(.clearable) {
+  margin-left: 0;
+  display: none;
 }
 
 .cl-menu {

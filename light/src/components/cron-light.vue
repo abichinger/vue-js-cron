@@ -1,5 +1,5 @@
 <template>
-  <span class="cron-light">
+  <span class="cron-light" :class="theme">
     <span class="cl-prefix">{{ period.prefix.value }}</span>
     <custom-select
       :model-value="period.selected.value.id"
@@ -30,11 +30,16 @@
 
 <script lang="ts">
 import CustomSelect from '@/components/select.vue'
+import '@/theme/ant.css'
 import { cronCoreProps, setupCron } from '@vue-js-cron/core'
-import { defineComponent, type ExtractPropTypes } from 'vue'
+import { defineComponent, type ExtractPropTypes, type PropType } from 'vue'
 
 export const cronLightProps = () => ({
   ...cronCoreProps(),
+  theme: {
+    type: String as PropType<'ant' | 'legacy'>,
+    default: 'ant',
+  },
 })
 
 /**

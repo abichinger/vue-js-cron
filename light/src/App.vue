@@ -5,8 +5,9 @@
       v-model:period="period"
       format="crontab"
       :locale="locale"
-      :key="locale"
+      :key="locale + theme"
       @error="error = $event"
+      :theme="theme"
     >
     </cron-light>
     <div>
@@ -15,11 +16,12 @@
     </div>
     <br />
     Error: {{ error }}
-    <div style="margin-top: 1em">
+    <div style="margin-top: 2em">
       <button @click="toggleDarkMode" class="cl-btn">
         Switch to {{ isDark ? 'Light' : 'Dark' }} Mode
       </button>
       <button @click="switchLocale" class="cl-btn">Locale: {{ locale }}</button>
+      <button @click="switchTheme" class="cl-btn">Theme: {{ theme }}</button>
     </div>
   </div>
 </template>
@@ -28,11 +30,15 @@
 import CronLight from '@/components/cron-light.vue'
 import { ref, watch } from 'vue'
 
+const themes = ['ant', 'legacy'] as const
+type Theme = (typeof themes)[number]
+
 const value = ref(undefined)
 const period = ref('month')
 const error = ref('')
 const isDark = ref(false)
 const locale = ref('en')
+const theme = ref<Theme>('ant')
 
 watch(value, (value) => {
   console.log('value changed: ' + value)
@@ -54,6 +60,11 @@ function switchLocale() {
   const locales = ['en', 'de']
   const i = (locales.indexOf(locale.value) + 1) % locales.length
   locale.value = locales[i]
+}
+
+function switchTheme() {
+  const i = (themes.indexOf(theme.value) + 1) % themes.length
+  theme.value = themes[i]
 }
 </script>
 
