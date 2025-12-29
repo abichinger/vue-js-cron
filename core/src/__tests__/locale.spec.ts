@@ -48,6 +48,20 @@ describe('locale', () => {
     expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
 
+  it('getTemplate uk', () => {
+    const l = createL10n('uk', {
+      custom: {
+        '*': 'bar',
+        message: 'baz',
+      },
+    })
+
+    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('кожну хвилину')
+    // expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('e de')
+    expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
+    expect(l.getTemplate('custom', 'message')).toBe('baz')
+  })
+
   it('render', () => {
     const l = createL10n('en', {
       '*': {

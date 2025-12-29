@@ -14,6 +14,7 @@ import ja from './ja'
 import ko from './ko'
 import pt from './pt'
 import ru from './ru'
+import uk from './uk'
 import type { Localization } from './types'
 
 const locales: Record<string, Localization> = {
@@ -31,6 +32,7 @@ const locales: Record<string, Localization> = {
   ja,
   ko,
   it,
+  uk,
 }
 
 class L10nEngine {
