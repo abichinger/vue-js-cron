@@ -9,7 +9,11 @@
             @update:model-value="nextValue = $event"
             @blur="value = nextValue"
           ></v-text-field>
-          <CronVuetify v-model="value" :fields="fields" :chipProps="{ color: 'primary' }" />
+          <CronVuetify
+            v-model="value"
+            :fields="fields"
+            :chipProps="{ color: 'primary', 'close-icon': 'mdi-close' }"
+          />
         </v-card-text>
       </v-card>
 
