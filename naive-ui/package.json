@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/naive-ui",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Cron editor for Naive UI",
   "type": "module",
   "main": "dist/naive-ui.umd.cjs",
@@ -18,7 +18,7 @@
     "clean": "git clean -xf dist"
   },
   "dependencies": {
-    "@vue-js-cron/core": "6.2.0"
+    "@vue-js-cron/core": "6.3.0"
   },
   "files": [
     "package.json",
