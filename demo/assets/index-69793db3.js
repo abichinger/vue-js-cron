@@ -1,1 +1,0 @@
-import{c as o,P as u,d as i,s as p,a as r,u as f}from"./index-a2a52a1b.js";import"./index-6b4f49fb.js";import"./App-cd16da4f.js";export{o as clearConfig,u as default,i as defaultOptions,p as setup,r as setupConfig,f as usePrimeVue};
