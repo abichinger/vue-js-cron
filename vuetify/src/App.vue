@@ -12,7 +12,7 @@
           <CronVuetify
             v-model="value"
             :fields="fields"
-            :chipProps="{ color: 'primary', 'close-icon': 'mdi-close' }"
+            :chipProps="{ color: 'primary', 'close-icon': 'mdi-close-circle' }"
           />
         </v-card-text>
       </v-card>

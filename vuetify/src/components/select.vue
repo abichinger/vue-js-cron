@@ -1,10 +1,16 @@
 <template>
-  <v-chip
-    v-bind="chipProps"
-    :disabled="disabled"
-    :closable="clearable && !isEmpty"
-    @click:close="clear()"
-  >
+  <v-chip v-bind="chipProps" :disabled="disabled">
+    <!-- Note: using v-chip.closable removes the chip -->
+    <template #append v-if="clearable && !isEmpty">
+      <v-icon
+        class="ms-1 me-n1"
+        size="small"
+        :icon="chipProps.closeIcon ?? chipProps['close-icon'] ?? 'mdi-close'"
+        @click.stop="clear()"
+      >
+      </v-icon>
+    </template>
+
     {{ selection ?? selectedStr }}
 
     <v-menu activator="parent" v-bind="menuProps">
@@ -41,6 +47,11 @@ export default {
   emits: ['update:model-value'],
   setup(props, ctx) {
     return setupSelect(props, () => props.modelValue, ctx)
+  },
+  methods: {
+    chipIcon() {
+      return null
+    },
   },
 }
 </script>
