@@ -21,6 +21,10 @@
   line-height: 1;
 }
 
+.ant .cl-btn:has(.cl-btn-suffix.clearable:hover) {
+  --cl-btn-hover-border: 1px solid rgb(255, 66, 9);
+}
+
 .ant .cl-menu {
   --cl-bg-color: #fff;
   --cl-hover-bg-color: rgba(0, 0, 0, 0.04);
