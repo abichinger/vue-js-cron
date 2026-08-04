@@ -20,7 +20,7 @@
         :cols="cols[f.id] || 1"
         :selection="f.text.value"
         multiple
-        clearable
+        :clearable="clearable"
         :disabled="disabled"
       ></custom-select>
       <span class="cl-suffix">{{ f.suffix.value }}</span>

@@ -376,6 +376,12 @@ export const cronCoreProps = () => ({
     type: Boolean,
     default: false,
   },
+
+  /** Whether the cron fields can be cleared */
+  clearable: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 /**

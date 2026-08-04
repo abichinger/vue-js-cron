@@ -8,7 +8,11 @@
     >
       <a-button v-bind="buttonProps">
         {{ selection ?? selectedStr
-        }}<CloseCircleFilled v-if="clearable && !isEmpty" @click="clear()" @click.stop="" />
+        }}<CloseCircleFilled
+          v-if="!disabled && clearable && !isEmpty"
+          @click="clear()"
+          @click.stop=""
+        />
       </a-button>
 
       <template #overlay>

@@ -4,7 +4,12 @@
     <Listbox v-show="false"></Listbox>
     <p-button :disabled="disabled" v-bind="buttonProps" @click="toggle">
       {{ selection ?? selectedStr
-      }}<i class="pi pi-times" v-if="clearable && !isEmpty" @click="clear()" @click.stop="" />
+      }}<i
+        class="pi pi-times"
+        v-if="!disabled && clearable && !isEmpty"
+        @click="clear()"
+        @click.stop=""
+      />
     </p-button>
 
     <p-popover v-bind="popoverProps" ref="popover">

@@ -3,11 +3,13 @@
     <cron-light
       v-model="value"
       v-model:period="period"
-      format="crontab"
+      format="quartz"
       :locale="locale"
       :key="locale + theme"
       @error="error = $event"
       :theme="theme"
+      :disabled="disabled"
+      :clearable="clearable"
     >
     </cron-light>
     <div>
@@ -22,6 +24,8 @@
       </button>
       <button @click="switchLocale" class="cl-btn">Locale: {{ locale }}</button>
       <button @click="switchTheme" class="cl-btn">Theme: {{ theme }}</button>
+      <button @click="toggleDisabled" class="cl-btn">Disabled: {{ disabled }}</button>
+      <button @click="toggleClearable" class="cl-btn">Clearable: {{ clearable }}</button>
     </div>
   </div>
 </template>
@@ -33,12 +37,14 @@ import { ref, watch } from 'vue'
 const themes = ['ant', 'legacy'] as const
 type Theme = (typeof themes)[number]
 
-const value = ref(undefined)
+const value = ref('* * * * * ?')
 const period = ref('month')
 const error = ref('')
 const isDark = ref(false)
 const locale = ref('en')
 const theme = ref<Theme>('ant')
+const disabled = ref(false)
+const clearable = ref(true)
 
 watch(value, (value) => {
   console.log('value changed: ' + value)
@@ -65,6 +71,14 @@ function switchLocale() {
 function switchTheme() {
   const i = (themes.indexOf(theme.value) + 1) % themes.length
   theme.value = themes[i]
+}
+
+function toggleDisabled() {
+  disabled.value = !disabled.value
+}
+
+function toggleClearable() {
+  clearable.value = !clearable.value
 }
 </script>
 

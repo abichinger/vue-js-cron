@@ -4,7 +4,7 @@
       {{ selection ?? selectedStr }}
       <q-icon
         class="q-pl-xs"
-        v-if="clearable && !isEmpty"
+        v-if="!disabled && clearable && !isEmpty"
         name="close"
         :size="buttonProps.size ?? 'sm'"
         @click="clear()"

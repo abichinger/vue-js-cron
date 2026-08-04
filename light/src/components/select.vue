@@ -12,6 +12,7 @@
     >
       <span class="cl-btn-selection">{{ selection ?? selectedStr }}</span>
       <span
+        v-if="!disabled"
         :class="{ clearable: clearable && !isEmpty }"
         class="cl-btn-suffix"
         @click="iconClicked"

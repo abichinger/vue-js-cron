@@ -1,7 +1,7 @@
 <template>
   <v-chip v-bind="chipProps" :disabled="disabled">
     <!-- Note: using v-chip.closable removes the chip -->
-    <template #append v-if="clearable && !isEmpty">
+    <template #append v-if="!disabled && clearable && !isEmpty">
       <v-icon
         class="ms-1 me-n1"
         size="small"

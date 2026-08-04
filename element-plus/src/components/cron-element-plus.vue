@@ -25,7 +25,7 @@
           :cols="cols[f.id] || 1"
           :selection="f.text.value"
           multiple
-          clearable
+          :clearable="clearable"
           :disabled="disabled"
           :button-props="buttonProps"
           :dropdown-props="{ ...dropdownProps, hideOnClick: false }"

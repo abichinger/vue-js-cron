@@ -5,7 +5,7 @@
         <n-button v-bind="buttonProps" icon-placement="right" :disabled="disabled">
           {{ selection ?? selectedStr }}
 
-          <template v-if="clearable && !isEmpty" #icon>
+          <template v-if="!disabled && clearable && !isEmpty" #icon>
             <n-icon @click="clear" @click.stop="">
               <close />
             </n-icon>

@@ -3,7 +3,11 @@
     <el-dropdown style="vertical-align: baseline" trigger="click" v-bind="dropdownProps">
       <el-button v-bind="buttonProps" :disabled="disabled">
         {{ selection ?? selectedStr }}
-        <el-icon v-if="clearable && !isEmpty" class="el-icon--right" @click="clear()" @click.stop=""
+        <el-icon
+          v-if="!disabled && clearable && !isEmpty"
+          class="el-icon--right"
+          @click="clear()"
+          @click.stop=""
           ><Close
         /></el-icon>
       </el-button>
