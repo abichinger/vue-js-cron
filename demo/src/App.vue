@@ -13,14 +13,22 @@ export default defineComponent({
   setup() {
     const query = window.location.search
     const params = new URLSearchParams(query)
-    const props = Object.fromEntries(params.entries())
+    const props = ref(Object.fromEntries(params.entries()))
+
+    window.onmessage = (e) => {
+      if (e.data.type === 'updateProps') {
+        props.value = Object.assign({}, props.value, e.data.props)
+      } else {
+        console.debug('unknown message', e.data)
+      }
+    }
 
     const value = ref(params.get('initial-value') ?? '* * * * *')
     const dir = ['he'].includes(params.get('locale') ?? '') ? 'rtl' : 'ltr'
 
     return {
       props: props,
-      value: ref(value),
+      value: value,
       dir,
       prefersDark,
     }
