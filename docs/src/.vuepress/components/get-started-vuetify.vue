@@ -1,10 +1,10 @@
 <template>
   <div>
-
     <cron-vuetify
       v-model="value"
       :chip-props="{ color: 'success', textColor: 'white' }"
-      @error="error=$event" />
+      @error="error = $event"
+    />
 
     <!-- editable cron expression -->
     <v-text-field
@@ -13,27 +13,26 @@
       @update:model-value="nextValue = $event"
       @blur="value = nextValue"
       label="cron expression"
-      :error-messages="error" />
-
+      :error-messages="error"
+    />
   </div>
 </template>
 
 <script>
 export default {
-
   props: {
     init: {
       type: String,
-      default: '* * * * *'
-    }
+      default: '* * * * *',
+    },
   },
 
-  data () {
+  data() {
     return {
       value: this.init,
       nextValue: this.init,
-      error: ''
+      error: '',
     }
-  }
+  },
 }
 </script>

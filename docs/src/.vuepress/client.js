@@ -15,34 +15,33 @@ function prefersDark() {
 }
 
 export default defineClientConfig({
-  enhance ({ app, router, siteData }) {
-    let dark = true;
+  enhance({ app }) {
+    let dark = true
     if (!__VUEPRESS_SSR__) {
       dark = prefersDark()
     }
-    
+
     const myTheme = {
       dark: dark,
       colors: {
         secondary: '#1F8657',
       },
     }
-    
+
     const vuetify = createVuetify({
       components,
       directives,
       ssr: true,
       theme: {
         defaultTheme: 'myTheme',
-        themes: {myTheme}
-      }
+        themes: { myTheme },
+      },
     })
 
     app.use(vuetify)
     app.use(CronVuetify)
     app.use(CronLight)
-
   },
-  setup () {},
-  rootComponents: []
+  setup() {},
+  rootComponents: [],
 })

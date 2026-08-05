@@ -3,20 +3,20 @@
     <cron-element-plus
       v-model="value"
       :button-props="{ type: 'primary' }"
-      @error="error=$event" />
+      @error="error = $event"
+    />
 
-    <p class="text-lightest pt-2">cron expression: {{value}}</p>
-
+    <p class="text-lightest pt-2">cron expression: {{ value }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       value: '* * * * *',
-      error: ''
+      error: '',
     }
-  }
+  },
 }
 </script>
