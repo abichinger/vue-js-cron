@@ -5,7 +5,6 @@
   "compilerOptions": {
     "module": "ESNext",
     "composite": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

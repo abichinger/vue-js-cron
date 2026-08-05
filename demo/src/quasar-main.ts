@@ -13,7 +13,6 @@ export async function setup(app: VueApp) {
   // uses
   let module = null
   module = await import('quasar')
-  // @ts-ignore
   app.use(module.Quasar)
 
   // register cron component

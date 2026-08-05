@@ -72,7 +72,7 @@ export default defineComponent({
     const s = setupSelect(props, () => props.modelValue, ctx)
     const popover = ref()
     const primevue = usePrimeVue()
-    const prefix: string = primevue.config.theme?.options?.prefix + '-' ?? ''
+    const prefix: string = (primevue.config.theme?.options?.prefix ?? '') + '-'
 
     const cx = (name: string) => {
       return prefix + name

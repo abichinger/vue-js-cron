@@ -11,7 +11,6 @@ export async function setup(app: VueApp) {
   // uses
   let module = null
   module = await import('ant-design-vue')
-  // @ts-ignore
   app.use(module.default)
 
   // register cron component

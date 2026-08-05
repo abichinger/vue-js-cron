@@ -320,7 +320,7 @@ export const cronCoreProps = () => ({
     type: String,
   },
   /**
-   * The format of the cron expression, either crontab or quartz
+   * The format of the cron expression, either crontab, quartz or spring
    *
    * @defaultValue `crontab`
    */
