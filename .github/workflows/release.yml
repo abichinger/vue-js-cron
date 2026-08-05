@@ -8,6 +8,12 @@ on:
       - vue2
       - beta
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
 jobs:
   test:
     uses: ./.github/workflows/test.yml
@@ -32,11 +38,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Disable workspaces-update # https://github.com/dhoulb/multi-semantic-release#npm-v85-npm-err-notarget-no-matching-version-found-for
-        run: npm config set workspaces-update false
-
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_WORKSPACES_UPDATE: "false" # https://github.com/dhoulb/multi-semantic-release#npm-v85-npm-err-notarget-no-matching-version-found-for
         run: npx multi-semantic-release --ignore-private-packages
