@@ -21,9 +21,9 @@
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-quasar)
 
-[CronQuasar API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_quasar.CronQuasar)
+[CronQuasar API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_quasar.CronQuasar)
 
-[CronQuasarProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_quasar.CronQuasarProps)
+[CronQuasarProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_quasar.CronQuasarProps)
 
 
 ## Attribution

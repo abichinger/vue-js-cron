@@ -79,6 +79,9 @@ export type CronElementPlusProps = Partial<
   ExtractPropTypes<ReturnType<typeof cronElementPlusProps>>
 >
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'VueCronEditor',
   components: {

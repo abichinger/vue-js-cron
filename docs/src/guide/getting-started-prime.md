@@ -53,8 +53,8 @@ Done! 🚀
 ## API
 
 
-[CronPrime API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_prime.CronPrime)
+[CronPrime API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_prime.CronPrime)
 
-[CronPrimeProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_prime.CronPrimeProps)
+[CronPrimeProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_prime.CronPrimeProps)
 
 

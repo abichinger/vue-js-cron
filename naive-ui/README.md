@@ -21,9 +21,9 @@
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-naive-ui)
 
-[CronNaive API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_naive_ui.CronNaive)
+[CronNaive API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_naive-ui.CronNaive)
 
-[CronNaiveProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_naive_ui.CronNaiveProps)
+[CronNaiveProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_naive-ui.CronNaiveProps)
 
 
 ## Attribution

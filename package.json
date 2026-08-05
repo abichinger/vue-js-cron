@@ -3,7 +3,7 @@
   "repository": "https://github.com/abichinger/vue-js-cron",
   "author": "Andreas Bichinger",
   "license": "MIT",
-  "type":"module",
+  "type": "module",
   "workspaces": [
     "core",
     "light",
@@ -29,6 +29,7 @@
     "generate": "npm run gen-readme && npm run generate --prefix demo && npm run generate --prefix docs"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.12",
     "@rushstack/eslint-patch": "^1.16.1",
     "@semantic-release/git": "^11.0.1",
     "@semantic-release/github": "^12.0.9",

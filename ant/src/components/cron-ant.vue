@@ -81,6 +81,9 @@ export const cronAntProps = () => ({
  */
 export type CronAntProps = Partial<ExtractPropTypes<ReturnType<typeof cronAntProps>>>
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'CronAnt',
   components: {

@@ -51,6 +51,9 @@ export const cronLightProps = () => ({
  */
 export type CronLightProps = Partial<ExtractPropTypes<ReturnType<typeof cronLightProps>>>
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'CronLight',
   components: {

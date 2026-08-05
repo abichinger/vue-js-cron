@@ -21,9 +21,9 @@
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-light)
 
-[CronLight API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_light.CronLight)
+[CronLight API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_light.CronLight)
 
-[CronLightProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_light.CronLightProps)
+[CronLightProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_light.CronLightProps)
 
 
 ## Attribution

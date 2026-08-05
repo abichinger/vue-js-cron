@@ -79,6 +79,9 @@ export const cronNaiveProps = () => ({
  */
 export type CronNaiveProps = Partial<ExtractPropTypes<ReturnType<typeof cronNaiveProps>>>
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'CronNaive',
   components: {

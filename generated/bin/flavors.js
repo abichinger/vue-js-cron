@@ -102,7 +102,7 @@ const prime = {
     requirements: [{ name: 'PrimeVue', url: 'https://primevue.org/setup/' }],
 };
 export const flavors = [core, light, ant, element, naiveUI, prime, quasar, vuetify].map((f) => {
-    const packageName = f.package.replace(/[-@/]/g, '_');
+    const packageName = f.package.replace(/[@/]/g, '_');
     f.api = [
         {
             name: `${f.component} API`,

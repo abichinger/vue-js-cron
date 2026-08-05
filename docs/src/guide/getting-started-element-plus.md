@@ -53,9 +53,9 @@ Done! 🚀
 ## API
 
 
-[CronElementPlus API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_element_plus.CronElementPlus)
+[CronElementPlus API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_element-plus.CronElementPlus)
 
-[CronElementPlusProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_element_plus.CronElementPlusProps)
+[CronElementPlusProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_element-plus.CronElementPlusProps)
 
 
 

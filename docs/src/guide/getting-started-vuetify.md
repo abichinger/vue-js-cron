@@ -53,9 +53,9 @@ Done! 🚀
 ## API
 
 
-[CronVuetify API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_vuetify.CronVuetify)
+[CronVuetify API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_vuetify.CronVuetify)
 
-[CronVuetifyProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_vuetify.CronVuetifyProps)
+[CronVuetifyProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_vuetify.CronVuetifyProps)
 
 
 

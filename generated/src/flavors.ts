@@ -135,7 +135,7 @@ const prime: Flavor = {
 }
 
 export const flavors = [core, light, ant, element, naiveUI, prime, quasar, vuetify].map((f) => {
-  const packageName = f.package.replace(/[-@/]/g, '_')
+  const packageName = f.package.replace(/[@/]/g, '_')
 
   f.api = [
     {

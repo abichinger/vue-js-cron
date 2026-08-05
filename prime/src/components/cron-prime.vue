@@ -76,6 +76,9 @@ export const cronPrimeProps = () => ({
  */
 export type CronPrimeProps = Partial<ExtractPropTypes<ReturnType<typeof cronPrimeProps>>>
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'CronPrime',
   components: {

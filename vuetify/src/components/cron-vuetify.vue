@@ -67,6 +67,9 @@ export const cronVuetifyProps = () => ({
  */
 export type CronVuetifyProps = Partial<ExtractPropTypes<ReturnType<typeof cronVuetifyProps>>>
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'CronVuetify',
   components: {

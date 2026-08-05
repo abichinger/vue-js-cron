@@ -21,9 +21,9 @@
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-core)
 
-[CronCore API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_core.CronCore)
+[CronCore API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_core.CronCore)
 
-[CronCoreProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_core.CronCoreProps)
+[CronCoreProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_core.CronCoreProps)
 
 
 ## Attribution

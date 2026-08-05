@@ -21,9 +21,9 @@
 
 [Get Started](https://abichinger.github.io/vue-js-cron/guide/getting-started-ant)
 
-[CronAnt API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue_js_cron_ant.CronAnt)
+[CronAnt API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_ant.CronAnt)
 
-[CronAntProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_ant.CronAntProps)
+[CronAntProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_ant.CronAntProps)
 
 
 ## Attribution

@@ -70,6 +70,9 @@ export const cronQuasarProps = () => ({
  */
 export type CronQuasarProps = Partial<ExtractPropTypes<ReturnType<typeof cronQuasarProps>>>
 
+/**
+ * @class
+ */
 export default defineComponent({
   name: 'CronQuasar',
   components: {
