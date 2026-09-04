@@ -81,6 +81,7 @@ export default defineUserConfig({
             'getting-started-vuetify',
             'custom-periods',
             'custom-fields',
+            'special-values',
           ],
         },
       ],
