@@ -1,5 +1,22 @@
-import { FieldPattern, FieldWrapper, type CronSegment, type SegmentFromString } from './types'
+import {
+  FieldPattern,
+  FieldWrapper,
+  isSpecialPattern,
+  isSpecialValue,
+  type CronSegment,
+  type FieldItem,
+  type FieldValue,
+  type SegmentFromArray,
+  type SegmentFromString,
+} from './types'
 import { isSquence, range, unimplemented } from './util'
+
+/**
+ * @returns true, if `arr` doesn't contain any special values, such as `L`
+ */
+function isValueArray(arr: FieldValue[]): arr is number[] {
+  return arr.every((value) => !isSpecialValue(value))
+}
 
 class NoSpecificSegment implements CronSegment {
   field: FieldWrapper
@@ -56,9 +73,12 @@ class AnySegment implements CronSegment {
     return new AnySegment(field)
   }
 
-  static fromArray(arr: number[], field: FieldWrapper) {
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
     const { items } = field
 
+    if (!isValueArray(arr)) {
+      return null
+    }
     if (arr.length === 0) {
       return new AnySegment(field)
     }
@@ -216,8 +236,8 @@ class StepSegment implements CronSegment {
     return new StepSegment(field, step, min, max)
   }
 
-  static fromArray(arr: number[], field: FieldWrapper) {
-    if (arr.length < 3) {
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
+    if (!isValueArray(arr) || arr.length < 3) {
       return null
     }
 
@@ -268,10 +288,10 @@ class ValueSegment implements CronSegment {
       : null
   }
 
-  static fromArray(arr: number[], field: FieldWrapper) {
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
     const { min, max } = field
 
-    if (arr.length != 1) {
+    if (!isValueArray(arr) || arr.length != 1) {
       return null
     }
 
@@ -281,6 +301,155 @@ class ValueSegment implements CronSegment {
     }
 
     return value
+  }
+}
+
+/**
+ * Segment of the special value `L` of the day of month field
+ *
+ * - `L` - last day of the month
+ * - `L-3` - 3 days before the last day of the month
+ */
+class LastDaySegment implements CronSegment {
+  static re = /^L(?:-(\d+))?$/
+
+  field: FieldWrapper
+  offset: number
+
+  constructor(field: FieldWrapper, offset: number = 0) {
+    this.field = field
+    this.offset = offset
+  }
+
+  get type() {
+    return this.offset === 0 ? FieldPattern.LastDay : FieldPattern.LastDayOffset
+  }
+
+  toCron() {
+    return this.offset === 0 ? 'L' : `L-${this.offset}`
+  }
+
+  toArray() {
+    return [this.toCron()]
+  }
+
+  get items(): Record<string, FieldItem> {
+    return this.offset === 0 ? {} : { offset: this.field.itemMap[this.offset] }
+  }
+
+  static fromString(str: string, field: FieldWrapper) {
+    const match = LastDaySegment.re.exec(str)
+    if (match === null) {
+      return null
+    }
+    if (match[1] === undefined) {
+      return new LastDaySegment(field)
+    }
+
+    const offset = parseInt(match[1])
+    if (offset < 1 || offset > field.max - field.min) {
+      return null
+    }
+    return new LastDaySegment(field, offset)
+  }
+
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
+    const [value] = arr
+    return arr.length === 1 && isSpecialValue(value)
+      ? LastDaySegment.fromString(value, field)
+      : null
+  }
+}
+
+/**
+ * Segment of the special value `LW` of the day of month field
+ *
+ * - `LW` - last weekday of the month
+ */
+class LastWeekdaySegment implements CronSegment {
+  static re = /^LW$/
+
+  field: FieldWrapper
+  type: FieldPattern = FieldPattern.LastWeekday
+
+  constructor(field: FieldWrapper) {
+    this.field = field
+  }
+
+  toCron() {
+    return 'LW'
+  }
+
+  toArray() {
+    return [this.toCron()]
+  }
+
+  get items() {
+    return {}
+  }
+
+  static fromString(str: string, field: FieldWrapper) {
+    return LastWeekdaySegment.re.test(str) ? new LastWeekdaySegment(field) : null
+  }
+
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
+    const [value] = arr
+    return arr.length === 1 && isSpecialValue(value)
+      ? LastWeekdaySegment.fromString(value, field)
+      : null
+  }
+}
+
+/**
+ * Segment of the special value `W` of the day of month field
+ *
+ * - `15W` - weekday nearest to the 15th of the month
+ */
+class NearestWeekdaySegment implements CronSegment {
+  static re = /^(\d+)W$/
+
+  field: FieldWrapper
+  type: FieldPattern = FieldPattern.NearestWeekday
+  day: number
+
+  constructor(field: FieldWrapper, day: number) {
+    this.field = field
+    this.day = day
+  }
+
+  toCron() {
+    return `${this.day}W`
+  }
+
+  toArray() {
+    return [this.toCron()]
+  }
+
+  get items() {
+    return {
+      value: this.field.itemMap[this.day],
+    }
+  }
+
+  static fromString(str: string, field: FieldWrapper) {
+    const match = NearestWeekdaySegment.re.exec(str)
+    if (match === null) {
+      return null
+    }
+
+    const { min, max } = field
+    const day = parseInt(match[1])
+    if (day < min || day > max) {
+      return null
+    }
+    return new NearestWeekdaySegment(field, day)
+  }
+
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
+    const [value] = arr
+    return arr.length === 1 && isSpecialValue(value)
+      ? NearestWeekdaySegment.fromString(value, field)
+      : null
   }
 }
 
@@ -316,7 +485,7 @@ class CombinedSegment implements CronSegment {
   }
 
   toArray() {
-    const values = new Set<number>()
+    const values = new Set<FieldValue>()
     for (const seg of this.segments) {
       seg.toArray().forEach((value) => values.add(value))
     }
@@ -348,11 +517,21 @@ class CombinedSegment implements CronSegment {
       }
       segments.push(segment)
     }
+
+    // special values, such as `?` or `L`, can't be part of a list
+    if (segments.length > 1 && segments.some((seg) => isSpecialPattern(seg.type))) {
+      return null
+    }
+
     return new CombinedSegment(field, segments)
   }
 
-  static fromArray(arr: number[], field: FieldWrapper) {
+  static fromArray(arr: FieldValue[], field: FieldWrapper) {
     const { min, max } = field
+
+    if (!isValueArray(arr)) {
+      return null
+    }
 
     const minValue = arr[0]
     const maxValue = arr[arr.length - 1]
@@ -381,16 +560,45 @@ class CombinedSegment implements CronSegment {
   }
 }
 
+/**
+ * Default factories to convert a cron segment into a {@link CronSegment}
+ */
+const defaultSegmentFactories: SegmentFromString[] = CombinedSegment.segmentFactories
+
+/**
+ * Default factories to convert the selected values into a {@link CronSegment}
+ */
+const defaultArraySegmentFactories: SegmentFromArray[] = [
+  AnySegment.fromArray,
+  StepSegment.fromArray,
+  CombinedSegment.fromArray,
+]
+
+/**
+ * Factories to parse the special values of the day of month field: `L`, `L-3`, `LW` and `15W`
+ */
+const specialDaySegmentFactories: SegmentFromString[] = [
+  LastWeekdaySegment.fromString,
+  LastDaySegment.fromString,
+  NearestWeekdaySegment.fromString,
+]
+
+/**
+ * Factories to build the special values of the day of month field: `L`, `L-3`, `LW` and `15W`
+ */
+const specialDayArraySegmentFactories: SegmentFromArray[] = [
+  LastWeekdaySegment.fromArray,
+  LastDaySegment.fromArray,
+  NearestWeekdaySegment.fromArray,
+]
+
 function cronToSegment(cron: string, field: FieldWrapper) {
   return CombinedSegment.fromString(cron, field)
 }
 
-function arrayToSegment(arr: number[], field: FieldWrapper) {
-  for (const fromArray of [
-    AnySegment.fromArray,
-    StepSegment.fromArray,
-    CombinedSegment.fromArray,
-  ]) {
+function arrayToSegment(arr: FieldValue[], field: FieldWrapper) {
+  const factories = field.arraySegmentFactories ?? defaultArraySegmentFactories
+  for (const fromArray of factories) {
     const seg = fromArray(arr, field)
     if (seg != null) {
       return seg
@@ -404,8 +612,15 @@ export {
   arrayToSegment,
   CombinedSegment,
   cronToSegment,
+  defaultArraySegmentFactories,
+  defaultSegmentFactories,
+  LastDaySegment,
+  LastWeekdaySegment,
+  NearestWeekdaySegment,
   NoSpecificSegment,
   RangeSegment,
+  specialDayArraySegmentFactories,
+  specialDaySegmentFactories,
   StepSegment,
   ValueSegment,
 }

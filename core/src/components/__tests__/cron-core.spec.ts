@@ -1,5 +1,6 @@
 import { describe, expect, it, test } from 'vitest'
 
+import { createL10n } from '@/locale'
 import type { CronFormat, Period } from '@/types'
 import { mount } from '@vue/test-utils'
 import { defineComponent, nextTick } from 'vue'
@@ -9,6 +10,7 @@ import {
   findFirstPeriod,
   setupCron,
   useCron,
+  withSpecialDays,
 } from '../cron-core'
 
 type UseCronReturn = ReturnType<typeof useCron>
@@ -92,6 +94,30 @@ describe('useCron', () => {
         value: '59 59 23 ? * 1',
         period: 'week',
         expected: `Every Week on Mon at 23 : 59 : 59`,
+      },
+      {
+        format: 'quartz',
+        value: '0 0 0 L * ?',
+        period: 'month',
+        expected: `Every Month on the last day and no specific day of the week at 00 : 00 : 00`,
+      },
+      {
+        format: 'quartz',
+        value: '0 0 0 L-3 * ?',
+        period: 'month',
+        expected: `Every Month on 3 day(s) before the last day and no specific day of the week at 00 : 00 : 00`,
+      },
+      {
+        format: 'spring',
+        value: '0 0 0 LW * ?',
+        period: 'month',
+        expected: `Every Month on the last weekday and no specific day of the week at 00 : 00 : 00`,
+      },
+      {
+        format: 'quartz',
+        value: '0 0 0 15W * ?',
+        period: 'month',
+        expected: `Every Month on the weekday nearest to day 15 and no specific day of the week at 00 : 00 : 00`,
       },
     ]
 
@@ -220,4 +246,58 @@ describe('findFirstPeriod', () => {
       expect(findFirstPeriod(t.periods ?? periods, t.cron, t.fields ?? fields)?.id).toBe(t.expected)
     })
   }
+})
+
+describe('special day values', () => {
+  const crontabFields = () => {
+    const l10n = createL10n('en')
+    return new DefaultCronOptions()
+      .fields('crontab', 'en', l10n)
+      .map((field) => (field.id === 'day' ? withSpecialDays(field, l10n) : field))
+  }
+
+  it('round trip', async () => {
+    const values = ['0 0 0 L * ?', '0 0 0 L-3 * ?', '0 0 0 LW * ?', '0 0 0 15W * ?']
+
+    for (const value of values) {
+      const cron = useCron({ format: 'quartz', initialValue: value })
+      await nextTick()
+
+      expect(cron.error.value).toEqual('')
+      expect(cron.cron.value).toEqual(value)
+    }
+  })
+
+  it('crontab is unchanged without opt-in', async () => {
+    const cron = useCron({ format: 'crontab', initialValue: '0 0 L * *' })
+    await nextTick()
+
+    expect(cron.error.value).toEqual('L is not a valid cron segment (day)')
+    expect(cron.cron.value).toEqual('0 0 L * *')
+    expect(cron.segments[2].items.length).toEqual(31)
+  })
+
+  it('opt-in for crontab', async () => {
+    const cron = useCron({
+      format: 'crontab',
+      initialValue: '0 0 L * *',
+      fields: crontabFields(),
+    })
+    await nextTick()
+
+    expect(cron.error.value).toEqual('')
+    expect(cron.cron.value).toEqual('0 0 L * *')
+    expect(cron.segments[2].text.value).toEqual('the last day')
+    expect(cron.segments[2].items.length).toEqual(33)
+  })
+
+  it('selecting a day replaces the special value', async () => {
+    const cron = useCron({ format: 'quartz', initialValue: '0 0 0 L * ?' })
+    await nextTick()
+
+    cron.segments[3].select([5])
+    await nextTick()
+
+    expect(cron.cron.value).toEqual('0 0 0 5 * ?')
+  })
 })

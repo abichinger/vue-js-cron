@@ -1,5 +1,15 @@
-import { AnySegment, NoSpecificSegment, RangeSegment, StepSegment, ValueSegment } from '@/cron'
-import { createL10n } from '@/locale'
+import {
+  AnySegment,
+  defaultArraySegmentFactories,
+  defaultSegmentFactories,
+  NoSpecificSegment,
+  RangeSegment,
+  specialDayArraySegmentFactories,
+  specialDaySegmentFactories,
+  StepSegment,
+  ValueSegment,
+} from '@/cron'
+import { createL10n, L10nEngine } from '@/locale'
 import type { Localization } from '@/locale/types'
 import {
   computed,
@@ -10,7 +20,15 @@ import {
   type PropType,
   type SetupContext,
 } from 'vue'
-import { FieldWrapper, TextPosition, type CronFormat, type Field, type Period } from '../types'
+import {
+  FieldPattern,
+  FieldWrapper,
+  TextPosition,
+  type CronFormat,
+  type Field,
+  type Period,
+  type SpecialItem,
+} from '../types'
 import { defaultItems } from '../util'
 import { useCronSegment, type UseCronSegmentReturn } from './cron-segment'
 
@@ -36,6 +54,59 @@ function isDefined<T>(obj: T | undefined): obj is T {
   return obj !== undefined
 }
 
+/**
+ * Items of the special values `L` (last day of the month)
+ * and `LW` (last weekday of the month)
+ *
+ * Note: The cron token is used as the text of the item, because the items of a field
+ * are displayed in a grid. The selected value is spelled out by the editor itself.
+ *
+ * @param l10n - localization engine, used to translate the items
+ * @param fieldId - id of the field, the items belong to
+ */
+export function specialDayItems(l10n: L10nEngine, fieldId: string = 'day'): SpecialItem[] {
+  const patterns: { value: string; pattern: FieldPattern }[] = [
+    { value: 'L', pattern: FieldPattern.LastDay },
+    { value: 'LW', pattern: FieldPattern.LastWeekday },
+  ]
+
+  return patterns.map(({ value, pattern }) => {
+    return {
+      value,
+      text: value,
+      alt: l10n.getTemplate('*', fieldId, pattern, TextPosition.Text),
+    }
+  })
+}
+
+/**
+ * Adds support for the special values `L`, `L-<n>`, `LW` and `<n>W` of the day of month field.
+ * These values are part of the quartz and spring format. Use this function to enable them
+ * for other formats.
+ *
+ * @example
+ * ```ts
+ * const l10n = createL10n('en')
+ * const fields = new DefaultCronOptions()
+ *   .fields('crontab', 'en', l10n)
+ *   .map((field) => (field.id === 'day' ? withSpecialDays(field, l10n) : field))
+ * ```
+ */
+export function withSpecialDays(field: Field, l10n: L10nEngine = createL10n('en')): Field {
+  return {
+    ...field,
+    specialItems: [...(field.specialItems ?? []), ...specialDayItems(l10n, field.id)],
+    segmentFactories: [
+      ...(field.segmentFactories ?? defaultSegmentFactories),
+      ...specialDaySegmentFactories,
+    ],
+    arraySegmentFactories: [
+      ...(field.arraySegmentFactories ?? defaultArraySegmentFactories),
+      ...specialDayArraySegmentFactories,
+    ],
+  }
+}
+
 export class DefaultCronOptions {
   locale = 'en'
 
@@ -45,7 +116,7 @@ export class DefaultCronOptions {
     return createCron(fields)
   }
 
-  fields(format: CronFormat, locale: string): Field[] {
+  fields(format: CronFormat, locale: string, l10n: L10nEngine = createL10n(locale)): Field[] {
     const isQuartz = format == 'quartz' || format == 'spring'
     const items = defaultItems(locale, format)
 
@@ -63,24 +134,27 @@ export class DefaultCronOptions {
       }
     }
 
+    const dayField: Field = {
+      id: 'day',
+      items: items.dayItems,
+      onChange: isQuartz ? setNoSpecific('dayOfWeek') : undefined,
+      segmentFactories: isQuartz
+        ? [
+            AnySegment.fromString,
+            NoSpecificSegment.fromString,
+            StepSegment.fromString,
+            RangeSegment.fromString,
+            ValueSegment.fromString,
+          ]
+        : undefined,
+    }
+
     return [
       ...(isQuartz ? [{ id: 'second', items: items.secondItems }] : []),
       { id: 'minute', items: items.minuteItems },
       { id: 'hour', items: items.hourItems },
-      {
-        id: 'day',
-        items: items.dayItems,
-        onChange: isQuartz ? setNoSpecific('dayOfWeek') : undefined,
-        segmentFactories: isQuartz
-          ? [
-              AnySegment.fromString,
-              NoSpecificSegment.fromString,
-              StepSegment.fromString,
-              RangeSegment.fromString,
-              ValueSegment.fromString,
-            ]
-          : undefined,
-      },
+      // `L` and `W` are only supported by the quartz and spring format
+      isQuartz ? withSpecialDays(dayField, l10n) : dayField,
       { id: 'month', items: items.monthItems },
       {
         id: 'dayOfWeek',
@@ -140,10 +214,11 @@ export function useCron(options: CronOptions) {
 
   const locale = options.locale ?? cronDefaults.locale
   const format = options.format ?? cronDefaults.format
-  const { customLocale, fields = cronDefaults.fields(format, locale) } = options
-  const initialValue = options.initialValue ?? cronDefaults.initialValue(fields)
+  const { customLocale } = options
 
   const l10n = createL10n(locale, customLocale)
+  const { fields = cronDefaults.fields(format, locale, l10n) } = options
+  const initialValue = options.initialValue ?? cronDefaults.initialValue(fields)
   const periods = (options.periods ?? cronDefaults.periods(format)).map((p) => {
     return {
       ...p,
