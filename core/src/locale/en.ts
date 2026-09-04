@@ -26,6 +26,10 @@ const locale: Localization = {
       noSpecific: {
         text: 'no specific day',
       },
+      lastDay: { text: 'the last day' },
+      lastDayOffset: { text: '{{offset.text}} day(s) before the last day' },
+      lastWeekday: { text: 'the last weekday' },
+      nearestWeekday: { text: 'the weekday nearest to day {{value.text}}' },
     },
     dayOfWeek: {
       '*': { prefix: 'on' },

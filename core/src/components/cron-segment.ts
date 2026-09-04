@@ -1,6 +1,14 @@
 import { CombinedSegment, arrayToSegment, cronToSegment } from '@/cron'
 import type { L10nEngine } from '@/locale'
-import { TextPosition, type CronSegment, type FieldWrapper, type Period } from '@/types'
+import {
+  isSpecialPattern,
+  isSpecialValue,
+  TextPosition,
+  type CronSegment,
+  type FieldValue,
+  type FieldWrapper,
+  type Period,
+} from '@/types'
 import { ref, watch, type Ref } from 'vue'
 
 export interface FieldOptions {
@@ -15,7 +23,10 @@ export function useCronSegment(options: FieldOptions) {
 
   const cron = ref(initialCron)
   const error = ref('')
-  const selected = ref<number[]>([])
+  const selected = ref<FieldValue[]>([])
+
+  // the segment of the current cron expression
+  let segment: CronSegment | null = null
 
   const text = ref('')
   const prefix = ref('')
@@ -40,20 +51,25 @@ export function useCronSegment(options: FieldOptions) {
   const parseCron = (cron: string) => {
     const seg = cronToSegment(cron, field)
     if (seg != null) {
+      segment = seg
       selected.value = seg.toArray()
       translate(seg)
     } else {
+      segment = null
       error.value = `${cron} is not a valid cron segment (${field.id})`
     }
   }
 
-  const toCron = (value: number[]) => {
-    if (cron.value == '?' && value.length == 0) {
+  const toCron = (value: FieldValue[]) => {
+    // special values, such as `?` or `L`, aren't part of the items of a field.
+    // Therefore they are kept, as long as nothing is selected.
+    if (value.length == 0 && segment !== null && isSpecialPattern(segment.type)) {
       return
     }
 
     const seg = arrayToSegment(value, field)
     if (seg != null) {
+      segment = seg
       cron.value = seg.toCron()
       translate(seg)
     } else {
@@ -63,8 +79,19 @@ export function useCronSegment(options: FieldOptions) {
 
   parseCron(initialCron)
 
-  const select = (evt: number[]) => {
-    const sorted = Array.from(evt).sort((a, b) => {
+  const select = (evt: FieldValue[]) => {
+    const added = evt.filter((value) => !selected.value.includes(value))
+    const special = added.find(isSpecialValue)
+
+    // special values, such as `L`, can't be combined with other values
+    let values = evt
+    if (special !== undefined) {
+      values = [special]
+    } else if (added.length > 0) {
+      values = evt.filter((value) => !isSpecialValue(value))
+    }
+
+    const sorted = Array.from(values).sort((a, b) => {
       return a > b ? 1 : -1
     })
     selected.value = sorted
@@ -87,7 +114,7 @@ export function useCronSegment(options: FieldOptions) {
 
   return {
     id: field.id,
-    items: field.items,
+    items: field.allItems,
     cron,
     selected,
     error,
