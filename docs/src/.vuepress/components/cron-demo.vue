@@ -131,6 +131,10 @@ export default {
         value: 'it',
       },
       {
+        name: 'Tajik',
+        value: 'tg',
+      },
+      {
         name: 'Ukrainian',
         value: 'uk',
       },
