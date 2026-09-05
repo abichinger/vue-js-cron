@@ -24,6 +24,10 @@ const locale: Localization = {
       any: { prefix: 'पर', text: 'हर दिन' },
       step: { prefix: '', text: '{{step.value}} दिन हर' },
       noSpecific: { prefix: 'पर', text: 'कोई विशेष दिन नहीं' },
+      lastDay: { text: 'अंतिम दिन' },
+      lastDayOffset: { prefix: '', text: 'अंतिम दिन से {{offset.text}} दिन पहले' },
+      lastWeekday: { text: 'अंतिम कार्यदिवस' },
+      nearestWeekday: { text: '{{value.text}} तारीख के निकटतम कार्यदिवस' },
     },
     dayOfWeek: {
       '*': { prefix: 'पर' },

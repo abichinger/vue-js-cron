@@ -21,6 +21,10 @@ const locale: Localization = {
       any: { prefix: '에', text: '매일' },
       step: { prefix: '', text: '{{step.value}}일마다' },
       noSpecific: { prefix: '에', text: '특정한 날 없음' },
+      lastDay: { text: '마지막 날' },
+      lastDayOffset: { text: '마지막 날 {{offset.text}}일 전' },
+      lastWeekday: { text: '마지막 평일' },
+      nearestWeekday: { text: '{{value.text}}일에 가장 가까운 평일' },
     },
     dayOfWeek: {
       '*': { prefix: '의' },
