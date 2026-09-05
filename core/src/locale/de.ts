@@ -90,6 +90,7 @@ const locale: Localization = {
         suffix: 'Minute(n)',
       },
       any: { text: 'jeder' },
+      step: { suffix: '' },
     },
   },
   day: {
@@ -102,10 +103,12 @@ const locale: Localization = {
   month: {
     prefix: 'Jedes',
     text: 'Monat',
+    dayOfWeek: { '*': { prefix: 'und' } },
   },
   year: {
     prefix: 'Jedes',
     text: 'Jahr',
+    dayOfWeek: { '*': { prefix: 'und' } },
   },
 
   //quartz format
@@ -115,9 +118,9 @@ const locale: Localization = {
   'q-minute': {
     text: 'Minute',
     second: {
-      '*': {
-        prefix: 'und',
-      },
+      '*': { prefix: 'und', suffix: 'Sekunde(n)' },
+      any: { text: 'jeder' },
+      step: { suffix: '' },
     },
   },
   'q-hour': {
