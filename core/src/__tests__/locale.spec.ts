@@ -62,6 +62,27 @@ describe('locale', () => {
     expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
 
+  it('no english fallback in translated expressions', () => {
+    const codes = ['de', 'fr', 'hi', 'it', 'ja', 'ko', 'ru', 'uk']
+    const en = createL10n('en')
+
+    // every locale is merged into the english one, so a missing key
+    // shows up as english text in the middle of a translated expression
+    const keys: string[][] = [
+      ['month', 'dayOfWeek', FieldPattern.Value, TextPosition.Prefix],
+      ['year', 'dayOfWeek', FieldPattern.Value, TextPosition.Prefix],
+      ['q-minute', 'second', FieldPattern.Value, TextPosition.Suffix],
+      ['q-minute', 'second', FieldPattern.Any, TextPosition.Text],
+    ]
+
+    for (const code of codes) {
+      const l = createL10n(code)
+      for (const key of keys) {
+        expect(l.getTemplate(...key), `${code}: ${key.join('.')}`).not.toBe(en.getTemplate(...key))
+      }
+    }
+  })
+
   it('render', () => {
     const l = createL10n('en', {
       '*': {

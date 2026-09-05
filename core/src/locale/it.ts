@@ -51,16 +51,27 @@ const locale: Localization = {
   minute: { text: 'Minuto' },
   hour: {
     text: 'Ora',
-    minute: { '*': { prefix: 'al', suffix: 'minuto/i' }, any: { text: 'tutti' } },
+    minute: {
+      '*': { prefix: 'al', suffix: 'minuto/i' },
+      any: { text: 'tutti' },
+      step: { suffix: '' },
+    },
   },
   day: { prefix: 'Tutti', text: 'Giorno' },
   week: { text: 'Settimana' },
-  month: { prefix: 'Tutti', text: 'Mese' },
-  year: { prefix: 'Tutti', text: 'Anno' },
+  month: { prefix: 'Tutti', text: 'Mese', dayOfWeek: { '*': { prefix: 'e' } } },
+  year: { prefix: 'Tutti', text: 'Anno', dayOfWeek: { '*': { prefix: 'e' } } },
 
   //quartz format
   'q-second': { text: 'Secondo' },
-  'q-minute': { text: 'Minuto', second: { '*': { prefix: 'e' } } },
+  'q-minute': {
+    text: 'Minuto',
+    second: {
+      '*': { prefix: 'e', suffix: 'secondo/i' },
+      any: { text: 'tutti' },
+      step: { suffix: '' },
+    },
+  },
   'q-hour': { text: 'Ora', minute: { '*': { prefix: 'e' } }, second: { '*': { prefix: 'e' } } },
 }
 

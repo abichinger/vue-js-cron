@@ -49,15 +49,21 @@ const locale: Localization = {
     },
   },
   minute: { text: 'मिनट' },
-  hour: { text: 'घंटा', minute: { '*': { prefix: 'पर', suffix: 'मिनट' }, any: { text: 'हर' } } },
+  hour: {
+    text: 'घंटा',
+    minute: { '*': { prefix: 'पर', suffix: 'मिनट' }, any: { text: 'हर' }, step: { suffix: '' } },
+  },
   day: { prefix: 'हर', text: 'दिन' },
   week: { text: 'सप्ताह' },
-  month: { prefix: 'हर', text: 'महीना' },
-  year: { prefix: 'हर', text: 'साल' },
+  month: { prefix: 'हर', text: 'महीना', dayOfWeek: { '*': { prefix: 'और' } } },
+  year: { prefix: 'हर', text: 'साल', dayOfWeek: { '*': { prefix: 'और' } } },
 
   //quartz format
   'q-second': { text: 'सेकंड' },
-  'q-minute': { text: 'मिनट', second: { '*': { prefix: 'और' } } },
+  'q-minute': {
+    text: 'मिनट',
+    second: { '*': { prefix: 'और', suffix: 'सेकंड' }, any: { text: 'हर' }, step: { suffix: '' } },
+  },
   'q-hour': { text: 'घंटा', minute: { '*': { prefix: 'और' } }, second: { '*': { prefix: 'और' } } },
 }
 
