@@ -73,6 +73,7 @@ export default defineUserConfig({
           children: [
             'getting-started-core',
             'getting-started-light',
+            'light-theming',
             'getting-started-ant',
             'getting-started-element-plus',
             'getting-started-naive-ui',
