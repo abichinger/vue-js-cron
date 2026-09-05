@@ -18,6 +18,10 @@ Vue v3: [documentation](https://abichinger.github.io/vue-js-cron)
 
 Vue v2: [documentation](https://abichinger.github.io/vue-js-cron/vue2)
 
+# Requirements
+
+The type declarations of `vue-js-cron` require `typescript >= 5`, if your project uses TypeScript.
+
 # Packages
 
 This monorepo includes the following packages:
