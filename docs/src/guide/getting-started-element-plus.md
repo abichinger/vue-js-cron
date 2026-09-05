@@ -11,11 +11,11 @@ The fastest way to get started, is to use one of the prebuilt components.
 - [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
 - [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
 
-
 ## Requirements
 
 Make sure to install and setup all requirements.
 - [Element Plus](https://element-plus.org/en-US/)
+- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
 
 ## Installation
 

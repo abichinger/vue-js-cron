@@ -11,15 +11,14 @@ The fastest way to get started, is to use one of the prebuilt components.
 {%- endif %}
 {%- endfor %}
 
-{% if flavor.requirements %}
 ## Requirements
 
 Make sure to install and setup all requirements.
 
-{%- for r in flavor.requirements %}
+{%- for r in flavor.requirements or [] %}
 - [{{ r.name }}]({{ r.url }})
 {%- endfor %}
-{%- endif %}
+- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
 
 ## Installation
 
