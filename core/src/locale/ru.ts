@@ -51,16 +51,27 @@ const locale: Localization = {
   minute: { text: 'Минута' },
   hour: {
     text: 'Час',
-    minute: { '*': { prefix: 'в', suffix: 'минут(а/ы)' }, any: { text: 'каждый' } },
+    minute: {
+      '*': { prefix: 'в', suffix: 'минут(а/ы)' },
+      any: { text: 'каждый' },
+      step: { suffix: '' },
+    },
   },
   day: { prefix: 'Каждый', text: 'День' },
   week: { text: 'Неделя' },
-  month: { prefix: 'Каждый', text: 'Месяц' },
-  year: { prefix: 'Каждый', text: 'Год' },
+  month: { prefix: 'Каждый', text: 'Месяц', dayOfWeek: { '*': { prefix: 'и' } } },
+  year: { prefix: 'Каждый', text: 'Год', dayOfWeek: { '*': { prefix: 'и' } } },
 
   //quartz format
   'q-second': { text: 'Секунда' },
-  'q-minute': { text: 'Минута', second: { '*': { prefix: 'и' } } },
+  'q-minute': {
+    text: 'Минута',
+    second: {
+      '*': { prefix: 'и', suffix: 'секунд(а/ы)' },
+      any: { text: 'каждую' },
+      step: { suffix: '' },
+    },
+  },
   'q-hour': { text: 'Час', minute: { '*': { prefix: 'и' } }, second: { '*': { prefix: 'и' } } },
 }
 

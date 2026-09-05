@@ -46,15 +46,21 @@ const locale: Localization = {
     },
   },
   minute: { text: '분' },
-  hour: { text: '시', minute: { '*': { prefix: '에', suffix: '분' }, any: { text: '매' } } },
+  hour: {
+    text: '시',
+    minute: { '*': { prefix: '에', suffix: '분' }, any: { text: '매' }, step: { suffix: '' } },
+  },
   day: { prefix: '매', text: '일' },
   week: { text: '주' },
-  month: { prefix: '매', text: '월' },
-  year: { prefix: '매', text: '년' },
+  month: { prefix: '매', text: '월', dayOfWeek: { '*': { prefix: '및' } } },
+  year: { prefix: '매', text: '년', dayOfWeek: { '*': { prefix: '및' } } },
 
   //quartz format
   'q-second': { text: '초' },
-  'q-minute': { text: '분', second: { '*': { prefix: '와' } } },
+  'q-minute': {
+    text: '분',
+    second: { '*': { prefix: '와', suffix: '초' }, any: { text: '매' }, step: { suffix: '' } },
+  },
   'q-hour': { text: '시', minute: { '*': { prefix: '와' } }, second: { '*': { prefix: '와' } } },
 }
 

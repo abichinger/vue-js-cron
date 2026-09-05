@@ -49,15 +49,21 @@ const locale: Localization = {
     },
   },
   minute: { text: '分' },
-  hour: { text: '時', minute: { '*': { prefix: 'に', suffix: '分' }, any: { text: '毎' } } },
+  hour: {
+    text: '時',
+    minute: { '*': { prefix: 'に', suffix: '分' }, any: { text: '毎' }, step: { suffix: '' } },
+  },
   day: { prefix: '毎', text: '日' },
   week: { text: '週' },
-  month: { prefix: '毎', text: '月' },
-  year: { prefix: '毎', text: '年' },
+  month: { prefix: '毎', text: '月', dayOfWeek: { '*': { prefix: 'と' } } },
+  year: { prefix: '毎', text: '年', dayOfWeek: { '*': { prefix: 'と' } } },
 
   //quartz format
   'q-second': { text: '秒' },
-  'q-minute': { text: '分', second: { '*': { prefix: 'と' } } },
+  'q-minute': {
+    text: '分',
+    second: { '*': { prefix: 'と', suffix: '秒' }, any: { text: '毎' }, step: { suffix: '' } },
+  },
   'q-hour': { text: '時', minute: { '*': { prefix: 'と' } }, second: { '*': { prefix: 'と' } } },
 }
 
