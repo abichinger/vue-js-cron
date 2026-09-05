@@ -33,6 +33,10 @@ const locale: Localization = {
         prefix: 'an',
         text: 'keinem bestimmten Tag',
       },
+      lastDay: { text: 'letzten Tag' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} Tag(e) vor dem letzten Tag' },
+      lastWeekday: { text: 'letzten Werktag' },
+      nearestWeekday: { text: 'nächstgelegenen Werktag zum {{value.text}}.' },
     },
     dayOfWeek: {
       '*': { prefix: 'am' },

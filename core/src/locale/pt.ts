@@ -20,6 +20,10 @@ const locale: Localization = {
     day: {
       '*': { prefix: 'no(s) dia(s)' },
       any: { text: 'todos' },
+      lastDay: { prefix: 'no', text: 'último dia' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} dia(s) antes do último dia' },
+      lastWeekday: { prefix: 'no', text: 'último dia útil' },
+      nearestWeekday: { prefix: 'no', text: 'dia útil mais próximo do dia {{value.text}}' },
     },
     dayOfWeek: {
       '*': { prefix: 'de' },
