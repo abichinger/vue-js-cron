@@ -14,6 +14,7 @@ import ja from './ja'
 import ko from './ko'
 import pt from './pt'
 import ru from './ru'
+import tg from './tg'
 import uk from './uk'
 import type { Localization } from './types'
 
@@ -27,6 +28,7 @@ const locales: Record<string, Localization> = {
   zh: cn,
   he,
   ru,
+  tg,
   fr,
   hi,
   ja,
