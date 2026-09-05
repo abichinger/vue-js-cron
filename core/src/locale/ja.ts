@@ -24,6 +24,10 @@ const locale: Localization = {
       any: { prefix: 'に', text: '毎日' },
       step: { prefix: '', text: '{{step.value}}日ごとに' },
       noSpecific: { prefix: 'に', text: '特定の日はなし' },
+      lastDay: { text: '最終日' },
+      lastDayOffset: { text: '最終日の{{offset.text}}日前' },
+      lastWeekday: { text: '最終営業日' },
+      nearestWeekday: { text: '{{value.text}}日に最も近い平日' },
     },
     dayOfWeek: {
       '*': { prefix: 'の' },

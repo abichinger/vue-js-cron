@@ -23,6 +23,10 @@ const locale: Localization = {
       noSpecific: {
         text: 'ללא יום מוגדר',
       },
+      lastDay: { text: 'יום האחרון בחודש' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} ימים לפני היום האחרון בחודש' },
+      lastWeekday: { text: 'יום העסקים האחרון בחודש' },
+      nearestWeekday: { text: 'יום העסקים הקרוב ל-{{value.text}} בחודש' },
     },
     dayOfWeek: {
       '*': { prefix: 'ב' },

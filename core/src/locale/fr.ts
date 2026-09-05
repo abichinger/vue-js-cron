@@ -24,6 +24,10 @@ const locale: Localization = {
       any: { prefix: 'à', text: 'tous les jours' },
       step: { prefix: '', text: 'tous les {{step.value}} jours' },
       noSpecific: { prefix: 'à', text: 'aucun jour particulier' },
+      lastDay: { text: 'dernier jour' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} jour(s) avant le dernier jour' },
+      lastWeekday: { text: 'dernier jour ouvré' },
+      nearestWeekday: { text: 'jour ouvré le plus proche du {{value.text}}' },
     },
     dayOfWeek: {
       '*': { prefix: 'le' },

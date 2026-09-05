@@ -24,6 +24,10 @@ const locale: Localization = {
       noSpecific: {
         text: 'ingen specifik dag',
       },
+      lastDay: { text: 'den sidste dag' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} dag(e) før den sidste dag' },
+      lastWeekday: { text: 'den sidste hverdag' },
+      nearestWeekday: { text: 'den nærmeste hverdag til den {{value.text}}.' },
     },
 
     dayOfWeek: {

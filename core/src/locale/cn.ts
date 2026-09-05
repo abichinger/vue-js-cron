@@ -25,6 +25,10 @@ const locale: Localization = {
       noSpecific: {
         text: '无特定日期',
       },
+      lastDay: { text: '最后一天' },
+      lastDayOffset: { text: '最后一天前{{offset.text}}天' },
+      lastWeekday: { text: '最后一个工作日' },
+      nearestWeekday: { text: '最接近{{value.text}}号的工作日' },
     },
     dayOfWeek: {
       '*': { prefix: '的' },

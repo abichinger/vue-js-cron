@@ -24,6 +24,10 @@ const locale: Localization = {
       any: { prefix: 'в', text: 'каждый день' },
       step: { prefix: '', text: 'каждые {{step.value}} дня' },
       noSpecific: { prefix: 'в', text: 'нет определенного дня' },
+      lastDay: { text: 'последний день' },
+      lastDayOffset: { prefix: 'за', text: '{{offset.text}} дн. до последнего дня' },
+      lastWeekday: { text: 'последний рабочий день' },
+      nearestWeekday: { text: 'ближайший рабочий день к {{value.text}} числу' },
     },
     dayOfWeek: {
       '*': { prefix: 'по' },

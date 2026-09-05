@@ -21,6 +21,10 @@ const locale: Localization = {
       '*': { prefix: 'en' },
       any: { text: 'todos los días' },
       value: { text: 'los días {{ value.alt }}' },
+      lastDay: { text: 'el último día' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} día(s) antes del último día' },
+      lastWeekday: { text: 'el último día laborable' },
+      nearestWeekday: { text: 'el día laborable más cercano al {{value.text}}' },
     },
     dayOfWeek: {
       '*': { prefix: 'de' },

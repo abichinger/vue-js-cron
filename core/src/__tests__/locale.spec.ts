@@ -62,6 +62,28 @@ describe('locale', () => {
     expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
 
+  it('special day values are translated', () => {
+    const codes = ['da', 'de', 'es', 'fr', 'he', 'hi', 'it', 'ja', 'ko', 'pt', 'ru', 'uk', 'zh']
+    const patterns = [
+      FieldPattern.LastDay,
+      FieldPattern.LastDayOffset,
+      FieldPattern.LastWeekday,
+      FieldPattern.NearestWeekday,
+    ]
+    const en = createL10n('en')
+
+    // the localization of a locale is merged into the english one,
+    // therefore a missing translation shows up as english text
+    for (const code of codes) {
+      const l = createL10n(code)
+      for (const pattern of patterns) {
+        const template = l.getTemplate('*', 'day', pattern, TextPosition.Text)
+        expect(template).not.toBe('')
+        expect(template).not.toBe(en.getTemplate('*', 'day', pattern, TextPosition.Text))
+      }
+    }
+  })
+
   it('render', () => {
     const l = createL10n('en', {
       '*': {
