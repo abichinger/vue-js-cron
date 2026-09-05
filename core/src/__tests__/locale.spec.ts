@@ -62,6 +62,20 @@ describe('locale', () => {
     expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
 
+  it('getTemplate tg', () => {
+    const l = createL10n('tg', {
+      custom: {
+        '*': 'bar',
+        message: 'baz',
+      },
+    })
+
+    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('ҳар дақиқа')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('ва')
+    expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
+    expect(l.getTemplate('custom', 'message')).toBe('baz')
+  })
+
   it('render', () => {
     const l = createL10n('en', {
       '*': {
