@@ -1,6 +1,5 @@
 import { describe, expect, it, test } from 'vitest'
 
-import { createL10n } from '@/locale'
 import type { CronFormat, Period } from '@/types'
 import { mount } from '@vue/test-utils'
 import { defineComponent, nextTick } from 'vue'
@@ -250,10 +249,9 @@ describe('findFirstPeriod', () => {
 
 describe('special day values', () => {
   const crontabFields = () => {
-    const l10n = createL10n('en')
     return new DefaultCronOptions()
-      .fields('crontab', 'en', l10n)
-      .map((field) => (field.id === 'day' ? withSpecialDays(field, l10n) : field))
+      .fields('crontab', 'en')
+      .map((field) => (field.id === 'day' ? withSpecialDays(field) : field))
   }
 
   it('round trip', async () => {

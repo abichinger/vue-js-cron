@@ -31,7 +31,7 @@ const f = () => {
 const day = () => {
   const l10n = createL10n('en')
   const field = new FieldWrapper(
-    withSpecialDays({ id: 'day', items: defaultItems('en').dayItems }, l10n),
+    withSpecialDays({ id: 'day', items: defaultItems('en').dayItems }),
     { format: 'quartz' },
   )
 
@@ -92,8 +92,8 @@ describe('CronSegment - special values', () => {
 
     expect(items.length).toEqual(33)
     expect(items.slice(31)).toEqual([
-      { value: 'L', text: 'L', alt: 'the last day' },
-      { value: 'LW', text: 'LW', alt: 'the last weekday' },
+      { value: 'L', text: 'L', alt: '' },
+      { value: 'LW', text: 'LW', alt: '' },
     ])
   })
 

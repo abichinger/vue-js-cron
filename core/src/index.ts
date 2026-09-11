@@ -6,7 +6,6 @@ export {
   cronCoreProps,
   DefaultCronOptions,
   setupCron,
-  specialDayItems,
   useCron,
   withSpecialDays,
   type CronContext,

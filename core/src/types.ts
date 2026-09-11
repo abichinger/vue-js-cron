@@ -75,7 +75,7 @@ export interface FieldItem {
 /**
  * An item, which represents a special value of a field, e.g. `L` (last day of the month).
  * Special items are appended to the items of a field, but they are not part of
- * {@link FieldWrapper.items}, because they don't take part in ranges and steps.
+ * {@link FieldWrapper#items}, because they don't take part in ranges and steps.
  */
 export interface SpecialItem {
   value: string
