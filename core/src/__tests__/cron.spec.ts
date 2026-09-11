@@ -1,13 +1,7 @@
-import {
-  arrayToSegment,
-  cronToSegment,
-  defaultArraySegmentFactories,
-  defaultSegmentFactories,
-  specialDayArraySegmentFactories,
-  specialDaySegmentFactories,
-} from '@/cron'
+import { withSpecialDays } from '@/components/cron-core'
+import { arrayToSegment, cronToSegment } from '@/cron'
 import { FieldWrapper, type CronFormat, type FieldValue } from '@/types'
-import { genItems } from '@/util'
+import { defaultItems, genItems } from '@/util'
 import { describe, expect, it } from 'vitest'
 
 const r = (min: number, max: number, format: CronFormat = 'crontab') => {
@@ -15,20 +9,10 @@ const r = (min: number, max: number, format: CronFormat = 'crontab') => {
 }
 
 /** day of month field with support for `L` and `W` */
-const day = (format: CronFormat = 'quartz') => {
-  return new FieldWrapper(
-    {
-      id: 'day',
-      items: genItems(1, 31),
-      specialItems: [
-        { value: 'L', text: 'L', alt: 'the last day' },
-        { value: 'LW', text: 'LW', alt: 'the last weekday' },
-      ],
-      segmentFactories: [...defaultSegmentFactories, ...specialDaySegmentFactories],
-      arraySegmentFactories: [...defaultArraySegmentFactories, ...specialDayArraySegmentFactories],
-    },
-    { format },
-  )
+const day = () => {
+  return new FieldWrapper(withSpecialDays({ id: 'day', items: defaultItems('en').dayItems }), {
+    format: 'quartz',
+  })
 }
 
 describe('segments', () => {
