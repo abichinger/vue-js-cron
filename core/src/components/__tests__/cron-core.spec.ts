@@ -1,6 +1,6 @@
 import { describe, expect, it, test } from 'vitest'
 
-import type { CronFormat, Period } from '@/types'
+import type { CronFormat, CronFormatOptions, Period } from '@/types'
 import { mount } from '@vue/test-utils'
 import { defineComponent, nextTick } from 'vue'
 import {
@@ -9,7 +9,6 @@ import {
   findFirstPeriod,
   setupCron,
   useCron,
-  withSpecialDays,
 } from '../cron-core'
 
 type UseCronReturn = ReturnType<typeof useCron>
@@ -129,40 +128,139 @@ describe('useCron', () => {
     }
   })
 
-  it('format option', () => {
-    const formats: {
-      value: CronFormat
-      expectedValue: string
-      expectedFields: number
-      expectedPeriods: number
+  describe('format option', () => {
+    const tests: {
+      format: CronFormat
+      initialValue?: string
+      expectedValue?: string
+      expectedError?: string
+      expectedFields?: number
+      expectedPeriods?: number
     }[] = [
       {
-        value: 'crontab',
+        format: 'crontab',
         expectedValue: '* * * * *',
         expectedFields: 5,
         expectedPeriods: 6,
       },
       {
-        value: 'quartz',
+        format: 'quartz',
         expectedValue: '* * * * * ?',
         expectedFields: 6,
         expectedPeriods: 7,
       },
       {
-        value: 'spring',
-        expectedValue: '* * * * * *',
+        format: 'spring',
+        expectedValue: '* * * * * ?',
         expectedFields: 6,
         expectedPeriods: 7,
       },
+      {
+        format: {},
+        expectedValue: '* * * * *',
+        expectedPeriods: 6,
+      },
+      {
+        format: { seconds: true },
+        expectedValue: '* * * * * *',
+        expectedPeriods: 7,
+      },
+      {
+        format: { noSpecific: false },
+        initialValue: '* * * * ?',
+        expectedValue: '* * * * ?',
+        expectedError: '? is not a valid cron segment (dayOfWeek)',
+      },
+      {
+        format: { noSpecific: true },
+        initialValue: '* * * * ?',
+        expectedValue: '* * * * ?',
+        expectedError: '',
+      },
+      {
+        format: { specialDays: false },
+        initialValue: '* * L * *',
+        expectedValue: '* * L * *',
+        expectedError: 'L is not a valid cron segment (day)',
+      },
+      {
+        format: { specialDays: true },
+        initialValue: '* * L * *',
+        expectedValue: '* * L * *',
+        expectedError: '',
+      },
+      {
+        format: { inherit: 'quartz' },
+        initialValue: '* * * L * ?',
+        expectedValue: '* * * L * ?',
+        expectedError: '',
+      },
+      {
+        format: { inherit: 'quartz', specialDays: false },
+        initialValue: '* * * L * ?',
+        expectedValue: '* * * L * ?',
+        expectedError: 'L is not a valid cron segment (day)',
+      },
     ]
 
-    for (const format of formats) {
-      const cron = useCron({ format: format.value })
+    for (const t of tests) {
+      it(JSON.stringify(t.format), async () => {
+        const cron = useCron({ format: t.format, initialValue: t.initialValue })
+        await nextTick()
 
-      expect(cron.cron.value).toEqual(format.expectedValue)
-      expect(cron.segments.length).toEqual(format.expectedFields)
-      expect(cron.period.items.length).toEqual(format.expectedPeriods)
+        if (t.expectedValue !== undefined) expect(cron.cron.value).toEqual(t.expectedValue)
+        if (t.expectedError !== undefined) expect(cron.error.value).toEqual(t.expectedError)
+        if (t.expectedFields !== undefined) expect(cron.segments.length).toEqual(t.expectedFields)
+        if (t.expectedPeriods !== undefined)
+          expect(cron.period.items.length).toEqual(t.expectedPeriods)
+      })
     }
+  })
+})
+
+describe('DefaultCronOptions', () => {
+  const options = new DefaultCronOptions()
+
+  describe('fields', () => {
+    describe('choose first day of the week', () => {
+      const tests: {
+        firstWeekDay: CronFormatOptions['firstWeekDay']
+        expectedValue: number
+        expectedText: string
+      }[] = [
+        {
+          firstWeekDay: 'sun=0',
+          expectedValue: 0,
+          expectedText: 'Sunday',
+        },
+        {
+          firstWeekDay: 'sun=1',
+          expectedValue: 1,
+          expectedText: 'Sunday',
+        },
+        {
+          firstWeekDay: 'mon=1',
+          expectedValue: 1,
+          expectedText: 'Monday',
+        },
+        {
+          firstWeekDay: 'mon=2',
+          expectedValue: 2,
+          expectedText: 'Monday',
+        },
+      ]
+
+      for (const t of tests) {
+        it(t.firstWeekDay!, () => {
+          const fields = options.fields({ firstWeekDay: t.firstWeekDay }, 'en')
+          const weekdayField = fields.find((f) => f.id === 'dayOfWeek')
+          const firstWeekDay = weekdayField?.items[0]
+
+          expect(firstWeekDay?.value).toEqual(t.expectedValue)
+          expect(firstWeekDay?.text).toEqual(t.expectedText)
+        })
+      }
+    })
   })
 })
 
@@ -249,9 +347,7 @@ describe('findFirstPeriod', () => {
 
 describe('special day values', () => {
   const crontabFields = () => {
-    return new DefaultCronOptions()
-      .fields('crontab', 'en')
-      .map((field) => (field.id === 'day' ? withSpecialDays(field) : field))
+    return new DefaultCronOptions().fields({ specialDays: true }, 'en')
   }
 
   it('round trip', async () => {

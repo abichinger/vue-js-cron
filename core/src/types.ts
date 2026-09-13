@@ -1,7 +1,48 @@
 import type { CronContext } from './components/cron-core'
 import type { UseCronSegmentReturn } from './components/cron-segment'
 
-export type CronFormat = 'crontab' | 'quartz' | 'spring'
+export type BaseCronFormat = 'crontab' | 'quartz' | 'spring'
+export interface CronFormatOptions {
+  /**
+   * The base format of the cron expression. If set the default values of the other options will be set according to the base format.
+   *
+   * @defaultValue 'crontab'
+   */
+  inherit?: BaseCronFormat
+  /**
+   * Whether the cron expression supports seconds
+   *
+   * @defaultValue false
+   */
+  seconds?: boolean
+  /**
+   * Whether the cron expression supports the no specific value `?`, e.g. `* * ? * *`
+   *
+   * @defaultValue false
+   */
+  noSpecific?: boolean
+  /**
+   * Whether the day of month field supports the special values `L`, `L-<n>`, `LW` and `<n>W`
+   *
+   * @defaultValue false
+   */
+  specialDays?: boolean
+  /**
+   * The first day of the week, either Sunday or Monday.
+   * Most cron implementations use the value `0` as Sunday, but some (e.g. the quartz scheduler) use `1` for Sunday
+   *
+   * @defaultValue 'sun=0'
+   */
+  firstWeekDay?: 'sun=0' | 'sun=1' | 'mon=1' | 'mon=2'
+  /**
+   * The hour format, either none, 12-hour or 24-hour.
+   *
+   * @defaultValue '24-hour'
+   */
+  // hourFormat?: 'none' | '12-hour' | '24-hour'
+}
+
+export type CronFormat = BaseCronFormat | CronFormatOptions
 
 /**
  * Value of a cron segment. Numbers refer to the values of a field, e.g. `1` (January).

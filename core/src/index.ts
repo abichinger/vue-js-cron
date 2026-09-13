@@ -4,10 +4,8 @@ import { CronCore } from './components/cron-core'
 export {
   CronCore,
   cronCoreProps,
-  DefaultCronOptions,
   setupCron,
   useCron,
-  withSpecialDays,
   type CronContext,
   type CronCoreProps,
   type CronOptions,

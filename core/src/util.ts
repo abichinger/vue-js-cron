@@ -1,4 +1,4 @@
-import type { CronFormat, FieldItem } from './types'
+import type { FieldItem } from './types'
 
 function range(start: number, end: number, step = 1) {
   const r = []
@@ -78,10 +78,13 @@ function genItems(
 /**
  *
  * @param locale - locale code, e.g.: en, en-GB de-DE
- * @param [format='crontab'] format of cron expression
+ * @param [firstWeekDay='sun=0'] First day in the list of weekdays
  * @returns items for minute, hour, day, month and day of week
  */
-function defaultItems(localeCode: string, format: CronFormat = 'crontab') {
+function defaultItems(
+  localeCode: string,
+  firstWeekDay: 'sun=0' | 'sun=1' | 'mon=1' | 'mon=2' = 'sun=0',
+) {
   const monthName = (month: number, short: boolean = false) => {
     return new Date(2021, month - 1, 1).toLocaleDateString(localeCode, {
       month: short ? 'short' : 'long',
@@ -95,21 +98,26 @@ function defaultItems(localeCode: string, format: CronFormat = 'crontab') {
     })
   }
 
+  const dayOfWeekItems = ['sun=1', 'mon=2'].includes(firstWeekDay)
+    ? genItems(
+        1,
+        7,
+        (value) => weekdayName(value - 1),
+        (value) => weekdayName(value - 1, true),
+      )
+    : genItems(0, 6, weekdayName, (value) => weekdayName(value, true))
+
+  if (firstWeekDay.includes('mon')) {
+    dayOfWeekItems.push(dayOfWeekItems.shift()!)
+  }
+
   return {
     secondItems: genItems(0, 59, (value) => pad(value, 2)),
     minuteItems: genItems(0, 59, (value) => pad(value, 2)),
     hourItems: genItems(0, 23, (value) => pad(value, 2)),
     dayItems: genItems(1, 31),
     monthItems: genItems(1, 12, monthName, (value) => monthName(value, true)),
-    dayOfWeekItems:
-      format === 'quartz'
-        ? genItems(
-            1,
-            7,
-            (value) => weekdayName(value - 1),
-            (value) => weekdayName(value - 1, true),
-          )
-        : genItems(0, 6, weekdayName, (value) => weekdayName(value, true)),
+    dayOfWeekItems: dayOfWeekItems,
   }
 }
 

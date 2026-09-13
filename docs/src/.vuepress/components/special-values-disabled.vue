@@ -9,9 +9,9 @@
 export default {
   data() {
     return {
-      value: '0 0 L * *',
+      value: '0 0 0 * * *',
       error: '',
-      format: { specialDays: true },
+      format: { inherit: 'spring', specialDays: false },
     }
   },
 }

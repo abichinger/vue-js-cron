@@ -24,6 +24,7 @@ import {
   FieldWrapper,
   TextPosition,
   type CronFormat,
+  type CronFormatOptions,
   type Field,
   type Period,
   type SpecialItem,
@@ -85,6 +86,24 @@ export function withSpecialDays(field: Field): Field {
   }
 }
 
+function formatToOptions(format: CronFormat): CronFormatOptions {
+  if (typeof format !== 'string' && format.inherit) {
+    return Object.assign(formatToOptions(format.inherit), format, { inherit: undefined })
+  }
+  if (typeof format !== 'string') {
+    return format
+  }
+
+  const isQuartzLike = format == 'quartz' || format == 'spring'
+
+  return {
+    seconds: isQuartzLike,
+    noSpecific: isQuartzLike,
+    specialDays: isQuartzLike,
+    firstWeekDay: format == 'quartz' ? 'sun=1' : 'sun=0',
+  }
+}
+
 export class DefaultCronOptions {
   locale = 'en'
 
@@ -95,8 +114,8 @@ export class DefaultCronOptions {
   }
 
   fields(format: CronFormat, locale: string): Field[] {
-    const isQuartz = format == 'quartz' || format == 'spring'
-    const items = defaultItems(locale, format)
+    const { seconds, noSpecific, specialDays, firstWeekDay } = formatToOptions(format)
+    const items = defaultItems(locale, firstWeekDay)
 
     const setNoSpecific = (fieldId: string) => {
       return (value: UseCronSegmentReturn, { segmentMap }: CronContext) => {
@@ -115,8 +134,8 @@ export class DefaultCronOptions {
     const dayField: Field = {
       id: 'day',
       items: items.dayItems,
-      onChange: isQuartz ? setNoSpecific('dayOfWeek') : undefined,
-      segmentFactories: isQuartz
+      onChange: noSpecific ? setNoSpecific('dayOfWeek') : undefined,
+      segmentFactories: noSpecific
         ? [
             AnySegment.fromString,
             NoSpecificSegment.fromString,
@@ -128,18 +147,18 @@ export class DefaultCronOptions {
     }
 
     return [
-      ...(isQuartz ? [{ id: 'second', items: items.secondItems }] : []),
+      ...(seconds ? [{ id: 'second', items: items.secondItems }] : []),
       { id: 'minute', items: items.minuteItems },
       { id: 'hour', items: items.hourItems },
       // `L` and `W` are only supported by the quartz and spring format
-      isQuartz ? withSpecialDays(dayField) : dayField,
+      specialDays ? withSpecialDays(dayField) : dayField,
       { id: 'month', items: items.monthItems },
       {
         id: 'dayOfWeek',
-        default: format === 'quartz' ? '?' : undefined,
+        default: noSpecific ? '?' : undefined,
         items: items.dayOfWeekItems,
-        onChange: isQuartz ? setNoSpecific('day') : undefined,
-        segmentFactories: isQuartz
+        onChange: noSpecific ? setNoSpecific('day') : undefined,
+        segmentFactories: noSpecific
           ? [
               AnySegment.fromString,
               NoSpecificSegment.fromString,
@@ -153,10 +172,10 @@ export class DefaultCronOptions {
   }
 
   periods(format: CronFormat): Period[] {
-    const isQuartz = format == 'quartz' || format == 'spring'
-    const second = isQuartz ? [{ id: 'q-second', value: [] }] : []
-    const secondField = isQuartz ? ['second'] : []
-    const prefix = isQuartz ? 'q-' : ''
+    const { seconds } = formatToOptions(format)
+    const second = seconds ? [{ id: 'q-second', value: [] }] : []
+    const secondField = seconds ? ['second'] : []
+    const prefix = seconds ? 'q-' : ''
 
     return [
       ...second,

@@ -21,8 +21,16 @@ Special values can't be combined with other values, e.g. `L,15` is not a valid d
 
 The special values are disabled for the `crontab` format, because
 [crontab](https://linux.die.net/man/5/crontab) doesn't support them.
-`withSpecialDays` enables them for any format.
+`specialDays` enables them for any format.
 
 @[code](@/src/.vuepress/components/special-values-crontab.vue)
 
 <special-values-crontab />
+
+## Disable Special Values
+
+To disable the special values for `quartz` and `spring` formats, set `specialDays` to `false`.
+
+@[code](@/src/.vuepress/components/special-values-disabled.vue)
+
+<special-values-disabled />
