@@ -25,9 +25,9 @@ Dark mode is activated by adding the `dark` class to any parent element.
 </body>
 ```
 
-Note: the dark styles are defined for the `ant` theme, the `legacy` theme doesn't provide a
-dark variant.
-
 @[code](@/src/.vuepress/components/light-theming.vue)
+
+Use the toggle at the top-right to switch between light and dark mode.
+<br/><br/>
 
 <light-theming />
