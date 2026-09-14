@@ -77,7 +77,22 @@ describe('locale', () => {
   })
 
   it('special day values are translated', () => {
-    const codes = ['da', 'de', 'es', 'fr', 'he', 'hi', 'it', 'ja', 'ko', 'pt', 'ru', 'uk', 'zh']
+    const codes = [
+      'da',
+      'de',
+      'es',
+      'fr',
+      'he',
+      'hi',
+      'it',
+      'ja',
+      'ko',
+      'pt',
+      'ru',
+      'tg',
+      'uk',
+      'zh',
+    ]
     const patterns = [
       FieldPattern.LastDay,
       FieldPattern.LastDayOffset,
