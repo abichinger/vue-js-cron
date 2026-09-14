@@ -33,6 +33,10 @@ const locale: Localization = {
       stepFrom: { text: 'рӯзҳои {{start.text}}/{{step.value}}' },
       step: { text: 'ҳар {{step.value}} рӯз' },
       noSpecific: { text: 'рӯзи муайян нест' },
+      lastDay: { text: 'рӯзи охирин' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} рӯз пеш аз охири моҳ' },
+      lastWeekday: { text: 'охирин рӯзи кории моҳ' },
+      nearestWeekday: { text: 'наздиктарин рӯзи корӣ ба {{value.text}}' },
     },
     dayOfWeek: {
       '*': { prefix: 'дар' },
