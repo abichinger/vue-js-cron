@@ -1,0 +1,34 @@
+name: Translations
+
+on:
+  push:
+    paths:
+      - 'core/src/locale/**'
+      - 'core/src/components/cron-core.ts'
+      - 'core/src/types.ts'
+      - 'core/src/__tests__/translations.spec.ts'
+      - '.github/workflows/translations.yml'
+  pull_request:
+    paths:
+      - 'core/src/locale/**'
+      - 'core/src/components/cron-core.ts'
+      - 'core/src/types.ts'
+      - 'core/src/__tests__/translations.spec.ts'
+      - '.github/workflows/translations.yml'
+  workflow_dispatch:
+
+jobs:
+  missing-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js 24.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 24.x
+    - name: Install Node.js modules
+      run: npm install
+    - name: Check translations
+      run: npx vitest run src/__tests__/translations.spec.ts
+      working-directory: core
