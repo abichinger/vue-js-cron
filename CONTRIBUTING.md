@@ -60,6 +60,13 @@ You can use the commit [feat: add portuguese translation](https://github.com/abi
 
 [Here](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue_js_cron_core.Localization.html) you can find the structure of a localization object.
 
+Every localization is merged into the english one, so a key which isn't translated shows up as english text.
+The following command lists the missing keys of every localization and fails if english text would be rendered:
+
+```sh
+npm run test -w=core -- run translations
+```
+
 ## Add a new UI Framework
 
 This section will show how to add a new UI framework using [`PrimeVue`](https://primevue.org/) as an example.
