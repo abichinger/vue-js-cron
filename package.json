@@ -21,6 +21,7 @@
     "build-demo": "cd demo && npm run build",
     "build-docs": "cd docs && npm run build",
     "test": "npm run test --workspaces --if-present",
+    "test:l10n": "npm run test:l10n --workspace=core",
     "dry-run": "multi-semantic-release --dry-run --ignore-private-packages",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
