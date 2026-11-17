@@ -15,6 +15,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test": "vitest",
+    "test:l10n": "vitest run --config vitest.l10n.config.ts",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "format": "prettier --write src/"

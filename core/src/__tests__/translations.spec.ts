@@ -98,46 +98,16 @@ function findMissing(locale: Localization): Missing[] {
   return [...paths].sort().map((path) => ({ path, template: englishTemplate(path) }))
 }
 
-// Missing translations, which are already known. Remove the entry after the
-// translation has been added, the test fails as long as the list is outdated.
-const knownEnglish: Record<string, string[]> = {
-  da: ['q-minute.second.*.prefix'],
-  es: [
-    '*.day.noSpecific.text',
-    '*.dayOfWeek.noSpecific.text',
-    '*.second.any.text',
-    'q-hour.minute.*.prefix',
-    'q-hour.text',
-    'q-minute.second.*.prefix',
-    'q-minute.second.*.suffix',
-    'q-minute.second.any.text',
-    'q-minute.text',
-    'q-second.text',
-  ],
-  pt: [
-    '*.day.noSpecific.text',
-    '*.dayOfWeek.noSpecific.text',
-    '*.second.any.text',
-    'q-hour.minute.*.prefix',
-    'q-hour.text',
-    'q-minute.second.*.prefix',
-    'q-minute.second.*.suffix',
-    'q-minute.second.any.text',
-    'q-minute.text',
-    'q-second.text',
-  ],
-}
-
-describe('translations', () => {
+describe('translations', { tags: ['translations'] }, () => {
   const report = locales.map(([code, locale]) => {
     const missing = findMissing(locale)
-    return { code, missing, english: missing.filter((m) => hasWords(m.template)) }
+    return { code, missing: missing.filter((m) => hasWords(m.template)) }
   })
 
   if (process.env.GITHUB_STEP_SUMMARY) {
     const rows = report.map(
-      ({ code, missing, english }) =>
-        `| ${code} | ${english.map((m) => `\`${m.path}\` (${m.template})`).join('<br>') || '-'} | ${missing.length} |`,
+      ({ code, missing }) =>
+        `| ${code} | ${missing.map((m) => `\`${m.path}\` (${m.template})`).join('<br>') || '-'} | ${missing.length} |`,
     )
     appendFileSync(
       process.env.GITHUB_STEP_SUMMARY,
@@ -153,13 +123,11 @@ describe('translations', () => {
   }
 
   for (const { code, missing } of report) {
-    if (missing.length > 0) {
-      const lines = missing.map((m) => `  ${m.path}: ${JSON.stringify(m.template)}`)
-      console.log([`${code}: ${missing.length} missing`, ...lines].join('\n'))
-    }
+    const lines = missing.map((m) => `  ${m.path}: ${JSON.stringify(m.template)}`)
+    console.log([`${code}: ${missing.length} missing`, ...lines].join('\n'))
   }
 
-  it.each(report)('$code has no english text inside a translation', ({ code, english }) => {
-    expect(english.map((m) => m.path)).toEqual(knownEnglish[code] ?? [])
+  it.each(report)('$code has no english text inside a translation', ({ missing }) => {
+    expect(missing).toEqual([])
   })
 })

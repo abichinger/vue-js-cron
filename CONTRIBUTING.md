@@ -48,8 +48,11 @@ npm run dev -w=light
 # Start a development server of the documentation
 cd docs && npm run dev
 
-# Run tests
+# Run normal tests (excludes translation completeness checks)
 npm run test
+
+# Run translation tests
+npm run test:l10n
 
 # Have a look at package.json for more scripts
 ```
@@ -64,7 +67,7 @@ Every localization is merged into the english one, so a key which isn't translat
 The following command lists the missing keys of every localization and fails if english text would be rendered:
 
 ```sh
-npm run test -w=core -- run translations
+npm run test:l10n
 ```
 
 ## Add a new UI Framework

@@ -30,5 +30,4 @@ jobs:
     - name: Install Node.js modules
       run: npm install
     - name: Check translations
-      run: npx vitest run src/__tests__/translations.spec.ts
-      working-directory: core
+      run: npm run test:l10n
