@@ -28,8 +28,23 @@ export interface CronFormatOptions {
    */
   specialDays?: boolean
   /**
+   * Accept case-insensitive English month and weekday abbreviations (JAN-DEC, SUN-SAT).
+   * Parsed values are serialized numerically, independently of the display locale.
+   *
+   * @defaultValue true
+   */
+  namedValues?: boolean
+  /**
+   * Accept the alternative Sunday value: 7 for `sun=0`, or 0 for `mon=1`.
+   * Has no effect for `sun=1` and `mon=2`, where 7 means Saturday.
+   *
+   * @defaultValue true for crontab and spring; false for quartz
+   */
+  hasSundayAlias?: boolean
+  /**
    * The first day of the week, either Sunday or Monday.
-   * Most cron implementations use the value `0` as Sunday, but some (e.g. the quartz scheduler) use `1` for Sunday
+   * `sun=0`: Sunday 0 through Saturday 6; `mon=1`: Monday 1 through Sunday 7.
+   * `sun=1` and `mon=2` use Sunday 1 through Saturday 7, with the selected day first.
    *
    * @defaultValue 'sun=0'
    */
@@ -219,11 +234,11 @@ export class FieldWrapper {
   }
 
   get min() {
-    return this.items[0].value
+    return Math.min(...this.items.map((item) => item.value))
   }
 
   get max() {
-    return this.items[this.items.length - 1].value
+    return Math.max(...this.items.map((item) => item.value))
   }
 
   getItem(value: number) {

@@ -10,6 +10,7 @@ import {
   ValueSegment,
 } from '@/cron'
 import { createL10n } from '@/locale'
+import { formatToOptions } from '@/format'
 import type { Localization } from '@/locale/types'
 import {
   computed,
@@ -24,7 +25,6 @@ import {
   FieldWrapper,
   TextPosition,
   type CronFormat,
-  type CronFormatOptions,
   type Field,
   type Period,
   type SpecialItem,
@@ -83,24 +83,6 @@ export function withSpecialDays(field: Field): Field {
       ...(field.arraySegmentFactories ?? defaultArraySegmentFactories),
       ...specialDayArraySegmentFactories,
     ],
-  }
-}
-
-function formatToOptions(format: CronFormat): CronFormatOptions {
-  if (typeof format !== 'string' && format.inherit) {
-    return Object.assign(formatToOptions(format.inherit), format, { inherit: undefined })
-  }
-  if (typeof format !== 'string') {
-    return format
-  }
-
-  const isQuartzLike = format == 'quartz' || format == 'spring'
-
-  return {
-    seconds: isQuartzLike,
-    noSpecific: isQuartzLike,
-    specialDays: isQuartzLike,
-    firstWeekDay: format == 'quartz' ? 'sun=1' : 'sun=0',
   }
 }
 
@@ -397,7 +379,7 @@ export const cronCoreProps = () => ({
    * @defaultValue `crontab`
    */
   format: {
-    type: String as PropType<CronFormat>,
+    type: [String, Object] as PropType<CronFormat>,
   },
   /**
    * The locale of the component, such as `en`, `de`, etc.

@@ -1,5 +1,33 @@
 # Special Values
 
+## Named months and weekdays
+
+The `crontab`, `quartz`, and `spring` formats accept case-insensitive English
+abbreviations (`JAN`–`DEC`, `SUN`–`SAT`), regardless of the display locale.
+Lists, ranges, and supported step patterns work too: `JAN,MAR`, `MON-FRI`,
+`JAN-MAY/2`. Output is normalized to numeric values.
+
+Names are enabled by default. Set `namedValues: false` to require numeric input:
+
+```vue
+<CronLight :format="{ inherit: 'crontab', namedValues: false }" v-model="expression" />
+```
+
+`firstWeekDay` controls weekday numbering and display order:
+
+| `firstWeekDay` | Items in display order | Sunday | Alias when enabled |
+| -------------- | ---------------------- | ------ | ------------------ |
+| `sun=0`        | `0–6`                  | `0`    | `7 → 0`            |
+| `mon=1`        | `1–7`                  | `7`    | `0 → 7`            |
+| `sun=1`        | `1–7`                  | `1`    | None               |
+| `mon=2`        | `2–7, 1`               | `1`    | None               |
+
+`hasSundayAlias` defaults to `true` for crontab/Spring and `false` for Quartz.
+It can be overridden independently of `namedValues`. Crontab/Spring default to
+`sun=0`; Quartz defaults to `sun=1`.
+
+## Special days
+
 The day of month field of the `quartz` and `spring` format supports the special values `L` and `W`.
 
 | Value | Description                              |

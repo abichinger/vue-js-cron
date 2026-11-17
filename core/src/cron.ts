@@ -10,6 +10,72 @@ import {
   type SegmentFromString,
 } from './types'
 import { isSquence, range, unimplemented } from './util'
+import { formatToOptions } from './format'
+
+const monthNames = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
+]
+const weekdayNames = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+
+function sundayAlias(field: FieldWrapper): { from: number; to: number } | null {
+  const { firstWeekDay, hasSundayAlias } = formatToOptions(field.ctx.format)
+  if (field.id !== 'dayOfWeek' || !hasSundayAlias) return null
+  if (firstWeekDay === 'sun=0' && field.min === 0 && field.max === 6) {
+    return { from: 7, to: 0 }
+  }
+  if (firstWeekDay === 'mon=1' && field.min === 1 && field.max === 7) {
+    return { from: 0, to: 7 }
+  }
+  return null
+}
+
+/** Parse a complete field token, retaining Sunday aliases until ranges have been expanded. */
+function parseValue(str: string, field: FieldWrapper): number | null {
+  let value: number
+  if (/^\d+$/.test(str)) {
+    value = Number(str)
+  } else {
+    const options = formatToOptions(field.ctx.format)
+    if (!options.namedValues) return null
+    const names = field.id === 'month' ? monthNames : field.id === 'dayOfWeek' ? weekdayNames : []
+    const index = names.indexOf(str.toLowerCase())
+    if (index === -1) return null
+    const offset = field.id === 'month' || ['sun=1', 'mon=2'].includes(options.firstWeekDay) ? 1 : 0
+    value = index + offset
+    if (field.id === 'dayOfWeek' && options.firstWeekDay === 'mon=1' && index === 0) value = 7
+  }
+  return (value >= field.min && value <= field.max) || value === sundayAlias(field)?.from
+    ? value
+    : null
+}
+
+/**
+ * Expand ranges and steps before replacing Sunday aliases, then rebuild from sorted, unique values.
+ * Also rebuild steps with alias endpoints so their labels reference valid field items.
+ */
+function normalizeSunday(segment: CronSegment): CronSegment | null {
+  const alias = sundayAlias(segment.field)
+  if (alias === null) return segment
+  const values = segment.toArray()
+  const hasAliasEndpoint =
+    segment instanceof StepSegment && (segment.start === alias.from || segment.end === alias.from)
+  if (!values.includes(alias.from) && !hasAliasEndpoint) return segment
+  const normalized = [
+    ...new Set(values.map((value) => (value === alias.from ? alias.to : value))),
+  ].sort((a, b) => Number(a) - Number(b))
+  return arrayToSegment(normalized, segment.field)
+}
 
 /**
  * @returns true, if `arr` doesn't contain any special values, such as `L`
@@ -91,7 +157,7 @@ class AnySegment implements CronSegment {
         return null
       }
     }
-    if (!isSquence(items.map((item) => item.value))) {
+    if (!isSquence(items.map((item) => item.value).sort((a, b) => a - b))) {
       return null
     }
     return new AnySegment(field)
@@ -99,7 +165,7 @@ class AnySegment implements CronSegment {
 }
 
 class RangeSegment implements CronSegment {
-  static re = /^\d+-\d+$/
+  static re = /^(\d+|[a-z]{3})-(\d+|[a-z]{3})$/i
 
   field: FieldWrapper
   type: FieldPattern = FieldPattern.Range
@@ -130,21 +196,20 @@ class RangeSegment implements CronSegment {
     }
   }
 
-  static fromString(str: string, field: FieldWrapper) {
+  static fromString(str: string, field: FieldWrapper): CronSegment | null {
     if (!RangeSegment.re.test(str)) {
       return null
     }
 
-    const { min, max } = field
     const range = str.split('-')
-    const start = parseInt(range[0])
-    const end = parseInt(range[1])
+    const start = parseValue(range[0], field)
+    const end = parseValue(range[1], field)
 
-    if (start > end || start < min || end > max) {
+    if (start === null || end === null || start > end) {
       return null
     }
 
-    return new RangeSegment(field, start, end)
+    return normalizeSunday(new RangeSegment(field, start, end))
   }
 }
 
@@ -156,19 +221,8 @@ function _rangeWithStep(n: number, min: number, max: number) {
   return res
 }
 
-function parseRange(s: string, field: FieldWrapper): [number, number] {
-  if (s === '*') {
-    return [field.min, field.max]
-  }
-  const range = s.split('-').map((s) => parseInt(s))
-  if (range.length === 1 && field.ctx.format !== 'crontab') {
-    return [range[0], field.max]
-  }
-  return [range[0], range[1]]
-}
-
 class StepSegment implements CronSegment {
-  static re = /^(\*|\d+(-\d+)?)\/\d+$/
+  static re = /^(\*|(?:\d+|[a-z]{3})(?:-(?:\d+|[a-z]{3}))?)\/\d+$/i
 
   field: FieldWrapper
   step: number
@@ -184,7 +238,11 @@ class StepSegment implements CronSegment {
 
   get type() {
     const { min, max } = this.field
-    if (this.field.ctx.format !== 'crontab' && this.start !== min && max - this.end < this.step) {
+    if (
+      formatToOptions(this.field.ctx.format).inherit !== 'crontab' &&
+      this.start !== min &&
+      max - this.end < this.step
+    ) {
       return FieldPattern.StepFrom
     }
     if (this.start !== min || max - this.end >= this.step) {
@@ -215,7 +273,24 @@ class StepSegment implements CronSegment {
     }
   }
 
-  static fromString(str: string, field: FieldWrapper) {
+  /**
+   * Parse the bounds before `/`: `*`, `a-b`, or a single start in Quartz/Spring.
+   * Preserve Sunday aliases until the range is expanded; return null for invalid bounds.
+   */
+  private static parseRange(s: string, field: FieldWrapper): [number, number] | null {
+    if (s === '*') {
+      return [field.min, field.max]
+    }
+    const parts = s.split('-')
+    const start = parseValue(parts[0], field)
+    const end =
+      parts.length === 1 && formatToOptions(field.ctx.format).inherit !== 'crontab'
+        ? Math.max(field.max, start ?? field.max)
+        : parseValue(parts[1] ?? '', field)
+    return start === null || end === null || start > end ? null : [start, end]
+  }
+
+  static fromString(str: string, field: FieldWrapper): CronSegment | null {
     if (!StepSegment.re.test(str)) {
       return null
     }
@@ -223,17 +298,15 @@ class StepSegment implements CronSegment {
     const [rangeStr, stepStr] = str.split('/')
     const step = parseInt(stepStr)
 
-    if (step > field.items.length) {
+    if (step < 1 || step > field.items.length) {
       return null
     }
 
-    const [min, max] = parseRange(rangeStr, field)
+    const bounds = StepSegment.parseRange(rangeStr, field)
+    if (bounds === null) return null
+    const [min, max] = bounds
 
-    if (_rangeWithStep(step, min, max).length == 0) {
-      return null
-    }
-
-    return new StepSegment(field, step, min, max)
+    return normalizeSunday(new StepSegment(field, step, min, max))
   }
 
   static fromArray(arr: FieldValue[], field: FieldWrapper) {
@@ -281,11 +354,11 @@ class ValueSegment implements CronSegment {
   }
 
   static fromString(str: string, field: FieldWrapper) {
-    const { min, max } = field
-    const value = parseInt(str)
-    return String(value) === str && value >= min && value <= max
-      ? new ValueSegment(field, value)
-      : null
+    const value = parseValue(str, field)
+    // Keep the existing rejection of zero-padded standalone numeric values.
+    if (value === null || (/^\d+$/.test(str) && String(value) !== str)) return null
+    const alias = sundayAlias(field)
+    return new ValueSegment(field, value === alias?.from ? alias.to : value)
   }
 
   static fromArray(arr: FieldValue[], field: FieldWrapper) {
@@ -489,7 +562,8 @@ class CombinedSegment implements CronSegment {
     for (const seg of this.segments) {
       seg.toArray().forEach((value) => values.add(value))
     }
-    return Array.from(values)
+    const result = Array.from(values)
+    return isValueArray(result) ? result.sort((a, b) => a - b) : result
   }
 
   get items() {
@@ -515,7 +589,13 @@ class CombinedSegment implements CronSegment {
       if (segment === null) {
         return null
       }
-      segments.push(segment)
+      // A normalized full-week range has the same meaning as an explicit wildcard.
+      if (segment instanceof AnySegment) {
+        segments = [segment]
+        break
+      }
+      // Sunday normalization may split a range across the numeric week boundary.
+      segments.push(...(segment instanceof CombinedSegment ? segment.segments : [segment]))
     }
 
     // special values, such as `?` or `L`, can't be part of a list

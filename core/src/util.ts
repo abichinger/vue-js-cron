@@ -98,16 +98,16 @@ function defaultItems(
     })
   }
 
-  const dayOfWeekItems = ['sun=1', 'mon=2'].includes(firstWeekDay)
-    ? genItems(
-        1,
-        7,
-        (value) => weekdayName(value - 1),
-        (value) => weekdayName(value - 1, true),
-      )
-    : genItems(0, 6, weekdayName, (value) => weekdayName(value, true))
+  const start = firstWeekDay === 'sun=0' ? 0 : 1
+  const offset = ['sun=1', 'mon=2'].includes(firstWeekDay) ? 1 : 0
+  const dayOfWeekItems = genItems(
+    start,
+    start + 6,
+    (value) => weekdayName(value - offset),
+    (value) => weekdayName(value - offset, true),
+  )
 
-  if (firstWeekDay.includes('mon')) {
+  if (firstWeekDay === 'mon=2') {
     dayOfWeekItems.push(dayOfWeekItems.shift()!)
   }
 
