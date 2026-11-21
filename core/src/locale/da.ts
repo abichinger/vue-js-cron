@@ -12,103 +12,103 @@ const locale: Localization = {
     },
     month: {
       '*': { prefix: 'i' },
-      any: { text: 'hver måned' },
+      any: { prefix: '', text: 'hver måned' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: 'med {{step.value}} måneders mellemrum' },
     },
     day: {
-      '*': { prefix: 'og' },
-      any: { text: 'hver dag i måneden' },
+      '*': { prefix: 'på' },
+      any: { prefix: '', text: 'hver dag i måneden' },
       value: { text: '{{value.alt}}.' },
       range: { text: '{{start.alt}}.-{{end.alt}}.' },
-      noSpecific: {
-        text: 'ingen specifik dag',
-      },
+      noSpecific: { prefix: '', text: '(dag i måneden ikke angivet)' },
       lastDay: { text: 'den sidste dag' },
       lastDayOffset: { prefix: '', text: '{{offset.text}} dag(e) før den sidste dag' },
       lastWeekday: { text: 'den sidste hverdag' },
       nearestWeekday: { text: 'den nærmeste hverdag til den {{value.text}}.' },
+      step: { prefix: '', text: 'med {{step.value}} dages mellemrum' },
     },
 
     dayOfWeek: {
       '*': { prefix: 'på' },
-      any: { text: 'hver dag i ugen' },
+      any: { prefix: '', text: 'hver dag i ugen' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: {
-        text: 'ingen specifik dag i ugen',
-      },
+      noSpecific: { prefix: '', text: '(ugedag ikke angivet)' },
+      step: { prefix: '', text: 'med {{step.value}} dages mellemrum' },
     },
     hour: {
       '*': { prefix: 'klokken' },
-      any: { text: 'hver time' },
+      any: { prefix: '', text: 'hver time' },
+      step: { prefix: '', text: 'med {{step.value}} timers mellemrum' },
     },
     minute: {
       '*': { prefix: ':' },
       any: { text: 'hvert minut' },
+      step: { prefix: '', text: 'med {{step.value}} minutters mellemrum' },
     },
     second: {
       '*': { prefix: ':' },
       any: { text: 'hvert sekund' },
+      step: { prefix: '', text: 'med {{step.value}} sekunders mellemrum' },
     },
-  },
-  second: {
-    prefix: 'Hvert',
   },
   minute: {
     prefix: 'Hvert',
-    text: 'Minut',
+    text: 'minut',
   },
   hour: {
-    text: 'Time',
+    text: 'time',
     minute: {
       '*': {
-        prefix: 'ved',
-        suffix: 'minutter',
+        prefix: 'ved minut',
+        suffix: '',
       },
-      any: { text: 'alle' },
+      any: { prefix: '', text: 'hvert minut' },
     },
   },
   day: {
-    text: 'Dag',
+    text: 'dag',
   },
   week: {
-    text: 'Uge',
+    text: 'uge',
   },
   month: {
-    text: 'Måned',
-    dayOfWeek: {
-      '*': { prefix: 'og' },
-    },
+    text: 'måned',
   },
   year: {
     prefix: 'Hvert',
-    text: 'År',
-    dayOfWeek: {
-      '*': { prefix: 'og' },
-    },
+    text: 'år',
   },
 
   // quartz format
   'q-second': {
-    text: 'Sekund',
+    prefix: 'Hvert',
+    text: 'sekund',
   },
   'q-minute': {
-    text: 'Minut',
+    prefix: 'Hvert',
+    text: 'minut',
     second: {
       '*': {
-        prefix: 'ved',
-        suffix: 'sekund(er)',
+        prefix: 'ved sekund',
+        suffix: '',
       },
-      any: { text: 'hvert' },
+      any: { prefix: '', text: 'hvert sekund' },
     },
   },
   'q-hour': {
-    text: 'Time',
+    text: 'time',
     minute: {
       '*': {
-        prefix: 'på',
+        prefix: 'ved minut',
       },
+      any: { prefix: '' },
+    },
+    second: {
+      '*': { prefix: 'ved sekund' },
+      any: { prefix: '' },
     },
   },
 }

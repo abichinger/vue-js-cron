@@ -5,7 +5,7 @@ import type { Localization } from './types'
  */
 const locale: Localization = {
   '*': {
-    prefix: 'Кожний',
+    prefix: 'Кожен',
     suffix: '',
     text: 'Невідомо',
     '*': {
@@ -14,69 +14,82 @@ const locale: Localization = {
       step: { text: 'кожний {{step.value}}' },
     },
     month: {
-      '*': { prefix: 'в' },
-      any: { prefix: 'в', text: 'кожному місяці' },
+      '*': { prefix: 'у' },
+      any: { prefix: '', text: 'щомісяця' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: 'з інтервалом у {{step.value}} міс.' },
     },
     day: {
       '*': { prefix: 'в' },
-      any: { prefix: 'в', text: 'кожний день' },
-      step: { prefix: '', text: 'кожні {{step.value}} дні' },
-      noSpecific: { prefix: 'в', text: 'немає визначеного дня' },
+      any: { prefix: '', text: 'щодня' },
+      step: { prefix: '', text: 'з інтервалом у {{step.value}} дн.' },
+      noSpecific: { prefix: '', text: '(день місяця не задано)' },
       lastDay: { text: 'останній день' },
       lastDayOffset: { prefix: 'за', text: '{{offset.text}} дн. до останнього дня' },
       lastWeekday: { text: 'останній робочий день' },
-      nearestWeekday: { text: 'найближчий робочий день до {{value.text}} числа' },
+      nearestWeekday: { text: 'робочий день, найближчий до {{value.text}}-го числа' },
     },
     dayOfWeek: {
-      '*': { prefix: 'по' },
-      any: { prefix: 'по', text: 'кожному дню тижня' },
+      '*': { prefix: 'у' },
+      any: { prefix: '', text: 'кожного дня тижня' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: { prefix: 'і', text: 'немає визначеного дня' },
+      range: { prefix: '', text: 'з {{start.alt}} до {{end.alt}}' },
+      noSpecific: { prefix: '', text: '(день тижня не задано)' },
+      step: { prefix: '', text: 'з інтервалом у {{step.value}} дн.' },
     },
     hour: {
       '*': { prefix: 'в' },
-      any: { prefix: 'в', text: 'кожну годину' },
-      step: { prefix: '', text: 'кожні {{step.value}} годин(и)' },
+      any: { prefix: '', text: 'щогодини' },
+      step: { prefix: '', text: 'з інтервалом у {{step.value}} год' },
     },
     minute: {
       '*': { prefix: ':' },
       any: { text: 'кожну хвилину' },
-      step: { prefix: '', text: 'кожні {{step.value}} хвилин(и)' },
+      step: { prefix: '', text: 'з інтервалом у {{step.value}} хв' },
     },
     second: {
       '*': { prefix: ':' },
       any: { text: 'кожну секунду' },
-      step: { prefix: '', text: 'кожні {{step.value}} секунд(и)' },
+      step: { prefix: '', text: 'з інтервалом у {{step.value}} с' },
     },
   },
-  minute: { text: 'Хвилини' },
+  minute: { prefix: 'Кожну', text: 'хвилину' },
   hour: {
-    text: 'Година',
+    prefix: 'Кожну',
+    text: 'годину',
     minute: {
-      '*': { prefix: 'в', suffix: 'хвилин(а)' },
-      any: { text: 'кожні' },
-      step: { suffix: '' },
+      '*': { prefix: 'на хвилині', suffix: '' },
+      any: { prefix: '', text: 'щохвилини' },
     },
   },
-  day: { prefix: 'Кожний', text: 'День' },
-  week: { text: 'Тиждень' },
-  month: { prefix: 'Кожний', text: 'Місяц', dayOfWeek: { '*': { prefix: 'і' } } },
-  year: { prefix: 'Кожний', text: 'Рік', dayOfWeek: { '*': { prefix: 'і' } } },
+  day: { prefix: 'Кожен', text: 'день' },
+  week: { text: 'тиждень' },
+  month: { prefix: 'Кожен', text: 'місяць' },
+  year: { prefix: 'Кожен', text: 'рік' },
 
   //quartz format
-  'q-second': { text: 'Секунда' },
+  'q-second': { prefix: 'Кожну', text: 'секунду' },
   'q-minute': {
-    text: 'Хвилина',
+    prefix: 'Кожну',
+    text: 'хвилину',
     second: {
-      '*': { prefix: 'и', suffix: 'секунд(а)' },
-      any: { text: 'кожну' },
-      step: { suffix: '' },
+      '*': { prefix: 'на секунді', suffix: '' },
+      any: { prefix: '', text: 'щосекунди' },
     },
   },
-  'q-hour': { text: 'Година', minute: { '*': { prefix: 'і' } }, second: { '*': { prefix: 'і' } } },
+  'q-hour': {
+    prefix: 'Кожну',
+    text: 'годину',
+    minute: {
+      '*': { prefix: 'на хвилині' },
+      any: { prefix: '' },
+    },
+    second: {
+      '*': { prefix: 'на секунді' },
+      any: { prefix: '' },
+    },
+  },
 }
 
 export default locale

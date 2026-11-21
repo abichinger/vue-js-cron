@@ -5,7 +5,7 @@ import type { Localization } from './types'
  */
 const locale: Localization = {
   '*': {
-    prefix: 'Toutes',
+    prefix: 'Chaque',
     suffix: '',
     text: 'Inconnu',
     '*': {
@@ -15,15 +15,16 @@ const locale: Localization = {
     },
     month: {
       '*': { prefix: 'en' },
-      any: { prefix: 'en', text: 'tous les mois' },
+      any: { prefix: '', text: 'tous les mois' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: 'tous les {{step.value}} mois' },
     },
     day: {
       '*': { prefix: 'le' },
-      any: { prefix: 'à', text: 'tous les jours' },
+      any: { prefix: '', text: 'tous les jours' },
       step: { prefix: '', text: 'tous les {{step.value}} jours' },
-      noSpecific: { prefix: 'à', text: 'aucun jour particulier' },
+      noSpecific: { prefix: '', text: '(jour du mois non précisé)' },
       lastDay: { text: 'dernier jour' },
       lastDayOffset: { prefix: '', text: '{{offset.text}} jour(s) avant le dernier jour' },
       lastWeekday: { text: 'dernier jour ouvré' },
@@ -31,14 +32,15 @@ const locale: Localization = {
     },
     dayOfWeek: {
       '*': { prefix: 'le' },
-      any: { prefix: 'à', text: 'tous les jours de la semaine' },
+      any: { prefix: '', text: 'tous les jours de la semaine' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: { prefix: 'et', text: 'aucun jour de la semaine particulier' },
+      range: { prefix: '', text: 'du {{start.alt}} au {{end.alt}}' },
+      noSpecific: { prefix: '', text: '(jour de la semaine non précisé)' },
+      step: { prefix: '', text: 'tous les {{step.value}} jours' },
     },
     hour: {
       '*': { prefix: 'à' },
-      any: { prefix: 'à', text: 'toutes les heures' },
+      any: { prefix: '', text: 'toutes les heures' },
       step: { prefix: '', text: 'toutes les {{step.value}} heures' },
     },
     minute: {
@@ -52,31 +54,39 @@ const locale: Localization = {
       step: { prefix: '', text: 'toutes les {{step.value}} secondes' },
     },
   },
-  minute: { text: 'Minute' },
+  minute: { text: 'minute' },
   hour: {
-    text: 'Heure',
+    text: 'heure',
     minute: {
-      '*': { prefix: 'à', suffix: 'minute(s)' },
-      any: { text: 'toutes' },
-      step: { suffix: '' },
+      '*': { prefix: 'à la minute', suffix: '' },
+      any: { prefix: '', text: 'chaque minute' },
     },
   },
-  day: { prefix: 'Tous', text: 'Jour' },
-  week: { text: 'Semaine' },
-  month: { prefix: 'Tous', text: 'Mois', dayOfWeek: { '*': { prefix: 'et' } } },
-  year: { prefix: 'Tous', text: 'Année', dayOfWeek: { '*': { prefix: 'et' } } },
+  day: { prefix: 'Chaque', text: 'jour' },
+  week: { text: 'semaine' },
+  month: { prefix: 'Chaque', text: 'mois' },
+  year: { prefix: 'Chaque', text: 'année' },
 
   //quartz format
-  'q-second': { text: 'Seconde' },
+  'q-second': { text: 'seconde' },
   'q-minute': {
-    text: 'Minute',
+    text: 'minute',
     second: {
-      '*': { prefix: 'et', suffix: 'seconde(s)' },
-      any: { text: 'toutes' },
-      step: { suffix: '' },
+      '*': { prefix: 'à la seconde', suffix: '' },
+      any: { prefix: '', text: 'chaque seconde' },
     },
   },
-  'q-hour': { text: 'Heure', minute: { '*': { prefix: 'et' } }, second: { '*': { prefix: 'et' } } },
+  'q-hour': {
+    text: 'heure',
+    minute: {
+      '*': { prefix: 'à la minute' },
+      any: { prefix: '' },
+    },
+    second: {
+      '*': { prefix: 'à la seconde' },
+      any: { prefix: '', text: 'chaque seconde' },
+    },
+  },
 }
 
 export default locale

@@ -4,7 +4,7 @@ const locale: Localization = {
   '*': {
     prefix: 'Jede',
     suffix: '',
-    text: 'Unknown',
+    text: 'Unbekannt',
     '*': {
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
@@ -18,23 +18,18 @@ const locale: Localization = {
       },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: 'alle {{step.value}} Monate' },
     },
     day: {
-      '*': { prefix: 'den' },
+      '*': { prefix: 'am' },
       any: {
         prefix: 'an',
         text: 'jedem Tag',
       },
-      step: {
-        prefix: '',
-        text: 'alle {{step.value}} Tage',
-      },
-      noSpecific: {
-        prefix: 'an',
-        text: 'keinem bestimmten Tag',
-      },
+      step: { prefix: '', text: 'alle {{step.value}} Tage' },
+      noSpecific: { prefix: '', text: '(Tag des Monats nicht festgelegt)' },
       lastDay: { text: 'letzten Tag' },
-      lastDayOffset: { prefix: '', text: '{{offset.text}} Tag(e) vor dem letzten Tag' },
+      lastDayOffset: { prefix: '', text: '{{offset.text}} Tag(e) vor Monatsende' },
       lastWeekday: { text: 'letzten Werktag' },
       nearestWeekday: { text: 'nächstgelegenen Werktag zum {{value.text}}.' },
     },
@@ -45,11 +40,9 @@ const locale: Localization = {
         text: 'jedem Wochentag',
       },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: {
-        prefix: 'und',
-        text: 'keinem bestimmten Wochentag',
-      },
+      range: { prefix: '', text: '{{start.alt}} bis {{end.alt}}' },
+      noSpecific: { prefix: '', text: '(Wochentag nicht festgelegt)' },
+      step: { prefix: '', text: 'alle {{step.value}} Tage' },
     },
     hour: {
       '*': { prefix: 'um' },
@@ -57,26 +50,17 @@ const locale: Localization = {
         prefix: 'zu',
         text: 'jeder Stunde',
       },
-      step: {
-        prefix: '',
-        text: 'alle {{step.value}} Stunden',
-      },
+      step: { prefix: '', text: 'alle {{step.value}} Stunden' },
     },
     minute: {
       '*': { prefix: ':' },
       any: { text: 'jede Minute' },
-      step: {
-        prefix: '',
-        text: 'alle {{step.value}} Minuten',
-      },
+      step: { prefix: '', text: 'alle {{step.value}} Minuten' },
     },
     second: {
       '*': { prefix: ':' },
       any: { text: 'jede Sekunde' },
-      step: {
-        prefix: '',
-        text: 'alle {{step.value}} Sekunden',
-      },
+      step: { prefix: '', text: 'alle {{step.value}} Sekunden' },
     },
   },
   minute: {
@@ -86,11 +70,10 @@ const locale: Localization = {
     text: 'Stunde',
     minute: {
       '*': {
-        prefix: 'zu',
-        suffix: 'Minute(n)',
+        prefix: 'bei Minute',
+        suffix: '',
       },
-      any: { text: 'jeder' },
-      step: { suffix: '' },
+      any: { prefix: '', text: 'jede Minute' },
     },
   },
   day: {
@@ -101,14 +84,12 @@ const locale: Localization = {
     text: 'Woche',
   },
   month: {
-    prefix: 'Jedes',
+    prefix: 'Jeden',
     text: 'Monat',
-    dayOfWeek: { '*': { prefix: 'und' } },
   },
   year: {
     prefix: 'Jedes',
     text: 'Jahr',
-    dayOfWeek: { '*': { prefix: 'und' } },
   },
 
   //quartz format
@@ -118,22 +99,23 @@ const locale: Localization = {
   'q-minute': {
     text: 'Minute',
     second: {
-      '*': { prefix: 'und', suffix: 'Sekunde(n)' },
-      any: { text: 'jeder' },
-      step: { suffix: '' },
+      '*': { prefix: 'bei Sekunde', suffix: '' },
+      any: { prefix: '', text: 'jede Sekunde' },
     },
   },
   'q-hour': {
     text: 'Stunde',
     minute: {
       '*': {
-        prefix: 'und',
+        prefix: 'bei Minute',
       },
+      any: { prefix: '' },
     },
     second: {
       '*': {
-        prefix: 'und',
+        prefix: 'bei Sekunde',
       },
+      any: { prefix: '' },
     },
   },
 }

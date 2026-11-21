@@ -11,44 +11,48 @@ const locale: Localization = {
       step: { text: 'כל {{step.value}}' },
     },
     month: {
-      '*': { prefix: 'ב' },
-      any: { text: 'כל חודש' },
-      value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
+      '*': { prefix: '' },
+      any: { text: 'בכל חודש' },
+      value: { text: 'ב{{value.alt}}' },
+      range: { text: 'מ{{start.alt}} עד {{end.alt}}' },
+      step: { prefix: '', text: 'כל {{step.value}} חודשים' },
     },
     day: {
-      '*': { prefix: 'ב' },
-      any: { text: 'כל יום' },
-      value: { text: 'יום {{value.alt}} לחודש' },
-      noSpecific: {
-        text: 'ללא יום מוגדר',
-      },
-      lastDay: { text: 'יום האחרון בחודש' },
+      '*': { prefix: '' },
+      any: { text: 'בכל יום' },
+      value: { text: 'ביום {{value.alt}} בחודש' },
+      range: { text: 'מיום {{start.text}} עד יום {{end.text}} בחודש' },
+      noSpecific: { prefix: '', text: '(לא צוין יום בחודש)' },
+      lastDay: { text: 'ביום האחרון בחודש' },
       lastDayOffset: { prefix: '', text: '{{offset.text}} ימים לפני היום האחרון בחודש' },
-      lastWeekday: { text: 'יום העסקים האחרון בחודש' },
-      nearestWeekday: { text: 'יום העסקים הקרוב ל-{{value.text}} בחודש' },
+      lastWeekday: { text: 'ביום האחרון בחודש שחל בין שני לשישי' },
+      nearestWeekday: { text: 'ביום הקרוב ביותר ל־{{value.text}} בחודש שחל בין שני לשישי' },
+      step: { prefix: '', text: 'כל {{step.value}} ימים' },
     },
     dayOfWeek: {
-      '*': { prefix: 'ב' },
-      any: { text: 'כל יום מימות השבוע' },
-      value: { text: 'ימי {{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: {
-        text: 'ללא יום בשבוע מוגדר',
-      },
+      '*': { prefix: '' },
+      any: { text: 'בכל יום בשבוע' },
+      value: { text: 'ב{{value.alt}}' },
+      range: { text: 'מ{{start.alt}} עד {{end.alt}}' },
+      noSpecific: { prefix: '', text: '(לא צוין יום בשבוע)' },
+      step: { prefix: '', text: 'כל {{step.value}} ימים' },
     },
     hour: {
-      '*': { prefix: 'ב' },
-      any: { text: 'כל שעה' },
-      value: { text: 'שעה {{value.text}}' },
+      '*': { prefix: '' },
+      any: { text: 'בכל שעה' },
+      value: { text: 'בשעה {{value.text}}' },
+      range: { text: 'משעה {{start.text}} עד שעה {{end.text}}' },
+      step: { prefix: '', text: 'כל {{step.value}} שעות' },
     },
     minute: {
       '*': { prefix: ':' },
       any: { text: 'כל דקה' },
+      step: { prefix: '', text: 'כל {{step.value}} דקות' },
     },
     second: {
       '*': { prefix: ':' },
-      any: { text: 'כל שניה' },
+      any: { text: 'כל שנייה' },
+      step: { prefix: '', text: 'כל {{step.value}} שניות' },
     },
   },
   minute: {
@@ -58,10 +62,10 @@ const locale: Localization = {
     text: 'שעה',
     minute: {
       '*': {
-        prefix: 'ב',
-        suffix: 'דקות',
+        prefix: 'בדקה',
+        suffix: '',
       },
-      any: { text: 'כל' },
+      any: { prefix: '', text: 'בכל דקה' },
     },
   },
   day: {
@@ -72,37 +76,36 @@ const locale: Localization = {
   },
   month: {
     text: 'חודש',
-    dayOfWeek: {
-      '*': { prefix: 'ו' },
-    },
   },
   year: {
     text: 'שנה',
-    dayOfWeek: {
-      '*': { prefix: 'ו' },
-    },
   },
 
   //quartz format
   'q-second': {
-    text: 'שניה',
+    text: 'שנייה',
   },
   'q-minute': {
     text: 'דקה',
     second: {
       '*': {
-        prefix: 'ב',
-        suffix: 'שניות',
+        prefix: 'בשנייה',
+        suffix: '',
       },
-      any: { text: 'כל' },
+      any: { prefix: '', text: 'בכל שנייה' },
     },
   },
   'q-hour': {
     text: 'שעה',
     minute: {
       '*': {
-        prefix: 'ב',
+        prefix: 'בדקה',
       },
+      any: { prefix: '', text: 'בכל דקה' },
+    },
+    second: {
+      '*': { prefix: 'בשנייה' },
+      any: { prefix: '', text: 'בכל שנייה' },
     },
   },
 }

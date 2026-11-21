@@ -2,101 +2,102 @@ import type { Localization } from './types'
 
 const locale: Localization = {
   '*': {
-    prefix: 'Todo(a)',
+    prefix: 'A cada',
     suffix: '',
     text: 'Desconhecido',
     '*': {
       any: { text: 'todo {{field.id}}' },
       value: { text: '{{value.text}}' },
       range: { text: '{{start.text}}-{{end.text}}' },
-      step: { text: 'todo {{step.value}}' },
+      step: { text: 'a cada {{step.value}}' },
     },
     month: {
-      '*': { prefix: 'de' },
+      '*': { prefix: 'em' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
-      any: { text: 'todo mês' },
+      any: { prefix: '', text: 'em todos os meses' },
+      step: { prefix: '', text: 'a cada {{step.value}} meses' },
     },
     day: {
-      '*': { prefix: 'no(s) dia(s)' },
-      any: { text: 'todos' },
-      noSpecific: { prefix: 'em', text: 'nenhum dia específico' },
+      '*': { prefix: 'no dia' },
+      any: { prefix: '', text: 'todos os dias' },
+      noSpecific: { prefix: '', text: '(dia do mês não especificado)' },
       lastDay: { prefix: 'no', text: 'último dia' },
       lastDayOffset: { prefix: '', text: '{{offset.text}} dia(s) antes do último dia' },
       lastWeekday: { prefix: 'no', text: 'último dia útil' },
       nearestWeekday: { prefix: 'no', text: 'dia útil mais próximo do dia {{value.text}}' },
+      step: { prefix: '', text: 'a cada {{step.value}} dias' },
     },
     dayOfWeek: {
-      '*': { prefix: 'de' },
-      any: { text: 'todos dias da semana' },
+      '*': { prefix: 'nos dias' },
+      any: { prefix: '', text: 'todos os dias da semana' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: { text: 'nenhum dia específico da semana' },
+      range: { prefix: '', text: 'de {{start.alt}} a {{end.alt}}' },
+      noSpecific: { prefix: '', text: '(dia da semana não especificado)' },
+      step: { prefix: '', text: 'a cada {{step.value}} dias' },
     },
     hour: {
       '*': { prefix: 'às' },
-      any: { text: 'cada hora' },
+      any: { prefix: '', text: 'a cada hora' },
+      step: { prefix: '', text: 'a cada {{step.value}} horas' },
     },
     minute: {
       '*': { prefix: ':' },
-      any: { text: 'cada minuto' },
+      any: { text: 'a cada minuto' },
+      step: { prefix: '', text: 'a cada {{step.value}} minutos' },
     },
     second: {
       '*': { prefix: ':' },
-      any: { text: 'cada segundo' },
+      any: { text: 'a cada segundo' },
+      step: { prefix: '', text: 'a cada {{step.value}} segundos' },
     },
   },
   minute: {
-    text: 'Minuto',
+    text: 'minuto',
   },
   hour: {
-    text: 'Hora',
+    text: 'hora',
     minute: {
       '*': {
-        prefix: 'e',
-        suffix: 'minuto(s)',
+        prefix: 'no minuto',
+        suffix: '',
       },
-      any: { text: 'cada' },
+      any: { prefix: '', text: 'a cada minuto' },
     },
   },
   day: {
-    text: 'Dia',
+    text: 'dia',
   },
   week: {
-    text: 'Semana',
+    text: 'semana',
   },
   month: {
-    text: 'Mês',
-    dayOfWeek: {
-      '*': { prefix: 'e de' },
-    },
+    text: 'mês',
   },
   year: {
-    text: 'Ano',
-    dayOfWeek: {
-      '*': { prefix: 'e de' },
-    },
+    text: 'ano',
   },
 
   // quartz format
   'q-second': {
-    prefix: 'Todo',
-    text: 'Segundo',
+    text: 'segundo',
   },
   'q-minute': {
-    prefix: 'Todo',
-    text: 'Minuto',
+    text: 'minuto',
     second: {
-      '*': { prefix: 'aos', suffix: 'segundo(s)' },
-      any: { prefix: 'a', text: 'cada', suffix: 'segundo' },
+      '*': { prefix: 'no segundo', suffix: '' },
+      any: { prefix: '', text: 'a cada segundo' },
     },
   },
   'q-hour': {
-    prefix: 'Toda',
-    text: 'Hora',
+    text: 'hora',
     minute: {
       '*': { prefix: 'no minuto' },
-      any: { prefix: 'a' },
+      any: { prefix: '', text: 'a cada minuto' },
+    },
+    second: {
+      '*': { prefix: 'no segundo' },
+      any: { prefix: '' },
     },
   },
 }

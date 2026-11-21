@@ -27,7 +27,7 @@ describe('locale', () => {
     })
 
     expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('every minute')
-    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('and')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('on')
     expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
     expect(l.getTemplate('custom', 'foo')).toBe('bar')
     expect(l.getTemplate('custom', 'message')).toBe('baz')
@@ -41,8 +41,8 @@ describe('locale', () => {
       },
     })
 
-    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('cada minuto')
-    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('e de')
+    expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('a cada minuto')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('nos dias')
     expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
     expect(l.getTemplate('custom', 'foo')).toBe('bar')
     expect(l.getTemplate('custom', 'message')).toBe('baz')
@@ -57,7 +57,7 @@ describe('locale', () => {
     })
 
     expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('кожну хвилину')
-    // expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('e de')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('у')
     expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
     expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
@@ -71,7 +71,7 @@ describe('locale', () => {
     })
 
     expect(l.getTemplate('year', 'minute', 'any', 'text')).toBe('ҳар дақиқа')
-    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('ва')
+    expect(l.getTemplate('year', 'dayOfWeek', 'value', 'prefix')).toBe('дар')
     expect(l.getTemplate('year', 'minute', 'range', 'prefix')).toBe(':')
     expect(l.getTemplate('custom', 'message')).toBe('baz')
   })
@@ -122,7 +122,7 @@ describe('locale', () => {
     const keys: string[][] = [
       ['month', 'dayOfWeek', FieldPattern.Value, TextPosition.Prefix],
       ['year', 'dayOfWeek', FieldPattern.Value, TextPosition.Prefix],
-      ['q-minute', 'second', FieldPattern.Value, TextPosition.Suffix],
+      ['q-minute', 'second', FieldPattern.Value, TextPosition.Prefix],
       ['q-minute', 'second', FieldPattern.Any, TextPosition.Text],
     ]
 

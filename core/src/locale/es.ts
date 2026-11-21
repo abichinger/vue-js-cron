@@ -2,103 +2,104 @@ import type { Localization } from './types'
 
 const locale: Localization = {
   '*': {
-    prefix: 'todos los',
+    prefix: 'Cada',
     suffix: '',
     text: 'Desconocido',
     '*': {
       any: { text: 'todos los {{ field.id }}' },
       value: { text: '{{ value.text }}' },
       range: { text: '{{ start.text }}-{{ end.text }}' },
-      step: { text: 'todos/as {{ step.value }}' },
+      step: { text: 'cada {{ step.value }}' },
     },
     month: {
       '*': { prefix: 'en' },
       any: { text: 'todos los meses' },
       value: { text: '{{ value.alt }}' },
       range: { text: '{{ start.alt }}-{{ end.alt }}' },
+      step: { prefix: '', text: 'cada {{step.value}} meses' },
     },
     day: {
-      '*': { prefix: 'en' },
-      any: { text: 'todos los días' },
-      value: { text: 'los días {{ value.alt }}' },
-      noSpecific: { text: 'ningún día en particular' },
-      lastDay: { text: 'el último día' },
+      '*': { prefix: 'el' },
+      any: { prefix: '', text: 'todos los días' },
+      value: { text: 'día {{ value.text }}' },
+      noSpecific: { prefix: '', text: '(día del mes sin especificar)' },
+      lastDay: { text: 'último día del mes' },
       lastDayOffset: { prefix: '', text: '{{offset.text}} día(s) antes del último día' },
-      lastWeekday: { text: 'el último día laborable' },
-      nearestWeekday: { text: 'el día laborable más cercano al {{value.text}}' },
+      lastWeekday: { text: 'último día laborable del mes' },
+      nearestWeekday: { text: 'día laborable más cercano al {{value.text}} del mes' },
+      step: { prefix: '', text: 'cada {{step.value}} días' },
     },
     dayOfWeek: {
-      '*': { prefix: 'de' },
+      '*': { prefix: '' },
       any: { text: 'todos los días de la semana' },
       value: { text: 'los {{ value.alt }}' },
-      range: { text: '{{ start.alt }}-{{ end.alt }}' },
-      noSpecific: { text: 'ningún día de la semana en particular' },
+      range: { text: 'de {{ start.alt }} a {{ end.alt }}' },
+      noSpecific: { prefix: '', text: '(día de la semana sin especificar)' },
+      step: { prefix: '', text: 'cada {{step.value}} días' },
     },
     hour: {
       '*': { prefix: 'a' },
-      any: { text: 'todas las horas' },
+      any: { prefix: '', text: 'cada hora' },
       value: { text: 'las {{ value.text }}' },
+      step: { prefix: '', text: 'cada {{step.value}} horas' },
     },
     minute: {
       '*': { prefix: ':' },
-      any: { text: 'todos los minutos' },
+      any: { text: 'cada minuto' },
+      step: { prefix: '', text: 'cada {{step.value}} minutos' },
     },
     second: {
       '*': { prefix: ':' },
-      any: { text: 'todos los segundos' },
+      any: { text: 'cada segundo' },
+      step: { prefix: '', text: 'cada {{step.value}} segundos' },
     },
   },
   minute: {
-    prefix: 'todos los',
-    text: 'minutos',
+    text: 'minuto',
   },
   hour: {
-    prefix: 'todas las',
-    text: 'horas',
+    text: 'hora',
     minute: {
       '*': {
-        prefix: 'a los',
-        suffix: 'minutos',
+        prefix: 'en el minuto',
+        suffix: '',
       },
-      any: { text: 'todos', prefix: 'a', suffix: 'los minutos' },
+      any: { prefix: '', text: 'cada minuto' },
     },
   },
   day: {
-    text: 'Días',
+    text: 'día',
   },
   week: {
-    text: 'Semanas',
+    text: 'semana',
   },
   month: {
-    text: 'Meses',
-    dayOfWeek: {
-      '*': { prefix: 'y' },
-    },
+    text: 'mes',
   },
   year: {
-    text: 'años',
-    dayOfWeek: {
-      '*': { prefix: 'y' },
-    },
+    text: 'año',
   },
 
   // quartz format
   'q-second': {
-    text: 'segundos',
+    text: 'segundo',
   },
   'q-minute': {
-    text: 'minutos',
+    text: 'minuto',
     second: {
-      '*': { prefix: 'a los', suffix: 'segundos' },
-      any: { prefix: 'a', text: 'todos', suffix: 'los segundos' },
+      '*': { prefix: 'en el segundo', suffix: '' },
+      any: { prefix: '', text: 'cada segundo' },
     },
   },
   'q-hour': {
-    prefix: 'todas las',
-    text: 'horas',
+    text: 'hora',
     minute: {
       '*': { prefix: 'en el minuto' },
-      any: { prefix: 'en' },
+      any: { prefix: '' },
+    },
+    second: {
+      '*': { prefix: 'en el segundo' },
+      any: { prefix: '' },
     },
   },
 }

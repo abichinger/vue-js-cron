@@ -2,7 +2,7 @@ import type { Localization } from './types'
 
 const locale: Localization = {
   '*': {
-    prefix: '每',
+    prefix: '',
     suffix: '',
     text: '未知',
     '*': {
@@ -16,103 +16,96 @@ const locale: Localization = {
       any: { text: '每月' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: '每隔{{step.value}}个月' },
     },
     day: {
       '*': { prefix: '的' },
       any: { text: '每日' },
       value: { text: '{{value.alt}}号' },
       range: { text: '{{start.alt}}号-{{end.alt}}号' },
-      noSpecific: {
-        text: '无特定日期',
-      },
+      noSpecific: { prefix: '', text: '（未指定日期）' },
       lastDay: { text: '最后一天' },
       lastDayOffset: { text: '最后一天前{{offset.text}}天' },
-      lastWeekday: { text: '最后一个工作日' },
-      nearestWeekday: { text: '最接近{{value.text}}号的工作日' },
+      lastWeekday: { text: '月末最后一个平日' },
+      nearestWeekday: { text: '最接近{{value.text}}号的平日' },
+      step: { prefix: '', text: '每隔{{step.value}}天' },
     },
     dayOfWeek: {
       '*': { prefix: '的' },
-      any: { text: '一周的每一天' },
+      any: { text: '一周中的每一天' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: {
-        text: '无特定星期几',
-      },
+      noSpecific: { prefix: '', text: '（未指定星期几）' },
+      step: { prefix: '', text: '按{{step.value}}天间隔' },
     },
     hour: {
       '*': { prefix: '的' },
       any: { text: '每小时' },
+      step: { prefix: '', text: '每隔{{step.value}}小时' },
     },
     minute: {
       '*': { prefix: ':' },
       any: { text: '每分钟' },
+      step: { prefix: '', text: '每隔{{step.value}}分钟' },
     },
     second: {
       '*': { prefix: ':' },
       any: { text: '每秒' },
+      step: { prefix: '', text: '每隔{{step.value}}秒' },
     },
   },
   minute: {
-    text: '分',
+    text: '每分钟',
   },
   hour: {
-    text: '小时',
+    text: '每小时',
     minute: {
       '*': {
-        prefix: ':',
+        prefix: '的第',
         suffix: '分钟',
       },
-      any: { text: '每' },
+      any: { prefix: '', text: '每' },
     },
   },
   day: {
-    text: '天',
+    text: '每天',
   },
   week: {
-    text: '周',
-    dayOfWeek: {
-      '*': { prefix: '的' },
-      any: { text: '每天' },
-      value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-    },
+    text: '每周',
   },
   month: {
-    text: '月',
-    dayOfWeek: {
-      '*': { prefix: '和' },
-    },
-    day: {
-      '*': { prefix: '的' },
-    },
+    text: '每月',
   },
   year: {
-    text: '年',
-    dayOfWeek: {
-      '*': { prefix: '和' },
-    },
+    text: '每年',
   },
 
   //quartz format
   'q-second': {
-    text: '秒',
+    text: '每秒',
   },
   'q-minute': {
-    text: '分钟',
+    text: '每分钟',
     second: {
       '*': {
-        prefix: ':',
+        prefix: '的第',
         suffix: '秒',
       },
-      any: { text: '每' },
+      any: { prefix: '', text: '每' },
     },
   },
   'q-hour': {
-    text: '小时',
+    text: '每小时',
     minute: {
       '*': {
-        prefix: ':',
+        prefix: '的第',
+        suffix: '分钟',
       },
+      any: { prefix: '', suffix: '' },
+    },
+    second: {
+      '*': { prefix: '的第', suffix: '秒' },
+      any: { suffix: '' },
     },
   },
 }

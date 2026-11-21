@@ -2,7 +2,7 @@ import type { Localization } from './types'
 
 const locale: Localization = {
   '*': {
-    prefix: '매',
+    prefix: '',
     suffix: '',
     text: '알 수 없음',
     '*': {
@@ -11,31 +11,33 @@ const locale: Localization = {
       step: { text: '{{step.value}}마다' },
     },
     month: {
-      '*': { prefix: '에' },
-      any: { prefix: '의', text: '매월' },
+      '*': { prefix: '' },
+      any: { prefix: '', text: '매월' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: '{{step.value}}개월마다' },
     },
     day: {
-      '*': { prefix: '의' },
-      any: { prefix: '에', text: '매일' },
+      '*': { prefix: '' },
+      any: { prefix: '', text: '매일' },
       step: { prefix: '', text: '{{step.value}}일마다' },
-      noSpecific: { prefix: '에', text: '특정한 날 없음' },
+      noSpecific: { prefix: '', text: '(일자 미지정)' },
       lastDay: { text: '마지막 날' },
       lastDayOffset: { text: '마지막 날 {{offset.text}}일 전' },
       lastWeekday: { text: '마지막 평일' },
       nearestWeekday: { text: '{{value.text}}일에 가장 가까운 평일' },
     },
     dayOfWeek: {
-      '*': { prefix: '의' },
-      any: { prefix: '에', text: '매주' },
+      '*': { prefix: '' },
+      any: { prefix: '', text: '요일에 관계없이' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: { prefix: '과', text: '특정한 요일 없음' },
+      noSpecific: { prefix: '', text: '(요일 미지정)' },
+      step: { prefix: '', text: '{{step.value}}일마다' },
     },
     hour: {
-      '*': { prefix: '의' },
-      any: { prefix: '에', text: '매시' },
+      '*': { prefix: '' },
+      any: { prefix: '', text: '매시간' },
       step: { prefix: '', text: '{{step.value}}시간마다' },
     },
     minute: {
@@ -49,23 +51,39 @@ const locale: Localization = {
       step: { prefix: '', text: '{{step.value}}초마다' },
     },
   },
-  minute: { text: '분' },
+  minute: { text: '매분' },
   hour: {
-    text: '시',
-    minute: { '*': { prefix: '에', suffix: '분' }, any: { text: '매' }, step: { suffix: '' } },
+    text: '매시간',
+    minute: {
+      '*': { prefix: '', suffix: '분' },
+      any: { text: '매분', suffix: '' },
+    },
   },
-  day: { prefix: '매', text: '일' },
-  week: { text: '주' },
-  month: { prefix: '매', text: '월', dayOfWeek: { '*': { prefix: '및' } } },
-  year: { prefix: '매', text: '년', dayOfWeek: { '*': { prefix: '및' } } },
+  day: { text: '매일' },
+  week: { text: '매주' },
+  month: { text: '매월' },
+  year: { text: '매년' },
 
   //quartz format
-  'q-second': { text: '초' },
+  'q-second': { text: '매초' },
   'q-minute': {
-    text: '분',
-    second: { '*': { prefix: '와', suffix: '초' }, any: { text: '매' }, step: { suffix: '' } },
+    text: '매분',
+    second: {
+      '*': { prefix: '', suffix: '초' },
+      any: { text: '매초', suffix: '' },
+    },
   },
-  'q-hour': { text: '시', minute: { '*': { prefix: '와' } }, second: { '*': { prefix: '와' } } },
+  'q-hour': {
+    text: '매시간',
+    minute: {
+      '*': { prefix: '', suffix: '분' },
+      any: { suffix: '' },
+    },
+    second: {
+      '*': { prefix: '', suffix: '초' },
+      any: { suffix: '' },
+    },
+  },
 }
 
 export default locale

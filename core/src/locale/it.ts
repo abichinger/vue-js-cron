@@ -1,11 +1,11 @@
 import type { Localization } from './types'
 
 /**
- * French localization generated with GPT-4
+ * Italian localization
  */
 const locale: Localization = {
   '*': {
-    prefix: 'Tutti',
+    prefix: 'Ogni',
     suffix: '',
     text: 'Sconosciuto',
     '*': {
@@ -15,30 +15,32 @@ const locale: Localization = {
     },
     month: {
       '*': { prefix: 'in' },
-      any: { prefix: 'in', text: 'ogni mese' },
+      any: { prefix: '', text: 'ogni mese' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      step: { prefix: '', text: 'ogni {{step.value}} mesi' },
     },
     day: {
       '*': { prefix: 'il' },
-      any: { prefix: 'il', text: 'ogni giorno' },
+      any: { prefix: '', text: 'ogni giorno' },
       step: { prefix: '', text: 'ogni {{step.value}} giorni' },
-      noSpecific: { prefix: 'il', text: 'nessun giorno specifico' },
+      noSpecific: { prefix: '', text: '(giorno del mese non specificato)' },
       lastDay: { prefix: '', text: "l'ultimo giorno" },
-      lastDayOffset: { prefix: '', text: "{{offset.text}} giorno(i) prima dell'ultimo giorno" },
+      lastDayOffset: { prefix: '', text: "{{offset.text}} gg. prima dell'ultimo giorno" },
       lastWeekday: { prefix: '', text: "l'ultimo giorno feriale" },
       nearestWeekday: { text: 'giorno feriale più vicino al {{value.text}}' },
     },
     dayOfWeek: {
       '*': { prefix: 'il' },
-      any: { prefix: 'il', text: 'ogni giorno della settimana' },
+      any: { prefix: '', text: 'ogni giorno della settimana' },
       value: { text: '{{value.alt}}' },
-      range: { text: '{{start.alt}}-{{end.alt}}' },
-      noSpecific: { prefix: 'e', text: 'nessun giorno della settimana specifico' },
+      range: { prefix: '', text: 'da {{start.alt}} a {{end.alt}}' },
+      noSpecific: { prefix: '', text: '(giorno della settimana non specificato)' },
+      step: { prefix: '', text: 'ogni {{step.value}} giorni' },
     },
     hour: {
       '*': { prefix: 'alle' },
-      any: { prefix: 'alle', text: 'ogni ora' },
+      any: { prefix: '', text: 'ogni ora' },
       step: { prefix: '', text: 'ogni {{step.value}} ore' },
     },
     minute: {
@@ -52,31 +54,36 @@ const locale: Localization = {
       step: { prefix: '', text: 'ogni {{step.value}} secondi' },
     },
   },
-  minute: { text: 'Minuto' },
+  minute: { text: 'minuto' },
   hour: {
-    text: 'Ora',
+    text: 'ora',
     minute: {
-      '*': { prefix: 'al', suffix: 'minuto/i' },
-      any: { text: 'tutti' },
-      step: { suffix: '' },
+      '*': { prefix: 'al minuto', suffix: '' },
+      any: { prefix: '', text: 'ogni minuto' },
     },
   },
-  day: { prefix: 'Tutti', text: 'Giorno' },
-  week: { text: 'Settimana' },
-  month: { prefix: 'Tutti', text: 'Mese', dayOfWeek: { '*': { prefix: 'e' } } },
-  year: { prefix: 'Tutti', text: 'Anno', dayOfWeek: { '*': { prefix: 'e' } } },
+  day: { prefix: 'Ogni', text: 'giorno' },
+  week: { text: 'settimana' },
+  month: { prefix: 'Ogni', text: 'mese' },
+  year: { prefix: 'Ogni', text: 'anno' },
 
   //quartz format
-  'q-second': { text: 'Secondo' },
+  'q-second': { text: 'secondo' },
   'q-minute': {
-    text: 'Minuto',
+    text: 'minuto',
     second: {
-      '*': { prefix: 'e', suffix: 'secondo/i' },
-      any: { text: 'tutti' },
-      step: { suffix: '' },
+      '*': { prefix: 'al secondo', suffix: '' },
+      any: { prefix: '', text: 'ogni secondo' },
     },
   },
-  'q-hour': { text: 'Ora', minute: { '*': { prefix: 'e' } }, second: { '*': { prefix: 'e' } } },
+  'q-hour': {
+    text: 'ora',
+    minute: { '*': { prefix: 'al minuto' }, any: { prefix: '' } },
+    second: {
+      '*': { prefix: 'al secondo' },
+      any: { prefix: '' },
+    },
+  },
 }
 
 export default locale
