@@ -97,6 +97,7 @@ const locale: Localization = {
     text: 'Minut',
     second: {
       '*': {
+        prefix: 'ved',
         suffix: 'sekund(er)',
       },
       any: { text: 'hvert' },

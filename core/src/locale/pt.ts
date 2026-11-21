@@ -20,6 +20,7 @@ const locale: Localization = {
     day: {
       '*': { prefix: 'no(s) dia(s)' },
       any: { text: 'todos' },
+      noSpecific: { prefix: 'em', text: 'nenhum dia específico' },
       lastDay: { prefix: 'no', text: 'último dia' },
       lastDayOffset: { prefix: '', text: '{{offset.text}} dia(s) antes do último dia' },
       lastWeekday: { prefix: 'no', text: 'último dia útil' },
@@ -30,6 +31,7 @@ const locale: Localization = {
       any: { text: 'todos dias da semana' },
       value: { text: '{{value.alt}}' },
       range: { text: '{{start.alt}}-{{end.alt}}' },
+      noSpecific: { text: 'nenhum dia específico da semana' },
     },
     hour: {
       '*': { prefix: 'às' },
@@ -38,6 +40,10 @@ const locale: Localization = {
     minute: {
       '*': { prefix: ':' },
       any: { text: 'cada minuto' },
+    },
+    second: {
+      '*': { prefix: ':' },
+      any: { text: 'cada segundo' },
     },
   },
   minute: {
@@ -69,6 +75,28 @@ const locale: Localization = {
     text: 'Ano',
     dayOfWeek: {
       '*': { prefix: 'e de' },
+    },
+  },
+
+  // quartz format
+  'q-second': {
+    prefix: 'Todo',
+    text: 'Segundo',
+  },
+  'q-minute': {
+    prefix: 'Todo',
+    text: 'Minuto',
+    second: {
+      '*': { prefix: 'aos', suffix: 'segundo(s)' },
+      any: { prefix: 'a', text: 'cada', suffix: 'segundo' },
+    },
+  },
+  'q-hour': {
+    prefix: 'Toda',
+    text: 'Hora',
+    minute: {
+      '*': { prefix: 'no minuto' },
+      any: { prefix: 'a' },
     },
   },
 }
