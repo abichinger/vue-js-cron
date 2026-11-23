@@ -6,7 +6,7 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: `/vue-js-cron/demo`,
+  base: './',
   plugins: [vue()],
   resolve: {
     alias: {
@@ -14,8 +14,8 @@ export default defineConfig({
     },
   },
   build: {
-    // outDir: `./dist`,
-    outDir: `../docs/src/.vuepress/public/demo`,
+    outDir: '../docs/src/public/demo',
+    emptyOutDir: true,
     rollupOptions: {
       input: {
         ant: resolve(__dirname, 'ant/index.html'),

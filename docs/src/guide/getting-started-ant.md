@@ -1,65 +1,32 @@
-<!-- Generated file -->
-# Getting Started - Ant
+# Getting Started with Ant Design Vue
 
-The fastest way to get started, is to use one of the prebuilt components.
-- [cron-core](./getting-started-core) - renderless cron editor
-- [cron-light](./getting-started-light) - lightweight cron editor without external dependencies
-- cron-ant - cron editor for [Ant Design Vue](https://antdv.com/)
-- [cron-element-plus](./getting-started-element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
-- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
-- [cron-prime](./getting-started-prime) - cron editor for [PrimeVue](https://primevue.org/)
-- [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
-- [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
+Use `CronAnt` in a Vue 3 app with Ant Design Vue 3.
 
-## Requirements
-
-Make sure to install and setup all requirements.
-- [Ant Design Vue](https://www.antdv.com/components/overview/)
-- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
-
-## Installation
-
-Open up a terminal and run the following command:
-
-```bash 
-yarn add @vue-js-cron/ant
-```
-or
-
-```bash 
-npm install @vue-js-cron/ant
+```sh
+npm install @vue-js-cron/ant ant-design-vue@3
 ```
 
-Then you need to register the component
+Register Ant Design Vue and load its stylesheet in your app entry point.
 
 ```js
-import '@vue-js-cron/ant/dist/ant.css'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 
-// registers the component globally
-// registered name: CronAnt
-import CronAntPlugin from '@vue-js-cron/ant'
-app.use(CronAntPlugin)
-
-// alternatively you can also register the component yourself
-// https://vuejs.org/guide/components/registration.html
-import { CronAnt } from '@vue-js-cron/ant'
-app.component('CronAnt', CronAnt)
+app.use(Antd)
 ```
 
-Done! 🚀
+```vue
+<script setup>
+import { CronAnt } from '@vue-js-cron/ant'
+import '@vue-js-cron/ant/dist/ant.css'
+import { ref } from 'vue'
 
-<br />
+const expression = ref('0 9 * * 1-5')
+</script>
 
-## API
+<template>
+  <CronAnt v-model="expression" />
+</template>
+```
 
-
-[CronAnt API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_ant.CronAnt)
-
-[CronAntProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_ant.CronAntProps)
-
-
-
-
-## Example
-
-@[code](../.vuepress/components/get-started-ant.vue)
+[Component props](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_ant.CronAntProps.html)

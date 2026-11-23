@@ -1,6 +1,11 @@
+<script setup>
+import CronDemo from './.vitepress/components/CronDemo.vue'
+</script>
+
 # Demo
 
-<cron-demo>
-</cron-demo>
+Choose a package, locale, and cron format. Change a field in the editor to see the expression it produces.
 
-<v-btn class="mt-5" color="secondary" append-icon="mdi-arrow-right" href="/vue-js-cron/guide/getting-started-light.html">Get Started</v-btn>
+<CronDemo />
+
+[Get started with Light](./guide/getting-started-light)

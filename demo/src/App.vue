@@ -16,11 +16,15 @@ export default defineComponent({
     const props = ref(Object.fromEntries(params.entries()))
 
     window.onmessage = (e) => {
-      if (e.data.type === 'updateProps') {
-        props.value = Object.assign({}, props.value, e.data.props)
-      } else {
-        console.debug('unknown message', e.data)
+      if (e.source !== window.parent || e.origin !== window.location.origin) {
+        return
       }
+      if (e.data?.type === 'updateProps') {
+        props.value = Object.assign({}, props.value, e.data.props)
+      }
+    }
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'cron-demo-ready' }, window.location.origin)
     }
 
     const value = ref(params.get('initial-value') ?? '* * * * *')

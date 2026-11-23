@@ -2,7 +2,6 @@
   "name": "@vue-js-cron/docs",
   "version": "0.0.1",
   "description": "vue-js-cron documentation",
-  "main": "index.js",
   "private": true,
   "authors": {
     "name": "Andreas Bichinger",
@@ -10,25 +9,16 @@
   },
   "repository": "https://github.com/abichinger/vue-js-cron/@vue-js-cron/docs",
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "vuepress build src",
-    "clean": "git clean -xf src/.vuepress/dist src/.vuepress/.temp src/.vuepress/.cache",
-    "generate": "cron-cli guide src/guide"
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "preview": "vitepress preview src",
+    "clean": "git clean -xf src/.vitepress/dist src/.vitepress/cache"
   },
   "license": "MIT",
   "devDependencies": {
-    "@vue-js-cron/ant": "file:../ant",
     "@vue-js-cron/core": "file:../core",
-    "@vue-js-cron/element-plus": "file:../element-plus",
     "@vue-js-cron/light": "file:../light",
-    "@vue-js-cron/vuetify": "file:../vuetify",
-    "@vuepress/bundler-vite": "2.0.0-rc.30",
-    "@vuepress/plugin-google-analytics": "2.0.0-rc.130",
-    "@vuepress/plugin-register-components": "2.0.0-rc.132",
-    "@vuepress/theme-default": "2.0.0-rc.132",
-    "vuepress": "2.0.0-rc.30"
-  },
-  "dependencies": {
-    "@vue-js-cron/generated": "file:../generated"
+    "vitepress": "2.0.0-alpha.21",
+    "vue": "^3.5.40"
   }
 }

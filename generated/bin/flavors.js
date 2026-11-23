@@ -5,7 +5,6 @@ const core = {
     dir: 'core',
     component: 'CronCore',
     componentHypen: 'cron-core',
-    example: '../.vuepress/components/get-started-renderless.vue',
 };
 const light = {
     name: 'Light',
@@ -15,7 +14,6 @@ const light = {
     css: '@vue-js-cron/light/dist/light.css',
     component: 'CronLight',
     componentHypen: 'cron-light',
-    example: '../.vuepress/components/get-started-light.vue',
 };
 const ant = {
     name: 'Ant',
@@ -27,7 +25,6 @@ const ant = {
     componentHypen: 'cron-ant',
     uses: { 'ant-design-vue': ['default'] },
     requirements: [{ name: 'Ant Design Vue', url: 'https://www.antdv.com/components/overview/' }],
-    example: '../.vuepress/components/get-started-ant.vue',
 };
 const element = {
     name: 'Element Plus',
@@ -40,7 +37,6 @@ const element = {
     uses: { 'element-plus': ['default'] },
     imports: ['element-plus/dist/index.css'],
     requirements: [{ name: 'Element Plus', url: 'https://element-plus.org/en-US/' }],
-    example: '../.vuepress/components/get-started-element.vue',
 };
 const quasar = {
     name: 'Quasar',
@@ -74,7 +70,6 @@ const vuetify = {
         app.use(vuetify);
     },
     requirements: [{ name: 'Vuetify', url: 'https://next.vuetifyjs.com/en/' }],
-    example: '../.vuepress/components/get-started-vuetify.vue',
 };
 const naiveUI = {
     name: 'Naive UI',
@@ -88,7 +83,6 @@ const naiveUI = {
     requirements: [
         { name: 'Naive UI', url: 'https://www.naiveui.com/en-US/os-theme/docs/installation' },
     ],
-    example: '../.vuepress/components/get-started-naive-ui.vue',
 };
 const prime = {
     name: 'PrimeVue',

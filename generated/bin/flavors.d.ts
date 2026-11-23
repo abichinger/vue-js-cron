@@ -15,7 +15,6 @@ export interface Flavor {
     imports?: string[];
     setup?: (app: App) => Promise<void>;
     requirements?: Link[];
-    example?: string;
     api?: Link[];
 }
 export declare const flavors: Flavor[];

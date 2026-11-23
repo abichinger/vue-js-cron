@@ -1,65 +1,33 @@
-<!-- Generated file -->
-# Getting Started - Vuetify
+# Getting Started with Vuetify
 
-The fastest way to get started, is to use one of the prebuilt components.
-- [cron-core](./getting-started-core) - renderless cron editor
-- [cron-light](./getting-started-light) - lightweight cron editor without external dependencies
-- [cron-ant](./getting-started-ant) - cron editor for [Ant Design Vue](https://antdv.com/)
-- [cron-element-plus](./getting-started-element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
-- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
-- [cron-prime](./getting-started-prime) - cron editor for [PrimeVue](https://primevue.org/)
-- [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
-- cron-vuetify - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
-
-## Requirements
-
-Make sure to install and setup all requirements.
-- [Vuetify](https://next.vuetifyjs.com/en/)
-- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
-
-## Installation
-
-Open up a terminal and run the following command:
-
-```bash 
-yarn add @vue-js-cron/vuetify
-```
-or
-
-```bash 
-npm install @vue-js-cron/vuetify
+```sh
+npm install @vue-js-cron/vuetify vuetify@3 @mdi/font
 ```
 
-Then you need to register the component
+In your app entry point, register Vuetify with its components and directives.
 
 ```js
-import '@vue-js-cron/vuetify/dist/vuetify.css'
+import '@mdi/font/css/materialdesignicons.css'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import 'vuetify/styles'
 
-// registers the component globally
-// registered name: CronVuetify
-import CronVuetifyPlugin from '@vue-js-cron/vuetify'
-app.use(CronVuetifyPlugin)
-
-// alternatively you can also register the component yourself
-// https://vuejs.org/guide/components/registration.html
-import { CronVuetify } from '@vue-js-cron/vuetify'
-app.component('CronVuetify', CronVuetify)
+app.use(createVuetify({ components, directives }))
 ```
 
-Done! 🚀
+```vue
+<script setup>
+import { CronVuetify } from '@vue-js-cron/vuetify'
+import '@vue-js-cron/vuetify/dist/vuetify.css'
+import { ref } from 'vue'
 
-<br />
+const expression = ref('0 9 * * 1-5')
+</script>
 
-## API
+<template>
+  <CronVuetify v-model="expression" />
+</template>
+```
 
-
-[CronVuetify API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_vuetify.CronVuetify)
-
-[CronVuetifyProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_vuetify.CronVuetifyProps)
-
-
-
-
-## Example
-
-@[code](../.vuepress/components/get-started-vuetify.vue)
+[Component props](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_vuetify.CronVuetifyProps.html)

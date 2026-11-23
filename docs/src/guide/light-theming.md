@@ -1,33 +1,13 @@
+<script setup>
+import ThemingExample from '../examples/light-theming.vue'
+</script>
+
 # Theming - Light
 
-## Themes
+Light ships with the default `ant` theme and the original `legacy` theme. Set the `theme` prop to switch between them.
 
-`CronLight` ships two themes, which are selected with the `theme` prop.
+<<< ../examples/light-theming.vue
 
-| value | description |
-| -------- | -------------------------------------------------------------- |
-| `ant` | default theme, inspired by [Ant Design Vue](https://antdv.com/) |
-| `legacy` | the styles used before the `ant` theme was introduced |
+<ThemingExample />
 
-```vue
-<template>
-  <cron-light v-model="value" theme="legacy" />
-</template>
-```
-
-## Dark mode
-
-Dark mode is activated by adding the `dark` class to any parent element.
-
-```html
-<body class="dark">
-  <cron-light v-model="value" />
-</body>
-```
-
-@[code](@/src/.vuepress/components/light-theming.vue)
-
-Use the toggle at the top-right to switch between light and dark mode.
-<br/><br/>
-
-<light-theming />
+The `ant` theme uses dark colors when an ancestor has the `dark` class. Try the VitePress appearance switch to see it change.

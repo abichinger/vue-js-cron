@@ -1,58 +1,30 @@
-<!-- Generated file -->
-# Getting Started - Quasar
+# Getting Started with Quasar
 
-The fastest way to get started, is to use one of the prebuilt components.
-- [cron-core](./getting-started-core) - renderless cron editor
-- [cron-light](./getting-started-light) - lightweight cron editor without external dependencies
-- [cron-ant](./getting-started-ant) - cron editor for [Ant Design Vue](https://antdv.com/)
-- [cron-element-plus](./getting-started-element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
-- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
-- [cron-prime](./getting-started-prime) - cron editor for [PrimeVue](https://primevue.org/)
-- cron-quasar - cron editor for [Quasar](https://quasar.dev/)
-- [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
-
-## Requirements
-
-Make sure to install and setup all requirements.
-- [Quasar](https://quasar.dev/start)
-- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
-
-## Installation
-
-Open up a terminal and run the following command:
-
-```bash 
-yarn add @vue-js-cron/quasar
-```
-or
-
-```bash 
-npm install @vue-js-cron/quasar
+```sh
+npm install @vue-js-cron/quasar quasar@2 @quasar/extras
 ```
 
-Then you need to register the component
+If your app doesn't already use Quasar, register it and load the styles in your app entry point.
 
 ```js
-// registers the component globally
-// registered name: CronQuasar
-import CronQuasarPlugin from '@vue-js-cron/quasar'
-app.use(CronQuasarPlugin)
+import '@quasar/extras/material-icons/material-icons.css'
+import { Quasar } from 'quasar'
+import 'quasar/dist/quasar.css'
 
-// alternatively you can also register the component yourself
-// https://vuejs.org/guide/components/registration.html
-import { CronQuasar } from '@vue-js-cron/quasar'
-app.component('CronQuasar', CronQuasar)
+app.use(Quasar)
 ```
 
-Done! 🚀
+```vue
+<script setup>
+import { CronQuasar } from '@vue-js-cron/quasar'
+import { ref } from 'vue'
 
-<br />
+const expression = ref('0 9 * * 1-5')
+</script>
 
-## API
+<template>
+  <CronQuasar v-model="expression" />
+</template>
+```
 
-
-[CronQuasar API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_quasar.CronQuasar)
-
-[CronQuasarProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_quasar.CronQuasarProps)
-
-
+[Component props](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_quasar.CronQuasarProps.html)

@@ -1,60 +1,31 @@
-<!-- Generated file -->
-# Getting Started - PrimeVue
+# Getting Started with PrimeVue
 
-The fastest way to get started, is to use one of the prebuilt components.
-- [cron-core](./getting-started-core) - renderless cron editor
-- [cron-light](./getting-started-light) - lightweight cron editor without external dependencies
-- [cron-ant](./getting-started-ant) - cron editor for [Ant Design Vue](https://antdv.com/)
-- [cron-element-plus](./getting-started-element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
-- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
-- cron-prime - cron editor for [PrimeVue](https://primevue.org/)
-- [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
-- [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
-
-## Requirements
-
-Make sure to install and setup all requirements.
-- [PrimeVue](https://primevue.org/setup/)
-- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
-
-## Installation
-
-Open up a terminal and run the following command:
-
-```bash 
-yarn add @vue-js-cron/prime
-```
-or
-
-```bash 
-npm install @vue-js-cron/prime
+```sh
+npm install @vue-js-cron/prime primevue@4 @primevue/themes@4 primeicons
 ```
 
-Then you need to register the component
+Register PrimeVue with a theme and load PrimeIcons in your app entry point.
 
 ```js
-import '@vue-js-cron/prime/dist/prime.css'
+import Aura from '@primevue/themes/aura'
+import 'primeicons/primeicons.css'
+import PrimeVue from 'primevue/config'
 
-// registers the component globally
-// registered name: CronPrime
-import CronPrimePlugin from '@vue-js-cron/prime'
-app.use(CronPrimePlugin)
-
-// alternatively you can also register the component yourself
-// https://vuejs.org/guide/components/registration.html
-import { CronPrime } from '@vue-js-cron/prime'
-app.component('CronPrime', CronPrime)
+app.use(PrimeVue, { theme: { preset: Aura } })
 ```
 
-Done! 🚀
+```vue
+<script setup>
+import { CronPrime } from '@vue-js-cron/prime'
+import '@vue-js-cron/prime/dist/prime.css'
+import { ref } from 'vue'
 
-<br />
+const expression = ref('0 9 * * 1-5')
+</script>
 
-## API
+<template>
+  <CronPrime v-model="expression" />
+</template>
+```
 
-
-[CronPrime API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_prime.CronPrime)
-
-[CronPrimeProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_prime.CronPrimeProps)
-
-
+[Component props](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_prime.CronPrimeProps.html)

@@ -1,16 +1,26 @@
 ---
-home: true
-tagline: A guide to generate cron expressions with Vue.js
-actions: 
-  - text: Quick Start →
-    type: primary
-    link: /guide/getting-started-light
+layout: home
+
+hero:
+  name: Vue.js Cron
+  text: Cron expression editors for Vue 3
+  tagline: Use a ready-made editor or build your own with the renderless core.
+  actions:
+    - theme: brand
+      text: Try the demo
+      link: /demo
+    - theme: alt
+      text: Getting started
+      link: /guide/getting-started-light
+
 features:
-- title: Renderless Component
-  details: Vue-js-cron provides a renderless component, which can be used with any UI Library.
-- title: Fully Customizable
-  details: By default this component generates cron expressions following the UNIX cron format. But is is also possible to generate custom cron expressions.
-- title: Finished Components
-  details: Vue-js-cron includes a finished component for Vuetify.js
-footer: Made by Andreas Bichinger with ❤️
+  - title: Light
+    details: A ready-to-use editor that needs no UI framework.
+    link: /guide/getting-started-light
+  - title: Core
+    details: Render your own controls with a scoped slot.
+    link: /guide/getting-started-core
+  - title: Cron formats
+    details: Start with crontab, Quartz, or Spring and customize the fields as needed.
+    link: /guide/custom-fields
 ---

@@ -1,64 +1,19 @@
-<!-- Generated file -->
-# Getting Started - Light
+<script setup>
+import LightExample from '../examples/light.vue'
+</script>
 
-The fastest way to get started, is to use one of the prebuilt components.
-- [cron-core](./getting-started-core) - renderless cron editor
-- cron-light - lightweight cron editor without external dependencies
-- [cron-ant](./getting-started-ant) - cron editor for [Ant Design Vue](https://antdv.com/)
-- [cron-element-plus](./getting-started-element-plus) - cron editor for [Element Plus](https://element-plus.org/en-US/)
-- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
-- [cron-prime](./getting-started-prime) - cron editor for [PrimeVue](https://primevue.org/)
-- [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
-- [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
+# Getting Started with Light
 
-## Requirements
+Light is a ready-to-use cron editor for Vue 3. It needs no UI framework.
 
-Make sure to install and setup all requirements.
-- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
-
-## Installation
-
-Open up a terminal and run the following command:
-
-```bash 
-yarn add @vue-js-cron/light
-```
-or
-
-```bash 
+```sh
 npm install @vue-js-cron/light
 ```
 
-Then you need to register the component
+Import the editor and its stylesheet. Use `v-model` to read and update the expression.
 
-```js
-import '@vue-js-cron/light/dist/light.css'
+<<< ../examples/light.vue
 
-// registers the component globally
-// registered name: CronLight
-import CronLightPlugin from '@vue-js-cron/light'
-app.use(CronLightPlugin)
+<LightExample />
 
-// alternatively you can also register the component yourself
-// https://vuejs.org/guide/components/registration.html
-import { CronLight } from '@vue-js-cron/light'
-app.component('CronLight', CronLight)
-```
-
-Done! 🚀
-
-<br />
-
-## API
-
-
-[CronLight API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_light.CronLight)
-
-[CronLightProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_light.CronLightProps)
-
-
-
-
-## Example
-
-@[code](../.vuepress/components/get-started-light.vue)
+[Component props](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_light.CronLightProps.html) · [Theming](./light-theming)

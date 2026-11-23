@@ -32,10 +32,10 @@ jobs:
           npm install
           npm run build
 
-      - name: Build vuepress
+      - name: Build VitePress
         run: |
           cd docs
-          npm install
+          npm ci
           npm run build
 
       - name: Build Typedoc
@@ -46,7 +46,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
-          folder: docs/src/.vuepress/dist
+          folder: docs/src/.vitepress/dist
           clean-exclude: |
             next
             vue2
@@ -57,7 +57,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
-          folder: docs/src/.vuepress/dist
+          folder: docs/src/.vitepress/dist
           target-folder: ./next
 
       - name: Deploy vue2
@@ -65,7 +65,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
-          folder: docs/src/.vuepress/dist
+          folder: docs/src/.vitepress/dist
           target-folder: ./vue2
 
       - name: Deploy beta
@@ -73,7 +73,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
-          folder: docs/src/.vuepress/dist
+          folder: docs/src/.vitepress/dist
           target-folder: ./beta
 
       - name: Deploy Typedoc

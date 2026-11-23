@@ -1,65 +1,30 @@
-<!-- Generated file -->
-# Getting Started - Element Plus
+# Getting Started with Element Plus
 
-The fastest way to get started, is to use one of the prebuilt components.
-- [cron-core](./getting-started-core) - renderless cron editor
-- [cron-light](./getting-started-light) - lightweight cron editor without external dependencies
-- [cron-ant](./getting-started-ant) - cron editor for [Ant Design Vue](https://antdv.com/)
-- cron-element-plus - cron editor for [Element Plus](https://element-plus.org/en-US/)
-- [cron-naive](./getting-started-naive-ui) - cron editor for [Naive UI](https://www.naiveui.com)
-- [cron-prime](./getting-started-prime) - cron editor for [PrimeVue](https://primevue.org/)
-- [cron-quasar](./getting-started-quasar) - cron editor for [Quasar](https://quasar.dev/)
-- [cron-vuetify](./getting-started-vuetify) - cron editor for [Vuetify.js](https://next.vuetifyjs.com/en/)
-
-## Requirements
-
-Make sure to install and setup all requirements.
-- [Element Plus](https://element-plus.org/en-US/)
-- [TypeScript](https://www.typescriptlang.org/) >= 5 - only required, if your project uses TypeScript
-
-## Installation
-
-Open up a terminal and run the following command:
-
-```bash 
-yarn add @vue-js-cron/element-plus
-```
-or
-
-```bash 
-npm install @vue-js-cron/element-plus
+```sh
+npm install @vue-js-cron/element-plus element-plus
 ```
 
-Then you need to register the component
+Register Element Plus and load its stylesheet in your app entry point.
 
 ```js
-import '@vue-js-cron/element-plus/dist/element-plus.css'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
-// registers the component globally
-// registered name: CronElementPlus
-import CronElementPlusPlugin from '@vue-js-cron/element-plus'
-app.use(CronElementPlusPlugin)
-
-// alternatively you can also register the component yourself
-// https://vuejs.org/guide/components/registration.html
-import { CronElementPlus } from '@vue-js-cron/element-plus'
-app.component('CronElementPlus', CronElementPlus)
+app.use(ElementPlus)
 ```
 
-Done! 🚀
+```vue
+<script setup>
+import { CronElementPlus } from '@vue-js-cron/element-plus'
+import '@vue-js-cron/element-plus/dist/element-plus.css'
+import { ref } from 'vue'
 
-<br />
+const expression = ref('0 9 * * 1-5')
+</script>
 
-## API
+<template>
+  <CronElementPlus v-model="expression" />
+</template>
+```
 
-
-[CronElementPlus API](https://abichinger.github.io/vue-js-cron/typedoc/classes/_vue-js-cron_element-plus.CronElementPlus)
-
-[CronElementPlusProps API](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_element-plus.CronElementPlusProps)
-
-
-
-
-## Example
-
-@[code](../.vuepress/components/get-started-element.vue)
+[Component props](https://abichinger.github.io/vue-js-cron/typedoc/interfaces/_vue-js-cron_element-plus.CronElementPlusProps.html)

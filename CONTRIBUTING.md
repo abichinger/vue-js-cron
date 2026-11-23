@@ -10,7 +10,7 @@ Before opening a PR, please make sure that the following points apply to your ch
 
 ## Setup Development Environment
 
-**Requires NodeJS >= 18.0**
+Use Node.js 24 to match CI.
 
 First you need to clone the [`vue-js-cron` repository](https://github.com/abichinger/vue-js-cron.git). You should
 [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
@@ -36,8 +36,10 @@ That's all, your development environment is ready.
 # Build packages, demo and docs
 npm run build -w=core   # Build the core package, required by other packages
 npm run build           # builds all public packages
+npm ci --prefix demo    # install demo dependencies
 npm run build-demo      # build demo, embedded inside docs
-npm run build-docs      # build documentaion using vuepress
+npm ci --prefix docs    # install documentation dependencies
+npm run build-docs      # build documentation with VitePress
 
 # Start a developement server for the core package
 npm run dev -w=core
@@ -46,7 +48,7 @@ npm run dev -w=core
 npm run dev -w=light
 
 # Start a development server of the documentation
-cd docs && npm run dev
+npm run dev --prefix docs
 
 # Run normal tests (excludes translation completeness checks)
 npm run test

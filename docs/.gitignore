@@ -13,4 +13,6 @@ basement_dist
 .cache
 .temp
 
+src/.vitepress/cache
+src/public/demo
 src/.vuepress/public/demo

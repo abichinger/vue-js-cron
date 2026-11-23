@@ -1,64 +1,24 @@
+<script setup>
+import SpecialValuesExample from '../examples/special-values.vue'
+</script>
+
 # Special Values
 
-## Named months and weekdays
+Quartz and Spring support `?` for an unspecified day of the month or week, and the following values in the day-of-month field.
 
-The `crontab`, `quartz`, and `spring` formats accept case-insensitive English
-abbreviations (`JAN`–`DEC`, `SUN`–`SAT`), regardless of the display locale.
-Lists, ranges, and supported step patterns work too: `JAN,MAR`, `MON-FRI`,
-`JAN-MAY/2`. Output is normalized to numeric values.
+| Value | Meaning                                     |
+| ----- | ------------------------------------------- |
+| `L`   | Last day of the month                       |
+| `L-3` | Three days before the last day of the month |
+| `LW`  | Last weekday of the month                   |
+| `15W` | Weekday nearest the 15th of the month       |
 
-Names are enabled by default. Set `namedValues: false` to require numeric input:
+Select `L` and `LW` in the editor. Supply offsets such as `L-3` and nearest weekdays such as `15W` through `v-model`. Use each special value by itself in its field.
+
+<SpecialValuesExample />
+
+Set `specialDays: false` to disable the day-of-month values, or set `specialDays: true` to enable them for a custom format if your scheduler supports them.
 
 ```vue
-<CronLight :format="{ inherit: 'crontab', namedValues: false }" v-model="expression" />
+<CronLight v-model="expression" :format="{ inherit: 'quartz', specialDays: false }" />
 ```
-
-`firstWeekDay` controls weekday numbering and display order:
-
-| `firstWeekDay` | Items in display order | Sunday | Alias when enabled |
-| -------------- | ---------------------- | ------ | ------------------ |
-| `sun=0`        | `0–6`                  | `0`    | `7 → 0`            |
-| `mon=1`        | `1–7`                  | `7`    | `0 → 7`            |
-| `sun=1`        | `1–7`                  | `1`    | None               |
-| `mon=2`        | `2–7, 1`               | `1`    | None               |
-
-`hasSundayAlias` defaults to `true` for crontab/Spring and `false` for Quartz.
-It can be overridden independently of `namedValues`. Crontab/Spring default to
-`sun=0`; Quartz defaults to `sun=1`.
-
-## Special days
-
-The day of month field of the `quartz` and `spring` format supports the special values `L` and `W`.
-
-| Value | Description                              |
-| ----- | ---------------------------------------- |
-| `L`   | last day of the month                    |
-| `L-3` | 3 days before the last day of the month  |
-| `LW`  | last weekday of the month                |
-| `15W` | weekday nearest to the 15th of the month |
-
-`L` and `LW` are part of the items of the day field, therefore they can be selected like any
-other value. `L-<n>` and `<n>W` are parsed and displayed, but they have to be set through
-`v-model`.
-
-Special values can't be combined with other values, e.g. `L,15` is not a valid day of month.
-
-<special-values />
-
-## Other formats
-
-The special values are disabled for the `crontab` format, because
-[crontab](https://linux.die.net/man/5/crontab) doesn't support them.
-`specialDays` enables them for any format.
-
-@[code](@/src/.vuepress/components/special-values-crontab.vue)
-
-<special-values-crontab />
-
-## Disable Special Values
-
-To disable the special values for `quartz` and `spring` formats, set `specialDays` to `false`.
-
-@[code](@/src/.vuepress/components/special-values-disabled.vue)
-
-<special-values-disabled />
