@@ -1,6 +1,6 @@
 {
   "name": "@vue-js-cron/light",
-  "version": "5.2.3",
+  "version": "5.2.4",
   "description": "lightweight vue.js cron editor",
   "type": "module",
   "main": "dist/light.umd.cjs",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.8",
-    "@vue-js-cron/core": "6.6.0"
+    "@vue-js-cron/core": "6.6.1"
   },
   "files": [
     "package.json",
