@@ -1,6 +1,6 @@
 <template>
   <div style="display: inline-block">
-    <v-row align="baseline" dense>
+    <v-row align="baseline" v-bind="rowDensity">
       <v-col v-if="period.prefix.value" class="flex-grow-0">{{ period.prefix.value }}</v-col>
       <v-col cols="auto">
         <custom-select
@@ -37,10 +37,11 @@
 </template>
 
 <script lang="ts">
+import { rowDensity } from '@/components/row-density'
 import CustomSelect from '@/components/select.vue'
 import { cronCoreProps, setupCron } from '@vue-js-cron/core'
 import type { ExtractPropTypes } from 'vue'
-import { defineComponent } from 'vue'
+import { defineComponent, resolveComponent } from 'vue'
 
 export const cronVuetifyProps = () => ({
   /**
@@ -78,7 +79,9 @@ export default defineComponent({
   props: cronVuetifyProps(),
   emits: ['update:model-value', 'update:period', 'error'],
   setup(props, ctx) {
-    return setupCron(props, ctx)
+    return Object.assign(setupCron(props, ctx), {
+      rowDensity: rowDensity(resolveComponent('VRow')),
+    })
   },
 })
 </script>
