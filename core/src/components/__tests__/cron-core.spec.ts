@@ -299,6 +299,56 @@ it('setupCron events', async () => {
   expect(wrapper.emitted('update:period')![0]).toEqual(['month'])
 })
 
+it('setupCron locale is reactive', async () => {
+  let cron!: UseCronReturn
+
+  const component = defineComponent({
+    props: cronCoreProps(),
+    emits: ['update:model-value', 'update:period', 'error'],
+    setup(props, ctx) {
+      cron = setupCron(props, ctx)
+
+      return () => {}
+    },
+  })
+
+  const wrapper = mount(component, {
+    props: {
+      modelValue: '0 12 * 5 *',
+      period: 'year',
+      locale: 'en',
+    },
+  })
+
+  const expected = async (locale: string) => {
+    const cron = useCron({ initialValue: '0 12 * 5 *', initialPeriod: 'year', locale })
+    await nextTick()
+    return cronToString(cron)
+  }
+  expect(cronToString(cron)).toEqual(await expected('en'))
+
+  await wrapper.setProps({ locale: 'de' })
+  expect(cronToString(cron)).toEqual(await expected('de'))
+  expect(cronToString(cron)).toContain('Mai')
+  expect(cron.segments[3].items[0].text).toEqual('Januar')
+
+  await wrapper.setProps({ customLocale: { year: { text: 'Jährlich' } } })
+  expect(cron.period.selected.value.text).toEqual('Jährlich')
+
+  // the value and the period are kept and the switch doesn't emit
+  expect(cron.cron.value).toEqual('0 12 * 5 *')
+  expect(wrapper.emitted('update:model-value')).toBeUndefined()
+  expect(wrapper.emitted('update:period')).toBeUndefined()
+
+  // the new state is wired to the props and events
+  await wrapper.setProps({ modelValue: '0 8 * 5 *' })
+  expect(cron.segments[1].text.value).toEqual('08')
+  cron.period.select('day')
+  await nextTick()
+  expect(wrapper.emitted('update:period')).toEqual([['day']])
+  expect(wrapper.emitted('update:model-value')).toEqual([['0 8 * 5 *'], ['0 8 * * *']])
+})
+
 describe('findFirstPeriod', () => {
   const periods: Period[] = [
     { id: 'week', value: ['dayOfWeek', 'hour', 'minute'] },
