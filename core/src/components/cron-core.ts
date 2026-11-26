@@ -15,10 +15,14 @@ import type { Localization } from '@/locale/types'
 import {
   computed,
   defineComponent,
+  effectScope,
+  onScopeDispose,
   ref,
+  shallowRef,
   watch,
   type ExtractPropTypes,
   type PropType,
+  type Ref,
   type SetupContext,
 } from 'vue'
 import {
@@ -311,13 +315,43 @@ export function setupCron(
   props: CronCoreProps,
   { emit }: SetupContext<['update:model-value', 'update:period', 'error']>,
 ): UseCronReturn {
-  const options: CronOptions = {
-    ...props,
-    initialValue: props.modelValue,
-    initialPeriod: props.period,
+  const create = (initialValue?: string, initialPeriod?: string) => {
+    const scope = effectScope(true)
+    const cron = scope.run(() => useCron({ ...props, initialValue, initialPeriod }))!
+    return { scope, cron }
   }
 
-  const cron = useCron(options)
+  const state = shallowRef(create(props.modelValue, props.period))
+  onScopeDispose(() => state.value.scope.stop())
+
+  // useCron reads the locale once, so the state is rebuilt with the current value and period
+  watch([() => props.locale, () => props.customLocale], () => {
+    const { scope, cron } = state.value
+    scope.stop()
+    state.value = create(cron.cron.value, cron.period.selected.value.id)
+  })
+
+  const current = () => state.value.cron
+  const forward = <T>(get: () => Ref<T>) =>
+    computed({ get: () => get().value, set: (value: T) => (get().value = value) })
+
+  const cron: UseCronReturn = {
+    cron: forward(() => current().cron),
+    error: forward(() => current().error),
+    get segments() {
+      return current().segments
+    },
+    selected: computed(() => current().selected.value),
+    period: {
+      select: (periodId: string) => current().period.select(periodId),
+      selected: forward(() => current().period.selected),
+      get items() {
+        return current().period.items
+      },
+      prefix: forward(() => current().period.prefix),
+      suffix: forward(() => current().period.suffix),
+    },
+  }
 
   watch(
     () => props.modelValue,
@@ -345,9 +379,12 @@ export function setupCron(
     { immediate: props.modelValue === undefined },
   )
 
-  watch(cron.period.selected, (value) => {
-    emit('update:period', value.id)
-  })
+  watch(
+    () => cron.period.selected.value.id,
+    (id) => {
+      emit('update:period', id)
+    },
+  )
 
   watch(cron.error, (error) => {
     emit('error', error)
