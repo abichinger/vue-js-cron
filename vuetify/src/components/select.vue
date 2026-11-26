@@ -15,8 +15,8 @@
 
     <v-menu activator="parent" v-bind="menuProps">
       <v-list class="pa-0 ma-0">
-        <v-row v-for="(itemRow, index) in itemRows" :key="index" no-gutters>
-          <v-col v-for="(item, index) in itemRow" :key="index">
+        <v-row v-for="(itemRow, index) in itemRows" :key="index" class="ma-0 ga-0">
+          <v-col v-for="(item, index) in itemRow" :key="index" class="pa-0">
             <v-list-item v-if="item" class="vcron-v-item" @click="select(item)" :active="has(item)">
               {{ item.text }}
             </v-list-item>
